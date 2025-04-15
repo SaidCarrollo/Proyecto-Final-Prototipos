@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
 
 public class ObjectGrabber : MonoBehaviour
 {
+    public event Action<GameObject> OnObjectGrabbed;
+    public event Action<GameObject> OnObjectReleased;
+
     [Header("Grab Settings")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float grabRange = 5f;
@@ -49,38 +53,38 @@ public class ObjectGrabber : MonoBehaviour
         {
             heldObject = hit.collider.gameObject;
             heldObjectRb = heldObject.GetComponent<Rigidbody>();
-
-            // Desactivar gravedad mientras se sostiene
             heldObjectRb.useGravity = false;
 
-            // Activar outline
             OutlineObject outline = heldObject.GetComponent<OutlineObject>();
             if (outline != null)
             {
                 outline.EnableOutline();
             }
+
+            OnObjectGrabbed?.Invoke(heldObject);
         }
     }
 
     private void ReleaseObject()
     {
-        // Desactivar outline
-        OutlineObject outline = heldObject.GetComponent<OutlineObject>();
-        if (outline != null)
+        if (heldObject != null)
         {
-            outline.DisableOutline();
+            OutlineObject outline = heldObject.GetComponent<OutlineObject>();
+            if (outline != null)
+            {
+                outline.DisableOutline();
+            }
+
+            heldObjectRb.useGravity = true;
+
+            // 🔥 Invocar evento
+            OnObjectReleased?.Invoke(heldObject);
+
+            heldObject = null;
         }
-
-        // Reactivar gravedad
-        heldObjectRb.useGravity = true;
-        heldObject = null;
     }
 
-    public bool IsHoldingObject()
-    {
-        return heldObject != null;
-    }
-
+    public bool IsHoldingObject() => heldObject != null;
     private void MoveObjectWithPhysics()
     {
         // Calcula la posición objetivo (delante de la cámara + offset vertical)

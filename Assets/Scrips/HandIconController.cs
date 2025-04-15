@@ -10,16 +10,24 @@ public class HandIconController : MonoBehaviour
     [SerializeField] private Image handImage;
     [SerializeField] private ObjectGrabber grabber; // Tu script de agarre
 
-    void Update()
+    void Start()
     {
-        // Cambia el sprite basado en si se está agarrando un objeto
-        if (grabber.IsHoldingObject()) // Asegúrate de tener este método en ObjectGrabber.cs
-        {
-            handImage.sprite = handClosed;
-        }
-        else
-        {
-            handImage.sprite = handOpen;
-        }
+        grabber.OnObjectGrabbed += HandleGrabbed;
+        grabber.OnObjectReleased += HandleReleased;
+    }
+
+    void OnDestroy()
+    {
+        grabber.OnObjectGrabbed -= HandleGrabbed;
+        grabber.OnObjectReleased -= HandleReleased;
+    }
+
+    private void HandleGrabbed(GameObject obj)
+    {
+        handImage.sprite = handClosed;
+    }
+    private void HandleReleased(GameObject obj)
+    {
+        handImage.sprite = handOpen;
     }
 }
