@@ -5,14 +5,13 @@ public class ObjectGrabber : MonoBehaviour
     [Header("Grab Settings")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float grabRange = 5f;
-    [SerializeField] private float grabSpeed = 15f; // Más rápido para mejor respuesta
-    [SerializeField] private float verticalOffset = 0.5f; // Altura respecto a la cámara
+    [SerializeField] private float grabSpeed = 15f;
+    [SerializeField] private float verticalOffset = 0.5f;
     [SerializeField] private LayerMask interactableLayer;
-    [SerializeField] private LaserPointer laserPointer;
 
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
-    private float currentHoldDistance; // Distancia dinámica
+    private float currentHoldDistance = 2f; // Distancia inicial
 
     void Update()
     {
@@ -29,10 +28,9 @@ public class ObjectGrabber : MonoBehaviour
         }
 
         // Ajustar distancia con la rueda del mouse
-        if (heldObject != null)
+        if (heldObject != null && Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            currentHoldDistance = Mathf.Clamp(currentHoldDistance - scroll * 2f, 0.5f, 3f); // Rango de distancia
+            currentHoldDistance = Mathf.Clamp(currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f, 0.5f, 5f);
         }
     }
 
@@ -51,26 +49,44 @@ public class ObjectGrabber : MonoBehaviour
         {
             heldObject = hit.collider.gameObject;
             heldObjectRb = heldObject.GetComponent<Rigidbody>();
-            heldObject.GetComponent<OutlineObject>().EnableOutline(); // Activa outline
+
+            // Desactivar gravedad mientras se sostiene
+            heldObjectRb.useGravity = false;
+
+            // Activar outline
+            OutlineObject outline = heldObject.GetComponent<OutlineObject>();
+            if (outline != null)
+            {
+                outline.EnableOutline();
+            }
         }
     }
 
     private void ReleaseObject()
     {
-        heldObject.GetComponent<OutlineObject>().DisableOutline(); // Desactiva outline
+        // Desactivar outline
+        OutlineObject outline = heldObject.GetComponent<OutlineObject>();
+        if (outline != null)
+        {
+            outline.DisableOutline();
+        }
+
+        // Reactivar gravedad
         heldObjectRb.useGravity = true;
         heldObject = null;
     }
+
     public bool IsHoldingObject()
     {
         return heldObject != null;
     }
+
     private void MoveObjectWithPhysics()
     {
         // Calcula la posición objetivo (delante de la cámara + offset vertical)
         Vector3 targetPosition = cameraTransform.position +
-                                cameraTransform.forward * currentHoldDistance +
-                                cameraTransform.up * verticalOffset;
+                               cameraTransform.forward * currentHoldDistance +
+                               cameraTransform.up * verticalOffset;
 
         // Mueve el objeto con física
         Vector3 moveDirection = (targetPosition - heldObject.transform.position);
@@ -78,8 +94,6 @@ public class ObjectGrabber : MonoBehaviour
 
         // Rotación suave hacia la cámara (opcional)
         Quaternion targetRotation = Quaternion.LookRotation(heldObject.transform.position - cameraTransform.position);
-        heldObjectRb.angularVelocity = Vector3.zero; // Elimina rotación no deseada
         heldObjectRb.rotation = Quaternion.Slerp(heldObjectRb.rotation, targetRotation, Time.deltaTime * 5f);
     }
-
 }
