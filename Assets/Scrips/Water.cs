@@ -6,22 +6,10 @@ public class WaterTrigger : MonoBehaviour
     {
         if (other.CompareTag("Grab"))
         {
-            ObjectGrabber grabbable = other.GetComponent<ObjectGrabber>();
+            GrabbableObject grabbable = other.GetComponent<GrabbableObject>();
             if (grabbable != null)
             {
                 grabbable.SetWet(true);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Grab"))
-        {
-            ObjectGrabber grabbable = other.GetComponent<ObjectGrabber>();
-            if (grabbable != null)
-            {
-                grabbable.SetWet(false);
             }
         }
     }

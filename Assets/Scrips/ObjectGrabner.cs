@@ -17,50 +17,6 @@ public class ObjectGrabber : MonoBehaviour
     private Rigidbody heldObjectRb;
     private float currentHoldDistance = 2f; // Distancia inicial
 
-    [Header("Water Effect")]
-    [SerializeField] private Color wetColor = new Color(0.639f, 0.905f, 1f); // #A3E7FF
-    [SerializeField] private Material wetMaterial; // Opcional: material alternativo para mojado
-
-    private Renderer objectRenderer;
-    private Material originalMaterial;
-    private Color originalColor;
-    private bool estaMojado = false;
-
-    public bool EstaMojado => estaMojado; // Propiedad de solo lectura
-
-    private void Awake()
-    {
-        objectRenderer = GetComponent<Renderer>();
-        if (objectRenderer != null)
-        {
-            originalMaterial = objectRenderer.material;
-            originalColor = objectRenderer.material.color;
-        }
-    }
-
-    public void SetWet(bool wet)
-    {
-        estaMojado = wet;
-
-        if (objectRenderer == null) return;
-
-        if (wet)
-        {
-            if (wetMaterial != null)
-            {
-                objectRenderer.material = wetMaterial;
-            }
-            else
-            {
-                objectRenderer.material.color = wetColor;
-            }
-        }
-        else
-        {
-            objectRenderer.material = originalMaterial;
-            objectRenderer.material.color = originalColor;
-        }
-    }
 
     void Update()
     {
@@ -114,12 +70,6 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (heldObject != null)
         {
-            OutlineObject outline = heldObject.GetComponent<OutlineObject>();
-            if (outline != null)
-            {
-                outline.DisableOutline();
-            }
-
             heldObjectRb.useGravity = true;
 
             // 🔥 Invocar evento
