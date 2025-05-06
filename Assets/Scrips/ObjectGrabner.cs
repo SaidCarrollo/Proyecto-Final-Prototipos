@@ -16,7 +16,7 @@ public class ObjectGrabber : MonoBehaviour
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
     private float currentHoldDistance = 2f; // Distancia inicial
-
+    public AudioSource Grabaudio;
 
     void Update()
     {
@@ -55,16 +55,26 @@ public class ObjectGrabber : MonoBehaviour
             heldObject = hit.collider.gameObject;
             heldObjectRb = heldObject.GetComponent<Rigidbody>();
             heldObjectRb.useGravity = false;
+            Grabaudio.Play();
 
-            OutlineObject outline = heldObject.GetComponent<OutlineObject>();
-            if (outline != null)
+            // Verificar si el objeto es mojable y está mojado
+            GrabbableObject grabbable = heldObject.GetComponent<GrabbableObject>();
+            bool estaMojado = grabbable != null && grabbable.EstaMojado;
+
+            // Solo habilitar el contorno si el objeto no está mojado
+            if (!estaMojado)
             {
-                outline.EnableOutline();
+                OutlineObject outline = heldObject.GetComponent<OutlineObject>();
+                if (outline != null)
+                {
+                    outline.EnableOutline();
+                }
             }
 
             OnObjectGrabbed?.Invoke(heldObject);
         }
     }
+
 
     private void ReleaseObject()
     {
