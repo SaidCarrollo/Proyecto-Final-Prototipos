@@ -1184,7 +1184,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461168124}
   serializedVersion: 4
-  m_Mass: 70
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1200,7 +1200,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &461168133
@@ -1222,9 +1222,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  mouseSensitivity: 100
+  mouseSensitivity: 0.1
   cameraTransform: {fileID: 330585546}
   lockCursor: 1
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  runAction: {fileID: -8571115817177387650, guid: 12883daad516ea54990afffc7461211e, type: 3}
 --- !u!114 &461168134
 MonoBehaviour:
   m_ObjectHideFlags: 0
