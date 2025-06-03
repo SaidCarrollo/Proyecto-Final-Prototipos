@@ -2356,6 +2356,7 @@ GameObject:
   - component: {fileID: 846614567}
   - component: {fileID: 846614566}
   - component: {fileID: 846614568}
+  - component: {fileID: 846614569}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2410,6 +2411,21 @@ MonoBehaviour:
   musicSlider: {fileID: 948940359}
   sfxSlider: {fileID: 1936105132}
   audioMixer: {fileID: 24100000, guid: 5f7adc6f3f5917b488d33dc4199cdd1e, type: 2}
+--- !u!114 &846614569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846614565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478022f83aee0f643b2f8410e5933f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempoEspera: 5
+  nuevaIntensidad: 0.8
+  fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
 --- !u!1 &948940357
 GameObject:
   m_ObjectHideFlags: 0

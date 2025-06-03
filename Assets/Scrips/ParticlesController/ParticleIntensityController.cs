@@ -22,8 +22,6 @@ public class ParticleIntensityController : MonoBehaviour
         if (intensity <= 0.01f && ps.isPlaying) // Un pequeño umbral para apagar
         {
             emissionModule.enabled = false; // Desactiva el módulo de emisión
-            // Opcional: podrías querer detener el sistema de partículas completamente
-            // ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         else
         {
