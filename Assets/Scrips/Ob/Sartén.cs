@@ -5,7 +5,7 @@ public class SartenCollider : MonoBehaviour
     [Header("Configuraci�n")]
     [SerializeField] private Transform snapPosition; // Objeto vac�o que marca la posici�n de snap
     [SerializeField] private string trapoTag = "TrapoMojado";
-
+    [SerializeField] private FloatEvent fireIntensityEvent;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(trapoTag))
@@ -17,6 +17,12 @@ public class SartenCollider : MonoBehaviour
             if (trapo != null && trapo.EstaMojado && (grabber == null || !grabber.IsHoldingObject()))
             {
                 SnapTrapoToSarten(other.transform);
+                // DISPARAR EL EVENTO PARA APAGAR EL FUEGO
+                if (fireIntensityEvent != null)
+                {
+                    // Enviamos 0 para apagar completamente el fuego
+                    fireIntensityEvent.Raise(0f);
+                }
             }
         }
     }
