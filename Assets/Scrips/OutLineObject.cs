@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal; // Si usas URP
+using UnityEngine.Rendering.Universal; 
 
 public class OutlineObject : MonoBehaviour
 {

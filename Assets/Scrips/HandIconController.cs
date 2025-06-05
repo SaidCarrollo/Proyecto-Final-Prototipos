@@ -8,7 +8,7 @@ public class HandIconController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image handImage;
-    [SerializeField] private ObjectGrabber grabber; // Tu script de agarre
+    [SerializeField] private ObjectGrabber grabber; 
 
     void Start()
     {

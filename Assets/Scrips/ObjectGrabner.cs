@@ -15,7 +15,7 @@ public class ObjectGrabber : MonoBehaviour
 
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
-    private float currentHoldDistance = 2f; // Distancia inicial
+    private float currentHoldDistance = 2f; 
     public AudioSource Grabaudio;
 
     void Update()
@@ -32,7 +32,6 @@ public class ObjectGrabber : MonoBehaviour
             }
         }
 
-        // Ajustar distancia con la rueda del mouse
         if (heldObject != null && Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             currentHoldDistance = Mathf.Clamp(currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f, 0.5f, 5f);
@@ -57,11 +56,9 @@ public class ObjectGrabber : MonoBehaviour
             heldObjectRb.useGravity = false;
             Grabaudio.Play();
 
-            // Verificar si el objeto es mojable y está mojado
             GrabbableObject grabbable = heldObject.GetComponent<GrabbableObject>();
             bool estaMojado = grabbable != null && grabbable.EstaMojado;
 
-            // Solo habilitar el contorno si el objeto no está mojado
             if (!estaMojado)
             {
                 OutlineObject outline = heldObject.GetComponent<OutlineObject>();
@@ -82,7 +79,6 @@ public class ObjectGrabber : MonoBehaviour
         {
             heldObjectRb.useGravity = true;
 
-            // 🔥 Invocar evento
             OnObjectReleased?.Invoke(heldObject);
 
             heldObject = null;
@@ -92,16 +88,13 @@ public class ObjectGrabber : MonoBehaviour
     public bool IsHoldingObject() => heldObject != null;
     private void MoveObjectWithPhysics()
     {
-        // Calcula la posición objetivo (delante de la cámara + offset vertical)
         Vector3 targetPosition = cameraTransform.position +
                                cameraTransform.forward * currentHoldDistance +
                                cameraTransform.up * verticalOffset;
 
-        // Mueve el objeto con física
         Vector3 moveDirection = (targetPosition - heldObject.transform.position);
         heldObjectRb.linearVelocity = moveDirection * grabSpeed;
 
-        // Rotación suave hacia la cámara (opcional)
         Quaternion targetRotation = Quaternion.LookRotation(heldObject.transform.position - cameraTransform.position);
         heldObjectRb.rotation = Quaternion.Slerp(heldObjectRb.rotation, targetRotation, Time.deltaTime * 5f);
     }
