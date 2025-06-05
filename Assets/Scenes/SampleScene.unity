@@ -2423,7 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478022f83aee0f643b2f8410e5933f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoEspera: 5
+  tiempoEspera: 10
   nuevaIntensidad: 0.8
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
 --- !u!1 &948940357
@@ -2563,38 +2563,17 @@ GameObject:
   - component: {fileID: 1013432591}
   - component: {fileID: 1013432590}
   - component: {fileID: 1013432589}
-  - component: {fileID: 1013432588}
   - component: {fileID: 1013432592}
-  m_Layer: 0
+  - component: {fileID: 1013432594}
+  - component: {fileID: 1013432593}
+  - component: {fileID: 1013432595}
+  m_Layer: 3
   m_Name: "Sart\xE9n"
-  m_TagString: Untagged
+  m_TagString: Grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1013432588
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013432587}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1013432589
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2657,11 +2636,12 @@ Transform:
   m_GameObject: {fileID: 1013432587}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.62, y: 0.04, z: -4.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.62, y: 0.77, z: -4.16}
+  m_LocalScale: {x: 1, y: 0.55114, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1888911180}
+  - {fileID: 1258042282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1013432592
@@ -2679,6 +2659,69 @@ MonoBehaviour:
   snapPosition: {fileID: 1888911180}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  waterTag: Water
+--- !u!114 &1013432593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013432587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69852bcd254eff468e3c9d5448a731b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wetColor: {r: 0.639, g: 0.905, b: 1, a: 1}
+  wetDuration: 20
+--- !u!54 &1013432594
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013432587}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1013432595
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013432587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.97, y: 2, z: 0.98}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1056216579
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,11 +7868,11 @@ Transform:
   m_GameObject: {fileID: 1258042278}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6637294, y: -0, z: -0, w: 0.7479728}
-  m_LocalPosition: {x: 1.652, y: 1.057, z: -4.129}
-  m_LocalScale: {x: 0.18683, y: 0.18683, z: 0.18683}
+  m_LocalPosition: {x: 0.031999946, y: 0.5207389, z: 0.03099966}
+  m_LocalScale: {x: 0.18683, y: 0.18802367, z: 0.335128}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1013432591}
   m_LocalEulerAnglesHint: {x: -83.17, y: 0, z: 0}
 --- !u!114 &1258042283
 MonoBehaviour:
@@ -7905,7 +7948,7 @@ GameObject:
   - component: {fileID: 1470617274}
   m_Layer: 0
   m_Name: Agua
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8321,9 +8364,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1888911180}
   - component: {fileID: 1888911181}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8994,4 +9037,3 @@ SceneRoots:
   - {fileID: 1470617273}
   - {fileID: 1013432591}
   - {fileID: 761272224}
-  - {fileID: 1258042282}
