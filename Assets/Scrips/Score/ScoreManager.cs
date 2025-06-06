@@ -1,13 +1,44 @@
 
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    [Header("UI")]
     [Tooltip("Referencia al texto de la UI para mostrar el puntaje (TextMeshPro).")]
-    public TextMeshProUGUI scoreText; 
+    public TextMeshProUGUI scoreText;
+
+    [Header("Configuración de Puntos")]
+    [Tooltip("Puntos a añadir si se llama a los bomberos durante un fuego descontrolado.")]
+    [SerializeField] private int puntosLlamadaCorrecta = 100;
+    [Tooltip("Puntos a restar si se llama a los bomberos sin necesidad (falsa alarma).")]
+    [SerializeField] private int puntosLlamadaIncorrecta = 50;
 
     private int currentScore = 0;
+    private bool penalizacionActiva = false;
+
+    public void ActivarPenalizacionPorFuego()
+    {
+        Debug.LogWarning("¡PENALIZACIÓN DE PUNTAJE ACTIVADA! A partir de ahora se restarán puntos por acciones incorrectas.");
+        penalizacionActiva = true;
+    }
+
+    public void OnLlamadaRealizada()
+    {
+        if (penalizacionActiva) 
+        {
+            // El fuego ESTÁ descontrolado. 
+            Debug.Log("Llamada correcta a los bomberos. ¡Puntos ganados!");
+            AddPoints(puntosLlamadaCorrecta);
+        }
+        else
+        {
+            // El fuego NO está descontrolado. 
+            Debug.LogWarning("Llamada innecesaria (Falsa Alarma). ¡Puntos perdidos!");
+            currentScore -= puntosLlamadaIncorrecta; 
+            UpdateScoreUI();
+        }
+    }
 
     void Start()
     {
@@ -16,8 +47,18 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoints(float points)
     {
-        currentScore += (int)points;
-        Debug.Log("Puntos añadidos: " + points + ". Puntaje total: " + currentScore);
+
+        if (penalizacionActiva) 
+        {
+            currentScore -= (int)points;
+            Debug.Log("Penalización aplicada: -" + points + ". Puntaje total: " + currentScore);
+        }
+        else
+        {
+            currentScore += (int)points; 
+            Debug.Log("Puntos añadidos: " + points + ". Puntaje total: " + currentScore);
+        }
+
         UpdateScoreUI();
     }
 
@@ -25,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Puntaje: " + currentScore;
+            scoreText.text = "Puntaje: " + currentScore; 
         }
     }
 }

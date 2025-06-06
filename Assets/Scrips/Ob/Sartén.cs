@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,19 +5,25 @@ using UnityEngine;
 public class SartenCollider : MonoBehaviour
 {
     [Header("Configuración de Snap del Trapo")]
-    [SerializeField] private Transform snapPosition; 
-    [SerializeField] private string trapoTag = "TrapoMojado"; 
+    [SerializeField] private Transform snapPosition;
+    [SerializeField] private string trapoTag = "TrapoMojado";
 
     [Header("Eventos de Fuego")]
-    [SerializeField] private FloatEvent fireIntensityEvent; 
+    [SerializeField] private FloatEvent fireIntensityEvent;
 
     [Header("Interacción con Agua")]
-    [SerializeField] private string waterTag = "Water"; 
+    [SerializeField] private string waterTag = "Water";
 
+    private bool fuegoEstaDescontrolado = false; 
+
+    public void ActivarFuegoDescontrolado()
+    {
+        Debug.Log($"FUEGO DESCONTROLADO ACTIVADO en {gameObject.name}. Ya no se pueden colocar más objetos.");
+        fuegoEstaDescontrolado = true;
+    }
 
     private void Awake()
     {
-
         if (snapPosition == null)
         {
             Debug.LogError("Error: El 'Snap Position' no está asignado en el SartenCollider del objeto '" + gameObject.name + "'. El trapo no se podrá colocar correctamente.", this);
@@ -33,13 +38,14 @@ public class SartenCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (fuegoEstaDescontrolado) return;
+
         if (other.CompareTag(trapoTag))
         {
             HandleTrapoInteraction(other);
         }
         else if (other.CompareTag(waterTag))
         {
-
             HandlePanInWater(other);
         }
     }
@@ -63,23 +69,22 @@ public class SartenCollider : MonoBehaviour
                     fireIntensityEvent.Raise(0f);
                 }
             }
-            else 
+            else
             {
                 Debug.Log($"El trapo '{trapoCollider.name}' está seco. Aumentando fuego.", this);
                 if (fireIntensityEvent != null)
                 {
-                    fireIntensityEvent.Raise(0.8f); 
+                    fireIntensityEvent.Raise(0.8f);
                 }
             }
         }
     }
-
     private void SnapTrapoToSarten(Transform trapoTransform)
     {
         Rigidbody rbTrapo = trapoTransform.GetComponent<Rigidbody>();
         if (rbTrapo != null)
         {
-            rbTrapo.isKinematic = true; 
+            rbTrapo.isKinematic = true;
             rbTrapo.linearVelocity = Vector3.zero;
             rbTrapo.angularVelocity = Vector3.zero;
         }
@@ -95,17 +100,14 @@ public class SartenCollider : MonoBehaviour
         }
         Debug.Log($"Trapo '{trapoTransform.name}' anclado a la sartén en '{snapPosition.name}'.", this);
     }
-
     private void HandlePanInWater(Collider waterCollider)
     {
         Debug.Log($"La sartén '{gameObject.name}' ha entrado en el agua: '{waterCollider.name}'. Se llamará a OnPanSubmerged.", this);
         OnPanSubmerged();
-
     }
 
     private void OnPanSubmerged()
     {
-
         Debug.Log($"Método OnPanSubmerged llamado para la sartén '{gameObject.name}'. No hay acciones implementadas actualmente.", this);
     }
 
@@ -114,7 +116,6 @@ public class SartenCollider : MonoBehaviour
         if (other.CompareTag(waterTag))
         {
             Debug.Log($"La sartén '{gameObject.name}' ha salido del agua: '{other.name}'.", this);
-
         }
     }
 }
