@@ -25,17 +25,17 @@ public class ScoreManager : MonoBehaviour
 
     public void OnLlamadaRealizada()
     {
-        if (penalizacionActiva) 
+        if (penalizacionActiva)
         {
-            // El fuego ESTÁ descontrolado. 
             Debug.Log("Llamada correcta a los bomberos. ¡Puntos ganados!");
-            AddPoints(puntosLlamadaCorrecta);
+            currentScore += puntosLlamadaCorrecta; 
+            UpdateScoreUI();                      
         }
         else
         {
             // El fuego NO está descontrolado. 
             Debug.LogWarning("Llamada innecesaria (Falsa Alarma). ¡Puntos perdidos!");
-            currentScore -= puntosLlamadaIncorrecta; 
+            currentScore -= puntosLlamadaIncorrecta;
             UpdateScoreUI();
         }
     }
