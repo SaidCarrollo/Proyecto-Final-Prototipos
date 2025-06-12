@@ -1,4 +1,3 @@
-// FireTimer.cs
 using UnityEngine;
 
 public class FireTimer : MonoBehaviour
@@ -7,13 +6,12 @@ public class FireTimer : MonoBehaviour
     [SerializeField] private float tiempoEspera = 20f;
     [SerializeField] private float nuevaIntensidad = 0.8f;
 
-    [Header("Eventos")]
-    [Tooltip("Evento para cambiar la intensidad del fuego (valor float).")]
+    [Header("Events")]
+    [Tooltip("Evento para cambiar la intensidad del fuego.")]
     [SerializeField] private FloatEvent fireIntensityEvent;
 
-    [Tooltip("Evento que se dispara cuando el fuego se descontrola.")]
-    [SerializeField] private GameEvent fuegoDescontroladoEvent; 
-
+    [Tooltip("Evento que se dispara para mostrar un mensaje en la UI.")]
+    [SerializeField] private GameEventstring messageEvent;
     private void Start()
     {
         StartCoroutine(EsperarYAumentarFuego());
@@ -26,15 +24,16 @@ public class FireTimer : MonoBehaviour
         if (fireIntensityEvent != null)
         {
             fireIntensityEvent.Raise(nuevaIntensidad);
-            Debug.Log($"Intensidad del fuego aumentada a {nuevaIntensidad} después de {tiempoEspera} segundos");
         }
 
-        if (fuegoDescontroladoEvent != null)
+        // Publica el evento con el mensaje de "Fuego descontrolado"
+        if (messageEvent != null)
         {
-            fuegoDescontroladoEvent.Raise(); 
-            Debug.Log("¡EVENTO GLOBAL: FUEGO DESCONTROLADO LANZADO!");
+            messageEvent.Raise("¡Fuego descontrolado!");
+            Debug.Log("EVENTO DE MENSAJE: ¡Fuego descontrolado! PUBLICADO");
         }
     }
+
 
     public void ReiniciarTemporizador()
     {

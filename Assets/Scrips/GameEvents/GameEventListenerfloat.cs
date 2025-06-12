@@ -1,6 +1,6 @@
-// FloatEventListener.cs
+
 using UnityEngine;
-using UnityEngine.Events; // Necesario para UnityEvent<T>
+using UnityEngine.Events; 
 
 // Evento de Unity que puede tomar un float como argumento
 [System.Serializable]
