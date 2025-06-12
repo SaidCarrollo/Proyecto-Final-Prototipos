@@ -1049,6 +1049,7 @@ MonoBehaviour:
   snapPosition: {fileID: 275899356}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   waterTag: Water
 --- !u!114 &317734134
 MonoBehaviour:
@@ -4276,6 +4277,7 @@ MonoBehaviour:
   snapPosition: {fileID: 1888911180}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   waterTag: Water
 --- !u!114 &1013432593
 MonoBehaviour:

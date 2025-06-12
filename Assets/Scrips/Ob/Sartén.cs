@@ -10,7 +10,8 @@ public class SartenCollider : MonoBehaviour
 
     [Header("Eventos de Fuego")]
     [SerializeField] private FloatEvent fireIntensityEvent;
-
+    [Tooltip("Evento para activar la viñeta.")]
+    [SerializeField] private VignetteEvent vignetteEvent;
     [Header("Interacción con Agua")]
     [SerializeField] private string waterTag = "Water";
 
@@ -66,6 +67,7 @@ public class SartenCollider : MonoBehaviour
                 Debug.Log($"El trapo '{trapoCollider.name}' está mojado. Apagando fuego.", this);
                 if (fireIntensityEvent != null)
                 {
+                    vignetteEvent.Raise(Color.green, 0.4f, 2f);
                     fireIntensityEvent.Raise(0f);
                 }
             }
@@ -74,6 +76,8 @@ public class SartenCollider : MonoBehaviour
                 Debug.Log($"El trapo '{trapoCollider.name}' está seco. Aumentando fuego.", this);
                 if (fireIntensityEvent != null)
                 {
+
+                    vignetteEvent.Raise(Color.red, 0.5f, 3f);
                     fireIntensityEvent.Raise(0.8f);
                 }
             }
