@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class FireTimer : MonoBehaviour
@@ -12,6 +13,11 @@ public class FireTimer : MonoBehaviour
 
     [Tooltip("Evento que se dispara para mostrar un mensaje en la UI.")]
     [SerializeField] private GameEventstring messageEvent;
+
+    [Header("Vignette Event")]
+    [Tooltip("Evento para activar la viñeta.")]
+    [SerializeField] private VignetteEvent vignetteEvent;
+
     private void Start()
     {
         StartCoroutine(EsperarYAumentarFuego());
@@ -26,14 +32,17 @@ public class FireTimer : MonoBehaviour
             fireIntensityEvent.Raise(nuevaIntensidad);
         }
 
-        // Publica el evento con el mensaje de "Fuego descontrolado"
         if (messageEvent != null)
         {
             messageEvent.Raise("¡Fuego descontrolado!");
             Debug.Log("EVENTO DE MENSAJE: ¡Fuego descontrolado! PUBLICADO");
         }
-    }
 
+        if (vignetteEvent != null)
+        {
+            vignetteEvent.Raise(Color.red, 0.5f, 3f); 
+        }
+    }
 
     public void ReiniciarTemporizador()
     {
