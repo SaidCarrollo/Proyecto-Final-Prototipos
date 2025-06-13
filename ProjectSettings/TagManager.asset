@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grab
   - Water
+  - Inflamable
   layers:
   - Default
   - TransparentFX
