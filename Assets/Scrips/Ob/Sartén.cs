@@ -10,6 +10,10 @@ public class SartenCollider : MonoBehaviour
 
     [Header("Eventos de Fuego")]
     [SerializeField] private FloatEvent fireIntensityEvent;
+
+    [Header("Sobrevivir o morir")]
+    [SerializeField] private GameEvent onPlayerSurvivedEvent;
+    [SerializeField] private GameEvent onPlayerDeathEvent;
     [Tooltip("Evento para activar la viñeta.")]
     [SerializeField] private VignetteEvent vignetteEvent;
     [Header("Interacción con Agua")]
@@ -69,6 +73,11 @@ public class SartenCollider : MonoBehaviour
                 {
                     vignetteEvent.Raise(Color.green, 0.4f, 2f);
                     fireIntensityEvent.Raise(0f);
+                    if (onPlayerSurvivedEvent != null)
+                    {
+                        onPlayerSurvivedEvent.Raise();
+                        Debug.Log("EVENTO DE SUPERVIVENCIA PUBLICADO");
+                    }
                 }
             }
             else
@@ -79,6 +88,11 @@ public class SartenCollider : MonoBehaviour
 
                     vignetteEvent.Raise(Color.red, 0.5f, 3f);
                     fireIntensityEvent.Raise(0.8f);
+                    if (onPlayerDeathEvent != null)
+                    {
+                        onPlayerDeathEvent.Raise();
+                        Debug.Log("EVENTO DE MUERTE PUBLICADO");
+                    }
                 }
             }
         }

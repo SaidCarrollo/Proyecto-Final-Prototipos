@@ -1049,6 +1049,8 @@ MonoBehaviour:
   snapPosition: {fileID: 275899356}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
+  onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   waterTag: Water
 --- !u!114 &317734134
@@ -3775,6 +3777,7 @@ MonoBehaviour:
   nuevaIntensidad: 0.8
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
+  onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
 --- !u!4 &920215752 stripped
 Transform:
@@ -4287,6 +4290,8 @@ MonoBehaviour:
   snapPosition: {fileID: 1888911180}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
+  onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   waterTag: Water
 --- !u!114 &1013432593
@@ -4816,7 +4821,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 12b372adfda077f42a98d0640fcfcf29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10187,7 +10192,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 12b372adfda077f42a98d0640fcfcf29, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

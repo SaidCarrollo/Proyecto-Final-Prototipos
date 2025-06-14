@@ -13,7 +13,7 @@ public class FireTimer : MonoBehaviour
 
     [Tooltip("Evento que se dispara para mostrar un mensaje en la UI.")]
     [SerializeField] private GameEventstring messageEvent;
-
+    [SerializeField] private GameEvent onPlayerDeathEvent;
     [Header("Vignette Event")]
     [Tooltip("Evento para activar la viñeta.")]
     [SerializeField] private VignetteEvent vignetteEvent;
@@ -41,6 +41,11 @@ public class FireTimer : MonoBehaviour
         if (vignetteEvent != null)
         {
             vignetteEvent.Raise(Color.red, 0.5f, 3f); 
+        }
+        if (onPlayerDeathEvent != null)
+        {
+            onPlayerDeathEvent.Raise();
+            Debug.Log("EVENTO DE MUERTE PUBLICADO");
         }
     }
 
