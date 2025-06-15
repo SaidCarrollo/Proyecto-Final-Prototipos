@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LV1.unity
+    guid: e59d0fa2049d36d49a49ee18fc185b54
+  - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: bb008f14533681d46956e0f1c5854dad
+  - enabled: 1
+    path: Assets/Scenes/FailScene.unity
+    guid: 1119c92e26976b24b91abfa6074d2e41
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

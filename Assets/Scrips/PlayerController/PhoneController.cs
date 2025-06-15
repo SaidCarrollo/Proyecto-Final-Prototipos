@@ -22,7 +22,7 @@ public class PhoneController : MonoBehaviour
 
     [Tooltip("Referencia a la acción para interactuar (llamar).")]
     [SerializeField] private InputActionReference interactAction;
-
+    [SerializeField] private BadgeManager badgeManager;
     private void OnEnable()
     {
         if (togglePhoneAction != null)
@@ -77,7 +77,10 @@ public class PhoneController : MonoBehaviour
                 messageEvent.Raise("Llamada de emergencia realizada.");
             }
 
-            // Disparar el evento de viñeta verde
+            if (badgeManager != null)
+            {
+                badgeManager.UnlockBadge("LlamadaDeEmergencia");
+            }
             if (vignetteEvent != null)
             {
                 vignetteEvent.Raise(Color.green, 0.4f, 2f); // Color verde, intensidad 0.4, duración 2 segundos

@@ -18,7 +18,8 @@ public class SartenCollider : MonoBehaviour
     [SerializeField] private VignetteEvent vignetteEvent;
     [Header("Interacción con Agua")]
     [SerializeField] private string waterTag = "Water";
-
+    [SerializeField] private BadgeManager badgeManager;
+    [SerializeField] private MistakeManager mistakeManager;
     private bool fuegoEstaDescontrolado = false; 
 
     public void ActivarFuegoDescontrolado()
@@ -73,6 +74,10 @@ public class SartenCollider : MonoBehaviour
                 {
                     vignetteEvent.Raise(Color.green, 0.4f, 2f);
                     fireIntensityEvent.Raise(0f);
+                    if (badgeManager != null)
+                    {
+                        badgeManager.UnlockBadge("FuegoApagadoConTrapo");
+                    }
                     if (onPlayerSurvivedEvent != null)
                     {
                         onPlayerSurvivedEvent.Raise();
@@ -85,7 +90,10 @@ public class SartenCollider : MonoBehaviour
                 Debug.Log($"El trapo '{trapoCollider.name}' está seco. Aumentando fuego.", this);
                 if (fireIntensityEvent != null)
                 {
-
+                    if (mistakeManager != null)
+                    {
+                        mistakeManager.RecordMistake("FuegoConTrapoSeco");
+                    }
                     vignetteEvent.Raise(Color.red, 0.5f, 3f);
                     fireIntensityEvent.Raise(0.8f);
                     if (onPlayerDeathEvent != null)
