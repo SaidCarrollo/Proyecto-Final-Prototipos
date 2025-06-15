@@ -17,7 +17,7 @@ public class CollisionTrigger : MonoBehaviour
     private List<Collider> collidersInTrigger = new List<Collider>();
 
     private bool wasValidObjectPresent = false;
-
+    [SerializeField] private BadgeManager badgeManager;
     private void Awake()
     {
         var triggerCollider = GetComponent<Collider>();
@@ -53,6 +53,10 @@ public class CollisionTrigger : MonoBehaviour
 
         if (wasValidObjectPresent && !isValiObjectPresentNow)
         {
+            if (badgeManager != null)
+            {
+                badgeManager.UnlockBadge("SInObjectosinflamables");
+            }
             OnLastValidObjectExits.Invoke();
             vignetteEvent.Raise(Color.green, 0.4f, 2f);
             Debug.Log($"<color=green>Evento Disparado:</color> El último objeto con el tag '{requiredTag}' ha salido del trigger.");

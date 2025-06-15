@@ -33,7 +33,6 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            // El fuego NO está descontrolado. 
             Debug.LogWarning("Llamada innecesaria (Falsa Alarma). ¡Puntos perdidos!");
             currentScore -= puntosLlamadaIncorrecta;
             UpdateScoreUI();

@@ -1,67 +1,62 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "BadgeManager", menuName = "Game/Badge Manager")]
 public class BadgeManager : ScriptableObject
 {
-    private Dictionary<string, bool> badges = new Dictionary<string, bool>();
-
+    [Tooltip("Aquí configuras todos los posibles badges y errores del juego.")]
     [SerializeField]
-    private List<string> allBadgeIDs = new List<string>()
-    {
-        "FuegoApagadoConTrapo",
-        "LlamadaDeEmergencia",
-        "SartenBajoElAgua",
-        "CerrasteLaVentana" 
-    };
+    private List<Badge> todosLosBadges = new List<Badge>();
+
+    private Dictionary<string, Badge> badgesDict = new Dictionary<string, Badge>();
 
     private void OnEnable()
     {
-        ResetBadges();
+        InicializarManager();
+    }
+
+    private void InicializarManager()
+    {
+        badgesDict.Clear();
+        foreach (Badge badge in todosLosBadges)
+        {
+            badge.Desbloqueado = false; 
+            if (!badgesDict.ContainsKey(badge.ID))
+            {
+                badgesDict.Add(badge.ID, badge);
+            }
+        }
+        Debug.Log("Badge Manager inicializado. Todos los badges y errores reseteados.");
     }
 
     public void UnlockBadge(string badgeID)
     {
-        if (badges.ContainsKey(badgeID))
+        if (badgesDict.TryGetValue(badgeID, out Badge badge))
         {
-            badges[badgeID] = true;
-            Debug.Log($"¡Badge Desbloqueado!: {badgeID}");
+            badge.Desbloqueado = true;
+            Debug.Log($"'{badge.Tipo}' Desbloqueado: {badgeID}");
         }
         else
         {
-            Debug.LogWarning($"Se intentó desbloquear un badge con un ID no existente: {badgeID}");
+            Debug.LogWarning($"Se intentó usar un ID de badge no existente: {badgeID}");
         }
     }
 
-    public bool IsBadgeUnlocked(string badgeID)
+    public List<Badge> GetUnlockedBadges(BadgeType? tipo = null)
     {
-        if (badges.ContainsKey(badgeID))
-        {
-            return badges[badgeID];
-        }
-        return false;
-    }
+        var unlockedBadges = todosLosBadges.Where(b => b.Desbloqueado);
 
-    public List<string> GetUnlockedBadges()
-    {
-        List<string> unlocked = new List<string>();
-        foreach (var badge in badges)
+        if (tipo.HasValue)
         {
-            if (badge.Value)
-            {
-                unlocked.Add(badge.Key);
-            }
+            unlockedBadges = unlockedBadges.Where(b => b.Tipo == tipo.Value);
         }
-        return unlocked;
+
+        return unlockedBadges.ToList();
     }
 
     public void ResetBadges()
     {
-        badges.Clear();
-        foreach (string id in allBadgeIDs)
-        {
-            badges.Add(id, false);
-        }
-        Debug.Log("Todos los badges han sido reseteados.");
+        InicializarManager();
     }
 }

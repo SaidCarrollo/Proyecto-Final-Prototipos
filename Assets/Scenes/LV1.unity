@@ -1066,7 +1066,7 @@ MonoBehaviour:
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   waterTag: Water
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
-  mistakeManager: {fileID: 0}
+  mistakeManager: {fileID: 11400000, guid: 120c7c148e319984281ef9d6fea98147, type: 2}
 --- !u!114 &317734134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3374,6 +3374,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
+  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
 --- !u!1 &761272222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,6 +3739,8 @@ GameObject:
   - component: {fileID: 846614566}
   - component: {fileID: 846614569}
   - component: {fileID: 846614570}
+  - component: {fileID: 846614572}
+  - component: {fileID: 846614571}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3810,7 +3813,65 @@ MonoBehaviour:
   loseSceneName: FailScene
   playerInteraction: {fileID: 461168136}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
-  mistakeManager: {fileID: 0}
+  mistakeManager: {fileID: 11400000, guid: 120c7c148e319984281ef9d6fea98147, type: 2}
+  onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
+  onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
+--- !u!114 &846614571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846614565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aec1d9c4a8373d45823c1913b92c7d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 846614570}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandlePlayerSurvival
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &846614572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846614565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aec1d9c4a8373d45823c1913b92c7d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 846614570}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandlePlayerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &920215752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8188981020719064128, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}

@@ -12,8 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fa8ad2bd2892f418aaaf61a57c8ec7, type: 3}
   m_Name: BadgeManager
   m_EditorClassIdentifier: 
-  allBadgeIDs:
-  - FuegoApagadoConTrapo
-  - LlamadaDeEmergencia
-  - SartenBajoElAgua
-  - CerrasteLaVentana
+  todosLosBadges:
+  - ID: FuegoApagadoConTrapo
+    Descripcion: Lograste apagar el fuego con el trapo mojado
+    Tipo: 0
+    Desbloqueado: 0
+  - ID: FuegoConTrapoSeco
+    Descripcion: El trapo sin mojar empeoro la situacion
+    Tipo: 1
+    Desbloqueado: 0
+  - ID: LlamadaDeEmergencia
+    Descripcion: Llamar a emergencias siempre es util para controlar un incendio
+    Tipo: 0
+    Desbloqueado: 0
+  - ID: SInObjectosinflamables
+    Descripcion: Alejaste los objectos inflamables de la zona del fuego
+    Tipo: 0
+    Desbloqueado: 0

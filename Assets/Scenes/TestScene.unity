@@ -875,7 +875,11 @@ MonoBehaviour:
   snapPosition: {fileID: 275899356}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  onPlayerSurvivedEvent: {fileID: 0}
+  onPlayerDeathEvent: {fileID: 0}
+  vignetteEvent: {fileID: 0}
   waterTag: Water
+  badgeManager: {fileID: 0}
 --- !u!114 &317734134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3180,7 +3184,9 @@ MonoBehaviour:
   tiempoEspera: 10
   nuevaIntensidad: 0.8
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
-  fuegoDescontroladoEvent: {fileID: 11400000, guid: 07b8f095443c4524784c032f15631595, type: 2}
+  messageEvent: {fileID: 0}
+  onPlayerDeathEvent: {fileID: 0}
+  vignetteEvent: {fileID: 0}
 --- !u!4 &920215752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8188981020719064128, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}
@@ -3556,7 +3562,11 @@ MonoBehaviour:
   snapPosition: {fileID: 1888911180}
   trapoTag: Grab
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  onPlayerSurvivedEvent: {fileID: 0}
+  onPlayerDeathEvent: {fileID: 0}
+  vignetteEvent: {fileID: 0}
   waterTag: Water
+  badgeManager: {fileID: 0}
 --- !u!114 &1013432593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14233,9 +14243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phonePanel: {fileID: 1112689459}
+  messageEvent: {fileID: 0}
+  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   togglePhoneAction: {fileID: -4214455604685356366, guid: 12883daad516ea54990afffc7461211e, type: 3}
   interactAction: {fileID: -3114212219639749681, guid: 12883daad516ea54990afffc7461211e, type: 3}
-  llamada116Event: {fileID: 11400000, guid: 8502330a9dde9c74791cc113d5b4ed0d, type: 2}
+  badgeManager: {fileID: 0}
 --- !u!4 &1584200642
 Transform:
   m_ObjectHideFlags: 0

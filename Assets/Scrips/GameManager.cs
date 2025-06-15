@@ -17,18 +17,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction;
     [Header("Managers")]
     [SerializeField] private BadgeManager badgeManager;
-    [SerializeField] private MistakeManager mistakeManager; 
-
+    [SerializeField] private GameEvent onPlayerDeathEvent;
+    [SerializeField] private GameEvent onPlayerSurvivedEvent;
     void Start()
     {
         if (badgeManager != null)
         {
             badgeManager.ResetBadges();
         }
-        if (mistakeManager != null) 
-        {
-            mistakeManager.ResetMistakes();
-        }
+
 
         currentState = GameState.Playing;
         Time.timeScale = 1f;

@@ -1,71 +1,67 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 using System.Collections.Generic;
 
 public class BadgeDisplayUI : MonoBehaviour
 {
-    [Header("Managers")]
+    [Header("Manager")]
     [Tooltip("Arrastra aquí tu asset de BadgeManager.")]
     [SerializeField] private BadgeManager badgeManager;
 
-    [Header("UI Setup")]
-    [Tooltip("El objeto padre donde se instanciarán los badges.")]
-    [SerializeField] private Transform badgesContainer;
-    [Tooltip("El Prefab de UI para un badge (debe tener un componente TextMeshProUGUI).")]
-    [SerializeField] private GameObject badgeUIPrefab;
+    [Header("UI para Acciones Correctas")]
+    [Tooltip("El objeto padre donde se mostrarán los logros.")]
+    [SerializeField] private Transform goodBadgesContainer;
+    [Tooltip("El Prefab de UI para un logro (debe tener TextMeshProUGUI).")]
+    [SerializeField] private GameObject goodBadgeUIPrefab;
+
+    [Header("UI para Errores (Causa de la derrota)")]
+    [Tooltip("El objeto padre donde se mostrarán los errores.")]
+    [SerializeField] private Transform badBadgesContainer;
+    [Tooltip("El Prefab de UI para un error (debe tener TextMeshProUGUI).")]
+    [SerializeField] private GameObject badBadgeUIPrefab;
 
     void Start()
     {
-        if (badgeManager == null || badgesContainer == null || badgeUIPrefab == null)
+        if (badgeManager == null)
         {
-            Debug.LogError("Faltan referencias en BadgeDisplayUI. Asegúrate de asignar todo en el Inspector.");
+            Debug.LogError("BadgeManager no está asignado en BadgeDisplayUI. Por favor, asígnalo en el Inspector.");
             return;
         }
-
-        DisplayUnlockedBadges();
+        DisplayResults();
     }
 
-    private void DisplayUnlockedBadges()
+    private void DisplayResults()
     {
-        foreach (Transform child in badgesContainer)
+        if (goodBadgesContainer != null) foreach (Transform child in goodBadgesContainer) Destroy(child.gameObject);
+        if (badBadgesContainer != null) foreach (Transform child in badBadgesContainer) Destroy(child.gameObject);
+
+        // --- Mostrar Badges Correctos ---
+        List<Badge> goodBadges = badgeManager.GetUnlockedBadges(BadgeType.Correcto);
+        if (goodBadgesContainer != null && goodBadgeUIPrefab != null)
         {
-            Destroy(child.gameObject);
-        }
-
-        List<string> unlockedBadges = badgeManager.GetUnlockedBadges();
-
-        if (unlockedBadges.Count == 0)
-        {
-            Debug.Log("No se desbloqueó ningún badge.");
-            return;
-        }
-
-        foreach (string badgeID in unlockedBadges)
-        {
-            GameObject badgeUI = Instantiate(badgeUIPrefab, badgesContainer);
-
-            TextMeshProUGUI badgeText = badgeUI.GetComponentInChildren<TextMeshProUGUI>();
-            if (badgeText != null)
+            foreach (var badge in goodBadges)
             {
-                badgeText.text = FormatBadgeIDToText(badgeID); 
+                GameObject badgeUI = Instantiate(goodBadgeUIPrefab, goodBadgesContainer);
+                var badgeText = badgeUI.GetComponentInChildren<TextMeshProUGUI>();
+                if (badgeText != null)
+                {
+                    badgeText.text = badge.Descripcion; 
+                }
             }
         }
-    }
 
-    private string FormatBadgeIDToText(string id)
-    {
-        switch (id)
+        List<Badge> badBadges = badgeManager.GetUnlockedBadges(BadgeType.Incorrecto);
+        if (badBadgesContainer != null && badBadgeUIPrefab != null)
         {
-            case "FuegoApagadoConTrapo":
-                return "Apagaste el fuego con el trapo.";
-            case "LlamadaDeEmergencia":
-                return "Pediste ayuda por teléfono.";
-            case "SartenBajoElAgua":
-                return "Sumergiste la sartén en agua.";
-            case "CerrasteLaventana":
-                return "Cerraste la ventana para evitar que el fuego absorva mas oxigeno.";
-            default:
-                return id;
+            foreach (var badge in badBadges)
+            {
+                GameObject badgeUI = Instantiate(badBadgeUIPrefab, badBadgesContainer);
+                var badgeText = badgeUI.GetComponentInChildren<TextMeshProUGUI>();
+                if (badgeText != null)
+                {
+                    badgeText.text = "Causa: " + badge.Descripcion;
+                }
+            }
         }
     }
 }
