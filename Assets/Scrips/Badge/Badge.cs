@@ -1,6 +1,10 @@
 
 using UnityEngine;
-
+public enum BadgePriority
+{
+    Principal,
+    Secundario
+}
 public enum BadgeType
 {
     Correcto,
@@ -18,6 +22,8 @@ public class Badge
 
     [Tooltip("Define si es un logro (Correcto) o un error (Incorrecto).")]
     public BadgeType Tipo;
+    [Tooltip("Define si este badge finaliza el juego (Principal) o es un logro/error complementario (Secundario).")]
+    public BadgePriority Prioridad = BadgePriority.Secundario; 
 
     [HideInInspector]
     public bool Desbloqueado = false;

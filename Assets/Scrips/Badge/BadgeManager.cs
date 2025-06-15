@@ -21,7 +21,7 @@ public class BadgeManager : ScriptableObject
         badgesDict.Clear();
         foreach (Badge badge in todosLosBadges)
         {
-            badge.Desbloqueado = false; 
+            badge.Desbloqueado = false;
             if (!badgesDict.ContainsKey(badge.ID))
             {
                 badgesDict.Add(badge.ID, badge);
@@ -35,7 +35,7 @@ public class BadgeManager : ScriptableObject
         if (badgesDict.TryGetValue(badgeID, out Badge badge))
         {
             badge.Desbloqueado = true;
-            Debug.Log($"'{badge.Tipo}' Desbloqueado: {badgeID}");
+            Debug.Log($"'{badge.Tipo}' | '{badge.Prioridad}' Desbloqueado: {badgeID}");
         }
         else
         {
@@ -43,13 +43,18 @@ public class BadgeManager : ScriptableObject
         }
     }
 
-    public List<Badge> GetUnlockedBadges(BadgeType? tipo = null)
+    public List<Badge> GetUnlockedBadges(BadgeType? tipo = null, BadgePriority? prioridad = null)
     {
         var unlockedBadges = todosLosBadges.Where(b => b.Desbloqueado);
 
         if (tipo.HasValue)
         {
             unlockedBadges = unlockedBadges.Where(b => b.Tipo == tipo.Value);
+        }
+
+        if (prioridad.HasValue)
+        {
+            unlockedBadges = unlockedBadges.Where(b => b.Prioridad == prioridad.Value);
         }
 
         return unlockedBadges.ToList();
