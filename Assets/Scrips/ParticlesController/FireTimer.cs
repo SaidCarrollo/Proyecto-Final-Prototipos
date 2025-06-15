@@ -4,8 +4,8 @@ using UnityEngine;
 public class FireTimer : MonoBehaviour
 {
     [Header("Configuración de Tiempo")]
-    [SerializeField] private float tiempoEspera = 20f;
-    [SerializeField] private float nuevaIntensidad = 0.8f;
+    [SerializeField] private float tiempoParaDescontrol = 20f;
+    [SerializeField] private float intensidadFuegoDescontrolado = 0.8f;
 
     [Header("Events")]
     [Tooltip("Evento para cambiar la intensidad del fuego.")]
@@ -13,51 +13,55 @@ public class FireTimer : MonoBehaviour
 
     [Tooltip("Evento que se dispara para mostrar un mensaje en la UI.")]
     [SerializeField] private GameEventstring messageEvent;
-    [SerializeField] private GameEvent onPlayerDeathEvent;
+
+    [Tooltip("Evento que se dispara cuando el fuego se sale de control.")]
+    [SerializeField] private GameEvent onUncontrolledFireEvent; 
+
     [Header("Vignette Event")]
-    [Tooltip("Evento para activar la viñeta.")]
+    [Tooltip("Evento para activar la viñeta de peligro.")]
     [SerializeField] private VignetteEvent vignetteEvent;
 
     private void Start()
     {
-        StartCoroutine(EsperarYAumentarFuego());
+        StartCoroutine(EsperarYDescontrolarFuego());
     }
 
-    private System.Collections.IEnumerator EsperarYAumentarFuego()
+    private System.Collections.IEnumerator EsperarYDescontrolarFuego()
     {
-        yield return new WaitForSeconds(tiempoEspera);
+        yield return new WaitForSeconds(tiempoParaDescontrol);
 
         if (fireIntensityEvent != null)
         {
-            fireIntensityEvent.Raise(nuevaIntensidad);
+            fireIntensityEvent.Raise(intensidadFuegoDescontrolado);
         }
 
         if (messageEvent != null)
         {
-            messageEvent.Raise("¡Fuego descontrolado!");
+            messageEvent.Raise("¡El fuego se ha descontrolado! ¡Busca otra solución!");
             Debug.Log("EVENTO DE MENSAJE: ¡Fuego descontrolado! PUBLICADO");
         }
 
         if (vignetteEvent != null)
         {
-            vignetteEvent.Raise(Color.red, 0.5f, 3f); 
+            vignetteEvent.Raise(Color.red, 0.5f, 3f);
         }
-        if (onPlayerDeathEvent != null)
+
+        if (onUncontrolledFireEvent != null)
         {
-            onPlayerDeathEvent.Raise();
-            Debug.Log("EVENTO DE MUERTE PUBLICADO");
+            onUncontrolledFireEvent.Raise(); 
+            Debug.Log("EVENTO DE FUEGO DESCONTROLADO PUBLICADO");
         }
     }
 
     public void ReiniciarTemporizador()
     {
         StopAllCoroutines();
-        StartCoroutine(EsperarYAumentarFuego());
+        StartCoroutine(EsperarYDescontrolarFuego());
     }
 
     public void ConfigurarTemporizador(float nuevoTiempo, float intensidad)
     {
-        tiempoEspera = nuevoTiempo;
-        nuevaIntensidad = Mathf.Clamp01(intensidad);
+        tiempoParaDescontrol = nuevoTiempo;
+        intensidadFuegoDescontrolado = Mathf.Clamp01(intensidad);
     }
 }

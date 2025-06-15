@@ -91,7 +91,7 @@ public class SartenCollider : MonoBehaviour
                 {
                     if (badgeManager != null)
                     {
-                        badgeManager.UnlockBadge("FuegoConTrapoSeco");
+                        badgeManager.UnlockBadge("FuegoConTrapoSeco"); 
                     }
                     vignetteEvent.Raise(Color.red, 0.5f, 3f);
                     fireIntensityEvent.Raise(0.8f);

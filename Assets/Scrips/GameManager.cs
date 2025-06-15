@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; 
-using System.Collections; 
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,17 +8,22 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
 
     [Header("Scene Management")]
-    [Tooltip("El nombre exacto de la escena de victoria en Build Settings.")]
     [SerializeField] private string winSceneName;
-    [Tooltip("El nombre exacto de la escena de derrota en Build Settings.")]
     [SerializeField] private string loseSceneName;
 
     [Header("Player Components to Disable")]
     [SerializeField] private PlayerInteraction playerInteraction;
-    [Header("Managers")]
+
+    [Header("Managers and Events")]
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private GameEvent onPlayerDeathEvent;
     [SerializeField] private GameEvent onPlayerSurvivedEvent;
+    [SerializeField] private GameEventstring messageEvent; 
+
+    [Header("Death Timer Settings")] 
+    [SerializeField] private float tiempoParaMorir = 15f;
+    private Coroutine deathCoroutine;
+
     void Start()
     {
         if (badgeManager != null)
@@ -26,34 +31,66 @@ public class GameManager : MonoBehaviour
             badgeManager.ResetBadges();
         }
 
-
         currentState = GameState.Playing;
         Time.timeScale = 1f;
+    }
+
+    public void IniciarContadorMortal()
+    {
+        if (currentState != GameState.Playing) return;
+
+        Debug.Log("Contador mortal iniciado en GameManager. El jugador tiene " + tiempoParaMorir + " segundos.");
+
+        if (messageEvent != null)
+        {
+            messageEvent.Raise("¡El tiempo se agota!");
+        }
+
+        if (deathCoroutine == null)
+        {
+            deathCoroutine = StartCoroutine(ContadorParaMuerte());
+        }
+    }
+
+    private IEnumerator ContadorParaMuerte()
+    {
+        yield return new WaitForSeconds(tiempoParaMorir);
+        Debug.Log("Se acabó el tiempo del GameManager. El jugador ha muerto.");
+        badgeManager.UnlockBadge("GameOverSinTiempo"); 
+        HandlePlayerDeath(); 
     }
 
     public void HandlePlayerDeath()
     {
         if (currentState != GameState.Playing) return;
-
         currentState = GameState.Lost;
+
+        if (deathCoroutine != null)
+        {
+            StopCoroutine(deathCoroutine);
+            deathCoroutine = null;
+        }
+
         Debug.Log("GAME OVER: El jugador ha muerto. Iniciando carga de escena de derrota.");
-
         if (playerInteraction != null) playerInteraction.enabled = false;
-
         Time.timeScale = 0.2f;
-
         StartCoroutine(LoadAdditiveScene(loseSceneName));
     }
 
     public void HandlePlayerSurvival()
     {
         if (currentState != GameState.Playing) return;
-
         currentState = GameState.Won;
+
+        if (deathCoroutine != null)
+        {
+            StopCoroutine(deathCoroutine);
+            deathCoroutine = null;
+            Debug.Log("Contador mortal detenido. El jugador ha sobrevivido.");
+        }
+
         Debug.Log("¡VICTORIA!: El jugador ha sobrevivido. Iniciando carga de escena de victoria.");
-
         if (playerInteraction != null) playerInteraction.enabled = false;
-
         StartCoroutine(LoadAdditiveScene(winSceneName));
     }
 
@@ -64,18 +101,13 @@ public class GameManager : MonoBehaviour
             Debug.LogError("El nombre de la escena no está asignado en el GameManager. No se puede cargar.");
             yield break;
         }
-
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-
         Debug.Log($"Escena '{sceneName}' cargada aditivamente.");
-
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
-
         Time.timeScale = 1f;
     }
 }
