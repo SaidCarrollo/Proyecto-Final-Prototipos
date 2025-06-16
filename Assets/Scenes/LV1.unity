@@ -740,6 +740,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+        m_TargetAssemblyTypeName: BadgeManager, Assembly-CSharp
+        m_MethodName: UnlockBadge
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SalidaSegura
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &206750174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2238,6 +2250,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7418370608934831234, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1687917239}
+    - targetCorrespondingSourceObject: {fileID: 7418370608934831234, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1687917243}
     - targetCorrespondingSourceObject: {fileID: -5523186708016193998, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 206750174}
@@ -3816,6 +3831,7 @@ MonoBehaviour:
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
   messageEvent: {fileID: 11400000, guid: a4f90680e59a06c4d835eece0c9c5bdc, type: 2}
+  onUncontrolledFireEvent: {fileID: 0}
   tiempoParaMorir: 20
 --- !u!114 &846614571
 MonoBehaviour:
@@ -15682,11 +15698,43 @@ MonoBehaviour:
           m_StringArgument: Mejor apagar la hornilla para estar seguros
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1687917243}
+        m_TargetAssemblyTypeName: OvenInteractable, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Mejor apagar la hornilla para estar seguros
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1687917240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8122792228310002480, guid: bcd23f76b2cfb6e4fb28a7dafa4f87bb, type: 3}
   m_PrefabInstance: {fileID: 427539548}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1687917243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687917231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5bf92dd9a69b548a04ec3daa3af2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 846614570}
+  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
+  defaultBadgeID: PrevencionHornilla
+  defaultVignetteColor: {r: 0, g: 1, b: 0, a: 1}
+  lateBadgeID: HornillaTarde
+  lateVignetteColor: {r: 1, g: 0, b: 0, a: 1}
+  onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
 --- !u!1 &1743147164
 GameObject:
   m_ObjectHideFlags: 0

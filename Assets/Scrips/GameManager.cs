@@ -18,23 +18,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private GameEvent onPlayerDeathEvent;
     [SerializeField] private GameEvent onPlayerSurvivedEvent;
-    [SerializeField] private GameEventstring messageEvent; 
-
+    [SerializeField] private GameEventstring messageEvent;
+    [SerializeField] private GameEvent onUncontrolledFireEvent;
     [Header("Death Timer Settings")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
-
+    public bool IsFireUncontrolled { get; private set; } = false;
     void Start()
     {
         if (badgeManager != null)
         {
             badgeManager.ResetBadges();
         }
-
+        IsFireUncontrolled = false;
         currentState = GameState.Playing;
         Time.timeScale = 1f;
     }
 
+    public void HandleUncontrolledFire()
+    {
+        Debug.Log("GameManager ha sido notificado: ¡El fuego está fuera de control!");
+        IsFireUncontrolled = true;
+    }
     public void IniciarContadorMortal()
     {
         if (currentState != GameState.Playing) return;
