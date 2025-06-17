@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdcce987a9997140a09dcf3f19e950a, type: 3}
+  m_Name: FuegoEnLaCocina Cuestionario
+  m_EditorClassIdentifier: 
+  nombreDelCuestionario: CUESTIONARIO PRE-ESCENARIO
+  preguntas:
+  - textoPregunta: "1. Est\xE1s cocinando con aceite o grasa caliente y la sart\xE9n
+      se incendia. \xBFCu\xE1l de las siguientes acciones consideras la primera y
+      m\xE1s segura para intentar controlar un fuego peque\xF1o y confinado en la
+      sart\xE9n?"
+    respuestas:
+    - textoRespuesta: "\u25CC Mover la sart\xE9n r\xE1pidamente hacia el fregadero
+        e intentar echarle agua."
+      esCorrecta: 0
+    - textoRespuesta: "\u25CC Sofocar las llamas deslizando cuidadosamente una tapa
+        met\xE1lica sobre la sart\xE9n y apagar la fuente de calor."
+      esCorrecta: 1
+    - textoRespuesta: "\u25CC Echarle un pu\xF1ado de harina o bicarbonato de sodio
+        directamente a las llamas."
+      esCorrecta: 0
+    - textoRespuesta: "\u25CC Comenzar a ventilar la cocina abriendo puertas y ventanas
+        inmediatamente."
+      esCorrecta: 0
+  - textoPregunta: "\xBFPor qu\xE9 se considera especialmente peligroso echar agua
+      directamente a una sart\xE9n con aceite en llamas?"
+    respuestas:
+    - textoRespuesta: "Porque el agua puede da\xF1ar el material de la sart\xE9n."
+      esCorrecta: 0
+    - textoRespuesta: Porque el agua no es un agente extintor eficaz para fuegos
+        de clase K (grasas y aceites de cocina).
+      esCorrecta: 0
+    - textoRespuesta: "Porque el agua, al entrar en contacto con el aceite caliente,
+        se vaporiza violentamente y puede propagar el aceite ardiendo, causando una
+        llamarada o explosi\xF3n.v"
+      esCorrecta: 1
+    - textoRespuesta: "Porque el vapor de agua generado es t\xF3xico."
+      esCorrecta: 0
+  - textoPregunta: "Si decides usar un pa\xF1o para intentar sofocar las llamas en
+      la sart\xE9n (en ausencia de una tapa adecuada), \xBFcu\xE1l de estas opciones
+      ser\xEDa la m\xE1s apropiada, aunque menos ideal que una tapa?"
+    respuestas:
+    - textoRespuesta: "Un pa\xF1o completamente seco y de material sint\xE9tico."
+      esCorrecta: 0
+    - textoRespuesta: "Un pa\xF1o grande, de algod\xF3n, ligeramente humedecido y
+        bien escurrido, coloc\xE1ndolo con cuidado sobre la sart\xE9n."
+      esCorrecta: 1
+    - textoRespuesta: "Cualquier pa\xF1o disponible, lo importante es actuar r\xE1pido."
+      esCorrecta: 0
+    - textoRespuesta: "Un pa\xF1o empapado en agua para asegurar que el fuego se
+        enfr\xEDe."
+      esCorrecta: 0
+  - textoPregunta: "Si el fuego en la sart\xE9n comienza a extenderse m\xE1s all\xE1
+      del recipiente, o sientes que la situaci\xF3n supera tu capacidad de controlarla
+      de forma segura e inmediata, \xBFcu\xE1l es la acci\xF3n prioritaria?"
+    respuestas:
+    - textoRespuesta: "Buscar un extintor, aunque no sepas bien c\xF3mo usarlo o
+        d\xF3nde est\xE1 exactamente."
+      esCorrecta: 0
+    - textoRespuesta: "Intentar apagarlo con m\xE1s agua o cualquier otro medio improvisado."
+      esCorrecta: 0
+    - textoRespuesta: "Salir inmediatamente de la cocina y del hogar siguiendo una
+        ruta de evacuaci\xF3n segura, cerrar las puertas a tu paso si es posible,
+        y una vez a salvo, llamar a los servicios de emergencia."
+      esCorrecta: 1
+    - textoRespuesta: Gritar pidiendo ayuda, pero permanecer en la cocina intentando
+        controlar el fuego.
+      esCorrecta: 0
+  - textoPregunta: "Una causa frecuente de incendios en la cocina es el sobrecalentamiento
+      de aceite. \xBFCu\xE1l de las siguientes es una medida preventiva fundamental
+      al cocinar con aceite?"
+    respuestas:
+    - textoRespuesta: "Calentar siempre el aceite a la m\xE1xima temperatura posible
+        para cocinar m\xE1s r\xE1pido."
+      esCorrecta: 0
+    - textoRespuesta: "No dejar nunca desatendida la sart\xE9n o recipiente mientras
+        se est\xE1 calentando aceite o cocinando con \xE9l."
+      esCorrecta: 1
+    - textoRespuesta: "Tener siempre un recipiente con agua cerca para actuar r\xE1pido
+        en caso de ignici\xF3n."
+      esCorrecta: 0
+    - textoRespuesta: Usar siempre utensilios de madera para remover, ya que no conducen
+        el calor.
+      esCorrecta: 0
