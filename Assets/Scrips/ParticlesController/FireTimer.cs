@@ -37,7 +37,7 @@ public class FireTimer : MonoBehaviour
 
         if (messageEvent != null)
         {
-            messageEvent.Raise("¡El fuego se ha descontrolado! ¡Busca otra solución!");
+            messageEvent.Raise("Tardé demasiado... Es mejor salir de aquí…");
             Debug.Log("EVENTO DE MENSAJE: ¡Fuego descontrolado! PUBLICADO");
         }
 
