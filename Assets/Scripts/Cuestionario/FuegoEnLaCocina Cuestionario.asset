@@ -19,17 +19,16 @@ MonoBehaviour:
       m\xE1s segura para intentar controlar un fuego peque\xF1o y confinado en la
       sart\xE9n?"
     respuestas:
-    - textoRespuesta: "\u25CC Mover la sart\xE9n r\xE1pidamente hacia el fregadero
-        e intentar echarle agua."
+    - textoRespuesta: "Mover la sart\xE9n r\xE1pidamente hacia el fregadero e intentar
+        echarle agua."
       esCorrecta: 0
-    - textoRespuesta: "\u25CC Sofocar las llamas deslizando cuidadosamente una tapa
-        met\xE1lica sobre la sart\xE9n y apagar la fuente de calor."
+    - textoRespuesta: "Sofocar las llamas deslizando cuidadosamente una tapa met\xE1lica
+        sobre la sart\xE9n y apagar la fuente de calor."
       esCorrecta: 1
-    - textoRespuesta: "\u25CC Echarle un pu\xF1ado de harina o bicarbonato de sodio
-        directamente a las llamas."
+    - textoRespuesta: "Echarle un pu\xF1ado de harina o bicarbonato de sodio directamente
+        a las llamas."
       esCorrecta: 0
-    - textoRespuesta: "\u25CC Comenzar a ventilar la cocina abriendo puertas y ventanas
-        inmediatamente."
+    - textoRespuesta: Comenzar a ventilar la cocina abriendo puertas y ventanas inmediatamente.
       esCorrecta: 0
   - textoPregunta: "\xBFPor qu\xE9 se considera especialmente peligroso echar agua
       directamente a una sart\xE9n con aceite en llamas?"
