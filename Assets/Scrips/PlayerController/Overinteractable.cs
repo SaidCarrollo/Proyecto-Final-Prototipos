@@ -24,6 +24,11 @@ public class OvenInteractable : MonoBehaviour
     [Tooltip("Evento que se dispara si se interactúa tarde (causa la muerte).")]
     [SerializeField] private GameEvent onPlayerDeathEvent;
 
+    [Tooltip("Mensaje a mostrar si la interacción es correcta (a tiempo).")]
+    [SerializeField, TextArea(2, 5)] private string successMessage = "¡Acción preventiva correcta!";
+    [Tooltip("Mensaje a mostrar si la interacción es incorrecta (tarde).")]
+    [SerializeField, TextArea(2, 5)] private string failureMessage = "¡Demasiado tarde! El fuego ya es incontrolable.";
+    [SerializeField] private GameEventstring messageEvent;
     private bool hasBeenUsed = false;
 
     public void Interact()
@@ -42,19 +47,25 @@ public class OvenInteractable : MonoBehaviour
 
         if (gameManager.IsFireUncontrolled)
         {
-            Debug.Log("Interacción tardía con el horno. El fuego ya está descontrolado.");
             badgeManager.UnlockBadge(lateBadgeID);
             vignetteEvent.Raise(lateVignetteColor, 0.5f, 3f);
 
-            onPlayerDeathEvent?.Raise();
+            if (messageEvent != null && !string.IsNullOrEmpty(failureMessage))
+            {
+                messageEvent.Raise(failureMessage);
+            }
         }
         else
         {
-            Debug.Log("Interacción a tiempo con el horno. Acción preventiva correcta.");
             badgeManager.UnlockBadge(defaultBadgeID);
             vignetteEvent.Raise(defaultVignetteColor, 0.4f, 2f);
+
+            if (messageEvent != null && !string.IsNullOrEmpty(successMessage))
+            {
+                messageEvent.Raise(successMessage);
+            }
         }
 
-        hasBeenUsed = true; 
+        hasBeenUsed = true;
     }
 }

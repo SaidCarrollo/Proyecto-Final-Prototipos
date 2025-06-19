@@ -3806,7 +3806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478022f83aee0f643b2f8410e5933f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoParaDescontrol: 40
+  tiempoParaDescontrol: 20
   intensidadFuegoDescontrolado: 0.8
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
@@ -3831,7 +3831,7 @@ MonoBehaviour:
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
   messageEvent: {fileID: 11400000, guid: a4f90680e59a06c4d835eece0c9c5bdc, type: 2}
-  onUncontrolledFireEvent: {fileID: 0}
+  onUncontrolledFireEvent: {fileID: 11400000, guid: d410c388d79f73945be5625b6604771b, type: 2}
   tiempoParaMorir: 20
 --- !u!114 &846614571
 MonoBehaviour:
@@ -3907,7 +3907,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 846614570}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: IniciarContadorMortal
+        m_MethodName: HandleUncontrolledFire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15735,6 +15735,9 @@ MonoBehaviour:
   lateBadgeID: HornillaTarde
   lateVignetteColor: {r: 1, g: 0, b: 0, a: 1}
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
+  successMessage: Mejor apagar la hornilla para estar seguros.
+  failureMessage: "Apagar la hornilla no ayudar\xE1 con el fuego ahora..."
+  messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
 --- !u!1 &1743147164
 GameObject:
   m_ObjectHideFlags: 0
@@ -15889,6 +15892,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Esto ayudara a que el fuego no se expanda
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+        m_TargetAssemblyTypeName: BadgeManager, Assembly-CSharp
+        m_MethodName: UnlockBadge
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CerrarVentana
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1877109192
