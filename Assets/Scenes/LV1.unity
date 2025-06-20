@@ -16746,6 +16746,11 @@ MonoBehaviour:
   togglePhoneAction: {fileID: -4214455604685356366, guid: 12883daad516ea54990afffc7461211e, type: 3}
   interactAction: {fileID: -3114212219639749681, guid: 12883daad516ea54990afffc7461211e, type: 3}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  gameManager: {fileID: 846614570}
+  goodCallBadgeID: LlamadaDeEmergenciaCorrecta
+  goodCallMessage: "Los profesionales se encargar\xE1n de esta emergencia."
+  badCallBadgeID: LlamadaDeEmergenciaInnecesaria
+  badCallMessage: "El fuego no est\xE1 controlado, no era necesario llamar...."
 --- !u!4 &1584200642
 Transform:
   m_ObjectHideFlags: 0

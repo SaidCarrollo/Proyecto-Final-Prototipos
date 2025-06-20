@@ -19,11 +19,12 @@ public class SartenCollider : MonoBehaviour
     [Header("Interacción con Agua")]
     [SerializeField] private string waterTag = "Water";
     [SerializeField] private BadgeManager badgeManager;
-    private bool fuegoEstaDescontrolado = false; 
-
+    private bool fuegoEstaDescontrolado = false;
+    private bool haSidoSumergida = false;
     public void ActivarFuegoDescontrolado()
     {
         Debug.Log($"FUEGO DESCONTROLADO ACTIVADO en {gameObject.name}. Ya no se pueden colocar más objetos.");
+        gameObject.layer = LayerMask.NameToLayer("Default");
         fuegoEstaDescontrolado = true;
     }
 
@@ -133,7 +134,24 @@ public class SartenCollider : MonoBehaviour
 
     private void OnPanSubmerged()
     {
-        Debug.Log($"Método OnPanSubmerged llamado para la sartén '{gameObject.name}'. No hay acciones implementadas actualmente.", this);
+        if (haSidoSumergida) return; 
+        haSidoSumergida = true; 
+
+        Debug.Log($"¡PELIGRO! La sartén con aceite caliente ha entrado en contacto con el agua. ¡Reacción violenta!");
+
+        if (badgeManager != null)
+        {
+            badgeManager.UnlockBadge("SartenEnAgua");
+        }
+        if (vignetteEvent != null)
+        {
+            vignetteEvent.Raise(Color.red, 0.8f, 3f);
+        }
+        if (onPlayerDeathEvent != null)
+        {
+            onPlayerDeathEvent.Raise();
+            Debug.Log("EVENTO DE MUERTE PUBLICADO por sumergir la sartén en agua.");
+        }
     }
 
     private void OnTriggerExit(Collider other)

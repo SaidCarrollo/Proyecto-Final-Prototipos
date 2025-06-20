@@ -23,6 +23,13 @@ public class PhoneController : MonoBehaviour
     [Tooltip("Referencia a la acción para interactuar (llamar).")]
     [SerializeField] private InputActionReference interactAction;
     [SerializeField] private BadgeManager badgeManager;
+    [SerializeField] private GameManager gameManager;
+
+    [SerializeField] private string goodCallBadgeID = "LlamadaDeEmergenciaCorrecta";
+    [SerializeField, TextArea(2, 5)] private string goodCallMessage = "¡Bien hecho! Los bomberos están en camino.";
+
+    [SerializeField] private string badCallBadgeID = "LlamadaDeEmergenciaInnecesaria";
+    [SerializeField, TextArea(2, 5)] private string badCallMessage = "El fuego está controlado, no era necesario llamar.";
     private void OnEnable()
     {
         if (togglePhoneAction != null)
@@ -68,25 +75,58 @@ public class PhoneController : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        if (phonePanel != null && phonePanel.activeInHierarchy)
+        if (phonePanel == null || !phonePanel.activeInHierarchy)
         {
-            Debug.Log("Llamando al 116 desde el panel...");
+            return;
+        }
 
-            if (messageEvent != null)
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager no está asignado en PhoneController.");
+            return;
+        }
+
+        Debug.Log("Intentando realizar llamada de emergencia...");
+
+        if (gameManager.IsFireUncontrolled)
+        {
+            Debug.Log("Llamada correcta. El fuego está fuera de control.");
+
+            if (messageEvent != null && !string.IsNullOrEmpty(goodCallMessage))
             {
-                messageEvent.Raise("Llamada de emergencia realizada.");
+                messageEvent.Raise(goodCallMessage);
             }
 
             if (badgeManager != null)
             {
-                badgeManager.UnlockBadge("LlamadaDeEmergencia");
-            }
-            if (vignetteEvent != null)
-            {
-                vignetteEvent.Raise(Color.green, 0.4f, 2f); // Color verde, intensidad 0.4, duración 2 segundos
+                badgeManager.UnlockBadge(goodCallBadgeID);
             }
 
-            phonePanel.SetActive(false);
+            if (vignetteEvent != null)
+            {
+                vignetteEvent.Raise(Color.green, 0.4f, 2f);
+            }
         }
+        else
+        {
+            Debug.Log("Llamada innecesaria. El fuego todavía era controlable.");
+
+            if (messageEvent != null && !string.IsNullOrEmpty(badCallMessage))
+            {
+                messageEvent.Raise(badCallMessage);
+            }
+
+            if (badgeManager != null)
+            {
+                badgeManager.UnlockBadge(badCallBadgeID);
+            }
+
+            if (vignetteEvent != null)
+            {
+                vignetteEvent.Raise(Color.red, 0.5f, 3f);
+            }
+        }
+
+        phonePanel.SetActive(false);
     }
 }

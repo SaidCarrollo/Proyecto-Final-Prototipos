@@ -13,12 +13,10 @@ public class OvenInteractable : MonoBehaviour
     [Header("Default Interaction (Antes del descontrol)")]
     [Tooltip("ID del badge que se da por prevenir a tiempo.")]
     [SerializeField] private string defaultBadgeID = "PrevencionHornilla";
-    [SerializeField] private Color defaultVignetteColor = Color.green;
 
     [Header("Late Interaction (Después del descontrol)")]
     [Tooltip("ID del badge que se da por actuar demasiado tarde.")]
     [SerializeField] private string lateBadgeID = "HornillaTarde";
-    [SerializeField] private Color lateVignetteColor = Color.red;
 
     [Header("Events on Late Interaction")]
     [Tooltip("Evento que se dispara si se interactúa tarde (causa la muerte).")]
@@ -48,7 +46,7 @@ public class OvenInteractable : MonoBehaviour
         if (gameManager.IsFireUncontrolled)
         {
             badgeManager.UnlockBadge(lateBadgeID);
-            vignetteEvent.Raise(lateVignetteColor, 0.5f, 3f);
+            vignetteEvent.Raise(Color.red, 0.5f, 3f);
 
             if (messageEvent != null && !string.IsNullOrEmpty(failureMessage))
             {
@@ -58,7 +56,7 @@ public class OvenInteractable : MonoBehaviour
         else
         {
             badgeManager.UnlockBadge(defaultBadgeID);
-            vignetteEvent.Raise(defaultVignetteColor, 0.4f, 2f);
+            vignetteEvent.Raise(Color.green, 0.4f, 2f);
 
             if (messageEvent != null && !string.IsNullOrEmpty(successMessage))
             {
