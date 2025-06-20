@@ -30,6 +30,14 @@ public class PhoneController : MonoBehaviour
 
     [SerializeField] private string badCallBadgeID = "LlamadaDeEmergenciaInnecesaria";
     [SerializeField, TextArea(2, 5)] private string badCallMessage = "El fuego está controlado, no era necesario llamar.";
+
+    [SerializeField] private string distractedBadgeID = "DistraccionConTelefono";
+    [SerializeField, TextArea(2, 5)] private string distractedMessage = "Debería enfocarme mientras el fuego está controlado.";
+
+    [SerializeField] private string hesitatedBadgeID = "DudandoEnLlamar";
+    [SerializeField, TextArea(2, 5)] private string hesitatedMessage = "¿Por qué lo guardo? ¡Debo llamar a los bomberos ahora!";
+
+    private bool phoneWasOpenedAndNotUsed = false;
     private void OnEnable()
     {
         if (togglePhoneAction != null)
@@ -60,16 +68,41 @@ public class PhoneController : MonoBehaviour
 
     private void OnTogglePhone(InputAction.CallbackContext context)
     {
-        Debug.Log("OnTogglePhone FUE LLAMADO! La tecla 'Q' funciona.");
-
-        if (phonePanel != null)
+        if (phonePanel == null)
         {
-            Debug.Log($"El estado actual del panel es: {phonePanel.activeSelf}. Se cambiará a: {!phonePanel.activeSelf}");
-            phonePanel.SetActive(!phonePanel.activeSelf);
+            Debug.LogError("ERROR: La referencia 'phonePanel' no está asignada en el Inspector!");
+            return;
+        }
+
+        bool isOpening = !phonePanel.activeSelf;
+
+        if (isOpening)
+        {
+            phonePanel.SetActive(true);
+            phoneWasOpenedAndNotUsed = true;
+            Debug.Log("Teléfono abierto. Pendiente de uso.");
         }
         else
         {
-            Debug.LogError("ERROR: La referencia 'phonePanel' no está asignada en el Inspector!");
+            if (phoneWasOpenedAndNotUsed)
+            {
+                Debug.Log("Teléfono cerrado sin ser usado. Comprobando estado del fuego...");
+                if (gameManager.IsFireUncontrolled)
+                {
+                    vignetteEvent.Raise(Color.red, 0.5f, 3f);
+                    badgeManager.UnlockBadge(hesitatedBadgeID);
+                    messageEvent.Raise(hesitatedMessage);
+                }
+                else
+                {
+                    vignetteEvent.Raise(Color.red, 0.5f, 3f);
+                    badgeManager.UnlockBadge(distractedBadgeID);
+                    messageEvent.Raise(distractedMessage);
+                }
+            }
+
+            phonePanel.SetActive(false);
+            phoneWasOpenedAndNotUsed = false;
         }
     }
 
@@ -79,6 +112,7 @@ public class PhoneController : MonoBehaviour
         {
             return;
         }
+        phoneWasOpenedAndNotUsed = false;
 
         if (gameManager == null)
         {

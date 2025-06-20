@@ -3751,6 +3751,10 @@ MonoBehaviour:
         m_CallState: 2
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  timelyBadgeID: SinObjetosInflamables
+  lateBadgeID: ObjetosInflamablesTarde
+  gameManager: {fileID: 846614570}
+  messageEvent: {fileID: 0}
 --- !u!1 &761272222
 GameObject:
   m_ObjectHideFlags: 0
@@ -16751,6 +16755,10 @@ MonoBehaviour:
   goodCallMessage: "Los profesionales se encargar\xE1n de esta emergencia."
   badCallBadgeID: LlamadaDeEmergenciaInnecesaria
   badCallMessage: "El fuego no est\xE1 controlado, no era necesario llamar...."
+  distractedBadgeID: DistraccionConTelefono
+  distractedMessage: "Deber\xEDa enfocarme mientras el fuego est\xE1 controlado."
+  hesitatedBadgeID: DudandoEnLlamar
+  hesitatedMessage: "\xBFPor qu\xE9 lo guardo? \xA1Debo llamar a los bomberos ahora!"
 --- !u!4 &1584200642
 Transform:
   m_ObjectHideFlags: 0
@@ -16958,9 +16966,7 @@ MonoBehaviour:
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   defaultBadgeID: PrevencionHornilla
-  defaultVignetteColor: {r: 0, g: 1, b: 0, a: 1}
   lateBadgeID: HornillaTarde
-  lateVignetteColor: {r: 1, g: 0, b: 0, a: 1}
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   successMessage: Mejor apagar la hornilla para estar seguros.
   failureMessage: "Apagar la hornilla no ayudar\xE1 con el fuego ahora..."
@@ -17207,9 +17213,7 @@ MonoBehaviour:
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   defaultBadgeID: CerrarVentana
-  defaultVignetteColor: {r: 0, g: 1, b: 0, a: 1}
   lateBadgeID: CerrarVentanaDescontrol
-  lateVignetteColor: {r: 1, g: 0, b: 0, a: 1}
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   successMessage: Evitar que entre mas oxigeno ayudara a controlar el fuego.
   failureMessage: Cerrar la ventana ahora no tiene mucho impacto.
