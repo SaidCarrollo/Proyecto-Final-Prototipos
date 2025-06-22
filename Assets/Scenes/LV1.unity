@@ -17436,20 +17436,8 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
-        m_TargetAssemblyTypeName: BadgeManager, Assembly-CSharp
-        m_MethodName: UnlockBadge
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CerrarVentana
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1774570822}
-        m_TargetAssemblyTypeName: OvenInteractable, Assembly-CSharp
+      - m_Target: {fileID: 1774570823}
+        m_TargetAssemblyTypeName: WindowInteractable, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 1
         m_Arguments:
@@ -17493,21 +17481,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9566b0bbad9c7418c416b547d32312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badgeManager: {fileID: 0}
-  vignetteEvent: {fileID: 0}
-  messageEvent: {fileID: 0}
+  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
+  messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
   reInteractBadgeID: abrirventanadespuesdecerrarla
   reInteractMessage: "No deber\xEDa estar jugando con la ventana. Necesito concentrarme."
   OnFirstInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+        m_TargetAssemblyTypeName: BadgeManager, Assembly-CSharp
+        m_MethodName: UnlockBadge
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CerrarVentana
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1774570822}
+        m_TargetAssemblyTypeName: OvenInteractable, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
