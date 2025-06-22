@@ -15,8 +15,8 @@ public class FireTimer : MonoBehaviour
     [SerializeField] private GameEventstring messageEvent;
 
     [Tooltip("Evento que se dispara cuando el fuego se sale de control.")]
-    [SerializeField] private GameEvent onUncontrolledFireEvent; 
-
+    [SerializeField] private GameEvent onUncontrolledFireEvent;
+    [SerializeField] private BadgeManager badgeManager;
     [Header("Vignette Event")]
     [Tooltip("Evento para activar la viñeta de peligro.")]
     [SerializeField] private VignetteEvent vignetteEvent;
@@ -38,6 +38,7 @@ public class FireTimer : MonoBehaviour
         if (messageEvent != null)
         {
             messageEvent.Raise("Tardé demasiado... Es mejor salir de aquí…");
+            badgeManager.UnlockBadge("Descontrol");
             Debug.Log("EVENTO DE MENSAJE: ¡Fuego descontrolado! PUBLICADO");
         }
 

@@ -7,7 +7,7 @@ public class SartenCollider : MonoBehaviour
     [Header("Configuración de Snap del Trapo")]
     [SerializeField] private Transform snapPosition;
     [SerializeField] private string trapoTag = "TrapoMojado";
-
+    [SerializeField] private string tapaTag = "TapaMetalica";
     [Header("Eventos de Fuego")]
     [SerializeField] private FloatEvent fireIntensityEvent;
 
@@ -50,12 +50,38 @@ public class SartenCollider : MonoBehaviour
         {
             HandleTrapoInteraction(other);
         }
+        else if (other.CompareTag(tapaTag)) 
+        {
+            HandleTapaInteraction(other);
+        }
         else if (other.CompareTag(waterTag))
         {
             HandlePanInWater(other);
         }
     }
+    private void HandleTapaInteraction(Collider tapaCollider)
+    {
+        ObjectGrabber grabberHoldingTapa = tapaCollider.GetComponentInParent<ObjectGrabber>();
+        if (grabberHoldingTapa != null && grabberHoldingTapa.IsHoldingObject()) return;
 
+        Debug.Log($"Tapa '{tapaCollider.name}' detectada por la sartén '{gameObject.name}'. Apagando el fuego.", this);
+        SnapObjectToSarten(tapaCollider.transform);
+
+        if (fireIntensityEvent != null)
+        {
+            vignetteEvent.Raise(Color.green, 0.4f, 2f);
+            fireIntensityEvent.Raise(0f);
+            if (badgeManager != null)
+            {
+                badgeManager.UnlockBadge("FuegoApagadoConTapa");
+            }
+            if (onPlayerSurvivedEvent != null)
+            {
+                onPlayerSurvivedEvent.Raise();
+                Debug.Log("EVENTO DE SUPERVIVENCIA PUBLICADO (Tapa)");
+            }
+        }
+    }
     private void HandleTrapoInteraction(Collider trapoCollider)
     {
         GrabbableObject trapoGrabbable = trapoCollider.GetComponent<GrabbableObject>();
@@ -65,7 +91,7 @@ public class SartenCollider : MonoBehaviour
         if (trapoGrabbable != null && (grabberHoldingTrapo == null || !grabberHoldingTrapo.IsHoldingObject()))
         {
             Debug.Log($"Trapo '{trapoCollider.name}' detectado por la sartén '{gameObject.name}'. Intentando anclar.", trapoCollider.gameObject);
-            SnapTrapoToSarten(trapoCollider.transform);
+            SnapObjectToSarten(trapoCollider.transform);
 
             if (trapoGrabbable.EstaMojado)
             {
@@ -105,26 +131,26 @@ public class SartenCollider : MonoBehaviour
             }
         }
     }
-    private void SnapTrapoToSarten(Transform trapoTransform)
+    private void SnapObjectToSarten(Transform objectTransform)
     {
-        Rigidbody rbTrapo = trapoTransform.GetComponent<Rigidbody>();
-        if (rbTrapo != null)
+        Rigidbody rbObject = objectTransform.GetComponent<Rigidbody>();
+        if (rbObject != null)
         {
-            rbTrapo.isKinematic = true;
-            rbTrapo.linearVelocity = Vector3.zero;
-            rbTrapo.angularVelocity = Vector3.zero;
+            rbObject.isKinematic = true;
+            rbObject.linearVelocity = Vector3.zero;
+            rbObject.angularVelocity = Vector3.zero;
         }
 
-        trapoTransform.SetParent(snapPosition);
-        trapoTransform.localPosition = Vector3.zero;
-        trapoTransform.localRotation = Quaternion.identity;
+        objectTransform.SetParent(snapPosition);
+        objectTransform.localPosition = Vector3.zero;
+        objectTransform.localRotation = Quaternion.identity;
 
-        Collider trapoCollider = trapoTransform.GetComponent<Collider>();
-        if (trapoCollider != null)
+        Collider objectCollider = objectTransform.GetComponent<Collider>();
+        if (objectCollider != null)
         {
-            trapoCollider.enabled = false;
+            objectCollider.enabled = false;
         }
-        Debug.Log($"Trapo '{trapoTransform.name}' anclado a la sartén en '{snapPosition.name}'.", this);
+        Debug.Log($"Objeto '{objectTransform.name}' anclado a la sartén en '{snapPosition.name}'.", this);
     }
     private void HandlePanInWater(Collider waterCollider)
     {
