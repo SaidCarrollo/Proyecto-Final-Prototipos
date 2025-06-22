@@ -10,13 +10,13 @@ public class WindowInteractable : MonoBehaviour
     [SerializeField] private VignetteEvent vignetteEvent;
     [Tooltip("Referencia al sistema de mensajes para la UI.")]
     [SerializeField] private GameEventstring messageEvent;
-
+    [SerializeField] private Animator animator;
     [Header("Re-Interaction Settings")]
     [Tooltip("ID del badge que se otorga al interactuar más de una vez.")]
     [SerializeField] private string reInteractBadgeID = "abrirventanadespuesdecerrarla";
     [Tooltip("Mensaje que se muestra en la UI al interactuar más de una vez.")]
     [SerializeField, TextArea(2, 5)] private string reInteractMessage = "No debería estar jugando con la ventana. Necesito concentrarme.";
-
+    private bool windowIsOpen = false;
     [Header("First Interaction")]
     [Tooltip("Evento que se dispara LA PRIMERA VEZ que se interactúa (ej. abrir/cerrar la ventana).")]
     public UnityEvent OnFirstInteract;
@@ -27,7 +27,11 @@ public class WindowInteractable : MonoBehaviour
     public void Interact()
     {
         interactionCount++;
-
+        if (animator != null)
+        {
+            windowIsOpen = !windowIsOpen;
+            animator.SetBool("isOpen", windowIsOpen);
+        }
         if (interactionCount == 1)
         {
             Debug.Log($"Primera interacción con '{gameObject.name}'.");
