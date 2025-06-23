@@ -377,7 +377,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 147.6798}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &674151406
@@ -1143,53 +1143,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1006821177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1006821179}
-  - component: {fileID: 1006821178}
-  m_Layer: 0
-  m_Name: ScenePreloader_LV1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1006821178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006821177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6175cb0a29658f64b8206dd56890dbed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPreload: {fileID: 11400000, guid: 7894180ed38dd03479d503acfd30cc03, type: 2}
-  loadMode: 0
-  sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
---- !u!4 &1006821179
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006821177}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.902, y: -1.2911656, z: 16.455132}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1151635534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,19 +1489,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuestionario: {fileID: 11400000, guid: 0ec4c454d15dd314dbeaae12a59c8691, type: 2}
+  resultadosGuardados: {fileID: 11400000, guid: e4fb90108aac98642953d62a53758fe3, type: 2}
   textoPregunta: {fileID: 674151407}
   grupoDeOpciones: {fileID: 1162576578}
   opcionRespuestaPrefab: {fileID: 4157264574080117968, guid: f170dbf85d3233e43bd92744ab28a26e, type: 3}
-  iconoCorrecto: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  iconoIncorrecto: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  iconoCorrecto: {fileID: 21300000, guid: 8eb69873c48b5024386bf5454607f2ab, type: 3}
+  iconoIncorrecto: {fileID: 21300000, guid: d810f72b70dc61d449f70f5270d30371, type: 3}
   botonSiguientePregunta: {fileID: 910324144}
   botonEmpezarNivel: {fileID: 1715870708}
   alFinalizarQuiz:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
-        m_TargetAssemblyTypeName: SceneChannelSO, Assembly-CSharp
-        m_MethodName: RaiseEvent
+      - m_Target: {fileID: 1715870712}
+        m_TargetAssemblyTypeName: LevelButtonController, Assembly-CSharp
+        m_MethodName: OnLevelSelected
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1648,6 +1602,7 @@ GameObject:
   - component: {fileID: 1715870710}
   - component: {fileID: 1715870709}
   - component: {fileID: 1715870708}
+  - component: {fileID: 1715870712}
   m_Layer: 5
   m_Name: EmpezarNivelbtn
   m_TagString: Untagged
@@ -1769,6 +1724,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 29}
   m_SizeDelta: {x: 305, y: 75.4}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1715870712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715870707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddd760c1d1afef42ba3e07171c2d963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: {fileID: 11400000, guid: 7894180ed38dd03479d503acfd30cc03, type: 2}
+  sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
+  activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
+  buttonCanvasGroup: {fileID: 0}
+  blinkFadeValue: 0.5
+  blinkDuration: 0.4
 --- !u!1 &1955372555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,4 +2143,3 @@ SceneRoots:
   - {fileID: 1978171737}
   - {fileID: 1651458169}
   - {fileID: 101773971}
-  - {fileID: 1006821179}

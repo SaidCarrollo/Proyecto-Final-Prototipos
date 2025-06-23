@@ -9,6 +9,8 @@ public class QuizManager : MonoBehaviour
 {
     [Header("Datos del Cuestionario")]
     public CuestionarioSO cuestionario;
+    [Header("Almacenamiento de Resultados")]
+    public ResultadosDelQuizSO resultadosGuardados;
 
     [Header("UI - Elementos de la Pregunta")]
     public TextMeshProUGUI textoPregunta;
@@ -30,6 +32,10 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
+        if (resultadosGuardados != null)
+        {
+            resultadosGuardados.LimpiarResultados(); // <-- AÑADE ESTA LÍNEA
+        }
         botonEmpezarNivel.gameObject.SetActive(false);
         botonSiguientePregunta.onClick.AddListener(OnBotonSiguienteClick);
         CargarPregunta();
@@ -116,6 +122,12 @@ public class QuizManager : MonoBehaviour
 
         if (toggleSeleccionado != null)
         {
+            Pregunta preguntaActual = cuestionario.preguntas[preguntaActualIndex];
+            if (resultadosGuardados != null)
+            {
+                // Creamos un nuevo objeto de resultado y lo añadimos a la lista en el Scriptable Object
+                resultadosGuardados.resultados.Add(new ResultadoPregunta(preguntaActual, respuestaSeleccionadaIndex)); // <-- AÑADE ESTA LÍNEA
+            }
             bool esCorrecta = cuestionario.preguntas[preguntaActualIndex].respuestas[respuestaSeleccionadaIndex].esCorrecta;
             Image feedbackIcon = toggleSeleccionado.transform.Find("IconoFeedback").GetComponent<Image>();
             feedbackIcon.sprite = esCorrecta ? iconoCorrecto : iconoIncorrecto;
