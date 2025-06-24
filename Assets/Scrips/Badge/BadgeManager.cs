@@ -34,8 +34,26 @@ public class BadgeManager : ScriptableObject
     {
         if (badgesDict.TryGetValue(badgeID, out Badge badge))
         {
+            if (badge.Desbloqueado) return;
+
             badge.Desbloqueado = true;
             Debug.Log($"'{badge.Tipo}' | '{badge.Prioridad}' Desbloqueado: {badgeID}");
+
+            if (BadgeAudioPlayer.Instance != null)
+            {
+                if (badge.Tipo == BadgeType.Correcto)
+                {
+                    BadgeAudioPlayer.Instance.PlayGoodBadgeSound();
+                }
+                else if (badge.Tipo == BadgeType.Incorrecto)
+                {
+                    BadgeAudioPlayer.Instance.PlayBadBadgeSound();
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Se intentó reproducir un sonido de badge, pero no se encontró una instancia de BadgeAudioPlayer en la escena.");
+            }
         }
         else
         {

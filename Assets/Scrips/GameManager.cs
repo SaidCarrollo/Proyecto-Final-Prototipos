@@ -137,6 +137,6 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log($"Escena '{sceneName}' cargada aditivamente.");
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
-        Time.timeScale = 1f;
+      //  Time.timeScale = 1f;
     }
 }
