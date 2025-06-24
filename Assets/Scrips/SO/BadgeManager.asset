@@ -22,8 +22,8 @@ MonoBehaviour:
     Descripcion: El trapo sin mojar empeoro la situacion
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 1
-  - ID: LlamadaDeEmergencia
+    Desbloqueado: 0
+  - ID: LlamadaDeEmergenciaCorrecta
     Descripcion: Llamar a emergencias siempre es util para controlar un incendio
     Tipo: 0
     Prioridad: 1
@@ -37,19 +37,19 @@ MonoBehaviour:
     Descripcion: 'Saliste por la puerta principal '
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: HornillaTarde
     Descripcion: 'Apagar la hornilla tarde ess innecesario '
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: PrevencionHornilla
     Descripcion: 'Saliste por la puerta principal '
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: CerrarVentana
-    Descripcion: Cerrar la ventana ahora no tiene mucho impacto.
+    Descripcion: 'Cerrar la ventanda sirve para evitar que el fuego se expanda '
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0

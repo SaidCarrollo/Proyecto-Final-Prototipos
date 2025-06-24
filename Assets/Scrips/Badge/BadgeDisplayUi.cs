@@ -62,7 +62,7 @@ public class BadgeDisplayUI : MonoBehaviour
                 var badgeText = badgeUI.GetComponentInChildren<TextMeshProUGUI>();
                 if (badgeText != null)
                 {
-                    badgeText.text = badge.Descripcion;
+                    badgeText.text = badge.ID + " :" + badge.Descripcion;
                 }
             }
         }
@@ -76,7 +76,7 @@ public class BadgeDisplayUI : MonoBehaviour
                 var badgeText = badgeUI.GetComponentInChildren<TextMeshProUGUI>();
                 if (badgeText != null)
                 {
-                    badgeText.text = "Causa: " + badge.Descripcion;
+                    badgeText.text = badge.ID+ " :" + badge.Descripcion;
                 }
             }
         }
