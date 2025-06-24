@@ -19,7 +19,7 @@ public class PhoneController : MonoBehaviour
     [Header("Input Actions")]
     [Tooltip("Referencia a la acción para mostrar/ocultar el teléfono.")]
     [SerializeField] private InputActionReference togglePhoneAction;
-
+    [SerializeField] private FirstPersonController playerController;
     [Tooltip("Referencia a la acción para interactuar (llamar).")]
     [SerializeField] private InputActionReference interactAction;
     [SerializeField] private BadgeManager badgeManager;
@@ -74,19 +74,18 @@ public class PhoneController : MonoBehaviour
             return;
         }
 
-        bool isOpening = !phonePanel.activeSelf;
+        bool isPhoneActive = phonePanel.activeSelf;
+        phonePanel.SetActive(!isPhoneActive);
 
-        if (isOpening)
+        if (playerController != null)
         {
-            phonePanel.SetActive(true);
-            phoneWasOpenedAndNotUsed = true;
-            Debug.Log("Teléfono abierto. Pendiente de uso.");
+            playerController.SetMovementEnabled(isPhoneActive); 
         }
-        else
+
+        if (isPhoneActive) 
         {
             if (phoneWasOpenedAndNotUsed)
             {
-                Debug.Log("Teléfono cerrado sin ser usado. Comprobando estado del fuego...");
                 if (gameManager.IsFireUncontrolled)
                 {
                     vignetteEvent.Raise(Color.red, 0.5f, 3f);
@@ -100,9 +99,11 @@ public class PhoneController : MonoBehaviour
                     messageEvent.Raise(distractedMessage);
                 }
             }
-
-            phonePanel.SetActive(false);
             phoneWasOpenedAndNotUsed = false;
+        }
+        else 
+        {
+            phoneWasOpenedAndNotUsed = true;
         }
     }
 
@@ -111,6 +112,10 @@ public class PhoneController : MonoBehaviour
         if (phonePanel == null || !phonePanel.activeInHierarchy)
         {
             return;
+        }
+        if (playerController != null)
+        {
+            playerController.SetMovementEnabled(true);
         }
         phoneWasOpenedAndNotUsed = false;
 

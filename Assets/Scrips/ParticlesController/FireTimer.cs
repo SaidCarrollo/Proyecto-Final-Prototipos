@@ -20,10 +20,14 @@ public class FireTimer : MonoBehaviour
     [Header("Vignette Event")]
     [Tooltip("Evento para activar la viñeta de peligro.")]
     [SerializeField] private VignetteEvent vignetteEvent;
-
+    [SerializeField] private UITimerController uiTimerController;
     private void Start()
     {
         StartCoroutine(EsperarYDescontrolarFuego());
+        if (uiTimerController != null)
+        {
+            uiTimerController.StartFireTimer(tiempoParaDescontrol);
+        }
     }
 
     private System.Collections.IEnumerator EsperarYDescontrolarFuego()
@@ -58,6 +62,10 @@ public class FireTimer : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(EsperarYDescontrolarFuego());
+        if (uiTimerController != null)
+        {
+            uiTimerController.StartFireTimer(tiempoParaDescontrol);
+        }
     }
 
     public void ConfigurarTemporizador(float nuevoTiempo, float intensidad)

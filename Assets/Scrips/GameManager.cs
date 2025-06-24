@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [Header("Death Timer Settings")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
+
+    [SerializeField] private UITimerController uiTimerController;
     public bool IsFireUncontrolled { get; private set; } = false;
     void Start()
     {
@@ -45,7 +47,10 @@ public class GameManager : MonoBehaviour
         if (currentState != GameState.Playing) return;
 
         Debug.Log("Contador mortal iniciado en GameManager. El jugador tiene " + tiempoParaMorir + " segundos.");
-
+        if (uiTimerController != null)
+        {
+            uiTimerController.StartMortalTimer(tiempoParaMorir); 
+        }
         if (messageEvent != null)
         {
             messageEvent.Raise("¡El tiempo se agota!");
@@ -69,7 +74,10 @@ public class GameManager : MonoBehaviour
     {
         if (currentState != GameState.Playing) return;
         currentState = GameState.Lost;
-
+        if (uiTimerController != null)
+        {
+            uiTimerController.HideTimer(); 
+        }
         if (deathCoroutine != null)
         {
             StopCoroutine(deathCoroutine);
@@ -86,6 +94,10 @@ public class GameManager : MonoBehaviour
     {
         if (currentState != GameState.Playing) return;
         currentState = GameState.Won;
+        if (uiTimerController != null)
+        {
+            uiTimerController.HideTimer(); 
+        }
 
         if (deathCoroutine != null)
         {

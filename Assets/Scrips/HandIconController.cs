@@ -1,17 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class HandIconController : MonoBehaviour
 {
-    [Header("Sprites")]
-    [SerializeField] private Sprite handOpen;
-    [SerializeField] private Sprite handClosed;
+    [Header("Animation Settings")]
+    [SerializeField] private float focusedScale = 1.2f; 
+    [SerializeField] private float animationDuration = 0.2f; 
 
     [Header("References")]
-    [SerializeField] private Image handImage;
-    [SerializeField] private ObjectGrabber grabber; 
+    [SerializeField] private Image cursorImage;
+    [SerializeField] private ObjectGrabber grabber;
+
+    private Vector3 initialScale;
+    private Tweener scaleTween;
 
     void Start()
     {
+        initialScale = cursorImage.transform.localScale;
+
         grabber.OnObjectGrabbed += HandleGrabbed;
         grabber.OnObjectReleased += HandleReleased;
     }
@@ -24,10 +30,15 @@ public class HandIconController : MonoBehaviour
 
     private void HandleGrabbed(GameObject obj)
     {
-        handImage.sprite = handClosed;
+        scaleTween?.Kill();
+        scaleTween = cursorImage.transform.DOScale(initialScale * focusedScale, animationDuration)
+                                           .SetEase(Ease.OutBack);
     }
+
     private void HandleReleased(GameObject obj)
     {
-        handImage.sprite = handOpen;
+        scaleTween?.Kill();
+
+        scaleTween = cursorImage.transform.DOScale(initialScale, animationDuration);
     }
 }

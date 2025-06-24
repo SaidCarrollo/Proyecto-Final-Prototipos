@@ -28,7 +28,7 @@ public class FirstPersonController : MonoBehaviour
     private float xRotation = 0f;
     private Vector2 currentMovementInput;
     private bool isRunning;
-
+    private bool movementEnabled = true;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -116,7 +116,16 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
+    public void SetMovementEnabled(bool enabled)
+    {
+        movementEnabled = enabled;
 
+        if (!enabled)
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            currentMovementInput = Vector2.zero;
+        }
+    }
     private void HandleMovement()
     {
         Vector3 direction = (transform.forward * currentMovementInput.y + transform.right * currentMovementInput.x).normalized;
