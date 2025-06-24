@@ -6397,6 +6397,8 @@ MonoBehaviour:
   musicSlider: {fileID: 1289603831}
   sfxSlider: {fileID: 231674696}
   audioMixer: {fileID: 24100000, guid: 5f7adc6f3f5917b488d33dc4199cdd1e, type: 2}
+  playerController: {fileID: 461168133}
+  pauseAction: {fileID: -7890205359792112122, guid: 12883daad516ea54990afffc7461211e, type: 3}
 --- !u!1 &765963039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 331101616059021664, guid: bec3b1c9f1dfcdf4aaa04c0235565f65, type: 3}
@@ -6678,6 +6680,7 @@ MonoBehaviour:
   winSceneName: WinScene
   loseSceneName: FailScene
   playerInteraction: {fileID: 461168136}
+  playerController: {fileID: 461168133}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}

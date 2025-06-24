@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 public class AudioSettingsController : MonoBehaviour
 {
     [Header("UI Elements")]
@@ -13,47 +13,54 @@ public class AudioSettingsController : MonoBehaviour
     public AudioMixer audioMixer;
 
     private bool isPaused = false;
+    [SerializeField] private FirstPersonController playerController; 
 
-    void Start()
+    [Header("Input Actions")]
+    [Tooltip("Acción de input para pausar el juego.")]
+    [SerializeField] private InputActionReference pauseAction;
+
+
+    void Awake()
     {
-        // Inicializar sliders con los valores actuales del AudioMixer
         float musicVolume;
         if (audioMixer.GetFloat("MusicVolume", out musicVolume))
         {
             musicSlider.value = musicVolume;
         }
-
         float sfxVolume;
         if (audioMixer.GetFloat("SFXVolume", out sfxVolume))
         {
             sfxSlider.value = sfxVolume;
         }
-
-        // Agregar listeners a los sliders
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
 
-        // Ocultar el panel al inicio
-        audioSettingsPanel.SetActive(false);
 
-        // Asegurar que el cursor esté oculto y bloqueado al inicio
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        audioSettingsPanel.SetActive(false);
     }
 
-    void Update()
+    private void OnEnable()
     {
-        // Alternar la visibilidad del panel al presionar la tecla Escape
-        if (Input.GetKeyDown(KeyCode.Escape))
+        pauseAction.action.Enable();
+        pauseAction.action.performed += TogglePause;
+    }
+
+    private void OnDisable()
+    {
+        pauseAction.action.performed -= TogglePause;
+        pauseAction.action.Disable();
+    }
+
+    private void TogglePause(InputAction.CallbackContext context)
+    {
+        isPaused = !isPaused;
+        if (isPaused)
         {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
         }
     }
 
@@ -73,7 +80,11 @@ public class AudioSettingsController : MonoBehaviour
         audioSettingsPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        isPaused = true;
+
+        if (playerController != null)
+        {
+            playerController.SetInputEnabled(false);
+        }
     }
 
     void ResumeGame()
@@ -82,6 +93,10 @@ public class AudioSettingsController : MonoBehaviour
         audioSettingsPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        isPaused = false;
+
+        if (playerController != null)
+        {
+            playerController.SetInputEnabled(true);
+        }
     }
 }

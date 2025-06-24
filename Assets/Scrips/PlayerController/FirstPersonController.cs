@@ -29,6 +29,7 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 currentMovementInput;
     private bool isRunning;
     private bool movementEnabled = true;
+    private bool isInputEnabled = true;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,12 +66,20 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        HandleMouseLook();
+
+        if (isInputEnabled)
+        {
+            HandleMouseLook();
+        }
+       // HandleMouseLook();
     }
 
     void FixedUpdate()
     {
-        HandleMovement();
+        if (isInputEnabled)
+        {
+            HandleMovement();
+        }
         CheckGrounded();
     }
 
@@ -146,5 +155,15 @@ public class FirstPersonController : MonoBehaviour
             groundCheckDistance,
             groundLayer
         );
+    }
+    public void SetInputEnabled(bool enabled)
+    {
+        isInputEnabled = enabled;
+
+        if (!enabled)
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            currentMovementInput = Vector2.zero;
+        }
     }
 }

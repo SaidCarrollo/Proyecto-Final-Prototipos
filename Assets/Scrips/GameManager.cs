@@ -11,16 +11,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string winSceneName;
     [SerializeField] private string loseSceneName;
 
-    [Header("Player Components to Disable")]
+    [Header("Player Componentes")]
     [SerializeField] private PlayerInteraction playerInteraction;
-
-    [Header("Managers and Events")]
+    [SerializeField] private FirstPersonController playerController;
+    [Header("Managers y Events")]
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private GameEvent onPlayerDeathEvent;
     [SerializeField] private GameEvent onPlayerSurvivedEvent;
     [SerializeField] private GameEventstring messageEvent;
     [SerializeField] private GameEvent onUncontrolledFireEvent;
-    [Header("Death Timer Settings")] 
+
+    [Header("Muerte componentes")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
 
@@ -107,7 +108,18 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("¡VICTORIA!: El jugador ha sobrevivido. Iniciando carga de escena de victoria.");
+        Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        if (playerController != null)
+        {
+            playerController.SetInputEnabled(false);
+        }
+
         if (playerInteraction != null) playerInteraction.enabled = false;
+
         StartCoroutine(LoadAdditiveScene(winSceneName));
     }
 
