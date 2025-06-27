@@ -15,90 +15,107 @@ MonoBehaviour:
   todosLosBadges:
   - ID: FuegoApagadoConTrapo
     Descripcion: Lograste apagar el fuego con el trapo mojado
+    Icono: {fileID: 21300000, guid: 2926a4d3e8567b9449918591af37accd, type: 3}
     Tipo: 0
     Prioridad: 0
     Desbloqueado: 0
   - ID: FuegoConTrapoSeco
     Descripcion: El trapo sin mojar empeoro la situacion
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: LlamadaDeEmergenciaCorrecta
     Descripcion: Llamar a emergencias siempre es util para controlar un incendio
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: SinObjetosInflamables
     Descripcion: Alejaste los objectos inflamables de la zona del fuego
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: SalidaSegura
     Descripcion: 'Saliste por la puerta principal '
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 0
     Desbloqueado: 1
   - ID: HornillaTarde
     Descripcion: 'Apagar la hornilla tarde ess innecesario '
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: PrevencionHornilla
     Descripcion: 'Saliste por la puerta principal '
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: CerrarVentana
     Descripcion: 'Cerrar la ventanda sirve para evitar que el fuego se expanda '
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: CerrarVentanaDescontrol
     Descripcion: Cerrar la ventana cuando el fuego ya se descontrolo es poco efectivo.
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: LlamadaDeEmergenciaInnecesaria
     Descripcion: El fuego aun era controlable
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: SartenEnAgua
     Descripcion: Meter directamente el sarten al agua generara una explosion
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: ObjetosInflamablesTarde
     Descripcion: Es demasiado tarde y riesgoso intentar mover todo lo inflamale cuando
       el fuego ya se descontrolo.
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: DistraccionConTelefono
     Descripcion: Te distrajiste al sacar el telefono y no usarlo
+    Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: DudandoEnLlamar
     Descripcion: Te distrajiste al sacar el telefono y no usarlo en una situaacion
       de fuego descontrolado
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: Descontrol
     Descripcion: Dejaste que el fuego se descontrolara
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 1
   - ID: FuegoApagadoConTapa
     Descripcion: "\xA1Buen trabajo! La tapa met\xE1lica sofoc\xF3 el fuego de manera
       efectiva y segura."
+    Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 0
     Desbloqueado: 0
   - ID: abrirventanadespuesdecerrarla
     Descripcion: Abrir la ventana despues de cerrarla aparte de quitarte tiempo no
       tiene sentido.
+    Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
