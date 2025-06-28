@@ -59,14 +59,14 @@ public class ObjectGrabber : MonoBehaviour
             GrabbableObject grabbable = heldObject.GetComponent<GrabbableObject>();
             bool estaMojado = grabbable != null && grabbable.EstaMojado;
 
-            if (!estaMojado)
-            {
-                OutlineObject outline = heldObject.GetComponent<OutlineObject>();
-                if (outline != null)
-                {
-                    outline.EnableOutline();
-                }
-            }
+            //if (!estaMojado)
+            //{
+            //    OutlineObject outline = heldObject.GetComponent<OutlineObject>();
+            //    if (outline != null)
+            //    {
+            //        outline.EnableOutline();
+            //    }
+            //}
 
             OnObjectGrabbed?.Invoke(heldObject);
         }
