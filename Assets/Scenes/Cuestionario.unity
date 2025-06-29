@@ -410,7 +410,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: QuestionText
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b520949aed3899f429b896ef2daf1d1d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: -7689517552353301089, guid: b520949aed3899f429b896ef2daf1d1d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &684605391
@@ -617,8 +617,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5323cde31a635fc4d84f378faa0df508, type: 2}
-  m_sharedMaterial: {fileID: 8515977831014596224, guid: 5323cde31a635fc4d84f378faa0df508, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
+  m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &892749379
@@ -1204,8 +1204,8 @@ MonoBehaviour:
     en esta situaci\xF3n. Tu conocimiento actual es importante para nosotros. Tus
     respuestas ser\xE1n analizadas al final del escenario para ayudarte a aprender.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5323cde31a635fc4d84f378faa0df508, type: 2}
-  m_sharedMaterial: {fileID: 8515977831014596224, guid: 5323cde31a635fc4d84f378faa0df508, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
+  m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2124,7 +2124,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2111975520
