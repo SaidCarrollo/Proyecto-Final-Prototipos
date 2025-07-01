@@ -4312,6 +4312,7 @@ GameObject:
   - component: {fileID: 461168133}
   - component: {fileID: 461168135}
   - component: {fileID: 461168136}
+  - component: {fileID: 461168137}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -4601,6 +4602,21 @@ MonoBehaviour:
     m_Bits: 128
   interactionPromptUI: {fileID: 173765139}
   interactActionReference: {fileID: -3114212219639749681, guid: 12883daad516ea54990afffc7461211e, type: 3}
+--- !u!114 &461168137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461168124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf7e400f743501459089014002401ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 212422744}
+  pauseAction: {fileID: -7890205359792112122, guid: 12883daad516ea54990afffc7461211e, type: 3}
+  playerController: {fileID: 461168133}
 --- !u!1 &473999245
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &761272223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6481,12 +6497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62597d2ba16a254ca13d2e9d40bc3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSettingsPanel: {fileID: 212422744}
   musicSlider: {fileID: 1289603831}
   sfxSlider: {fileID: 231674696}
   audioMixer: {fileID: 24100000, guid: 5f7adc6f3f5917b488d33dc4199cdd1e, type: 2}
-  playerController: {fileID: 461168133}
-  pauseAction: {fileID: -7890205359792112122, guid: 12883daad516ea54990afffc7461211e, type: 3}
 --- !u!114 &761272228
 MonoBehaviour:
   m_ObjectHideFlags: 0
