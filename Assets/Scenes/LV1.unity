@@ -1082,7 +1082,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SalidaSegura
+          m_StringArgument: Salida segura
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!65 &206750174
@@ -6202,8 +6202,8 @@ MonoBehaviour:
         m_CallState: 2
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
-  timelyBadgeID: SinObjetosInflamables
-  lateBadgeID: ObjetosInflamablesTarde
+  timelyBadgeID: Sin objetos inflamables
+  lateBadgeID: Objetos Inflamables tarde
   gameManager: {fileID: 846614570}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
 --- !u!1 &757158942
@@ -21562,13 +21562,13 @@ MonoBehaviour:
   interactAction: {fileID: -3114212219639749681, guid: 12883daad516ea54990afffc7461211e, type: 3}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   gameManager: {fileID: 846614570}
-  goodCallBadgeID: LlamadaDeEmergenciaCorrecta
+  goodCallBadgeID: Llamada de emergencia correcta
   goodCallMessage: "Los profesionales se encargar\xE1n de esta emergencia."
-  badCallBadgeID: LlamadaDeEmergenciaInnecesaria
+  badCallBadgeID: Llamada de emergencia innecesaria
   badCallMessage: "El fuego no est\xE1 controlado, no era necesario llamar...."
-  distractedBadgeID: DistraccionConTelefono
+  distractedBadgeID: Distraccion con el telefono
   distractedMessage: "Deber\xEDa enfocarme mientras el fuego est\xE1 controlado."
-  hesitatedBadgeID: DudandoEnLlamar
+  hesitatedBadgeID: Dudando en llamar
   hesitatedMessage: "\xBFPor qu\xE9 lo guardo? \xA1Debo llamar a los bomberos ahora!"
 --- !u!4 &1584200642
 Transform:
@@ -22412,8 +22412,8 @@ MonoBehaviour:
   gameManager: {fileID: 846614570}
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
-  defaultBadgeID: CerrarVentana
-  lateBadgeID: CerrarVentanaDescontrol
+  defaultBadgeID: Cerrar ventana
+  lateBadgeID: Cerrar ventana durante descontrol
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   successMessage: Evitar que entre mas oxigeno ayudara a controlar el fuego.
   failureMessage: Cerrar la ventana ahora no tiene mucho impacto.
@@ -22434,7 +22434,7 @@ MonoBehaviour:
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
   animator: {fileID: 884756997}
-  reInteractBadgeID: abrirventanadespuesdecerrarla
+  reInteractBadgeID: Abrir ventana despues de cerrarla
   reInteractMessage: "No deber\xEDa estar jugando con la ventana. Necesito concentrarme."
   OnFirstInteract:
     m_PersistentCalls:
@@ -22448,7 +22448,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: CerrarVentana
+          m_StringArgument: Cerrar ventana
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1774570822}

@@ -73,7 +73,7 @@ public class SartenCollider : MonoBehaviour
             fireIntensityEvent.Raise(0f);
             if (badgeManager != null)
             {
-                badgeManager.UnlockBadge("FuegoApagadoConTapa");
+                badgeManager.UnlockBadge("Fuego apagado con tapa");
             }
             if (onPlayerSurvivedEvent != null)
             {
@@ -102,7 +102,7 @@ public class SartenCollider : MonoBehaviour
                     fireIntensityEvent.Raise(0f);
                     if (badgeManager != null)
                     {
-                        badgeManager.UnlockBadge("FuegoApagadoConTrapo");
+                        badgeManager.UnlockBadge("Fuego apagado con trapo");
                     }
                     if (onPlayerSurvivedEvent != null)
                     {
@@ -118,7 +118,7 @@ public class SartenCollider : MonoBehaviour
                 {
                     if (badgeManager != null)
                     {
-                        badgeManager.UnlockBadge("FuegoConTrapoSeco"); 
+                        badgeManager.UnlockBadge("Fuego apagado con trapo seco"); 
                     }
                     vignetteEvent.Raise(Color.red, 0.5f, 3f);
                     fireIntensityEvent.Raise(0.8f);
@@ -167,7 +167,7 @@ public class SartenCollider : MonoBehaviour
 
         if (badgeManager != null)
         {
-            badgeManager.UnlockBadge("SartenEnAgua");
+            badgeManager.UnlockBadge("Sarten en el agua");
         }
         if (vignetteEvent != null)
         {
