@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class AudioSettingsController : MonoBehaviour
@@ -8,36 +7,22 @@ public class AudioSettingsController : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
 
-    [Header("Audio")]
-    public AudioMixer audioMixer;
-
-    void Awake()
+    void Start() 
     {
-        // Inicializa los sliders con los valores actuales del mixer
-        float musicVolume;
-        if (audioMixer.GetFloat("MusicVolume", out musicVolume))
-        {
-            musicSlider.value = musicVolume;
-        }
-
-        float sfxVolume;
-        if (audioMixer.GetFloat("SFXVolume", out sfxVolume))
-        {
-            sfxSlider.value = sfxVolume;
-        }
-
-        // Añade los listeners para cuando cambien los valores
+        musicSlider.value = AudioManager.Instance.GetVolume("MusicVolume");
+        sfxSlider.value = AudioManager.Instance.GetVolume("SFXVolume");
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     public void SetMusicVolume(float value)
     {
-        audioMixer.SetFloat("MusicVolume", value);
+
+        AudioManager.Instance.SetVolume("MusicVolume", value);
     }
 
     public void SetSFXVolume(float value)
     {
-        audioMixer.SetFloat("SFXVolume", value);
+        AudioManager.Instance.SetVolume("SFXVolume", value);
     }
 }
