@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameEvent onPlayerSurvivedEvent;
     [SerializeField] private GameEventstring messageEvent;
     [SerializeField] private GameEvent onUncontrolledFireEvent;
-
+    [SerializeField] private UIManager uiManager;
     [Header("Muerte componentes")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
@@ -40,8 +40,19 @@ public class GameManager : MonoBehaviour
 
     public void HandleUncontrolledFire()
     {
+        if (IsFireUncontrolled) return; 
+
         Debug.Log("GameManager ha sido notificado: ¡El fuego está fuera de control!");
         IsFireUncontrolled = true;
+
+        if (uiManager != null)
+        {
+            uiManager.UpdateObjectiveText("Sobrevive");
+        }
+        else
+        {
+            Debug.LogWarning("GameManager: La referencia a UIManager no está asignada. No se puede actualizar el texto del objetivo.");
+        }
     }
     public void IniciarContadorMortal()
     {
