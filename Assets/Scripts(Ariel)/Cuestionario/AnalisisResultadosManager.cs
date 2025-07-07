@@ -18,7 +18,15 @@ public class AnalisisResultadosManager : MonoBehaviour
 
     void Start()
     {
-        if (resultadosDelQuiz == null || resultadosDelQuiz.resultados.Count == 0)
+        if (resultadosDelQuiz == null)
+        {
+            Debug.LogError("No asignaste ResultadosDelQuizSO en el inspector.");
+            return;
+        }
+
+        resultadosDelQuiz.CargarResultados(); // <- Añade esto
+
+        if (resultadosDelQuiz.resultados.Count == 0)
         {
             Debug.LogWarning("No hay resultados para mostrar.");
             return;
@@ -27,38 +35,24 @@ public class AnalisisResultadosManager : MonoBehaviour
         MostrarResultados();
     }
 
+
     void MostrarResultados()
     {
-        // Recorremos cada resultado que guardamos
         foreach (var resultado in resultadosDelQuiz.resultados)
         {
-            // Creamos una instancia del prefab de UI
             GameObject bloqueResultado = Instantiate(resultadoUIPrefab, contenedorResultados);
 
-            // Obtenemos los datos guardados
-            Pregunta pregunta = resultado.preguntaOriginal;
-            int indiceMarcado = resultado.indiceRespuestaMarcada;
-            Respuesta respuestaMarcada = pregunta.respuestas[indiceMarcado];
-
-            // Buscamos los componentes de UI dentro del prefab instanciado
             TextMeshProUGUI textoPregunta = bloqueResultado.transform.Find("TextoPregunta").GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI textoRespuestaMarcada = bloqueResultado.transform.Find("TextoRespuestaMarcada").GetComponent<TextMeshProUGUI>();
             Image iconoResultado = textoRespuestaMarcada.transform.Find("IconoResultado").GetComponent<Image>();
             TextMeshProUGUI textoJustificacion = bloqueResultado.transform.Find("TextoJustificacion").GetComponent<TextMeshProUGUI>();
 
-            // Populamos la UI con los datos
-            textoPregunta.text = pregunta.textoPregunta;
-            textoRespuestaMarcada.text = "Tu respuesta: " + respuestaMarcada.textoRespuesta;
-            textoJustificacion.text = respuestaMarcada.justificacion;
+            textoPregunta.text = resultado.textoPregunta;
+            textoRespuestaMarcada.text = "Tu respuesta: " + resultado.textosRespuestas[resultado.indiceRespuestaMarcada];
+            textoJustificacion.text = resultado.justificaciones[resultado.indiceRespuestaMarcada];
 
-            if (respuestaMarcada.esCorrecta)
-            {
-                iconoResultado.sprite = iconoCorrecto;
-            }
-            else
-            {
-                iconoResultado.sprite = iconoIncorrecto;
-            }
+            bool esCorrecta = resultado.respuestasCorrectas[resultado.indiceRespuestaMarcada];
+            iconoResultado.sprite = esCorrecta ? iconoCorrecto : iconoIncorrecto;
         }
     }
 }

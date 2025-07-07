@@ -1,13 +1,29 @@
 // ResultadoPregunta.cs
+using System.Collections.Generic;
 [System.Serializable]
 public class ResultadoPregunta
 {
-    public Pregunta preguntaOriginal;
-    public int indiceRespuestaMarcada; // Guardamos el índice (0, 1, 2, o 3) de la respuesta que eligió el jugador
+    public string textoPregunta;
+    public List<string> textosRespuestas;
+    public List<bool> respuestasCorrectas;
+    public List<string> justificaciones;
+
+    public int indiceRespuestaMarcada;
 
     public ResultadoPregunta(Pregunta pregunta, int indice)
     {
-        preguntaOriginal = pregunta;
+        textoPregunta = pregunta.textoPregunta;
+        textosRespuestas = new List<string>();
+        respuestasCorrectas = new List<bool>();
+        justificaciones = new List<string>();
+
+        foreach (var r in pregunta.respuestas)
+        {
+            textosRespuestas.Add(r.textoRespuesta);
+            respuestasCorrectas.Add(r.esCorrecta);
+            justificaciones.Add(r.justificacion);
+        }
+
         indiceRespuestaMarcada = indice;
     }
 }

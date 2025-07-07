@@ -33,7 +33,7 @@ public class FirstPersonController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        LockCursor();
+        //LockCursor();
     }
 
     void OnEnable()
@@ -164,6 +164,20 @@ public class FirstPersonController : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             currentMovementInput = Vector2.zero;
+
+            moveAction.action.Disable();
+            lookAction.action.Disable();
+            jumpAction.action.Disable();
+            runAction.action.Disable();
+        }
+        else
+        {
+            LockCursor();
+            moveAction.action.Enable();
+            lookAction.action.Enable();
+            jumpAction.action.Enable();
+            runAction.action.Enable();
         }
     }
+
 }

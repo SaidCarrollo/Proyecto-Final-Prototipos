@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
             badgeManager.ResetBadges();
         }
         IsFireUncontrolled = false;
-        currentState = GameState.Playing;
-        Time.timeScale = 1f;
     }
 
     public void HandleUncontrolledFire()
@@ -149,5 +147,12 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Escena '{sceneName}' cargada aditivamente.");
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
       //  Time.timeScale = 1f;
+    }
+    public void SetGamePaused(bool pause)
+    {
+        if (pause)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
     }
 }

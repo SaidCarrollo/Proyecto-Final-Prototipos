@@ -92,11 +92,12 @@ public class SceneLoader : MonoBehaviour
 
         _isActivating = true;
         // Iniciar transición de salida (fade out)
-        transitionCanvasGroup.DOFade(1f, transitionDuration).OnComplete(() =>
-        {
-            // Cuando la pantalla está en negro, permitir la activación
-            _preloadedSceneOperation.allowSceneActivation = true;
-        });
+        transitionCanvasGroup.DOFade(1f, transitionDuration)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                _preloadedSceneOperation.allowSceneActivation = true;
+            });
     }
 
     // Se llama automáticamente cuando cualquier escena termina de cargar
@@ -105,6 +106,8 @@ public class SceneLoader : MonoBehaviour
         // Reseteamos estados y hacemos la transición de entrada (fade in)
         _isPreloading = false;
         _isActivating = false;
-        transitionCanvasGroup.DOFade(0f, transitionDuration);
+        transitionCanvasGroup.DOFade(0f, transitionDuration)
+            .SetUpdate(true);
+
     }
 }
