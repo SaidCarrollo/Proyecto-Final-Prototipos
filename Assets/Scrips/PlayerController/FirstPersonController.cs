@@ -22,6 +22,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private InputActionReference lookAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference runAction;
+    [SerializeField] private Joystick dynamicJoystick;
+    [SerializeField] private TouchLookInput touchLookInput;
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -114,10 +116,18 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMouseLook()
     {
-        Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
+        Vector2 lookDelta;
 
-        float mouseX = lookDelta.x * mouseSensitivity;
-        float mouseY = lookDelta.y * mouseSensitivity;
+#if UNITY_ANDROID
+        lookDelta = touchLookInput != null ? touchLookInput.LookDelta : Vector2.zero;
+        float sensitivity = mouseSensitivity * Time.deltaTime * 20f; 
+#else
+    lookDelta = lookAction.action.ReadValue<Vector2>();
+    float sensitivity = mouseSensitivity * Time.deltaTime;
+#endif
+
+        float mouseX = lookDelta.x * sensitivity;
+        float mouseY = lookDelta.y * sensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -125,6 +135,8 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
+
+
     public void SetMovementEnabled(bool enabled)
     {
         movementEnabled = enabled;
@@ -137,7 +149,17 @@ public class FirstPersonController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        Vector3 direction = (transform.forward * currentMovementInput.y + transform.right * currentMovementInput.x).normalized;
+        Vector2 inputVector = currentMovementInput;
+
+#if UNITY_ANDROID
+        if (dynamicJoystick != null)
+        {
+            inputVector = dynamicJoystick.Direction;
+        }
+#endif
+
+        Vector3 direction = (transform.forward * inputVector.y + transform.right * inputVector.x).normalized;
+
         float speed = isRunning ? runSpeed : walkSpeed;
 
         rb.linearVelocity = new Vector3(

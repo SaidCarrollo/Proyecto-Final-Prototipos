@@ -1,0 +1,71 @@
+{
+    "name": "PlayerControllermovil",
+    "maps": [
+        {
+            "name": "Android",
+            "id": "4585bcce-5dc0-4bd8-8e72-96414b05211a",
+            "actions": [
+                {
+                    "name": "moveAction",
+                    "type": "Value",
+                    "id": "7bcebdc3-937a-46ae-8ad7-d0f8fb30876c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "lookAction",
+                    "type": "Value",
+                    "id": "e06d6105-348a-40a4-8a82-824e55db5d73",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "78b59bbf-8508-4b16-80be-589c5ee4ed53",
+                    "path": "<AndroidJoystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "moveAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5533e7b5-0339-46ac-bd1f-b5606948f441",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "lookAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "ControlAndroid",
+            "bindingGroup": "ControlAndroid",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<AndroidJoystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
