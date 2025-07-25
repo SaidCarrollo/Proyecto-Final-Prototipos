@@ -98,4 +98,23 @@ public class ObjectGrabber : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(heldObject.transform.position - cameraTransform.position);
         heldObjectRb.rotation = Quaternion.Slerp(heldObjectRb.rotation, targetRotation, Time.deltaTime * 5f);
     }
+    public void TryGrabOrReleaseFromButton()
+    {
+        if (heldObject != null)
+        {
+            ReleaseObject();
+        }
+        else
+        {
+            TryGrabObject();
+        }
+    }
+
+    public bool CanGrabObject()
+    {
+        RaycastHit hit;
+        return Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, grabRange, interactableLayer) &&
+               hit.collider.GetComponent<GrabbableObject>() != null;
+    }
+
 }

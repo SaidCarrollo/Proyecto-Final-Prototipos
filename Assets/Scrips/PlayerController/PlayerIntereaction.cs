@@ -17,8 +17,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private InputActionReference interactActionReference;
 
     private Interactable currentInteractable;
-    private GameObject lastLookedAtObject = null; 
-
+    private GameObject lastLookedAtObject = null;
+    public ObjectGrabber objectGrabber;
     void Awake()
     {
         if (cameraTransform == null)
@@ -59,22 +59,25 @@ public class PlayerInteraction : MonoBehaviour
     {
         RaycastHit hit;
         bool foundInteractable = false;
+        bool isGrabbable = false;
 
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionRange, interactionLayer))
         {
             GameObject hitObject = hit.collider.gameObject;
             Interactable interactableComponent = hitObject.GetComponent<Interactable>();
+            GrabbableObject grabbableComponent = hitObject.GetComponent<GrabbableObject>();
 
-            if (interactableComponent != null)
+            if (interactableComponent != null || grabbableComponent != null)
             {
                 currentInteractable = interactableComponent;
                 foundInteractable = true;
+                isGrabbable = grabbableComponent != null;
 
-                if (hitObject != lastLookedAtObject) 
+                if (hitObject != lastLookedAtObject)
                 {
                     if (interactionPromptUI != null)
                     {
-                        interactionPromptUI.ShowPrompt();
+                        interactionPromptUI.ShowPrompt(isGrabbable);
                     }
                     lastLookedAtObject = hitObject;
                 }
@@ -104,5 +107,16 @@ public class PlayerInteraction : MonoBehaviour
         }
         currentInteractable = null;
         lastLookedAtObject = null;
+    }
+    public void InteractFromButton()
+    {
+        if (objectGrabber != null)
+        {
+            objectGrabber.TryGrabOrReleaseFromButton();
+        }
+        else if (currentInteractable != null)
+        {
+            currentInteractable.Interact();
+        }
     }
 }
