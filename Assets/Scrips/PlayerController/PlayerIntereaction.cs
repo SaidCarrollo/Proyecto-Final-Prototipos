@@ -110,12 +110,11 @@ public class PlayerInteraction : MonoBehaviour
     }
     public void InteractFromButton()
     {
-        // Si se está mirando un objeto agarrable (no null y detectado por el Raycast)
+
         if (objectGrabber != null && lastLookedAtObject != null && lastLookedAtObject.GetComponent<GrabbableObject>() != null)
         {
             objectGrabber.TryGrabOrReleaseFromButton();
         }
-        // Si se está mirando un objeto interactuable normal
         else if (currentInteractable != null)
         {
             currentInteractable.Interact();
