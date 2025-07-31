@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4fa8ad2bd2892f418aaaf61a57c8ec7, type: 3}
+  m_Name: BadgeManager Level 2
+  m_EditorClassIdentifier: 
+  todosLosBadges:
+  - ID: Llamada de emergencia correcta
+    Descripcion: Llamar a emergencias siempre es util para controlar un incendio
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Salida segura
+    Descripcion: 'Saliste por la puerta principal '
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 0
+    Desbloqueado: 0
+  - ID: Hornilla tarde
+    Descripcion: 'Apagar la hornilla tarde ess innecesario '
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Prevencion hornilla
+    Descripcion: 'Saliste por la puerta principal '
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Abrir la ventana
+    Descripcion: mejor reducimos el efecto de intoxicacion
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Abrir la ventana durante Intoxicacion
+    Descripcion: Nunca esta demas algo de ventilacion
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Llamada de emergencia innecesaria
+    Descripcion: El fuego aun era controlable
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Sarten en el agua
+    Descripcion: Meter directamente el sarten al agua generara una explosion
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Objetos Inflamables tarde
+    Descripcion: Es demasiado tarde y riesgoso intentar mover todo lo inflamale cuando
+      el fuego ya se descontrolo.
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Distraccion con el telefono
+    Descripcion: Te distrajiste al sacar el telefono y no usarlo
+    Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Dudando en llamar
+    Descripcion: Te distrajiste al sacar el telefono y no usarlo en una situaacion
+      de fuego descontrolado
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Descontrol
+    Descripcion: Dejaste que el fuego se descontrolara
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Encender la Luz
+    Descripcion: Al encender la luz se genera una chispa y esto con el gas genero
+      una explosion
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 1
+  - ID: Encender la Luz Intoxicacion
+    Descripcion: Al encender la luz se genera una chispa y esto con el gas genero
+      una explosion
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Evacuacion de NPC's
+    Descripcion: Al encender la luz se genera una chispa y esto con el gas genero
+      una explosion
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: "Cerrar la v\xE1lvula principal "
+    Descripcion: Detubvste la fuga a tiempo.
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: "Cerrar la v\xE1lvula principal tarde"
+    Descripcion: Ahora ya no es demasiado tarde
+    Icono: {fileID: 0}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
