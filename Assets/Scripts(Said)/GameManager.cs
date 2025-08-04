@@ -24,7 +24,13 @@ public class GameManager : MonoBehaviour
     [Header("Muerte componentes")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
+    [Header("Level-Specific Logic")]
+    [Tooltip("Activa esta casilla si el nivel actual contiene NPCs que deben ser salvados.")]
+    [SerializeField] private bool levelHasNPCs = false; // <-- LA NUEVA VARIABLE
 
+    [Header("Custom Managers")]
+    [Tooltip("Asigna el NPCSaveableManager solo si 'levelHasNPCs' está activado.")]
+    [SerializeField] private NPCSaveableManager npcManager; // <-- La variable que ya habíamos añadido
     [SerializeField] private UITimerController uiTimerController;
     public bool IsFireUncontrolled { get; private set; } = false;
     void Start()
@@ -83,6 +89,12 @@ public class GameManager : MonoBehaviour
     public void HandlePlayerDeath()
     {
         if (currentState != GameState.Playing) return;
+
+        if (levelHasNPCs && npcManager != null)
+        {
+            npcManager.EvaluateAtGameEnd();
+        }
+
         currentState = GameState.Lost;
         if (uiTimerController != null)
         {
@@ -103,6 +115,10 @@ public class GameManager : MonoBehaviour
     public void HandlePlayerSurvival()
     {
         if (currentState != GameState.Playing) return;
+        if (levelHasNPCs && npcManager != null)
+        {
+            npcManager.EvaluateAtGameEnd();
+        }
         currentState = GameState.Won;
         if (uiTimerController != null)
         {
