@@ -12,16 +12,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 26b22eaa3f1a6684abbeb985a7103fd3
   - enabled: 1
-    path: Assets/Scenes/LV1.unity
+    path: Assets/Scenes/LV1/LV1.unity
     guid: e59d0fa2049d36d49a49ee18fc185b54
   - enabled: 1
-    path: Assets/Scenes/WinScene.unity
+    path: Assets/Scenes/LV1/WinScene.unity
     guid: bb008f14533681d46956e0f1c5854dad
   - enabled: 1
     path: Assets/Scenes/FailScene.unity
     guid: 1119c92e26976b24b91abfa6074d2e41
   - enabled: 1
-    path: Assets/Scenes/Cuestionario.unity
+    path: Assets/Scenes/LV1/Cuestionario.unity
     guid: 1a4f8d4e3a92aff4ab1056b93062f7ea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
