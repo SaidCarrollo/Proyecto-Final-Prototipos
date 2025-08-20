@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     [Tooltip("Referencia al objeto de texto para mostrar el objetivo actual.")]
     [SerializeField] private TextMeshProUGUI objectiveText;
 
+    [Header("Objective Settings")]
+    [Tooltip("El texto que se mostrará como objetivo inicial. Se puede cambiar por nivel en el Inspector.")]
+    [SerializeField] private string initialObjectiveText = "Apaga el fuego.";
+
     [Header("Animation Settings")]
     [Tooltip("Tiempo que tarda el texto en aparecer (fade-in).")]
     [SerializeField] private float fadeInTime = 0.5f;
@@ -41,7 +45,8 @@ public class UIManager : MonoBehaviour
 
         if (objectiveText != null)
         {
-            UpdateObjectiveText("Apaga el fuego.");
+
+            UpdateObjectiveText(initialObjectiveText);
         }
         else
         {
@@ -58,7 +63,7 @@ public class UIManager : MonoBehaviour
                 StopCoroutine(fadeCoroutine);
             }
 
-            infoText.DOKill(); 
+            infoText.DOKill();
             fadeCoroutine = StartCoroutine(FadeTextMessage(message));
         }
     }
@@ -67,7 +72,7 @@ public class UIManager : MonoBehaviour
     {
         if (objectiveText == null) return;
 
-        objectiveText.DOKill(); 
+        objectiveText.DOKill();
         typingTween?.Kill();
 
         objectiveText.maxVisibleCharacters = 0;
@@ -77,13 +82,13 @@ public class UIManager : MonoBehaviour
                                  x => objectiveText.maxVisibleCharacters = x,
                                  message.Length,
                                  message.Length * typingSpeed)
-                             .SetEase(Ease.Linear);
+                               .SetEase(Ease.Linear);
     }
 
     private IEnumerator FadeTextMessage(string message)
     {
         infoText.text = message;
-        infoText.DOFade(0f, 0f); 
+        infoText.DOFade(0f, 0f);
         yield return infoText.DOFade(1f, fadeInTime).WaitForCompletion();
 
         yield return new WaitForSeconds(displayTime);

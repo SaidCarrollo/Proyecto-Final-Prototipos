@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 985458056}
   objectiveText: {fileID: 418494978}
+  initialObjectiveText: Apaga el fuego.
   fadeInTime: 0.5
   displayTime: 3
   fadeOutTime: 0.5
@@ -7928,6 +7929,8 @@ MonoBehaviour:
   onUncontrolledFireEvent: {fileID: 11400000, guid: d410c388d79f73945be5625b6604771b, type: 2}
   uiManager: {fileID: 21285084}
   tiempoParaMorir: 20
+  levelHasNPCs: 0
+  npcManager: {fileID: 0}
   uiTimerController: {fileID: 21285087}
 --- !u!114 &846614571
 MonoBehaviour:
@@ -17697,7 +17700,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4f22e4ea6bc285146b3f009c03088d86, type: 2}
     - target: {fileID: -2303327316941209564, guid: bec3b1c9f1dfcdf4aaa04c0235565f65, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2303327316941209564, guid: bec3b1c9f1dfcdf4aaa04c0235565f65, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

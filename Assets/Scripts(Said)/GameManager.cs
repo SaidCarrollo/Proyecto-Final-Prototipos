@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviour
     private Coroutine deathCoroutine;
     [Header("Level-Specific Logic")]
     [Tooltip("Activa esta casilla si el nivel actual contiene NPCs que deben ser salvados.")]
-    [SerializeField] private bool levelHasNPCs = false; // <-- LA NUEVA VARIABLE
+    [SerializeField] private bool levelHasNPCs = false; 
 
     [Header("Custom Managers")]
     [Tooltip("Asigna el NPCSaveableManager solo si 'levelHasNPCs' está activado.")]
-    [SerializeField] private NPCSaveableManager npcManager; // <-- La variable que ya habíamos añadido
+    [SerializeField] private NPCSaveableManager npcManager; 
     [SerializeField] private UITimerController uiTimerController;
     public bool IsFireUncontrolled { get; private set; } = false;
     void Start()
