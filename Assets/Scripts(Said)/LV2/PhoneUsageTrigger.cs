@@ -17,7 +17,6 @@ public class PhoneUsageTrigger : MonoBehaviour
     [Tooltip("Se dispara cuando el jugador deja de usar el teléfono o sale de la zona.")]
     public UnityEvent OnPhoneUsageStoppedInZone;
 
-    // --- Opcional: Para dar feedback como en tus otros scripts ---
     [Header("Optional Feedback")]
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private string badgeID = "PhoneInRestrictedArea";
@@ -50,6 +49,7 @@ public class PhoneUsageTrigger : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             isPlayerInZone = true;
+
         }
     }
 
