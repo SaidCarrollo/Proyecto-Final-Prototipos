@@ -5,20 +5,26 @@ using UnityEngine.TestTools;
 
 public class GameTests
 {
-    // A Test behaves as an ordinary method
     [Test]
-    public void GameTestsSimplePasses()
+    public void Interactable_EventFires_WhenInteractIsCalled()
     {
-        // Use the Assert class to test conditions
-    }
+        // ARRANGE: Crear el objeto y el componente a probar.
+        var interactableGO = new GameObject();
+        var interactable = interactableGO.AddComponent<Interactable>();
+        bool eventWasFired = false;
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator GameTestsWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
+        // Suscribir una acción muy simple al evento.
+        // Esto hace que nuestra variable 'eventWasFired' se vuelva 'true' cuando el evento se dispare.
+        interactable.OnInteract.AddListener(() => { eventWasFired = true; });
+
+        // ACT: Llamar al método que queremos probar.
+        interactable.Interact();
+
+        // ASSERT: Comprobar el resultado.
+        // La variable 'eventWasFired' DEBERÍA ser 'true' si el evento funcionó.
+        Assert.IsTrue(eventWasFired, "El evento OnInteract no fue disparado cuando se llamó a Interact().");
+
+        // CLEANUP: Destruir el objeto de prueba.
+        Object.DestroyImmediate(interactableGO);
     }
 }
