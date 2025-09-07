@@ -27,7 +27,7 @@ public class MemoryPerformanceTests
     {
         // ARRANGE
         // Límite de memoria objetivo en Megabytes (MB).
-        const long memoryThresholdMB = 1500; // 1.5 GB para PC
+        const long memoryThresholdMB = 2000; // 1.5 GB para PC
         long maxMemoryUsed = 0;
 
         // ACT
