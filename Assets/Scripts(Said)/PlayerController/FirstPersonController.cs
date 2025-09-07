@@ -20,7 +20,6 @@ public class FirstPersonController : MonoBehaviour
     [Header("Input")]
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference lookAction;
-    [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference runAction;
 
     private Rigidbody rb;
@@ -40,12 +39,10 @@ public class FirstPersonController : MonoBehaviour
     {
         moveAction.action.Enable();
         lookAction.action.Enable();
-        jumpAction.action.Enable();
         runAction.action.Enable();
 
         moveAction.action.performed += OnMovement;
         moveAction.action.canceled += OnMovement;
-        jumpAction.action.performed += OnJump;
         runAction.action.performed += OnRun;
         runAction.action.canceled += OnRun;
     }
@@ -54,12 +51,10 @@ public class FirstPersonController : MonoBehaviour
     {
         moveAction.action.Disable();
         lookAction.action.Disable();
-        jumpAction.action.Disable();
         runAction.action.Disable();
 
         moveAction.action.performed -= OnMovement;
         moveAction.action.canceled -= OnMovement;
-        jumpAction.action.performed -= OnJump;
         runAction.action.performed -= OnRun;
         runAction.action.canceled -= OnRun;
     }
@@ -98,14 +93,6 @@ public class FirstPersonController : MonoBehaviour
     }
 
 
-
-    private void OnJump(InputAction.CallbackContext context)
-    {
-        if (isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-    }
 
     private void OnRun(InputAction.CallbackContext context)
     {
@@ -167,7 +154,6 @@ public class FirstPersonController : MonoBehaviour
 
             moveAction.action.Disable();
             lookAction.action.Disable();
-            jumpAction.action.Disable();
             runAction.action.Disable();
         }
         else
@@ -175,7 +161,6 @@ public class FirstPersonController : MonoBehaviour
             LockCursor();
             moveAction.action.Enable();
             lookAction.action.Enable();
-            jumpAction.action.Enable();
             runAction.action.Enable();
         }
     }
