@@ -10,12 +10,14 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float grabRange = 5f;
     [SerializeField] private float grabSpeed = 15f;
-    [SerializeField] private float verticalOffset = 0.5f;
+    // CAMBIO: Reducido el offset vertical para que el objeto no se suba tanto.
+    [SerializeField] private float verticalOffset = 0.1f;
     [SerializeField] private LayerMask interactableLayer;
 
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
-    private float currentHoldDistance = 2f; 
+    // CAMBIO: Reducida la distancia inicial para que el objeto comience más cerca.
+    private float currentHoldDistance = 1.5f;
     public AudioSource Grabaudio;
 
     void Update()
@@ -34,7 +36,9 @@ public class ObjectGrabber : MonoBehaviour
 
         if (heldObject != null && Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            currentHoldDistance = Mathf.Clamp(currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f, 0.5f, 5f);
+            float minDistance = 0.5f; 
+            float maxDistance = 1.5f; 
+            currentHoldDistance = Mathf.Clamp(currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f, minDistance, maxDistance);
         }
     }
 
@@ -58,15 +62,6 @@ public class ObjectGrabber : MonoBehaviour
 
             GrabbableObject grabbable = heldObject.GetComponent<GrabbableObject>();
             bool estaMojado = grabbable != null && grabbable.EstaMojado;
-
-            //if (!estaMojado)
-            //{
-            //    OutlineObject outline = heldObject.GetComponent<OutlineObject>();
-            //    if (outline != null)
-            //    {
-            //        outline.EnableOutline();
-            //    }
-            //}
 
             OnObjectGrabbed?.Invoke(heldObject);
         }

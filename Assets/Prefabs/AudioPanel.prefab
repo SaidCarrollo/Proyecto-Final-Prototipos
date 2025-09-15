@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62597d2ba16a254ca13d2e9d40bc3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterSlider: {fileID: 6400744614965081294}
   musicSlider: {fileID: 5149108350514110983}
   sfxSlider: {fileID: 6034591328354690698}
 --- !u!1 &4288646610629582852

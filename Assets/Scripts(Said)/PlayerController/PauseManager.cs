@@ -52,7 +52,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1f;
         pausePanel.SetActive(false);

@@ -3430,6 +3430,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391670330}
   m_CullTransparentMesh: 1
+--- !u!1 &393228305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8562407562423627312, guid: 516800bd3043dbe4bbcae1f3de112368, type: 3}
+  m_PrefabInstance: {fileID: 427539548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &393228307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393228305}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.279482, y: 8.536083, z: 0.084000014}
+  m_Center: {x: 0, y: -1.1937117e-15, z: 0.042000126}
 --- !u!1 &398594905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5236,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2109027693661938135, guid: 516800bd3043dbe4bbcae1f3de112368, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1712723687}
+    - targetCorrespondingSourceObject: {fileID: 8562407562423627312, guid: 516800bd3043dbe4bbcae1f3de112368, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 393228307}
   m_SourcePrefab: {fileID: 100100000, guid: 516800bd3043dbe4bbcae1f3de112368, type: 3}
 --- !u!1 &461168124
 GameObject:
@@ -5395,7 +5424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 330585546}
-  grabRange: 7.17
+  grabRange: 2
   grabSpeed: 10
   verticalOffset: 0.5
   interactableLayer:
@@ -16485,7 +16514,7 @@ Transform:
   m_GameObject: {fileID: 1258856016}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16778,13 +16807,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GenericEnableDisableObject, Assembly-CSharp
-        m_MethodName: SetGameObjectInactive
-        m_Mode: 2
+      - m_Target: {fileID: 461168137}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 212422744}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
