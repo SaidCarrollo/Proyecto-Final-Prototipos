@@ -26,43 +26,49 @@ public class WindowInteractable : MonoBehaviour
 
     public void Interact()
     {
+        if (badOutcomeTriggered)
+        {
+            Debug.Log($"'{gameObject.name}' ya ha sido interactuado repetidamente. No se hace nada más.");
+            return;
+        }
+
         interactionCount++;
         if (animator != null)
         {
             windowIsOpen = !windowIsOpen;
             animator.SetBool("isOpen", windowIsOpen);
         }
+
         if (interactionCount == 1)
         {
             Debug.Log($"Primera interacción con '{gameObject.name}'.");
             OnFirstInteract?.Invoke();
         }
-        else
+        else 
         {
-            if (!badOutcomeTriggered)
+            Debug.Log($"Interacción repetida con '{gameObject.name}'. Disparando evento negativo.");
+
+            if (badgeManager != null)
             {
-                Debug.Log($"Interacción repetida con '{gameObject.name}'. Disparando evento negativo.");
-
-                if (badgeManager != null)
-                {
-                    badgeManager.UnlockBadge(reInteractBadgeID);
-                }
-
-                if (vignetteEvent != null)
-                {
-                    vignetteEvent.Raise(Color.red, 0.5f, 3f);
-                }
-
-                if (messageEvent != null && !string.IsNullOrEmpty(reInteractMessage))
-                {
-                    messageEvent.Raise(reInteractMessage);
-                }
-
-                badOutcomeTriggered = true;
+                badgeManager.UnlockBadge(reInteractBadgeID);
             }
-            else
+
+            if (vignetteEvent != null)
             {
-                Debug.Log($"'{gameObject.name}' ya ha sido interactuado repetidamente. No se hace nada más.");
+                vignetteEvent.Raise(Color.red, 0.5f, 3f);
+            }
+
+            if (messageEvent != null && !string.IsNullOrEmpty(reInteractMessage))
+            {
+                messageEvent.Raise(reInteractMessage);
+            }
+
+            badOutcomeTriggered = true;
+
+            Interactable baseInteractable = GetComponent<Interactable>();
+            if (baseInteractable != null)
+            {
+                baseInteractable.DisableInteraction();
             }
         }
     }

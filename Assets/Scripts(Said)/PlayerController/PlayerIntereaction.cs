@@ -1,13 +1,11 @@
-
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactionRange = 3f;
-
     [SerializeField] private LayerMask interactionLayer;
 
     [Header("UI")]
@@ -17,7 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private InputActionReference interactActionReference;
 
     private Interactable currentInteractable;
-    private GameObject lastLookedAtObject = null; 
+    private GameObject lastLookedAtObject = null;
 
     void Awake()
     {
@@ -65,12 +63,12 @@ public class PlayerInteraction : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
             Interactable interactableComponent = hitObject.GetComponent<Interactable>();
 
-            if (interactableComponent != null)
+            if (interactableComponent != null && interactableComponent.IsInteractionEnabled)
             {
                 currentInteractable = interactableComponent;
                 foundInteractable = true;
 
-                if (hitObject != lastLookedAtObject) 
+                if (hitObject != lastLookedAtObject)
                 {
                     if (interactionPromptUI != null)
                     {
@@ -92,7 +90,6 @@ public class PlayerInteraction : MonoBehaviour
         if (currentInteractable != null)
         {
             currentInteractable.Interact();
-
         }
     }
 
@@ -104,5 +101,17 @@ public class PlayerInteraction : MonoBehaviour
         }
         currentInteractable = null;
         lastLookedAtObject = null;
+    }
+
+    public void SetInputEnabled(bool enabled)
+    {
+        if (enabled)
+        {
+            OnEnable();
+        }
+        else
+        {
+            OnDisable();
+        }
     }
 }
