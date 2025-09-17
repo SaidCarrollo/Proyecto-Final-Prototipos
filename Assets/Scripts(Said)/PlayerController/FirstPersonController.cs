@@ -137,14 +137,17 @@ public class FirstPersonController : MonoBehaviour
     }
     private void HandleMovement()
     {
-        Vector3 direction = (transform.forward * currentMovementInput.y + transform.right * currentMovementInput.x).normalized;
-        float speed = isRunning ? runSpeed : walkSpeed;
+        // Elige la velocidad m�xima actual (caminando o corriendo)
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
-        rb.linearVelocity = new Vector3(
-            direction.x * speed,
-            rb.linearVelocity.y,
-            direction.z * speed
-        );
+        // Calcula el vector de direcci�n basado en el input del jugador
+        Vector3 direction = (transform.forward * currentMovementInput.y + transform.right * currentMovementInput.x).normalized;
+
+        // Calcula la velocidad deseada en el plano XZ
+        Vector3 targetVelocity = new Vector3(direction.x * currentSpeed, 0, direction.z * currentSpeed);
+
+        Vector3 velocityChange = (targetVelocity - new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z));
+        rb.AddForce(velocityChange, ForceMode.VelocityChange);
     }
 
     private void CheckGrounded()
