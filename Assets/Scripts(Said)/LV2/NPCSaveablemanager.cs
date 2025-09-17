@@ -6,7 +6,7 @@ public class NPCSaveableManager : MonoBehaviour
 {
     [Header("Badges")]
     [SerializeField] private BadgeManager badgeManager;
-    [SerializeField] private string allSavedBadgeID = "TodosSalvos";
+    [SerializeField] private string allSavedBadgeID = "Evacuacion de NPC's";
     [SerializeField] private string notAllSavedBadgeID = "AlguienQuedoAtras";
     [SerializeField] private VignetteEvent vignetteEvent;
     [Header("Optional Events")]

@@ -33,14 +33,17 @@ public class BadgeDisplayUI : MonoBehaviour
 
     void Start()
     {
+        badgeManager = LevelCompletionData.currentManager;
+
         if (badgeManager == null)
         {
-            Debug.LogError("BadgeManager no está asignado en BadgeDisplayUI.");
+            Debug.LogError("BadgeManager no fue encontrado en LevelCompletionData. ¿Se asignó desde el GameManager antes de cargar la escena?");
             return;
         }
+
         if (tooltipPanel != null)
         {
-            tooltipPanel.SetActive(false); 
+            tooltipPanel.SetActive(false);
         }
         DisplayResults();
     }

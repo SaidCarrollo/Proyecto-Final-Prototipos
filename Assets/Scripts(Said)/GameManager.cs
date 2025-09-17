@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("GAME OVER: El jugador ha muerto. Iniciando carga de escena de derrota.");
+        LevelCompletionData.currentManager = this.badgeManager;
         if (playerInteraction != null) playerInteraction.enabled = false;
         Time.timeScale = 0.2f;
         StartCoroutine(LoadAdditiveScene(loseSceneName));
@@ -133,6 +134,7 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("¡VICTORIA!: El jugador ha sobrevivido. Iniciando carga de escena de victoria.");
+        LevelCompletionData.currentManager = this.badgeManager;
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
