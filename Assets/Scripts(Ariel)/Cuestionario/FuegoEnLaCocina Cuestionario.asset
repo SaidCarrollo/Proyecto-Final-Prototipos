@@ -70,7 +70,7 @@ MonoBehaviour:
         causando salpicaduras y propagaci\xF3n del fuego."
     - textoRespuesta: "Porque el agua, al entrar en contacto con el aceite caliente,
         se vaporiza violentamente y puede propagar el aceite ardiendo, causando una
-        llamarada o explosi\xF3n.v"
+        llamarada o explosi\xF3n."
       esCorrecta: 1
       justificacion: "No se debe utilizar agua para apagar un incendio originado
         por aceite caliente. El agua, al entrar en contacto con el aceite a alta

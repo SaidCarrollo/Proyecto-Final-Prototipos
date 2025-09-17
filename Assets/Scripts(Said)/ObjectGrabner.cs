@@ -10,13 +10,11 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float grabRange = 5f;
     [SerializeField] private float grabSpeed = 15f;
-    // CAMBIO: Reducido el offset vertical para que el objeto no se suba tanto.
     [SerializeField] private float verticalOffset = 0.1f;
     [SerializeField] private LayerMask interactableLayer;
 
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
-    // CAMBIO: Reducida la distancia inicial para que el objeto comience más cerca.
     private float currentHoldDistance = 1.5f;
     public AudioSource Grabaudio;
 
@@ -36,8 +34,8 @@ public class ObjectGrabber : MonoBehaviour
 
         if (heldObject != null && Input.GetAxis("Mouse ScrollWheel") != 0)
         {
-            float minDistance = 0.5f; 
-            float maxDistance = 1.5f; 
+            float minDistance = 0.5f;
+            float maxDistance = 1.5f;
             currentHoldDistance = Mathf.Clamp(currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f, minDistance, maxDistance);
         }
     }
@@ -57,11 +55,16 @@ public class ObjectGrabber : MonoBehaviour
         {
             heldObject = hit.collider.gameObject;
             heldObjectRb = heldObject.GetComponent<Rigidbody>();
-            heldObjectRb.useGravity = false;
-            Grabaudio.Play();
+            if (heldObjectRb != null)
+            {
+                heldObjectRb.useGravity = false;
+                heldObjectRb.freezeRotation = true;
+            }
 
-            GrabbableObject grabbable = heldObject.GetComponent<GrabbableObject>();
-            bool estaMojado = grabbable != null && grabbable.EstaMojado;
+            if (Grabaudio != null)
+            {
+                Grabaudio.Play();
+            }
 
             OnObjectGrabbed?.Invoke(heldObject);
         }
@@ -72,17 +75,23 @@ public class ObjectGrabber : MonoBehaviour
     {
         if (heldObject != null)
         {
-            heldObjectRb.useGravity = true;
+            if (heldObjectRb != null)
+            {
+                heldObjectRb.useGravity = true;
+                heldObjectRb.freezeRotation = false;
+            }
 
             OnObjectReleased?.Invoke(heldObject);
-
             heldObject = null;
         }
     }
 
     public bool IsHoldingObject() => heldObject != null;
+
     private void MoveObjectWithPhysics()
     {
+        if (heldObjectRb == null) return;
+
         Vector3 targetPosition = cameraTransform.position +
                                cameraTransform.forward * currentHoldDistance +
                                cameraTransform.up * verticalOffset;
@@ -90,7 +99,5 @@ public class ObjectGrabber : MonoBehaviour
         Vector3 moveDirection = (targetPosition - heldObject.transform.position);
         heldObjectRb.linearVelocity = moveDirection * grabSpeed;
 
-        Quaternion targetRotation = Quaternion.LookRotation(heldObject.transform.position - cameraTransform.position);
-        heldObjectRb.rotation = Quaternion.Slerp(heldObjectRb.rotation, targetRotation, Time.deltaTime * 5f);
     }
 }
