@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("Muerte componentes")] 
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
+    private Coroutine survivalCoroutine;
     [Header("Level-Specific Logic")]
     [Tooltip("Activa esta casilla si el nivel actual contiene NPCs que deben ser salvados.")]
     [SerializeField] private bool levelHasNPCs = false; 
@@ -85,7 +86,30 @@ public class GameManager : MonoBehaviour
         badgeManager.UnlockBadge("GameOverSinTiempo"); 
         HandlePlayerDeath(); 
     }
+    public void IniciarContadorSupervivencia(float duration)
+    {
+        if (survivalCoroutine == null)
+        {
+            Debug.Log($"Iniciando cuenta atrás para la VICTORIA de {duration} segundos.");
+            survivalCoroutine = StartCoroutine(SupervivenciaCoroutine(duration));
 
+            if (uiTimerController != null)
+            {
+
+                uiTimerController.StartFireTimer(duration);
+            }
+        }
+    }
+
+    private IEnumerator SupervivenciaCoroutine(float duration)
+    {
+
+        yield return new WaitForSeconds(duration);
+
+        Debug.Log("El tiempo extra ha terminado. El jugador sobrevive.");
+
+        HandlePlayerSurvival();
+    }
     public void HandlePlayerDeath()
     {
         if (currentState != GameState.Playing) return;
