@@ -1,4 +1,3 @@
-// GasLeakScenarioManager.cs (versión corregida)
 
 using UnityEngine;
 
