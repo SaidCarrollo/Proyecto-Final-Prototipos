@@ -23,7 +23,7 @@ public class HazardTimer : MonoBehaviour
     private bool isDefused = false;
     private Coroutine timerCoroutine;
 
-    private void Awake()
+    private void Start()
     {
         StartTimer();
     }

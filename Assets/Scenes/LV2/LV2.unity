@@ -5877,7 +5877,6 @@ GameObject:
   m_Component:
   - component: {fileID: 846614567}
   - component: {fileID: 846614566}
-  - component: {fileID: 846614569}
   - component: {fileID: 846614574}
   - component: {fileID: 846614570}
   - component: {fileID: 846614572}
@@ -5921,26 +5920,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &846614569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846614565}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 478022f83aee0f643b2f8410e5933f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiempoParaDescontrol: 30
-  intensidadFuegoDescontrolado: 0.8
-  fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
-  messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
-  onUncontrolledFireEvent: {fileID: 11400000, guid: d410c388d79f73945be5625b6604771b, type: 2}
-  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
-  vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
-  uiTimerController: {fileID: 21285087}
 --- !u!114 &846614570
 MonoBehaviour:
   m_ObjectHideFlags: 0

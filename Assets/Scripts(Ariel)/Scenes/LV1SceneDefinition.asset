@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461fd620c2f3e3440a7ec2c9fb75bd5a, type: 3}
   m_Name: LV1SceneDefinition
   m_EditorClassIdentifier: 
-  scenePath: Assets/Scenes/LV1.unity
-  sceneAsset: {fileID: 102900000, guid: e59d0fa2049d36d49a49ee18fc185b54, type: 3}
+  scenePath: Assets/Scenes/LV1/LV1.unity
+  sceneAsset: {fileID: 102900000, guid: 138038d9ad9bef24d8bef691520e2e2c, type: 3}
