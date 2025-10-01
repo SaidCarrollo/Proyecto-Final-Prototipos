@@ -9209,7 +9209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9566b0bbad9c7418c416b547d32312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
   animator: {fileID: 218823048}
@@ -9267,9 +9267,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 846614570}
-  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
-  defaultBadgeID: Abrir la ventana
+  defaultBadgeID: 'Abrir la ventana '
   lateBadgeID: Abrir la ventana durante Intoxicacion
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   successMessage: Mejor reducimos el efecto de intoxicacion
