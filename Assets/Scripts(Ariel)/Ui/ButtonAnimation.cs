@@ -42,4 +42,8 @@ public class BotonAnimado : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         transform.DOScale(escalaOriginal, duracion)
             .SetUpdate(true); // También lo necesita para funcionar al salir del botón en pausa
     }
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
 }
