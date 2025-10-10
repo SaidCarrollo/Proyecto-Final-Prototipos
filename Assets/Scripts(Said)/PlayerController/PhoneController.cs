@@ -79,10 +79,12 @@ public class PhoneController : MonoBehaviour
 
         if (playerController != null)
         {
-            playerController.SetMovementEnabled(isPhoneActive); 
+            // --- CORRECCIÓN AQUÍ ---
+            // Se ha cambiado SetMovementEnabled por SetInputEnabled
+            playerController.SetInputEnabled(isPhoneActive);
         }
 
-        if (isPhoneActive) 
+        if (isPhoneActive)
         {
             if (phoneWasOpenedAndNotUsed)
             {
@@ -101,7 +103,7 @@ public class PhoneController : MonoBehaviour
             }
             phoneWasOpenedAndNotUsed = false;
         }
-        else 
+        else
         {
             phoneWasOpenedAndNotUsed = true;
         }
@@ -115,7 +117,9 @@ public class PhoneController : MonoBehaviour
         }
         if (playerController != null)
         {
-            playerController.SetMovementEnabled(true);
+            // --- CORRECCIÓN AQUÍ ---
+            // Se ha cambiado SetMovementEnabled por SetInputEnabled
+            playerController.SetInputEnabled(true);
         }
         phoneWasOpenedAndNotUsed = false;
 
