@@ -17,13 +17,20 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private bool lockCursor = true;
 
+    [Header("Crouch Settings")]
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float standingHeight = 2f;
+    private bool isCrouching = false;
+
     [Header("Input")]
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference lookAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference runAction;
+    [SerializeField] private InputActionReference crouchAction;
 
     private Rigidbody rb;
+    private CapsuleCollider capsuleCollider;
     private bool isGrounded;
     private float xRotation = 0f;
     private Vector2 currentMovementInput;
@@ -48,6 +55,7 @@ public class FirstPersonController : MonoBehaviour
         jumpAction.action.performed += OnJump;
         runAction.action.performed += OnRun;
         runAction.action.canceled += OnRun;
+        crouchAction.action.performed += OnCrouch;
     }
 
     void OnDisable()
@@ -62,6 +70,7 @@ public class FirstPersonController : MonoBehaviour
         jumpAction.action.performed -= OnJump;
         runAction.action.performed -= OnRun;
         runAction.action.canceled -= OnRun;
+        crouchAction.action.performed -= OnCrouch;
     }
 
     void Update()
@@ -111,7 +120,23 @@ public class FirstPersonController : MonoBehaviour
     {
         isRunning = context.performed;
     }
-
+    private void OnCrouch(InputAction.CallbackContext context)
+    {
+        isCrouching = !isCrouching;
+        if (capsuleCollider != null)
+        {
+            if (isCrouching)
+            {
+                capsuleCollider.height = crouchHeight;
+                // Detener el movimiento al agacharse
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            }
+            else
+            {
+                capsuleCollider.height = standingHeight;
+            }
+        }
+    }
     private void HandleMouseLook()
     {
         Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
