@@ -29,14 +29,21 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private InputActionReference runAction;
     [SerializeField] private InputActionReference crouchAction;
 
-    // --- NUEVO: Sistema de Vida ---
     [Header("Health System")]
     [Tooltip("Activa para que el jugador pueda recibir daño y morir.")]
     [SerializeField] private bool healthSystemEnabled = true;
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
-    // Referencia al GameManager para notificar la muerte
     [SerializeField] private GameManager gameManager;
+
+    // --- NUEVAS REFERENCIAS A MANAGERS ---
+    [Header("System References")]
+    [Tooltip("Referencia al UIManager para mostrar mensajes en pantalla.")]
+    [SerializeField] private UIManager uiManager;
+    [Tooltip("Referencia al BadgeManager para desbloquear logros/errores.")]
+    [SerializeField] private BadgeManager badgeManager;
+    [Tooltip("Referencia al VignetteController para efectos visuales de daño.")]
+    [SerializeField] private VignetteController vignetteController;
 
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
@@ -46,7 +53,6 @@ public class FirstPersonController : MonoBehaviour
     private bool isRunning;
     private bool isInputEnabled = true;
 
-    // Propiedad pública para saber si está corriendo
     public bool IsRunning => isRunning;
 
     void Awake()
@@ -59,19 +65,29 @@ public class FirstPersonController : MonoBehaviour
         }
         if (gameManager == null)
         {
-            // Intenta encontrar el GameManager en la escena si no está asignado
             gameManager = FindObjectOfType<GameManager>();
             if (gameManager == null)
             {
                 Debug.LogError("No se encontró el GameManager en la escena. Es necesario para manejar la muerte del jugador.");
             }
         }
+
+        // --- BÚSQUEDA AUTOMÁTICA DE REFERENCIAS (OPCIONAL PERO RECOMENDADO) ---
+        if (uiManager == null)
+        {
+            uiManager = FindObjectOfType<UIManager>();
+        }
+        if (vignetteController == null)
+        {
+            vignetteController = FindObjectOfType<VignetteController>();
+        }
+        // BadgeManager es un ScriptableObject, usualmente se asigna manualmente.
+
         LockCursor();
     }
 
     void Start()
     {
-        // Inicializa la vida y la corrutina de daño
         if (healthSystemEnabled)
         {
             currentHealth = maxHealth;
@@ -128,17 +144,14 @@ public class FirstPersonController : MonoBehaviour
         CheckGrounded();
     }
 
-    // --- Lógica de vida movida aquí ---
     private IEnumerator CheckRunningAndApplyDamage()
     {
-        // Se ejecuta mientras el sistema esté activo y el jugador tenga vida
         while (healthSystemEnabled && currentHealth > 0)
         {
-            yield return new WaitForSeconds(1.5f); // Intervalo de chequeo
+            yield return new WaitForSeconds(1.5f);
 
             if (IsRunning)
             {
-                // 25% de probabilidad de recibir daño
                 if (Random.value < 0.50f)
                 {
                     TakeDamage(1);
@@ -154,18 +167,50 @@ public class FirstPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log($"El jugador recibió {damage} de daño. Vida restante: {currentHealth}");
 
-        // Aquí podrías invocar un evento para actualizar la UI de vida si la tuvieras
+        // --- ¡AQUÍ ESTÁ LA NUEVA LÓGICA! ---
+
+        // 1. Mostrar mensaje "aunch" en la UI
+        if (uiManager != null)
+        {
+            uiManager.OnMessageEventRaised("aunch");
+        }
+        else
+        {
+            Debug.LogWarning("Referencia a UIManager no asignada en FirstPersonController.");
+        }
+
+        // 2. Activar viñeta roja
+        if (vignetteController != null)
+        {
+            // Parámetros: Color, Intensidad (0 a 1), Duración del efecto antes de desvanecerse
+            vignetteController.TriggerVignette(Color.red, 0.4f, 0.5f);
+        }
+        else
+        {
+            Debug.LogWarning("Referencia a VignetteController no asignada en FirstPersonController.");
+        }
+
+        // 3. Desbloquear un badge de tipo "Incorrecto"
+        if (badgeManager != null)
+        {
+            // IMPORTANTE: Debes crear un badge con este ID en tu ScriptableObject BadgeManager
+            badgeManager.UnlockBadge("auch");
+        }
+        else
+        {
+            Debug.LogWarning("Referencia a BadgeManager no asignada en FirstPersonController.");
+        }
+
 
         if (currentHealth <= 0)
         {
             Debug.Log("El jugador se ha quedado sin vida.");
             if (gameManager != null)
             {
-                gameManager.HandlePlayerDeath(); // Notifica al GameManager
+                gameManager.HandlePlayerDeath();
             }
         }
     }
-
 
     private void LockCursor()
     {

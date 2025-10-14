@@ -3149,16 +3149,22 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  crouchHeight: 1
+  standingHeight: 2
   mouseSensitivity: 0.1
   cameraTransform: {fileID: 330585546}
   lockCursor: 1
-  crouchHeight: 1
-  standingHeight: 2
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   runAction: {fileID: -8571115817177387650, guid: 12883daad516ea54990afffc7461211e, type: 3}
   crouchAction: {fileID: 1882811077942414924, guid: 12883daad516ea54990afffc7461211e, type: 3}
+  healthSystemEnabled: 1
+  maxHealth: 3
+  gameManager: {fileID: 846614570}
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  vignetteController: {fileID: 832575521}
 --- !u!114 &461168134
 MonoBehaviour:
   m_ObjectHideFlags: 0
