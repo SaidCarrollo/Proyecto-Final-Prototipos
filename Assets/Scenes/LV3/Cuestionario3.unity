@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1152e2b0b09c87b41ab7e2d175377073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuestionario: {fileID: 11400000, guid: 2d3e3e2654c28a6419dc2b8759ed26dd, type: 2}
+  cuestionario: {fileID: 11400000, guid: 619d10c104b599744afea9efdddb765a, type: 2}
   resultadosGuardados: {fileID: 11400000, guid: e4fb90108aac98642953d62a53758fe3, type: 2}
   textoPregunta: {fileID: 1116414948}
   grupoDeOpciones: {fileID: 1836158777}
@@ -2018,8 +2018,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294947404
-  m_fontColor: {r: 0.2980392, g: 0.69870424, b: 1, a: 1}
+    rgba: 4283678975
+  m_fontColor: {r: 1, g: 0.7530078, b: 0.3254717, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ddd760c1d1afef42ba3e07171c2d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: {fileID: 11400000, guid: 12c5cde8e64f2aa4d8616119839e25e7, type: 2}
+  sceneToLoad: {fileID: 11400000, guid: 65c80c4be088a784e99ad280d8665d18, type: 2}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}

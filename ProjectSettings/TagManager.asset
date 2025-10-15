@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Inflamable
   - TapaMetalica
+  - DistortionArea
   layers:
   - Default
   - TransparentFX

@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LV2/LV2.unity
     guid: ef281a636ec8f9e468b1276af938efce
+  - enabled: 1
+    path: Assets/Scenes/LV3/Cuestionario3.unity
+    guid: a3f913df837cb2b42a081b78a43e16c9
+  - enabled: 1
+    path: Assets/Scenes/LV3/LV3.unity
+    guid: d71dc051543ec3d46af7171cb20fa27d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
