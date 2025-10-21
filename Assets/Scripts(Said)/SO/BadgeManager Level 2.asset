@@ -120,7 +120,7 @@ MonoBehaviour:
     Prioridad: 1
     Desbloqueado: 0
   - ID: Telefono en el area
-    Descripcion: Llamaste a emergencias en una posicion segura
+    Descripcion: Llamaste a emergencias en la zona del gas
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1

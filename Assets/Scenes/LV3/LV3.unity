@@ -691,6 +691,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48909973}
   m_CullTransparentMesh: 1
+--- !u!1 &103352059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8514817346327297425, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+  m_PrefabInstance: {fileID: 2125772185}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &103352060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103352059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08959296b607a3e40913f738fc68b210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  hazardBadgeId: Cerca de la ventana
+  damageOnHit: 1
+  injuredWalkMultiplier: 0.6
+  oneShot: 1
+--- !u!65 &103352061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103352059}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.592012, y: 6.660572, z: 6.18}
+  m_Center: {x: 0.0000076293945, y: 0.86, z: 0.46}
 --- !u!1 &121476750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,6 +1467,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1f644c1270f69fa43be7e00ee21f132b, type: 3}
   m_PrefabInstance: {fileID: 1752927043}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &218823052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218823047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08959296b607a3e40913f738fc68b210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  hazardBadgeId: Cerca de la ventana
+  damageOnHit: 1
+  injuredWalkMultiplier: 0.6
+  oneShot: 1
+--- !u!65 &218823053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218823047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9888519, y: 0.8, z: 0.9475004}
+  m_Center: {x: 0.011070554, y: 0.51, z: 0.31}
 --- !u!1 &219404123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,6 +2465,80 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4600804, y: 8.989762, z: 0.07389172}
   m_Center: {x: -5.5769615, y: 0.27482218, z: -0.031953704}
+--- !u!1 &360173788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360173789}
+  - component: {fileID: 360173791}
+  - component: {fileID: 360173790}
+  m_Layer: 0
+  m_Name: MesaZOne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &360173789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360173788}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1581506672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &360173790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360173788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bb1a14c8b24b545970944d0a286dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 846614570}
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  shelterBadgeId: Resguardado
+  requiredCrouchSeconds: 4
+  oneShot: 1
+  enterHint: "Resgu\xE1rdate aqu\xED: ag\xE1chate y mantente as\xED\u2026"
+  successMsg: "\xA1Resguardado correctamente!"
+--- !u!65 &360173791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360173788}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.01, y: 6.95, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &366867040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,7 +3252,7 @@ Transform:
   m_GameObject: {fileID: 461168124}
   serializedVersion: 2
   m_LocalRotation: {x: 0.008756253, y: -0.69867307, z: -0.00083847664, w: 0.71538705}
-  m_LocalPosition: {x: 32.279522, y: 1.529, z: -4.5101237}
+  m_LocalPosition: {x: 28.583, y: 1.383, z: 3.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3165,6 +3322,7 @@ MonoBehaviour:
   uiManager: {fileID: 21285084}
   badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
   vignetteController: {fileID: 832575521}
+  injuredSpeedMultiplier: 0.6
 --- !u!114 &461168134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5399,7 +5557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &736052498
 Transform:
   m_ObjectHideFlags: 0
@@ -7583,7 +7741,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027175378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7528349c8c42477428dc1ae8d68872d7, type: 3}
   m_Name: 
@@ -7622,7 +7780,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027175378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a5bf92dd9a69b548a04ec3daa3af2f0, type: 3}
   m_Name: 
@@ -9976,6 +10134,80 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.62, y: 3.43, z: 0.12}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1359140884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1359140885}
+  - component: {fileID: 1359140887}
+  - component: {fileID: 1359140886}
+  m_Layer: 0
+  m_Name: CamaZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1359140885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359140884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1524196125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1359140886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359140884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7bb1a14c8b24b545970944d0a286dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 846614570}
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  shelterBadgeId: Resguardado
+  requiredCrouchSeconds: 4
+  oneShot: 1
+  enterHint: "Resgu\xE1rdate aqu\xED: ag\xE1chate y mantente as\xED\u2026"
+  successMsg: "\xA1Resguardado correctamente!"
+--- !u!65 &1359140887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359140884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.93, y: 4.88, z: 1.24}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &1364850684
 GameObject:
   m_ObjectHideFlags: 0
@@ -10664,6 +10896,11 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.006, y: -0.22200002, z: -0.002}
   m_TimeToStationary: 0.5
+--- !u!4 &1524196125 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6724280390106550575, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+  m_PrefabInstance: {fileID: 2125772185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1552124874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11372,6 +11609,11 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: -0.51100004}
   m_TimeToStationary: 0.5
+--- !u!4 &1581506672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6797608262444449742, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+  m_PrefabInstance: {fileID: 2125772185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1584200640
 GameObject:
   m_ObjectHideFlags: 0
@@ -12133,6 +12375,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f644c1270f69fa43be7e00ee21f132b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 218823048}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f644c1270f69fa43be7e00ee21f132b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218823053}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f644c1270f69fa43be7e00ee21f132b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218823052}
   m_SourcePrefab: {fileID: 100100000, guid: 1f644c1270f69fa43be7e00ee21f132b, type: 3}
 --- !u!1 &1759632368
 GameObject:
@@ -14153,7 +14401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2109501168
 Transform:
   m_ObjectHideFlags: 0
@@ -14669,6 +14917,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -838674282022356679, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -838674282022356679, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
@@ -15095,6 +15347,9 @@ PrefabInstance:
     - {fileID: -1306053630595845998, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
     - {fileID: -304876638058187421, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6724280390106550575, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1359140885}
     - targetCorrespondingSourceObject: {fileID: -3006884668662240298, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2015560675}
@@ -15104,7 +15359,22 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -3006884668662240298, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 736052498}
+    - targetCorrespondingSourceObject: {fileID: 6797608262444449742, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 360173789}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8514817346327297425, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 103352061}
+    - targetCorrespondingSourceObject: {fileID: 8514817346327297425, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 103352060}
+    - targetCorrespondingSourceObject: {fileID: -196167966231312236, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125772190}
+    - targetCorrespondingSourceObject: {fileID: -196167966231312236, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125772189}
     - targetCorrespondingSourceObject: {fileID: -1689034706643442896, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 691093935}
@@ -15319,6 +15589,50 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: -0.75600004, z: 1.0630001}
   m_TimeToStationary: 0.5
+--- !u!1 &2125772188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -196167966231312236, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
+  m_PrefabInstance: {fileID: 2125772185}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125772189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125772188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08959296b607a3e40913f738fc68b210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
+  hazardBadgeId: CercaVentanaSismo
+  damageOnHit: 1
+  injuredWalkMultiplier: 0.6
+  oneShot: 1
+--- !u!65 &2125772190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125772188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.592012, y: 6.660572, z: 6.18}
+  m_Center: {x: 0.0000076293945, y: 0.86, z: 0.46}
 --- !u!1 &2136599741
 GameObject:
   m_ObjectHideFlags: 0

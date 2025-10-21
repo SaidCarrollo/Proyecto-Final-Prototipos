@@ -3159,7 +3159,7 @@ MonoBehaviour:
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   runAction: {fileID: -8571115817177387650, guid: 12883daad516ea54990afffc7461211e, type: 3}
   crouchAction: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  healthSystemEnabled: 1
+  healthSystemEnabled: 0
   maxHealth: 3
   gameManager: {fileID: 0}
   uiManager: {fileID: 0}
@@ -3976,7 +3976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &524890351
 BoxCollider:
   m_ObjectHideFlags: 0

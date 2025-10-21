@@ -52,9 +52,13 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 currentMovementInput;
     private bool isRunning;
     private bool isInputEnabled = true;
-
+    [Header("Injury Cojo")]
+    [SerializeField] private float injuredSpeedMultiplier = 0.6f;
+    private bool isInjured = false;
+    private bool canRun = true;
+    private float baseWalkSpeed, baseRunSpeed;
     public bool IsRunning => isRunning;
-
+    public bool IsCrouching => isCrouching;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -72,16 +76,16 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
-        // --- BÚSQUEDA AUTOMÁTICA DE REFERENCIAS (OPCIONAL PERO RECOMENDADO) ---
-        if (uiManager == null)
-        {
-            uiManager = FindObjectOfType<UIManager>();
-        }
-        if (vignetteController == null)
-        {
-            vignetteController = FindObjectOfType<VignetteController>();
-        }
-        // BadgeManager es un ScriptableObject, usualmente se asigna manualmente.
+        //// --- BÚSQUEDA AUTOMÁTICA DE REFERENCIAS (OPCIONAL PERO RECOMENDADO) ---
+        //if (uiManager == null)
+        //{
+        //    uiManager = FindObjectOfType<UIManager>();
+        //}
+        //if (vignetteController == null)
+        //{
+        //    vignetteController = FindObjectOfType<VignetteController>();
+        //}
+        //// BadgeManager es un ScriptableObject, usualmente se asigna manualmente.
 
         LockCursor();
     }
@@ -93,6 +97,8 @@ public class FirstPersonController : MonoBehaviour
             currentHealth = maxHealth;
             StartCoroutine(CheckRunningAndApplyDamage());
         }
+        baseWalkSpeed = walkSpeed;
+        baseRunSpeed = runSpeed;
     }
 
     void OnEnable()
@@ -236,7 +242,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void OnRun(InputAction.CallbackContext context)
     {
-        isRunning = context.performed && !isCrouching;
+        isRunning = context.performed && !isCrouching && canRun;
     }
 
     private void OnCrouch(InputAction.CallbackContext context)
@@ -306,4 +312,29 @@ public class FirstPersonController : MonoBehaviour
             crouchAction.action.Enable();
         }
     }
+    public void ApplyPermanentInjury(string uiMessageOverride, float slowMultiplier)
+    {
+        if (isInjured) return;
+
+        isInjured = true;
+        canRun = false;
+
+        // Reduce caminar y equipara el correr al caminar (correr ya no acelera)
+        injuredSpeedMultiplier = Mathf.Clamp(slowMultiplier, 0.1f, 1f);
+        walkSpeed = Mathf.Max(0.1f, baseWalkSpeed * injuredSpeedMultiplier);
+        runSpeed = walkSpeed;
+
+        // Cortar carrera si estaba corriendo
+        isRunning = false;
+
+        // Frenar un poco el XZ para que se note
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y, rb.linearVelocity.z * 0.5f);
+
+        // Mensaje claro en UI
+        if (!string.IsNullOrEmpty(uiMessageOverride) && uiManager != null)
+        {
+            uiManager.OnMessageEventRaised(uiMessageOverride); // Muestra en pantalla. :contentReference[oaicite:6]{index=6}
+        }
+    }
+
 }
