@@ -4710,10 +4710,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 846614570}
-  badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
-  defaultBadgeID: Salida Segura
-  lateBadgeID: Salida Segura
+  defaultBadgeID: Salida Ideal
+  lateBadgeID: Salida Ideal
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   successMessage: "\xA1Acci\xF3n preventiva correcta!"
   failureMessage: "\xA1Demasiado tarde! El fuego ya es incontrolable."
@@ -6228,7 +6228,7 @@ MonoBehaviour:
   loseSceneName: FailScene
   playerInteraction: {fileID: 461168136}
   playerController: {fileID: 461168133}
-  badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
+  badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
   onPlayerDeathEvent: {fileID: 11400000, guid: d2949b48fc3a5914e9e316f563af2fdf, type: 2}
   onPlayerSurvivedEvent: {fileID: 11400000, guid: 288a64edf86c14143a1d60a0f7e4677c, type: 2}
   messageEvent: {fileID: 11400000, guid: a4f90680e59a06c4d835eece0c9c5bdc, type: 2}
@@ -6238,6 +6238,10 @@ MonoBehaviour:
   levelHasNPCs: 1
   npcManager: {fileID: 970702642}
   uiTimerController: {fileID: 21285087}
+  awardNoRunBadgeOnWin: 1
+  noRunBadgeId: CalmaBajoPresion
+  awardWindowSafeBadgeOnWin: 1
+  windowSafeBadgeId: DistanciaSegura
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0

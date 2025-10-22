@@ -33,6 +33,13 @@ public class GameManager : MonoBehaviour
     [Tooltip("Asigna el NPCSaveableManager solo si 'levelHasNPCs' está activado.")]
     [SerializeField] private NPCSaveableManager npcManager; 
     [SerializeField] private UITimerController uiTimerController;
+
+    [Header("End Badges (por nivel)")]
+    [SerializeField] private bool awardNoRunBadgeOnWin = false;
+    [SerializeField] private string noRunBadgeId = "CalmaBajoPresion";
+
+    [SerializeField] private bool awardWindowSafeBadgeOnWin = false;
+    [SerializeField] private string windowSafeBadgeId = "DistanciaSegura";
     public bool IsFireUncontrolled { get; private set; } = false;
     void Start()
     {
@@ -170,7 +177,14 @@ public class GameManager : MonoBehaviour
         }
 
         if (playerInteraction != null) playerInteraction.enabled = false;
+        if (badgeManager != null && playerController != null)
+        {
+            if (awardNoRunBadgeOnWin && !playerController.HasEverRun)
+                badgeManager.UnlockBadge(noRunBadgeId);
 
+            if (awardWindowSafeBadgeOnWin && !playerController.WindowInjuryOccurred)
+                badgeManager.UnlockBadge(windowSafeBadgeId);
+        }
         StartCoroutine(LoadAdditiveScene(winSceneName));
     }
 

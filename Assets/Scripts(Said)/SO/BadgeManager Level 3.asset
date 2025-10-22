@@ -19,12 +19,12 @@ MonoBehaviour:
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Salida Segura
-    Descripcion: 'Saliste por la puerta principal '
+  - ID: Salida Ideal
+    Descripcion: Saliste por la puerta principal de forma tranquila
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: Hornilla tarde
     Descripcion: 'Apagar la hornilla tarde es innecesario '
     Icono: {fileID: 0}
@@ -133,5 +133,17 @@ MonoBehaviour:
     Descripcion: Ir cerca de una ventanan en medio de un sismo es muy peligroso
     Icono: {fileID: 0}
     Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: CalmaBajoPresion
+    Descripcion: Mantuviste la calama y saliste sin correr
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: DistanciaSegura
+    Descripcion: Mantuviste tu distancia de las ventanas
+    Icono: {fileID: 0}
+    Tipo: 0
     Prioridad: 1
     Desbloqueado: 0

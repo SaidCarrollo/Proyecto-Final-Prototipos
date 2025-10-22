@@ -59,6 +59,12 @@ public class FirstPersonController : MonoBehaviour
     private float baseWalkSpeed, baseRunSpeed;
     public bool IsRunning => isRunning;
     public bool IsCrouching => isCrouching;
+
+    private bool hasEverRun = false;
+    private bool windowInjuryOccurred = false;
+    public bool HasEverRun => hasEverRun;
+    public bool WindowInjuryOccurred => windowInjuryOccurred;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -243,6 +249,7 @@ public class FirstPersonController : MonoBehaviour
     private void OnRun(InputAction.CallbackContext context)
     {
         isRunning = context.performed && !isCrouching && canRun;
+        if (isRunning) hasEverRun = true;
     }
 
     private void OnCrouch(InputAction.CallbackContext context)
@@ -335,6 +342,10 @@ public class FirstPersonController : MonoBehaviour
         {
             uiManager.OnMessageEventRaised(uiMessageOverride); // Muestra en pantalla. :contentReference[oaicite:6]{index=6}
         }
-    }
 
+    }
+    public void MarkWindowInjury()
+    {
+        windowInjuryOccurred = true;
+    }
 }

@@ -32,8 +32,12 @@ public class WindowHazardZone : MonoBehaviour
     {
         if (_triggered && oneShot) return;
 
-        // Busca el FirstPersonController en el jugador
         var fpc = other.GetComponentInParent<FirstPersonController>();
+        if (fpc != null)
+        {
+            fpc.MarkWindowInjury(); // <-- registra que la herida provino de la ventana
+            fpc.TakeDamage(1);      // tu daño actual (mantén tu feedback/viñeta/badge "auch")
+        }
         if (fpc == null) return;
 
         // 1) Daño (esto ya maneja vignette/vida y podría disparar un badge genérico si lo configuras así)
