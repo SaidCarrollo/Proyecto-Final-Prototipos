@@ -6,7 +6,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    private const string MasterVolumeKey = "Master"; 
+    private const string MasterVolumeKey = "MasterVolume"; 
     private const string MusicVolumeKey = "MusicVolume";
     private const string SFXVolumeKey = "SFXVolume";
 

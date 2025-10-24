@@ -342,7 +342,8 @@ public class FirstPersonController : MonoBehaviour
         {
             uiManager.OnMessageEventRaised(uiMessageOverride); // Muestra en pantalla. :contentReference[oaicite:6]{index=6}
         }
-
+        var tilt = GetComponentInChildren<CameraInjuryTilt>();
+        if (tilt != null) tilt.EnableInjuryTilt(true);
     }
     public void MarkWindowInjury()
     {

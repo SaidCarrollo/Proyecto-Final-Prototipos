@@ -26,7 +26,7 @@ public class ValveMinigame : MonoBehaviour
     public UnityEvent OnMinigameCompleted;
 
     private bool isMinigameActive = false;
-    private float currentRotation = 0f;
+    private float netRotation = 0f; 
     private float initialMouseX;
 
     void Start()
@@ -44,7 +44,7 @@ public class ValveMinigame : MonoBehaviour
         if (isMinigameActive) return;
 
         isMinigameActive = true;
-        currentRotation = 0f;
+        netRotation = 0f;
 
         // Cambiar cámaras
         mainCamera.gameObject.SetActive(false);
@@ -74,15 +74,23 @@ public class ValveMinigame : MonoBehaviour
             // Calcula la rotación a aplicar en este frame
             float rotationAmount = mouseDeltaX * rotationSensitivity;
 
-            // Aplica la rotación al objeto de la válvula
-            valveTransform.Rotate(rotationAxis, rotationAmount);
+            float potentialRotation = netRotation + rotationAmount;
 
-            // Acumula la rotación
-            currentRotation += Mathf.Abs(rotationAmount);
+            float clampedRotation = Mathf.Clamp(potentialRotation, 0f, requiredRotation);
+
+            float actualRotationToApply = clampedRotation - netRotation;
+
+            // 4. Aplica la rotación visual al objeto de la válvula
+            if (Mathf.Abs(actualRotationToApply) > 0.001f) // Solo rota si el cambio es perceptible
+            {
+                valveTransform.Rotate(rotationAxis, actualRotationToApply);
+            }
+
+            netRotation = clampedRotation;
+
         }
 
-        // Comprueba si se ha alcanzado la rotación necesaria
-        if (currentRotation >= requiredRotation)
+        if (netRotation >= requiredRotation - 0.1f)
         {
             CompleteMinigame();
         }
