@@ -5383,6 +5383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 805511539}
+  mobileControlsRoot: {fileID: 8519773569941265738}
   pauseAction: {fileID: -7890205359792112122, guid: 12883daad516ea54990afffc7461211e, type: 3}
   playerController: {fileID: 461168133}
 --- !u!1 &468593575
@@ -18806,6 +18807,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f64597c7500e6e44acea65c2d47b8e3, type: 3}
+--- !u!1 &8519773569941265738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964110810823950983, guid: 3f64597c7500e6e44acea65c2d47b8e3, type: 3}
+  m_PrefabInstance: {fileID: 8519773569941265737}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

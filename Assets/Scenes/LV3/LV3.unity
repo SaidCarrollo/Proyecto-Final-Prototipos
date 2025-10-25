@@ -3726,7 +3726,7 @@ MonoBehaviour:
   minHoldDistance: 0.5
   maxHoldDistance: 1.8
   startHoldDistance: 1.5
-  grabReleaseAction: {fileID: 0}
+  grabReleaseAction: {fileID: -6543876345780618526, guid: 12883daad516ea54990afffc7461211e, type: 3}
   adjustHoldAction: {fileID: 0}
   grabAudio: {fileID: 0}
   releaseAudio: {fileID: 0}
@@ -3859,6 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 212422744}
+  mobileControlsRoot: {fileID: 1947892463}
   pauseAction: {fileID: -7890205359792112122, guid: 12883daad516ea54990afffc7461211e, type: 3}
   playerController: {fileID: 461168133}
 --- !u!114 &461168138
@@ -14514,6 +14515,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1947892463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964110810823950983, guid: 3f64597c7500e6e44acea65c2d47b8e3, type: 3}
+  m_PrefabInstance: {fileID: 566881116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967604025
 GameObject:
   m_ObjectHideFlags: 0
