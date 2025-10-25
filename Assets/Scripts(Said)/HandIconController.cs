@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class HandIconController : MonoBehaviour
 {
+
     [Header("Animation Settings")]
     [SerializeField] private float focusedScale = 1.2f; 
     [SerializeField] private float animationDuration = 0.2f; 

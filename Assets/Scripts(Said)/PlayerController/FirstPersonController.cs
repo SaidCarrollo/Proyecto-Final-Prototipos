@@ -75,7 +75,6 @@ public class FirstPersonController : MonoBehaviour
         }
         if (gameManager == null)
         {
-            gameManager = FindObjectOfType<GameManager>();
             if (gameManager == null)
             {
                 Debug.LogError("No se encontró el GameManager en la escena. Es necesario para manejar la muerte del jugador.");
