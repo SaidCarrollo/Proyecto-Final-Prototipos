@@ -67,6 +67,7 @@ public class EarthquakeController : MonoBehaviour
 
     void Awake()
     {
+        SoundManager.Instance.Play("Temblor");
         if (cameraTransform == null)
         {
             var camFound = GetComponentInChildren<Camera>();

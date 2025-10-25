@@ -7,6 +7,7 @@ public class WaterTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        SoundManager.Instance.PlaySFX("TrapoAgua");
         if (!other.CompareTag("Grab")) return;
 
         // 1) Si es tu toalla, avisa directo al adapter
@@ -20,6 +21,7 @@ public class WaterTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        SoundManager.Instance.PlaySFX("TrapoAgua2");
         if (!dryOnExit) return;
         if (!other.CompareTag("Grab")) return;
 

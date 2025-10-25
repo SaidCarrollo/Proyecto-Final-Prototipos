@@ -24,6 +24,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioMixerGroup sfxGroup;
     [SerializeField] private AudioMixerGroup voiceGroup;
     [SerializeField] private AudioMixerGroup uiGroup;
+    // Guarda última posición por nombre de clip (segundos)
+    private readonly Dictionary<string, float> _savedMusicPositions = new();
+    private readonly Dictionary<string, float> _savedAmbiencePositions = new();
+
+    // Recuerda el "target" de volumen al hacer fade in nuevamente
+    private float _lastMusicTargetVolume = 1f;
+    private float _lastAmbienceTargetVolume = 1f;
 
     [Header("Librería de Sonidos")]
     public List<Sound> sounds;
@@ -66,7 +73,7 @@ public class SoundManager : MonoBehaviour
     }
 
     // ------------------- Música -------------------
-    public void PlayMusic(string name, float volume = 1.0f, bool loop = true, float fadeDuration = 1.5f)
+    public void PlayMusic(string name, float volume = 1.0f, bool loop = true, float fadeDuration = 1.5f, bool resumeFromSaved = false)
     {
         Sound s = sounds.FirstOrDefault(sound => sound.name == name);
         if (s == null || s.clip == null)
@@ -79,31 +86,40 @@ public class SoundManager : MonoBehaviour
 
         musicSource.DOKill();
 
+        // calcula el volumen objetivo y recuerda para reanudar
+        _lastMusicTargetVolume = Mathf.Clamp01(s.volume * volume);
+
+        float? startTimeSec = null;
+        if (resumeFromSaved && _savedMusicPositions.TryGetValue(s.clip.name, out var t))
+            startTimeSec = Mathf.Clamp(t, 0f, s.clip.length - 0.05f);
+
         if (musicSource.isPlaying)
         {
             musicSource.DOFade(0, fadeDuration * 0.5f).OnComplete(() =>
             {
-                StartNewMusic(s, volume, loop, fadeDuration * 0.5f);
+                StartNewMusic(s, volume, loop, fadeDuration * 0.5f, startTimeSec);
             });
         }
         else
         {
-            StartNewMusic(s, volume, loop, fadeDuration);
+            StartNewMusic(s, volume, loop, fadeDuration, startTimeSec);
         }
     }
 
-    private void StartNewMusic(Sound s, float volume, bool loop, float fadeDuration)
+    private void StartNewMusic(Sound s, float volume, bool loop, float fadeDuration, float? startTimeSec = null)
     {
         if (musicGroup) musicSource.outputAudioMixerGroup = musicGroup;
         musicSource.clip = s.clip;
         musicSource.loop = loop || s.loop;
+        if (startTimeSec.HasValue) musicSource.time = startTimeSec.Value;
         musicSource.volume = 0f;
         musicSource.Play();
-        musicSource.DOFade(Mathf.Clamp01(s.volume * volume), fadeDuration);
+        musicSource.DOFade(_lastMusicTargetVolume, fadeDuration);
     }
 
+
     // ------------------- Ambiente -------------------
-    public void PlayAmbience(string name, float volume = 1.0f, bool loop = true, float fadeDuration = 1.5f)
+    public void PlayAmbience(string name, float volume = 1.0f, bool loop = true, float fadeDuration = 1.5f, bool resumeFromSaved = false)
     {
         Sound s = sounds.FirstOrDefault(sound => sound.name == name);
         if (s == null || s.clip == null)
@@ -115,29 +131,36 @@ public class SoundManager : MonoBehaviour
         if (ambienceSource.clip == s.clip && ambienceSource.isPlaying) return;
 
         ambienceSource.DOKill();
+        _lastAmbienceTargetVolume = Mathf.Clamp01(s.volume * volume);
+
+        float? startTimeSec = null;
+        if (resumeFromSaved && _savedAmbiencePositions.TryGetValue(s.clip.name, out var t))
+            startTimeSec = Mathf.Clamp(t, 0f, s.clip.length - 0.05f);
 
         if (ambienceSource.isPlaying)
         {
             ambienceSource.DOFade(0, fadeDuration * 0.5f).OnComplete(() =>
             {
-                StartNewAmbience(s, volume, loop, fadeDuration * 0.5f);
+                StartNewAmbience(s, volume, loop, fadeDuration * 0.5f, startTimeSec);
             });
         }
         else
         {
-            StartNewAmbience(s, volume, loop, fadeDuration);
+            StartNewAmbience(s, volume, loop, fadeDuration, startTimeSec);
         }
     }
 
-    private void StartNewAmbience(Sound s, float volume, bool loop, float fadeDuration)
+    private void StartNewAmbience(Sound s, float volume, bool loop, float fadeDuration, float? startTimeSec = null)
     {
         if (ambienceGroup) ambienceSource.outputAudioMixerGroup = ambienceGroup;
         ambienceSource.clip = s.clip;
         ambienceSource.loop = loop || s.loop;
+        if (startTimeSec.HasValue) ambienceSource.time = startTimeSec.Value;
         ambienceSource.volume = 0f;
         ambienceSource.Play();
-        ambienceSource.DOFade(Mathf.Clamp01(s.volume * volume), fadeDuration);
+        ambienceSource.DOFade(_lastAmbienceTargetVolume, fadeDuration);
     }
+
 
     // ------------------- One-Shots / Efectos -------------------
     /// <summary>
@@ -245,15 +268,109 @@ public class SoundManager : MonoBehaviour
     }
 
     // ------------------- Stop helpers -------------------
-    public void StopMusic(float fadeDuration = 1.0f)
+    // --- Música ---
+    public void StopMusic(float fadeDuration = 1.0f, bool rememberPosition = false)
     {
-        if (musicSource && musicSource.isPlaying)
+        if (!musicSource || !musicSource.clip) return;
+
+        if (rememberPosition)
+            _savedMusicPositions[musicSource.clip.name] = musicSource.time;
+
+        musicSource.DOKill();
+        if (musicSource.isPlaying)
             musicSource.DOFade(0, fadeDuration).OnComplete(() => musicSource.Stop());
+        else
+            musicSource.Stop();
     }
 
-    public void StopAmbience(float fadeDuration = 1.0f)
+    public void PauseMusic(bool rememberPosition = true)
     {
-        if (ambienceSource && ambienceSource.isPlaying)
-            ambienceSource.DOFade(0, fadeDuration).OnComplete(() => ambienceSource.Stop());
+        if (!musicSource || !musicSource.isPlaying) return;
+        if (rememberPosition && musicSource.clip)
+            _savedMusicPositions[musicSource.clip.name] = musicSource.time;
+        musicSource.Pause();
     }
+
+    public void ResumeMusic(float fadeDuration = 0.75f)
+    {
+        if (!musicSource || !musicSource.clip) return;
+
+        if (_savedMusicPositions.TryGetValue(musicSource.clip.name, out var t))
+            musicSource.time = Mathf.Clamp(t, 0f, musicSource.clip.length - 0.05f);
+
+        musicSource.volume = 0f;
+        musicSource.Play();
+        musicSource.DOFade(_lastMusicTargetVolume, fadeDuration);
+    }
+
+    // --- Ambience ---
+    public void StopAmbience(float fadeDuration = 1.0f, bool rememberPosition = false)
+    {
+        if (!ambienceSource || !ambienceSource.clip) return;
+
+        if (rememberPosition)
+            _savedAmbiencePositions[ambienceSource.clip.name] = ambienceSource.time;
+
+        ambienceSource.DOKill();
+        if (ambienceSource.isPlaying)
+            ambienceSource.DOFade(0, fadeDuration).OnComplete(() => ambienceSource.Stop());
+        else
+            ambienceSource.Stop();
+    }
+
+    public void PauseAmbience(bool rememberPosition = true)
+    {
+        if (!ambienceSource || !ambienceSource.isPlaying) return;
+        if (rememberPosition && ambienceSource.clip)
+            _savedAmbiencePositions[ambienceSource.clip.name] = ambienceSource.time;
+        ambienceSource.Pause();
+    }
+
+    public void ResumeAmbience(float fadeDuration = 0.75f)
+    {
+        if (!ambienceSource || !ambienceSource.clip) return;
+
+        if (_savedAmbiencePositions.TryGetValue(ambienceSource.clip.name, out var t))
+            ambienceSource.time = Mathf.Clamp(t, 0f, ambienceSource.clip.length - 0.05f);
+
+        ambienceSource.volume = 0f;
+        ambienceSource.Play();
+        ambienceSource.DOFade(_lastAmbienceTargetVolume, fadeDuration);
+    }
+
+    public void StopByName(string name, float fadeDuration = 0.5f, bool rememberPosition = false)
+    {
+        Sound s = sounds.FirstOrDefault(sound => sound.name == name);
+        if (s == null || s.clip == null)
+        {
+            Debug.LogWarning($"StopByName: '{name}' no encontrado.");
+            return;
+        }
+
+        switch (s.channel)
+        {
+            case SoundChannel.Music:
+                if (musicSource && musicSource.clip == s.clip)
+                    StopMusic(fadeDuration, rememberPosition);
+                break;
+
+            case SoundChannel.Ambience:
+                if (ambienceSource && ambienceSource.clip == s.clip)
+                    StopAmbience(fadeDuration, rememberPosition);
+                break;
+
+            case SoundChannel.LoopingSFX:
+                // Ya tienes StopLoopingSFX dedicado
+                StopLoopingSFX();
+                break;
+
+            default:
+                // One-shots (SFX/UI/Voice): PlayOneShot no se puede "parar" individualmente.
+                // Como alternativa, detén COMPLETO el source del canal (corta TODO lo que suene allí):
+                if (_oneShotSourceByChannel.TryGetValue(s.channel, out var src) && src)
+                    src.Stop();
+                break;
+        }
+    }
+
 }

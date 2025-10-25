@@ -9,6 +9,7 @@ TagManager:
   - Inflamable
   - TapaMetalica
   - DistortionArea
+  - Perilla
   layers:
   - Default
   - TransparentFX

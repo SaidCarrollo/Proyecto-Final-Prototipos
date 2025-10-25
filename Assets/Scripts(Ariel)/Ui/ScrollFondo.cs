@@ -9,7 +9,10 @@ public class ScrollFondo : MonoBehaviour
     // Controla la velocidad de movimiento en los ejes X e Y
     [SerializeField] private float velocidadX = 0.05f;
     [SerializeField] private float velocidadY = 0f;
-
+    private void Awake()
+    {
+        SoundManager.Instance.PlayMusic("MainTheme");
+    }
     void Update()
     {
         // Si no hay imagen asignada, no hagas nada.
@@ -27,5 +30,9 @@ public class ScrollFondo : MonoBehaviour
         // Creamos un nuevo Rect con la nueva posición y el mismo tamaño.
         // El movimiento se logra al modificar la posición (el primer parámetro).
         imagenFondo.uvRect = new Rect(offsetX, offsetY, rectActual.width, rectActual.height);
+    }
+    private void OnDestroy()
+    {
+        SoundManager.Instance.StopMusic(fadeDuration: 1.0f, rememberPosition: false);
     }
 }
