@@ -1,20 +1,19 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening; // No olvides importar DOTween
+using DG.Tweening;
 
 public class SceneLoader : MonoBehaviour
 {
     [Header("Canales de Eventos")]
     [SerializeField] private SceneLoadEventChannelSO sceneLoadChannel;
-    [SerializeField] private SceneChannelSO activatePreloadedSceneChannel; // Canal para activar
+    [SerializeField] private SceneChannelSO activatePreloadedSceneChannel;
 
     [Header("Transición")]
     [Tooltip("El CanvasGroup del panel negro que hará el fade")]
     [SerializeField] private CanvasGroup transitionCanvasGroup;
     [SerializeField] private float transitionDuration = 0.5f;
 
-    // Variables para manejar la pre-carga
     private AsyncOperation _preloadedSceneOperation;
     private bool _isPreloading = false;
     private bool _isActivating = false;
@@ -22,35 +21,27 @@ public class SceneLoader : MonoBehaviour
     private void OnEnable()
     {
         if (sceneLoadChannel != null)
-        {
             sceneLoadChannel.OnSceneRequested += HandleSceneLoadRequest;
-        }
+
         if (activatePreloadedSceneChannel != null)
-        {
             activatePreloadedSceneChannel.OnEventRaised += ActivatePreloadedScene;
-        }
-        // Suscribirse al evento de Unity para saber cuándo una escena termina de cargar
+
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         if (sceneLoadChannel != null)
-        {
             sceneLoadChannel.OnSceneRequested -= HandleSceneLoadRequest;
-        }
+
         if (activatePreloadedSceneChannel != null)
-        {
             activatePreloadedSceneChannel.OnEventRaised -= ActivatePreloadedScene;
-        }
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // --- Lógica Principal ---
-
     private void HandleSceneLoadRequest(SceneDefinitionSO sceneToLoad, LoadSceneMode loadMode, bool isAsync)
     {
-        // Si es asíncrono, lo tratamos como una pre-carga
         if (isAsync)
         {
             if (_isPreloading)
@@ -60,7 +51,7 @@ public class SceneLoader : MonoBehaviour
             }
             StartCoroutine(PreloadScene(sceneToLoad.scenePath, loadMode));
         }
-        else // La carga síncrona sigue funcionando igual (bloquea y carga)
+        else
         {
             SceneManager.LoadScene(sceneToLoad.scenePath, loadMode);
         }
@@ -70,16 +61,12 @@ public class SceneLoader : MonoBehaviour
     {
         _isPreloading = true;
         _preloadedSceneOperation = SceneManager.LoadSceneAsync(scenePath, loadMode);
-        _preloadedSceneOperation.allowSceneActivation = false; // ¡La clave!
+        _preloadedSceneOperation.allowSceneActivation = false;
 
-        // Esperar a que la carga llegue al 90% (el punto antes de la activación)
         while (_preloadedSceneOperation.progress < 0.9f)
-        {
             yield return null;
-        }
 
         Debug.Log($"Escena {scenePath} pre-cargada y lista para activar.");
-        // La corrutina termina, pero la operación está viva y esperando.
     }
 
     private void ActivatePreloadedScene()
@@ -91,23 +78,43 @@ public class SceneLoader : MonoBehaviour
         }
 
         _isActivating = true;
-        // Iniciar transición de salida (fade out)
-        transitionCanvasGroup.DOFade(1f, transitionDuration)
-            .SetUpdate(true)
-            .OnComplete(() =>
-            {
-                _preloadedSceneOperation.allowSceneActivation = true;
-            });
+
+        if (transitionCanvasGroup != null)
+        {
+            transitionCanvasGroup.interactable = true;      // ? para bloquear clics durante el fade
+            transitionCanvasGroup.blocksRaycasts = true;
+            transitionCanvasGroup.DOKill();
+            transitionCanvasGroup.DOFade(1f, transitionDuration)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    // (opcional) Normaliza por si venías pausado DESDE el menú
+                    Time.timeScale = 1f;                    // ? NUEVO failsafe
+                    _preloadedSceneOperation.allowSceneActivation = true;
+                });
+        }
+        else
+        {
+            Time.timeScale = 1f;                            // ? NUEVO failsafe
+            _preloadedSceneOperation.allowSceneActivation = true;
+        }
     }
 
-    // Se llama automáticamente cuando cualquier escena termina de cargar
+    // Llamado cuando CUALQUIER escena termina de cargarse
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reseteamos estados y hacemos la transición de entrada (fade in)
+        // === NORMALIZACIÓN CRÍTICA ===
+        Time.timeScale = 1f;                                // ? NUEVO: evita “leaks” de pausa/slowmo
+
         _isPreloading = false;
         _isActivating = false;
-        transitionCanvasGroup.DOFade(0f, transitionDuration)
-            .SetUpdate(true);
 
+        if (transitionCanvasGroup != null)
+        {
+            transitionCanvasGroup.DOKill();
+            transitionCanvasGroup.DOFade(0f, transitionDuration).SetUpdate(true);
+            transitionCanvasGroup.interactable = false;
+            transitionCanvasGroup.blocksRaycasts = false;
+        }
     }
 }

@@ -8638,7 +8638,7 @@ PrefabInstance:
       objectReference: {fileID: 846614570}
     - target: {fileID: 3322800047699589248, guid: 81187195d1cb7d044a8dae5dc8447984, type: 3}
       propertyPath: tutorialKey
-      value: TutorialLV1
+      value: TutorialLV1_
       objectReference: {fileID: 0}
     - target: {fileID: 3322800047699589248, guid: 81187195d1cb7d044a8dae5dc8447984, type: 3}
       propertyPath: tutorialCanvas
@@ -9587,8 +9587,7 @@ GameObject:
   - component: {fileID: 846614572}
   - component: {fileID: 846614571}
   - component: {fileID: 846614573}
-  - component: {fileID: 846614575}
-  - component: {fileID: 846614574}
+  - component: {fileID: 846614576}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9773,7 +9772,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &846614574
+--- !u!114 &846614576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9782,108 +9781,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 846614565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81da1daa93cf13448b5bc9b4593aca1b, type: 3}
+  m_Script: {fileID: 11500000, guid: c93d5673293250649a557eeb1010b77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodBadgeClip: {fileID: 8300000, guid: ab0faf34ffa40e04091b31f5b417105a, type: 3}
-  badBadgeClip: {fileID: 8300000, guid: f1536385bc5f7614084d40e6d416defd, type: 3}
---- !u!82 &846614575
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846614565}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  forceOnEnable: 1
 --- !u!1 &860128185
 GameObject:
   m_ObjectHideFlags: 0

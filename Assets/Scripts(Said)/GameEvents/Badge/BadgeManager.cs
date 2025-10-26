@@ -43,11 +43,11 @@ public class BadgeManager : ScriptableObject
             {
                 if (badge.Tipo == BadgeType.Correcto)
                 {
-                    BadgeAudioPlayer.Instance.PlayGoodBadgeSound();
+                    SoundManager.Instance.PlaySFX("GoodBadge");
                 }
                 else if (badge.Tipo == BadgeType.Incorrecto)
                 {
-                    BadgeAudioPlayer.Instance.PlayBadBadgeSound();
+                    SoundManager.Instance.PlaySFX("BadBadge");
                 }
             }
             else

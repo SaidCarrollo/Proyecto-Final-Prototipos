@@ -10439,15 +10439,15 @@ MonoBehaviour:
     volume: 0.5
     channel: 0
     loop: 1
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    channel: 0
+  - name: GoodBadge
+    clip: {fileID: 8300000, guid: ab0faf34ffa40e04091b31f5b417105a, type: 3}
+    volume: 1
+    channel: 2
     loop: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    channel: 0
+  - name: BadBadge
+    clip: {fileID: 8300000, guid: f1536385bc5f7614084d40e6d416defd, type: 3}
+    volume: 1
+    channel: 2
     loop: 0
   - name: 
     clip: {fileID: 0}
