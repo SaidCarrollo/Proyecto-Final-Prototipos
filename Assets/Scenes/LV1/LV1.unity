@@ -5933,7 +5933,7 @@ MonoBehaviour:
   crouchAction: {fileID: 1882811077942414924, guid: 12883daad516ea54990afffc7461211e, type: 3}
   healthSystemEnabled: 0
   maxHealth: 3
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 846614570}
   uiManager: {fileID: 0}
   badgeManager: {fileID: 0}
   vignetteController: {fileID: 0}
@@ -6674,7 +6674,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516875077}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc0a7a2ddb10f0438f4c8a1e0c80664, type: 3}
   m_Name: 
