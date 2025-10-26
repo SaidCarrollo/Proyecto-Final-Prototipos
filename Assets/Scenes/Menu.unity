@@ -10449,10 +10449,10 @@ MonoBehaviour:
     volume: 1
     channel: 2
     loop: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    channel: 0
+  - name: GasHiss
+    clip: {fileID: 8300000, guid: 25878c18c6b2b71478796de6f172aec5, type: 3}
+    volume: 1
+    channel: 2
     loop: 0
   - name: 
     clip: {fileID: 0}

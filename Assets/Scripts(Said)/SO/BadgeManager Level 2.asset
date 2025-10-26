@@ -56,28 +56,15 @@ MonoBehaviour:
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Sarten en el agua
-    Descripcion: Meter directamente el sarten al agua generara una explosion
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Objetos Inflamables tarde
-    Descripcion: Es demasiado tarde y riesgoso intentar mover todo lo inflamale cuando
-      el fuego ya se descontrolo.
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
   - ID: "Distracci\xF3n con el telefono"
-    Descripcion: "Te distrajiste al sacar el tel\xE9fono y no usarlo"
+    Descripcion: "Te distrajiste al sacar el tel\xE9fono y no usarlo."
     Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: Dudando en llamar
-    Descripcion: "Te distrajiste al sacar el t\xE9lefono y no usarlo en una situaacion
-      de fuego descontrolado"
+    Descripcion: "Te distrajiste al sacar el t\xE9lefono y no usarlo en una situaci\xF3n
+      de gas descontrolado."
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
@@ -89,21 +76,20 @@ MonoBehaviour:
     Prioridad: 1
     Desbloqueado: 0
   - ID: Encender la luz durante fuga
-    Descripcion: Endencer una luz durante una fuga de gas esparcida es sumamente
-      peligroso.
+    Descripcion: Encender una luz durante una fuga de gas es sumamente peligroso.
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Encender la luz durante fuga esparcida
-    Descripcion: Endencer una luz durante una fuga de gas esparcida es extremadamente
+  - ID: Encender la luz durante fuga de gas esparcida
+    Descripcion: Encender una luz durante una fuga de gas esparcida es extremadamente
       peligroso.
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: "Evacuaci\xF3n del Hogar"
-    Descripcion: Evacuaste a todas las personas del hogar
+    Descripcion: Evacuaste a todas las personas del hogar.
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
@@ -128,13 +114,13 @@ MonoBehaviour:
     Prioridad: 1
     Desbloqueado: 0
   - ID: Solitario
-    Descripcion: No evacuaste a todas las personas del hogar
+    Descripcion: No evacuaste a todas las personas del hogar.
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: "Ventilaci\xF3n exitosa"
-    Descripcion: Solucionaste la fuga correctamente
+  - ID: Fuga de Gas Reducida
+    Descripcion: Solucionaste la fuga de gas de forma correcta
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 0
