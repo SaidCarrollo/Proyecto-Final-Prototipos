@@ -20,4 +20,10 @@ public class ButtonSound : MonoBehaviour
         // Ahora: AudioManager.Instance.ToggleMute(); // <-- Se usa 'Instance' con mayúscula
         AudioManager.Instance.PlaySFX(Click);
     }
+    // En tu primer scene/Bootstrap
+    void Awake()
+    {
+        Application.targetFrameRate = 60; // o 120 si tu móvil lo soporta
+    }
+
 }
