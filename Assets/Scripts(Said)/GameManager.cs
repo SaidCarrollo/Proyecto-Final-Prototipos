@@ -5,15 +5,27 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public enum GameState { Playing, Won, Lost }
-    private GameState currentState;
+    private GameState currentState = GameState.Playing;
 
-    [Header("Scene Management")]
-    [SerializeField] private string winSceneName;
-    [SerializeField] private string loseSceneName;
+    [Header("Scene Management (Sistema Asíncrono)")]
+    [Tooltip("Escena a cargar cuando el jugador GANA.")]
+    [SerializeField] private SceneDefinitionSO winScene;
+    [Tooltip("Escena a cargar cuando el jugador PIERDE.")]
+    [SerializeField] private SceneDefinitionSO loseScene;
+    [Header("Nivel actual (para Retry)")]
+    [SerializeField] private SceneDefinitionSO thisLevel;          // La SceneDefinition de ESTA escena de gameplay
+    [SerializeField] private LastPlayedLevelSO lastPlayedLevel;    // Asset compartido para recordar el último nivel
+    [SerializeField] private bool rememberLevelOnAwake = true;     // Por si quieres desactivarlo en alguna escena rara
+
+    [Tooltip("Canal para solicitar pre-carga/carga de escenas (asíncrono).")]
+    [SerializeField] private SceneLoadEventChannelSO sceneLoadChannel;
+    [Tooltip("Canal para ACTIVAR la escena pre-cargada (dispara el fade y el allowSceneActivation).")]
+    [SerializeField] private SceneChannelSO activatePreloadedSceneChannel;
 
     [Header("Player Componentes")]
     [SerializeField] private PlayerInteraction playerInteraction;
     [SerializeField] private FirstPersonController playerController;
+
     [Header("Managers y Events")]
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private GameEvent onPlayerDeathEvent;
@@ -21,141 +33,133 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameEventstring messageEvent;
     [SerializeField] private GameEvent onUncontrolledFireEvent;
     [SerializeField] private UIManager uiManager;
-    [Header("Muerte componentes")] 
+
+    [Header("Muerte componentes")]
     [SerializeField] private float tiempoParaMorir = 15f;
     private Coroutine deathCoroutine;
     private Coroutine survivalCoroutine;
-    [Header("Level-Specific Logic")]
-    [Tooltip("Activa esta casilla si el nivel actual contiene NPCs que deben ser salvados.")]
-    [SerializeField] private bool levelHasNPCs = false; 
 
-    [Header("Custom Managers")]
-    [Tooltip("Asigna el NPCSaveableManager solo si 'levelHasNPCs' está activado.")]
-    [SerializeField] private NPCSaveableManager npcManager; 
+    [Header("Level-Specific Logic")]
+    [SerializeField] private bool levelHasNPCs = false;
+    [SerializeField] private NPCSaveableManager npcManager;
     [SerializeField] private UITimerController uiTimerController;
 
     [Header("End Badges (por nivel)")]
     [SerializeField] private bool awardNoRunBadgeOnWin = false;
     [SerializeField] private string noRunBadgeId = "CalmaBajoPresion";
-
     [SerializeField] private bool awardWindowSafeBadgeOnWin = false;
     [SerializeField] private string windowSafeBadgeId = "DistanciaSegura";
+
     public bool IsFireUncontrolled { get; private set; } = false;
+
     void Start()
     {
-        if (badgeManager != null)
+        if (rememberLevelOnAwake && lastPlayedLevel != null && thisLevel != null)
         {
-            badgeManager.ResetBadges();
+            lastPlayedLevel.lastLevel = thisLevel;
+            Debug.Log($"[GameManager] Recordado nivel: {thisLevel.name}");
         }
+        if (badgeManager != null)
+            badgeManager.ResetBadges();
+
         IsFireUncontrolled = false;
+        currentState = GameState.Playing;
     }
 
     public void HandleUncontrolledFire()
     {
-        if (IsFireUncontrolled) return; 
+        if (IsFireUncontrolled) return;
 
-        Debug.Log("GameManager ha sido notificado: ¡El fuego está fuera de control!");
+        Debug.Log("GameManager: ¡El fuego está fuera de control!");
         IsFireUncontrolled = true;
 
         if (uiManager != null)
-        {
             uiManager.UpdateObjectiveText("Evacúa.");
-        }
         else
-        {
-            Debug.LogWarning("GameManager: La referencia a UIManager no está asignada. No se puede actualizar el texto del objetivo.");
-        }
+            Debug.LogWarning("GameManager: UIManager no asignado; no se puede actualizar el objetivo.");
     }
+
     public void IniciarContadorMortal()
     {
         if (currentState != GameState.Playing) return;
 
-        Debug.Log("Contador mortal iniciado en GameManager. El jugador tiene " + tiempoParaMorir + " segundos.");
-        if (uiTimerController != null)
-        {
-            uiTimerController.StartMortalTimer(tiempoParaMorir); 
-        }
-        if (messageEvent != null)
-        {
-            messageEvent.Raise("¡El tiempo se agota!");
-        }
+        Debug.Log($"Contador mortal iniciado ({tiempoParaMorir}s).");
+        uiTimerController?.StartMortalTimer(tiempoParaMorir);
+        messageEvent?.Raise("¡El tiempo se agota!");
 
         if (deathCoroutine == null)
-        {
             deathCoroutine = StartCoroutine(ContadorParaMuerte());
-        }
     }
 
     private IEnumerator ContadorParaMuerte()
     {
         yield return new WaitForSeconds(tiempoParaMorir);
-        Debug.Log("Se acabó el tiempo del GameManager. El jugador ha muerto.");
-        badgeManager.UnlockBadge("GameOverSinTiempo"); 
-        HandlePlayerDeath(); 
+        Debug.Log("Se acabó el tiempo. El jugador ha muerto.");
+        badgeManager?.UnlockBadge("GameOverSinTiempo");
+        HandlePlayerDeath();
     }
+
     public void IniciarContadorSupervivencia(float duration)
     {
-        if (survivalCoroutine == null)
-        {
-            Debug.Log($"Iniciando cuenta atrás para la VICTORIA de {duration} segundos.");
-            survivalCoroutine = StartCoroutine(SupervivenciaCoroutine(duration));
+        if (survivalCoroutine != null) return;
 
-            if (uiTimerController != null)
-            {
-
-                uiTimerController.StartFireTimer(duration);
-            }
-        }
+        Debug.Log($"Iniciando cuenta atrás de VICTORIA: {duration} s.");
+        survivalCoroutine = StartCoroutine(SupervivenciaCoroutine(duration));
+        uiTimerController?.StartFireTimer(duration);
     }
 
     private IEnumerator SupervivenciaCoroutine(float duration)
     {
-
         yield return new WaitForSeconds(duration);
-
-        Debug.Log("El tiempo extra ha terminado. El jugador sobrevive.");
-
+        Debug.Log("Tiempo extra terminado. El jugador sobrevive.");
         HandlePlayerSurvival();
     }
+
     public void HandlePlayerDeath()
     {
         if (currentState != GameState.Playing) return;
 
         if (levelHasNPCs && npcManager != null)
-        {
             npcManager.EvaluateAtGameEnd();
-        }
 
         currentState = GameState.Lost;
-        if (uiTimerController != null)
-        {
-            uiTimerController.HideTimer(); 
-        }
+        uiTimerController?.HideTimer();
+
         if (deathCoroutine != null)
         {
             StopCoroutine(deathCoroutine);
             deathCoroutine = null;
         }
 
-        Debug.Log("GAME OVER: El jugador ha muerto. Iniciando carga de escena de derrota.");
+        Debug.Log("GAME OVER: Iniciando transición a escena de derrota.");
         LevelCompletionData.currentManager = this.badgeManager;
+
+        // Desactivar input de jugador y liberar cursor para UI
+        if (playerController != null) playerController.SetInputEnabled(false);
         if (playerInteraction != null) playerInteraction.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Opcional: mantener una leve cámara lenta antes del fade
         Time.timeScale = 0.2f;
-        StartCoroutine(LoadAdditiveScene(loseSceneName));
+
+        StartCoroutine(TransitionToSceneAsync(loseScene));
+        onPlayerDeathEvent?.Raise();
+        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transición:
+        Time.timeScale = 1f;                  // normaliza
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void HandlePlayerSurvival()
     {
         if (currentState != GameState.Playing) return;
+
         if (levelHasNPCs && npcManager != null)
-        {
             npcManager.EvaluateAtGameEnd();
-        }
+
         currentState = GameState.Won;
-        if (uiTimerController != null)
-        {
-            uiTimerController.HideTimer(); 
-        }
+        uiTimerController?.HideTimer();
 
         if (deathCoroutine != null)
         {
@@ -164,19 +168,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Contador mortal detenido. El jugador ha sobrevivido.");
         }
 
-        Debug.Log("¡VICTORIA!: El jugador ha sobrevivido. Iniciando carga de escena de victoria.");
+        Debug.Log("¡VICTORIA!: Iniciando transición a escena de victoria.");
         LevelCompletionData.currentManager = this.badgeManager;
-        Time.timeScale = 0f;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        if (playerController != null)
-        {
-            playerController.SetInputEnabled(false);
-        }
-
-        if (playerInteraction != null) playerInteraction.enabled = false;
+        // Badges de fin de nivel (si aplica)
         if (badgeManager != null && playerController != null)
         {
             if (awardNoRunBadgeOnWin && !playerController.HasEverRun)
@@ -185,30 +180,44 @@ public class GameManager : MonoBehaviour
             if (awardWindowSafeBadgeOnWin && !playerController.WindowInjuryOccurred)
                 badgeManager.UnlockBadge(windowSafeBadgeId);
         }
-        StartCoroutine(LoadAdditiveScene(winSceneName));
+
+        // Desactivar input y liberar cursor para usar la UI
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (playerController != null) playerController.SetInputEnabled(false);
+        if (playerInteraction != null) playerInteraction.enabled = false;
+
+        // Pausa total antes del fade (el sistema de transición usa tiempo no escalado)
+        Time.timeScale = 0f;
+
+        StartCoroutine(TransitionToSceneAsync(winScene));
+        onPlayerSurvivedEvent?.Raise();
+        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transición:
+        Time.timeScale = 1f;                  // normaliza
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
-    private IEnumerator LoadAdditiveScene(string sceneName)
+    private IEnumerator TransitionToSceneAsync(SceneDefinitionSO targetScene)
     {
-        if (string.IsNullOrEmpty(sceneName))
+        if (targetScene == null)
         {
-            Debug.LogError("El nombre de la escena no está asignado en el GameManager. No se puede cargar.");
+            Debug.LogError("[GameManager] No se asignó la SceneDefinitionSO de destino.");
             yield break;
         }
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        Debug.Log($"Escena '{sceneName}' cargada aditivamente.");
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
-      //  Time.timeScale = 1f;
+
+        // Paso 1: solicitar PRE-CARGA asíncrona (manteniendo paused si así se desea).
+        sceneLoadChannel?.RaiseEvent(targetScene, LoadSceneMode.Single, true);
+
+        // Paso 2: dar un pequeño margen en tiempo real y ACTIVAR (esto dispara el fade y allowSceneActivation).
+        yield return new WaitForSecondsRealtime(0.1f);
+        activatePreloadedSceneChannel?.RaiseEvent();
+
+        // No necesitamos esperar aquí; SceneLoader hará el fade-in y normalizará el Time.timeScale al terminar la carga.
     }
+
     public void SetGamePaused(bool pause)
     {
-        if (pause)
-            Time.timeScale = 0f;
-        else
-            Time.timeScale = 1f;
+        Time.timeScale = pause ? 0f : 1f;
     }
 }

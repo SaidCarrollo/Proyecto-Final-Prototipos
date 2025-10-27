@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 274202447}
   - component: {fileID: 274202446}
   - component: {fileID: 274202445}
+  - component: {fileID: 274202448}
   m_Layer: 5
   m_Name: Empezarbtn
   m_TagString: Untagged
@@ -586,6 +587,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274202443}
   m_CullTransparentMesh: 1
+--- !u!114 &274202448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274202443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &292492007
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +613,8 @@ GameObject:
   - component: {fileID: 292492011}
   - component: {fileID: 292492010}
   - component: {fileID: 292492008}
+  - component: {fileID: 292492012}
+  - component: {fileID: 292492013}
   m_Layer: 5
   m_Name: SiguientePreguntabtn
   m_TagString: Untagged
@@ -731,6 +748,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292492007}
   m_CullTransparentMesh: 1
+--- !u!114 &292492012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292492007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
+--- !u!114 &292492013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292492007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &460206254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,6 +2146,8 @@ GameObject:
   - component: {fileID: 2029404991}
   - component: {fileID: 2029404994}
   - component: {fileID: 2029404990}
+  - component: {fileID: 2029404995}
+  - component: {fileID: 2029404996}
   m_Layer: 5
   m_Name: EmpezarNivelbtn
   m_TagString: Untagged
@@ -2121,6 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 12c5cde8e64f2aa4d8616119839e25e7, type: 2}
+  lastPlayedLevel: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -2240,6 +2288,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2029404995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029404989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
+--- !u!114 &2029404996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029404989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

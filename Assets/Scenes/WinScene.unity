@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insignias Incorrectas
+  m_text: Acciones Incorrectas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 2080670863}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 0
-  m_HorizontalScrollbarSpacing: -3
+  m_HorizontalScrollbarSpacing: 0
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
@@ -807,6 +807,7 @@ GameObject:
   - component: {fileID: 554755099}
   - component: {fileID: 554755098}
   - component: {fileID: 554755097}
+  - component: {fileID: 554755101}
   m_Layer: 5
   m_Name: vOLVERbtn (1)
   m_TagString: Untagged
@@ -847,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 73846adc98c331b4198d88351918c6fc, type: 2}
+  lastPlayedLevel: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -946,6 +948,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554755095}
   m_CullTransparentMesh: 1
+--- !u!114 &554755101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554755095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &600552952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1172,8 @@ GameObject:
   - component: {fileID: 666589859}
   - component: {fileID: 666589858}
   - component: {fileID: 666589857}
-  - component: {fileID: 666589856}
+  - component: {fileID: 666589861}
+  - component: {fileID: 666589860}
   m_Layer: 5
   m_Name: Repeatbtn
   m_TagString: Untagged
@@ -1184,24 +1201,6 @@ RectTransform:
   m_AnchoredPosition: {x: -175, y: 6}
   m_SizeDelta: {x: 513.1063, y: 75.4}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &666589856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666589854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ddd760c1d1afef42ba3e07171c2d963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: {fileID: 11400000, guid: 5d6d72bf2f602c84bb2ea2560a051e01, type: 2}
-  sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
-  activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
-  buttonCanvasGroup: {fileID: 0}
-  blinkFadeValue: 0.5
-  blinkDuration: 0.4
 --- !u!114 &666589857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,9 +1245,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 666589856}
-        m_TargetAssemblyTypeName: LevelButtonController, Assembly-CSharp
-        m_MethodName: OnLevelSelected
+      - m_Target: {fileID: 666589861}
+        m_TargetAssemblyTypeName: RetryLevelButton, Assembly-CSharp
+        m_MethodName: OnRetryClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1296,6 +1295,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666589854}
   m_CullTransparentMesh: 1
+--- !u!114 &666589860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666589854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
+--- !u!114 &666589861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666589854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bb17d86bb0b244dbf96d747d61b228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadCurrentScene: 0
+  thisLevel: {fileID: 0}
+  lastPlayedLevel: {fileID: 11400000, guid: 716191d758724cc4ea98fb28d59e2435, type: 2}
+  sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
+  activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
+  button: {fileID: 666589857}
 --- !u!1 &674161978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3543,7 +3574,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.29360008, y: -18.2}
-  m_SizeDelta: {x: 390.0165, y: 93.5446}
+  m_SizeDelta: {x: 375.0663, y: 93.5446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1861006495
 MonoBehaviour:
@@ -3798,6 +3829,7 @@ GameObject:
   - component: {fileID: 1943185104}
   - component: {fileID: 1943185103}
   - component: {fileID: 1943185106}
+  - component: {fileID: 1943185107}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3923,6 +3955,19 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1943185107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943185102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1016d640eea2d67459e37723c78cd1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  makePersistent: 0
 --- !u!1 &1945336433
 GameObject:
   m_ObjectHideFlags: 0
@@ -4036,7 +4081,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -18.2}
-  m_SizeDelta: {x: 389.2446, y: 91.2227}
+  m_SizeDelta: {x: 375.0663, y: 91.2227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957057645
 MonoBehaviour:
@@ -4421,7 +4466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insignias Correctas
+  m_text: Acciones Correctas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}

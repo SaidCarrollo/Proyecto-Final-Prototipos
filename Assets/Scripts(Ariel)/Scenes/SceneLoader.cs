@@ -116,5 +116,20 @@ public class SceneLoader : MonoBehaviour
             transitionCanvasGroup.interactable = false;
             transitionCanvasGroup.blocksRaycasts = false;
         }
+        if (transitionCanvasGroup != null)
+        {
+            StartCoroutine(ReleaseRaycastNextFrame());
+        }
+
+        System.Collections.IEnumerator ReleaseRaycastNextFrame()
+        {
+            yield return null; // 1 frame por si otra tween pisa el estado
+            if (transitionCanvasGroup != null)
+            {
+                transitionCanvasGroup.interactable = false;
+                transitionCanvasGroup.blocksRaycasts = false;
+                transitionCanvasGroup.alpha = 0f;
+            }
+        }
     }
 }

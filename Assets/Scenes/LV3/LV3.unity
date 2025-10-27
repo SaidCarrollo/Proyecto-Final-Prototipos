@@ -5870,6 +5870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 73846adc98c331b4198d88351918c6fc, type: 2}
+  lastPlayedLevel: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -6574,8 +6575,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1afe0d179665a0f46934d5ef4c6b09a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winSceneName: WinScene
-  loseSceneName: FailScene
+  winScene: {fileID: 11400000, guid: 32b46f6978b4ef5429b80604fc2e6948, type: 2}
+  loseScene: {fileID: 11400000, guid: b44ca17db988e704e94bf5ec692a675e, type: 2}
+  thisLevel: {fileID: 11400000, guid: 65c80c4be088a784e99ad280d8665d18, type: 2}
+  lastPlayedLevel: {fileID: 11400000, guid: 716191d758724cc4ea98fb28d59e2435, type: 2}
+  rememberLevelOnAwake: 1
+  sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
+  activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   playerInteraction: {fileID: 461168136}
   playerController: {fileID: 461168133}
   badgeManager: {fileID: 11400000, guid: 1a8e498c6414d0d48a5bf044a170a291, type: 2}
@@ -12557,9 +12563,19 @@ MonoBehaviour:
   minigameCamera: {fileID: 546433298}
   playerController: {fileID: 461168133}
   valveTransform: {fileID: 1183941874}
+  ValveHelp: {fileID: 0}
   rotationSensitivity: 20
   requiredRotation: 360
   rotationAxis: {x: 0, y: 0, z: 1}
+  progressSlider: {fileID: 0}
+  allowSliderControl: 1
+  valveScrubClip: {fileID: 0}
+  valveScrubVolume: 0.9
+  outputMixerGroup: {fileID: 0}
+  spatializeAtValve: 1
+  endGuardSeconds: 0.03
+  pitchBySpeed: {x: 0.9, y: 1.25}
+  fastDegPerSec: 180
   OnMinigameCompleted:
     m_PersistentCalls:
       m_Calls:

@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 621703421}
   - component: {fileID: 621703420}
   - component: {fileID: 621703419}
+  - component: {fileID: 621703422}
   m_Layer: 5
   m_Name: Empezarbtn
   m_TagString: Untagged
@@ -343,6 +344,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621703417}
   m_CullTransparentMesh: 1
+--- !u!114 &621703422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621703417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &674151404
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +963,7 @@ GameObject:
   - component: {fileID: 910324146}
   - component: {fileID: 910324145}
   - component: {fileID: 910324144}
+  - component: {fileID: 910324147}
   m_Layer: 5
   m_Name: SiguientePreguntabtn
   m_TagString: Untagged
@@ -1081,6 +1097,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910324142}
   m_CullTransparentMesh: 1
+--- !u!114 &910324147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910324142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &973393426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1693,7 @@ GameObject:
   - component: {fileID: 1715870709}
   - component: {fileID: 1715870708}
   - component: {fileID: 1715870712}
+  - component: {fileID: 1715870713}
   m_Layer: 5
   m_Name: EmpezarNivelbtn
   m_TagString: Untagged
@@ -1797,11 +1828,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 7894180ed38dd03479d503acfd30cc03, type: 2}
+  lastPlayedLevel: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
   blinkFadeValue: 0.5
   blinkDuration: 0.4
+--- !u!114 &1715870713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715870707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84250c5317809d4cbe4db6d3ef02cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalaHover: 1.1
+  duracion: 0.2
 --- !u!1 &1955372555
 GameObject:
   m_ObjectHideFlags: 0
