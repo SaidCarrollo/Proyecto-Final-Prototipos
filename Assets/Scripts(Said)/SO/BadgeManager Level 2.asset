@@ -10,26 +10,96 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4fa8ad2bd2892f418aaaf61a57c8ec7, type: 3}
-  m_Name: BadgeManager Level 2
+  m_Name: Fuga de Gas Reducida
   m_EditorClassIdentifier: 
   todosLosBadges:
   - ID: Llamada de emergencia correcta
     Descripcion: Llamar a emergencias siempre es util para controlar un incendio
-    Icono: {fileID: 0}
+    Icono: {fileID: 21300000, guid: d9eefc4689741794a91fa926a208e411, type: 3}
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: Salida Segura
     Descripcion: Saliste por la puerta principal.
-    Icono: {fileID: 0}
+    Icono: {fileID: 21300000, guid: b8476643b9d3e0641a200a23a0ab342a, type: 3}
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 0
-  - ID: Hornilla tarde
-    Descripcion: 'Apagar la hornilla tarde es innecesario '
-    Icono: {fileID: 0}
+    Desbloqueado: 1
+  - ID: Abrir la ventana durante fuga de gas
+    Descripcion: Ventilar la zona es efectivo para evitar que el gas se acumule.
+    Icono: {fileID: 21300000, guid: 595b7598bf9e4a74196eab00aca2d82c, type: 3}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 1
+  - ID: Abrir la ventana durante fuga de gas esparcida
+    Descripcion: "Ventilar la zona cuando el gas ya se ha esparcido es \xFAtil, pero
+      no lo ideal."
+    Icono: {fileID: 21300000, guid: 146033d5db8e7dc4b90e999cc9862970, type: 3}
     Tipo: 1
     Prioridad: 1
+    Desbloqueado: 0
+  - ID: Llamada de emergencia innecesaria
+    Descripcion: "La fuga de gas a\xFAn era controlable."
+    Icono: {fileID: 21300000, guid: 3d71e40bf9aeff645a98a71fa3c4e723, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: "Distracci\xF3n con el telefono"
+    Descripcion: "Te distrajiste al sacar el tel\xE9fono y no usarlo."
+    Icono: {fileID: 21300000, guid: 3d71e40bf9aeff645a98a71fa3c4e723, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Dudando en llamar
+    Descripcion: "Te distrajiste al sacar el t\xE9lefono y no usarlo en una situaci\xF3n
+      de gas descontrolado."
+    Icono: {fileID: 21300000, guid: a443d1e12c73faa4aabe196802e92d30, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Encender la luz durante fuga
+    Descripcion: Encender una luz durante una fuga de gas es sumamente peligroso.
+    Icono: {fileID: 21300000, guid: bc87a9ec1c675154b985b87003527b70, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Encender la luz durante fuga de gas esparcida
+    Descripcion: Encender una luz durante una fuga de gas esparcida es extremadamente
+      peligroso.
+    Icono: {fileID: 21300000, guid: bc87a9ec1c675154b985b87003527b70, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: "Cerrar la v\xE1lvula principal"
+    Descripcion: Detuviste la fuga a tiempo.
+    Icono: {fileID: 21300000, guid: 770f40ee046322647a112ace87b43258, type: 3}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 1
+  - ID: "Cerrar la v\xE1lvula principal tarde"
+    Descripcion: "Cerrar la v\xE1lvula luego de que el gas se esparciera ayuda, pero
+      no es lo ideal."
+    Icono: {fileID: 21300000, guid: e2e6ab10c65e1e14db52c32ddd89d24f, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: "Evacuaci\xF3n del Hogar"
+    Descripcion: Evacuaste a todas las personas del hogar.
+    Icono: {fileID: 21300000, guid: 4851bb9c12dc8e34d8967a769e50d3d5, type: 3}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 1
+  - ID: Solitario
+    Descripcion: No evacuaste a todas las personas del hogar.
+    Icono: {fileID: 21300000, guid: 2075cb31cada32a40bf7cb0aad86144f, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
+  - ID: Fuga de Gas Reducida
+    Descripcion: Solucionaste la fuga de gas de forma correcta.
+    Icono: {fileID: 21300000, guid: 770f40ee046322647a112ace87b43258, type: 3}
+    Tipo: 0
+    Prioridad: 0
     Desbloqueado: 0
   - ID: "Prevenci\xF3n de accidentes"
     Descripcion: Evitaste posibles chispas.
@@ -37,73 +107,9 @@ MonoBehaviour:
     Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Abrir la ventana durante fuga de gas
-    Descripcion: Ventilar la zona es efectivo para evitar que el gas se acumule.
-    Icono: {fileID: 0}
-    Tipo: 0
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Abrir la ventana durante fuga de gas esparcida
-    Descripcion: "Ventilar la zona cuando el gas ya se ha esparcido es \xFAtil, pero
-      no lo ideal."
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Llamada de emergencia innecesaria
-    Descripcion: "La fuga de gas a\xFAn era controlable."
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: "Distracci\xF3n con el telefono"
-    Descripcion: "Te distrajiste al sacar el tel\xE9fono y no usarlo."
-    Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Dudando en llamar
-    Descripcion: "Te distrajiste al sacar el t\xE9lefono y no usarlo en una situaci\xF3n
-      de gas descontrolado."
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
   - ID: Descontrol
     Descripcion: Dejaste que el gas se exparciera.
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Encender la luz durante fuga
-    Descripcion: Encender una luz durante una fuga de gas es sumamente peligroso.
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Encender la luz durante fuga de gas esparcida
-    Descripcion: Encender una luz durante una fuga de gas esparcida es extremadamente
-      peligroso.
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: "Evacuaci\xF3n del Hogar"
-    Descripcion: Evacuaste a todas las personas del hogar.
-    Icono: {fileID: 0}
-    Tipo: 0
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: "Cerrar la v\xE1lvula principal"
-    Descripcion: Detuviste la fuga a tiempo.
-    Icono: {fileID: 0}
-    Tipo: 0
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: "Cerrar la v\xE1lvula principal tarde"
-    Descripcion: "Cerrar la v\xE1lvula luego de que el gas se esparciera ayuda, pero
-      no es lo ideal."
-    Icono: {fileID: 0}
+    Icono: {fileID: 21300000, guid: 890b4fd2269881f45a7ab2256961f04c, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
@@ -112,16 +118,4 @@ MonoBehaviour:
     Icono: {fileID: 0}
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 0
-  - ID: Solitario
-    Descripcion: No evacuaste a todas las personas del hogar.
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Fuga de Gas Reducida
-    Descripcion: Solucionaste la fuga de gas de forma correcta
-    Icono: {fileID: 0}
-    Tipo: 0
-    Prioridad: 0
     Desbloqueado: 0

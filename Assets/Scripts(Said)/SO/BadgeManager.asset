@@ -18,10 +18,10 @@ MonoBehaviour:
     Icono: {fileID: 21300000, guid: 965b0ca53f400cf428624d9a9d30a061, type: 3}
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Fuego apagado con trapo seco
     Descripcion: "El trapo sin mojar empeor\xF3 la situaci\xF3n."
-    Icono: {fileID: 0}
+    Icono: {fileID: 21300000, guid: 10dac64c9b85f1844b4ef0291aa592ec, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
@@ -36,25 +36,25 @@ MonoBehaviour:
     Icono: {fileID: 21300000, guid: 9222d51f143e8374bacd1f5fe68aa67f, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Salida segura
     Descripcion: Saliste por la puerta principal.
     Icono: {fileID: 21300000, guid: b8476643b9d3e0641a200a23a0ab342a, type: 3}
     Tipo: 0
     Prioridad: 0
     Desbloqueado: 0
-  - ID: Hornilla tarde
-    Descripcion: Apagar la hornilla tarde es innecesario.
+  - ID: "Prevenci\xF3n de hornilla tarde"
+    Descripcion: Apagar la hornilla tarde ayuda, pero no es lo ideal.
     Icono: {fileID: 21300000, guid: c3d4eb67e83a7c54b866f92ba166b512, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Prevencion de hornilla
+  - ID: "Prevenci\xF3n de hornilla"
     Descripcion: Cerrar la perilla evita que siga fluyendo el gas.
     Icono: {fileID: 21300000, guid: 7cd6d547d88e4984eb4a68d714c15464, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Cerrar ventana
     Descripcion: "Cerrar la ventanda sirve para evitar que el fuego se expanda por
       la entrada de ex\xEDgeno. "
@@ -82,15 +82,15 @@ MonoBehaviour:
     Prioridad: 1
     Desbloqueado: 0
   - ID: Objetos Inflamables tarde
-    Descripcion: Es demasiado tarde y riesgoso intentar mover todo lo inflamable
-      cuando el fuego ya se descontrolo.
-    Icono: {fileID: 0}
+    Descripcion: Es riesgoso intentar mover objetos inflamables cuando el fuego ya
+      se ha descontrolado.
+    Icono: {fileID: 21300000, guid: 9224c4515f6ea0c469658dbfcf0d98ec, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Distraccion con el telefono
+  - ID: "Distracci\xF3n con el tel\xE9fono"
     Descripcion: Te distrajiste al sacar el telefono y no usarlo.
-    Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
+    Icono: {fileID: 21300000, guid: 84bd57804086cc04a8a836111f17ee3d, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
@@ -101,19 +101,19 @@ MonoBehaviour:
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: Descontrol
+  - ID: "Descontr\xF3l"
     Descripcion: Dejaste que el fuego se descontrolara.
     Icono: {fileID: 21300000, guid: 9c4a0bd34528d6f4a936d35bf1b1e7a9, type: 3}
     Tipo: 1
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Fuego apagado con tapa
     Descripcion: "\xA1Buen trabajo! La tapa met\xE1lica sofoc\xF3 el fuego de manera
       efectiva y segura."
     Icono: {fileID: 21300000, guid: 0877fae464382604b9eddec583e33352, type: 3}
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: Abrir ventana despues de cerrarla
     Descripcion: "Abrir la ventana despu\xE9s de cerrarla no tiene sentido, has perdido
       tiempo crucial."

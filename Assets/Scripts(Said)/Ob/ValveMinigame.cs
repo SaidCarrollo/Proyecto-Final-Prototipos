@@ -1,98 +1,222 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Audio;
+using UnityEngine.UI; // <-- Slider
 
 public class ValveMinigame : MonoBehaviour
 {
     [Header("Referencias de Escena")]
-    [Tooltip("La c·mara principal del jugador (normalmente dentro del objeto del jugador).")]
     [SerializeField] private Camera mainCamera;
-    [Tooltip("Una c·mara secundaria que enfoca de cerca la v·lvula.")]
     [SerializeField] private Camera minigameCamera;
-    [Tooltip("El componente FirstPersonController del jugador para desactivar su movimiento.")]
     [SerializeField] private FirstPersonController playerController;
-    [Tooltip("El Transform del objeto de la v·lvula que va a rotar.")]
     [SerializeField] private Transform valveTransform;
+    [SerializeField] private GameObject ValveHelp;
 
-    [Header("ConfiguraciÛn del Minijuego")]
-    [Tooltip("Sensibilidad con la que el movimiento del mouse se traduce en rotaciÛn.")]
+    [Header("Configuraci√≥n del Minijuego")]
     [SerializeField] private float rotationSensitivity = 20f;
-    [Tooltip("La cantidad total de grados que se debe girar la v·lvula para ganar.")]
     [SerializeField] private float requiredRotation = 360f;
-    [Tooltip("Eje sobre el cual rotar· la v·lvula (p. ej., Vector3.up para el eje Y).")]
     [SerializeField] private Vector3 rotationAxis = Vector3.up;
 
+    [Header("UI Progreso")]
+    [Tooltip("Slider que refleja el progreso (0..1). Si 'allowSliderControl' est√° activo, tambi√©n controla la v√°lvula.")]
+    [SerializeField] private Slider progressSlider;
+    [Tooltip("Permite arrastrar el slider para mover la v√°lvula.")]
+    [SerializeField] private bool allowSliderControl = true;
+
+    [Header("Audio de la V√°lvula (Scrub)")]
+    [SerializeField] private AudioClip valveScrubClip;
+    [SerializeField, Range(0f, 1f)] private float valveScrubVolume = 0.9f;
+    [SerializeField] private AudioMixerGroup outputMixerGroup; // opcional: asigna SFX
+    [SerializeField] private bool spatializeAtValve = true;
+    [SerializeField] private float endGuardSeconds = 0.03f;
+    [SerializeField] private Vector2 pitchBySpeed = new Vector2(0.9f, 1.25f);
+    [SerializeField] private float fastDegPerSec = 180f;
+
     [Header("Eventos")]
-    [Tooltip("Este evento se dispara cuando el minijuego se completa con Èxito.")]
     public UnityEvent OnMinigameCompleted;
 
     private bool isMinigameActive = false;
-    private float netRotation = 0f; 
-    private float initialMouseX;
+    private float netRotation = 0f;    // 0..requiredRotation
+    private AudioSource valveAudio;
+
+    // Anti-bucle para el slider (cuando actualizamos por c√≥digo)
+    private bool _updatingSlider = false;
 
     void Start()
     {
-        // Aseg˙rate de que la c·mara del minijuego estÈ desactivada al empezar.
-        if (minigameCamera != null)
+        if (minigameCamera != null) minigameCamera.gameObject.SetActive(false);
+        CreateValveAudioSource();
+
+        // Config b√°sica del slider si est√° asignado
+        if (progressSlider)
         {
-            minigameCamera.gameObject.SetActive(false);
+            progressSlider.minValue = 0f;
+            progressSlider.maxValue = 1f;
+            progressSlider.wholeNumbers = false;
+            progressSlider.value = 0f;
+            progressSlider.interactable = allowSliderControl;
+
+            // Suscribir cambios (cuando el usuario arrastra)
+            progressSlider.onValueChanged.AddListener(OnSliderValueChanged);
         }
     }
 
-    // Este mÈtodo p˙blico ser· llamado por el script 'Interactable'
+    void OnDestroy()
+    {
+        if (progressSlider)
+            progressSlider.onValueChanged.RemoveListener(OnSliderValueChanged);
+    }
+
+    void CreateValveAudioSource()
+    {
+        Transform host = (spatializeAtValve && valveTransform) ? valveTransform : this.transform;
+
+        valveAudio = host.gameObject.AddComponent<AudioSource>();
+        valveAudio.playOnAwake = false;
+        valveAudio.loop = false;
+        valveAudio.clip = valveScrubClip;
+        valveAudio.volume = valveScrubVolume;
+        valveAudio.spatialBlend = spatializeAtValve ? 1f : 0f;
+        if (outputMixerGroup) valveAudio.outputAudioMixerGroup = outputMixerGroup;
+    }
+
     public void StartMinigame()
     {
         if (isMinigameActive) return;
 
         isMinigameActive = true;
         netRotation = 0f;
+        ValveHelp.SetActive(true);
+        if (valveTransform) valveTransform.localRotation = Quaternion.identity;
+        PrepareAudioAtProgress(0f, playNow: false);
 
-        // Cambiar c·maras
-        mainCamera.gameObject.SetActive(false);
-        minigameCamera.gameObject.SetActive(true);
+        if (mainCamera) mainCamera.gameObject.SetActive(false);
+        if (minigameCamera) minigameCamera.gameObject.SetActive(true);
+        if (playerController) playerController.SetInputEnabled(false);
 
-        // Desactivar controles del jugador
-        playerController.SetInputEnabled(false);
-
-        // Mostrar y desbloquear el cursor para interactuar con la v·lvula
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Guardar la posiciÛn inicial del mouse para calcular el arrastre
-        initialMouseX = Input.mousePosition.x;
+        UpdateSliderFromProgress();
     }
 
     void Update()
     {
         if (!isMinigameActive) return;
 
-        // El jugador debe mantener presionado el clic izquierdo para girar
+        // Arrastre con mouse (clic izquierdo sostenido)
         if (Input.GetMouseButton(0))
         {
-            // Calcula el delta (cambio) en la posiciÛn X del mouse
             float mouseDeltaX = Input.GetAxis("Mouse X");
-
-            // Calcula la rotaciÛn a aplicar en este frame
             float rotationAmount = mouseDeltaX * rotationSensitivity;
+            float target = Mathf.Clamp(netRotation + rotationAmount, 0f, requiredRotation);
 
-            float potentialRotation = netRotation + rotationAmount;
-
-            float clampedRotation = Mathf.Clamp(potentialRotation, 0f, requiredRotation);
-
-            float actualRotationToApply = clampedRotation - netRotation;
-
-            // 4. Aplica la rotaciÛn visual al objeto de la v·lvula
-            if (Mathf.Abs(actualRotationToApply) > 0.001f) // Solo rota si el cambio es perceptible
-            {
-                valveTransform.Rotate(rotationAxis, actualRotationToApply);
-            }
-
-            netRotation = clampedRotation;
-
+            ApplyTargetRotation(target);
         }
 
+        // ¬øcompletado?
         if (netRotation >= requiredRotation - 0.1f)
         {
             CompleteMinigame();
+        }
+    }
+
+    // ========= Slider: two-way binding ==================
+
+    private void OnSliderValueChanged(float value01)
+    {
+        if (_updatingSlider) return;           // cambio disparado por c√≥digo, ignorar
+        if (!isMinigameActive) return;         // solo cuando el minijuego est√° activo
+        if (!allowSliderControl) return;       // opcional, por si solo quieres reflejar
+
+        float target = Mathf.Clamp01(value01) * requiredRotation;
+        ApplyTargetRotation(target);
+    }
+
+    private void UpdateSliderFromProgress()
+    {
+        if (!progressSlider) return;
+        _updatingSlider = true;
+        progressSlider.value = (requiredRotation > 0f) ? netRotation / requiredRotation : 0f;
+        _updatingSlider = false;
+    }
+
+    // ========= N√∫cleo de rotaci√≥n + audio + UI ==========
+
+    /// <summary>
+    /// Lleva la v√°lvula a 'targetDegrees' (0..requiredRotation), rotando solo el delta necesario.
+    /// Actualiza audio (scrub) y slider.
+    /// </summary>
+    private void ApplyTargetRotation(float targetDegrees)
+    {
+        float clamped = Mathf.Clamp(targetDegrees, 0f, requiredRotation);
+        float delta = clamped - netRotation;
+        if (Mathf.Abs(delta) < 0.0001f) return;
+
+        // Rotaci√≥n visual
+        if (valveTransform)
+            valveTransform.Rotate(rotationAxis, delta, Space.Self);
+
+        // Estado
+        netRotation = clamped;
+
+        // Audio scrubbing + pitch por velocidad
+        UpdateValveScrubAudio(delta);
+
+        // UI
+        UpdateSliderFromProgress();
+    }
+
+    private void UpdateValveScrubAudio(float deltaDegrees)
+    {
+        if (!valveAudio || !valveScrubClip) return;
+
+        bool movingThisFrame = Mathf.Abs(deltaDegrees) > 0.0001f;
+
+        float progress01 = (requiredRotation > 0f)
+            ? Mathf.Clamp01(netRotation / requiredRotation)
+            : 0f;
+
+        float maxTime = Mathf.Max(0f, valveScrubClip.length - endGuardSeconds);
+        float targetTime = Mathf.Clamp(progress01 * maxTime, 0f, maxTime);
+
+        if (movingThisFrame)
+        {
+            float speedDegPerSec = Mathf.Abs(deltaDegrees) / Mathf.Max(Time.deltaTime, 1e-6f);
+            float t = Mathf.Clamp01(speedDegPerSec / Mathf.Max(1e-3f, fastDegPerSec));
+            valveAudio.pitch = Mathf.Lerp(pitchBySpeed.x, pitchBySpeed.y, t);
+
+            if (!valveAudio.isPlaying)
+            {
+                valveAudio.time = targetTime;
+                valveAudio.Play();
+            }
+            else
+            {
+                valveAudio.time = targetTime;
+            }
+        }
+        else
+        {
+            if (valveAudio.isPlaying)
+                valveAudio.Pause();
+        }
+    }
+
+    private void PrepareAudioAtProgress(float progress01, bool playNow)
+    {
+        if (!valveAudio || !valveScrubClip) return;
+
+        float maxTime = Mathf.Max(0f, valveScrubClip.length - endGuardSeconds);
+        valveAudio.time = Mathf.Clamp01(progress01) * maxTime;
+
+        if (playNow)
+        {
+            if (!valveAudio.isPlaying) valveAudio.Play();
+        }
+        else
+        {
+            if (valveAudio.isPlaying) valveAudio.Pause();
         }
     }
 
@@ -100,17 +224,27 @@ public class ValveMinigame : MonoBehaviour
     {
         isMinigameActive = false;
 
-        Debug.Log("°Minijuego de la v·lvula completado!");
+        // audio al final y detener
+        PrepareAudioAtProgress(1f, playNow: false);
+        if (valveAudio) valveAudio.Stop();
 
-        // Dispara el evento que notificar· a los otros scripts
+        // UI al 100%
+        UpdateSliderFromProgress();
+
         OnMinigameCompleted?.Invoke();
 
-        // Restaurar el estado del jugador
-        minigameCamera.gameObject.SetActive(false);
-        mainCamera.gameObject.SetActive(true);
-        playerController.SetInputEnabled(true); // Esto tambiÈn bloquear· el cursor de nuevo
-
-        // Opcional: Desactiva este script para que no se pueda volver a usar
+        if (minigameCamera) minigameCamera.gameObject.SetActive(false);
+        if (mainCamera) mainCamera.gameObject.SetActive(true);
+        if (playerController) playerController.SetInputEnabled(true);
+        ValveHelp.SetActive(false);
         this.enabled = false;
     }
+
+    private void OnDisable()
+    {
+        // Si se desactiva el objeto/escena, dejamos el audio pausado en su punto
+        if (valveAudio && valveAudio.isPlaying)
+            valveAudio.Pause();
+    }
 }
+
