@@ -95,4 +95,37 @@ public class UIManager : MonoBehaviour
 
         yield return infoText.DOFade(0f, fadeOutTime).WaitForCompletion();
     }
+
+    public void FadeObjectiveOut(float duration = 0.5f)
+    {
+        if (objectiveText == null) return;
+        objectiveText.DOKill();
+        typingTween?.Kill();
+        objectiveText.DOFade(0f, duration);
+    }
+
+    public void FadeObjectiveIn(float duration = 0.3f)
+    {
+        if (objectiveText == null) return;
+        objectiveText.DOKill();
+        typingTween?.Kill();
+        objectiveText.DOFade(1f, duration);
+    }
+
+    // Muestra nuevo objetivo y lo oculta luego de unos segundos
+    public void UpdateObjectiveTextAndFadeLater(string message, float holdSeconds = 2.5f, float fadeOut = 0.6f)
+    {
+        if (objectiveText == null) return;
+        StopCoroutine(nameof(_UpdateAndFade));
+        StartCoroutine(_UpdateAndFade(message, holdSeconds, fadeOut));
+    }
+
+    private System.Collections.IEnumerator _UpdateAndFade(string message, float holdSeconds, float fadeOut)
+    {
+        // Asegura visibilidad y escribe con tu efecto tipo máquina
+        objectiveText.alpha = 1f;
+        UpdateObjectiveText(message);
+        yield return new WaitForSeconds(holdSeconds);
+        FadeObjectiveOut(fadeOut);
+    }
 }

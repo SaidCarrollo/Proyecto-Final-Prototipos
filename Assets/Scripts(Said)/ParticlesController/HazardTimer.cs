@@ -22,7 +22,8 @@ public class HazardTimer : MonoBehaviour
 
     private bool isDefused = false;
     private Coroutine timerCoroutine;
-
+    [SerializeField] private bool fastForwardToGoodOnDefuse = true; 
+    private bool goodOutcomeTriggered = false;
     private void Start()
     {
         StartTimer();
@@ -62,10 +63,21 @@ public class HazardTimer : MonoBehaviour
 
     public void DefuseHazard()
     {
-        if (isDefused) return; 
+        if (isDefused) return;
 
         isDefused = true;
         Debug.Log("¡Peligro DESACTIVADO! El resultado del temporizador ahora será positivo.");
         OnHazardDefused?.Invoke();
+
+        if (fastForwardToGoodOnDefuse)
+            TriggerGoodOutcomeNow();
     }
+    public void TriggerGoodOutcomeNow()
+    {
+        if (goodOutcomeTriggered) return;
+        goodOutcomeTriggered = true;
+        uiTimerController?.HideTimer();
+        OnTimerExpiredGoodOutcome?.Invoke();
+    }
+
 }

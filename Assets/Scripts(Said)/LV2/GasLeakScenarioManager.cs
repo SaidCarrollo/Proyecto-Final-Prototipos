@@ -20,33 +20,39 @@ public class GasLeakScenarioManager : MonoBehaviour
     [Header("Configuración del Segundo Temporizador")]
     [Tooltip("Duración en segundos del segundo contador (tanto el mortal como el de supervivencia).")]
     [SerializeField] private float secondTimerDuration = 60f;
-
-    private bool gasValveHasBeenClosed = false;
-
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private bool gasValveHasBeenClosed = false;   
+    [SerializeField] private bool windowHasBeenOpened = false;
+    private void TryDefuseHazardIfReady()
+    {
+        if (gasValveHasBeenClosed && windowHasBeenOpened)
+        {
+            // Idempotente: si ya fue defusado, HazardTimer lo ignora
+            hazardTimer.DefuseHazard();
+            Debug.Log("ESCENARIO: Ambas acciones listas. ¡Peligro DESACTIVADO!");
+        }
+    }
     public void MarkGasValveAsClosed()
     {
         if (gasValveHasBeenClosed) return;
         gasValveHasBeenClosed = true;
         Debug.Log("ESCENARIO: La válvula de gas ha sido cerrada.");
+        TryDefuseHazardIfReady();
     }
 
     public void OnWindowOpened()
     {
-        if (gasValveHasBeenClosed)
-        {
-            Debug.Log("ESCENARIO: Ventana abierta tras cerrar válvula. Desactivando peligro.");
-            hazardTimer.DefuseHazard();
-        }
-        else
-        {
-            Debug.Log("ESCENARIO: Ventana abierta ANTES de cerrar válvula. No hay efecto.");
-        }
+        if (windowHasBeenOpened) return;
+        windowHasBeenOpened = true;
+        Debug.Log("ESCENARIO: Ventana abierta.");
+        TryDefuseHazardIfReady();
     }
 
     public void TriggerBadConsequence()
     {
         Debug.Log("ESCENARIO: El primer timer terminó mal. ¡Iniciando contador MORTAL!");
         gameManager.IniciarContadorMortal();
+
     }
 
     public void TriggerGoodConsequence()
@@ -64,5 +70,7 @@ public class GasLeakScenarioManager : MonoBehaviour
         }
 
         gameManager.IniciarContadorSupervivencia(secondTimerDuration);
+        uiManager?.UpdateObjectiveTextAndFadeLater("¡Detuviste la fuga! Ve qué más puedes hacer y evacua el hogar.", 2.5f, 0.6f);
+
     }
 }

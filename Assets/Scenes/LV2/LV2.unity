@@ -3892,6 +3892,7 @@ MonoBehaviour:
   badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
   principalSuccessBadgeID: Ventilacion exitosa
   secondTimerDuration: 30
+  uiManager: {fileID: 21285084}
 --- !u!4 &496556222
 Transform:
   m_ObjectHideFlags: 0
