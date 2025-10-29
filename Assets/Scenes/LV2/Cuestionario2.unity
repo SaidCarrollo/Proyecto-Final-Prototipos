@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cuestionario: {fileID: 11400000, guid: 2d3e3e2654c28a6419dc2b8759ed26dd, type: 2}
-  resultadosGuardados: {fileID: 11400000, guid: e4fb90108aac98642953d62a53758fe3, type: 2}
+  resultadosGuardados: {fileID: 11400000, guid: a8ffa982191ce4c4c8923437486d0798, type: 2}
   textoPregunta: {fileID: 1116414948}
   grupoDeOpciones: {fileID: 1836158777}
   opcionRespuestaPrefab: {fileID: 4157264574080117968, guid: f170dbf85d3233e43bd92744ab28a26e, type: 3}
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 12c5cde8e64f2aa4d8616119839e25e7, type: 2}
-  lastPlayedLevel: {fileID: 0}
+  lastPlayedLevel: {fileID: 11400000, guid: c9eb5ef0fb527b549828c36d7621381c, type: 2}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}

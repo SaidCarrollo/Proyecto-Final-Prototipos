@@ -11,6 +11,7 @@ public class QuizManager : MonoBehaviour
     public CuestionarioSO cuestionario;
     [Header("Almacenamiento de Resultados")]
     public ResultadosDelQuizSO resultadosGuardados;
+    public bool esPostGame;
 
     [Header("UI - Elementos de la Pregunta")]
     public TextMeshProUGUI textoPregunta;
@@ -134,6 +135,8 @@ public class QuizManager : MonoBehaviour
         if (preguntaActualIndex >= cuestionario.preguntas.Length - 1)
         {
             resultadosGuardados.GuardarResultados();
+            PlayerPrefs.SetInt("LAST_QUIZ_MOMENT", esPostGame ? 1 : 0); // 0=PRE, 1=POST
+            PlayerPrefs.Save();
             alFinalizarQuiz.Invoke();
         }
         else

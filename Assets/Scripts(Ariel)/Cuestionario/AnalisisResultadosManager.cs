@@ -1,13 +1,10 @@
-// AnalisisResultadosManager.cs
+﻿// AnalisisResultadosManager.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class AnalisisResultadosManager : MonoBehaviour
 {
-    [Header("Datos")]
-    public ResultadosDelQuizSO resultadosDelQuiz; // El mismo Scriptable Object que us� el QuizManager
-
     [Header("UI")]
     public Transform contenedorResultados; // El objeto "Content" del ScrollView
     public GameObject resultadoUIPrefab;   // El prefab que creaste para mostrar un resultado
@@ -16,15 +13,44 @@ public class AnalisisResultadosManager : MonoBehaviour
     public Sprite iconoCorrecto;
     public Sprite iconoIncorrecto;
 
+    [Header("Selección dinámica")]
+    public LastPlayedLevelSO lastPlayed;   // ← arrástralo en el Inspector
+    public SurveyRegistrySO registry;      // ← arrástralo en el Inspector
+    public bool esPostGame;                // marca si es post o pre en ESTA escena
+
+    [Header("Datos")]
+    public ResultadosDelQuizSO resultadosDelQuiz; // si no lo setean manual, se resuelve
     void Start()
     {
+        // 1) Resolver el SO si no está asignado manualmente
+        if (resultadosDelQuiz == null && registry != null && lastPlayed != null && lastPlayed.lastLevel != null)
+        {
+            bool ultimoFuePost = PlayerPrefs.GetInt("LAST_QUIZ_MOMENT", 0) == 1; // 0=PRE, 1=POST
+            resultadosDelQuiz = registry.GetResultados(lastPlayed.lastLevel, ultimoFuePost);
+        }
+
         if (resultadosDelQuiz == null)
         {
-            Debug.LogError("No asignaste ResultadosDelQuizSO en el inspector.");
+            Debug.LogError("No se pudo resolver ResultadosDelQuizSO. Revisa registry/lastPlayed y que se haya seteado LAST_QUIZ_MOMENT desde el Quiz.");
             return;
         }
 
-        resultadosDelQuiz.CargarResultados(); // <- A�ade esto
+        // 2) Cargar el último archivo que coincida con prefijo + nivel + momento
+        string path = ResultadosFileHelper.GetUltimoArchivo(
+            resultadosDelQuiz.prefijo,
+            resultadosDelQuiz.nombreNivel,
+            resultadosDelQuiz.esPostGame
+        );
+        Debug.Log("Analisis: cargando archivo: " + path);
+
+        if (!string.IsNullOrEmpty(path))
+        {
+            resultadosDelQuiz.CargarResultadosDesdeArchivo(path); // ← LLAMADA SOBRE LA INSTANCIA
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró un archivo de resultados para este patrón.");
+        }
 
         if (resultadosDelQuiz.resultados.Count == 0)
         {
@@ -34,6 +60,7 @@ public class AnalisisResultadosManager : MonoBehaviour
 
         MostrarResultados();
     }
+
 
 
     void MostrarResultados()

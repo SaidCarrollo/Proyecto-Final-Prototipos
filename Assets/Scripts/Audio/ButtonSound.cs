@@ -18,6 +18,6 @@ public class ButtonSound : MonoBehaviour
     {
         // Antes: AudioManager.instance.ToggleMute();
         // Ahora: AudioManager.Instance.ToggleMute(); // <-- Se usa 'Instance' con mayúscula
-        AudioManager.Instance.PlaySFX(Click);
+        SoundManager.Instance.PlaySFX("Click");
     }
 }

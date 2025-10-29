@@ -1,48 +1,94 @@
-// ResultadosDelQuizSO.cs
-using System.Collections.Generic;
-using UnityEngine;
+// ResultadosDelQuizSO.cs (extracto con cambios mínimos)
+using System;
 using System.IO;
+using System.Linq;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Resultados del Quiz", menuName = "Cuestionario/Resultados del Quiz")]
 public class ResultadosDelQuizSO : ScriptableObject
 {
-    public List<ResultadoPregunta> resultados = new List<ResultadoPregunta>();
+    public System.Collections.Generic.List<ResultadoPregunta> resultados = new();
 
-    [System.Serializable]
-    public class ResultadosWrapper
-    {
-        public List<ResultadoPregunta> resultados;
-    }
+    [Header("Identidad de este cuestionario")]
+    public string nombreNivel = "Fuego en la cocina"; // setea en Inspector
+    public bool esPostGame = false;                    // setea en Inspector (PRE=false, POST=true)
+    public string prefijo = "Respuestas usuario";      // fijo o configurable
 
-    public void LimpiarResultados()
-    {
-        resultados.Clear();
-    }
+    [Serializable] public class ResultadosWrapper { public System.Collections.Generic.List<ResultadoPregunta> resultados; }
+
+    public void LimpiarResultados() => resultados.Clear();
 
     public void GuardarResultados()
     {
-        ResultadosWrapper wrapper = new ResultadosWrapper { resultados = this.resultados };
+        var wrapper = new ResultadosWrapper { resultados = this.resultados };
         string json = JsonUtility.ToJson(wrapper, true);
-        File.WriteAllText(GetRutaGuardado(), json);
+        File.WriteAllText(GetRutaGuardadoUnico(), json);
     }
 
     public void CargarResultados()
     {
-        string ruta = GetRutaGuardado();
-        if (File.Exists(ruta))
+        string path = GetUltimoArchivo();
+        if (string.IsNullOrEmpty(path) || !File.Exists(path))
         {
-            string json = File.ReadAllText(ruta);
-            ResultadosWrapper wrapper = JsonUtility.FromJson<ResultadosWrapper>(json);
-            resultados = wrapper.resultados;
+            Debug.LogWarning("Archivo de resultados no encontrado (último por patrón).");
+            resultados = new System.Collections.Generic.List<ResultadoPregunta>();
+            return;
         }
-        else
-        {
-            Debug.LogWarning("Archivo de resultados no encontrado.");
-        }
-    }
 
+        string json = File.ReadAllText(path);
+        var wrapper = JsonUtility.FromJson<ResultadosWrapper>(json);
+        resultados = wrapper?.resultados ?? new System.Collections.Generic.List<ResultadoPregunta>();
+    }
+    public void CargarResultadosDesdeArchivo(string rutaAbsoluta)
+    {
+        if (!File.Exists(rutaAbsoluta)) { Debug.LogWarning("No existe: " + rutaAbsoluta); return; }
+        string json = File.ReadAllText(rutaAbsoluta);
+        var wrapper = JsonUtility.FromJson<ResultadosWrapper>(json);
+        resultados = wrapper.resultados;
+    }
     string GetRutaGuardado()
     {
-        return Path.Combine(Application.persistentDataPath, "resultadosQuiz.json");
+        string momento = esPostGame ? "postgame" : "pregame";
+        string baseName = $"{prefijo} {momento} {nombreNivel}";
+
+        // contador por baseName (persistente en PlayerPrefs)
+        string key = $"RUN_COUNTER::{baseName}";
+        int run = PlayerPrefs.GetInt(key, 0) + 1;
+        PlayerPrefs.SetInt(key, run);
+        PlayerPrefs.Save();
+
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string fileName = $"{baseName}_{run}_{timestamp}.json";
+        return Path.Combine(Application.persistentDataPath, fileName);
+    }
+    string GetRutaGuardadoUnico()
+    {
+        string momento = esPostGame ? "postgame" : "pregame";
+        string baseName = $"{prefijo} {momento} {nombreNivel}";
+
+        // contador por baseName
+        string key = $"RUN_COUNTER::{baseName}";
+        int run = PlayerPrefs.GetInt(key, 0) + 1;
+        PlayerPrefs.SetInt(key, run);
+        PlayerPrefs.Save();
+
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string fileName = $"{baseName}_{run}_{timestamp}.json";
+        return Path.Combine(Application.persistentDataPath, fileName);
+    }
+    string GetUltimoArchivo()
+    {
+        string momento = esPostGame ? "postgame" : "pregame";
+        string baseName = $"{prefijo} {momento} {nombreNivel}_"; // ojo el guion bajo antes del contador
+        string dir = Application.persistentDataPath;
+
+        if (!Directory.Exists(dir)) return null;
+
+        var files = Directory.GetFiles(dir, "*.json")
+            .Where(p => Path.GetFileName(p).StartsWith(baseName, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(p => File.GetLastWriteTimeUtc(p))
+            .ToArray();
+
+        return files.FirstOrDefault();
     }
 }
