@@ -64,7 +64,8 @@ public class FirstPersonController : MonoBehaviour
     private bool windowInjuryOccurred = false;
     public bool HasEverRun => hasEverRun;
     public bool WindowInjuryOccurred => windowInjuryOccurred;
-
+    private bool hasTakenDamage = false;
+    public bool HasTakenDamage => hasTakenDamage;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

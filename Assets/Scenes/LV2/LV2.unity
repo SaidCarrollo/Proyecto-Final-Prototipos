@@ -1084,6 +1084,83 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.2035627, y: 3.1481895, z: 5.098466}
   m_Center: {x: -0.5259008, y: 0.030683218, z: -2.4571002}
+--- !u!1 &166559426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166559427}
+  - component: {fileID: 166559429}
+  - component: {fileID: 166559428}
+  m_Layer: 5
+  m_Name: Objetives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &166559427
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166559426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384335833}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &166559428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166559426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 1
+  m_VerticalFit: 0
+--- !u!114 &166559429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166559426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 40
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &170149503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7690006958111959401, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
@@ -2888,6 +2965,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367345596}
   m_CullTransparentMesh: 1
+--- !u!1 &384335832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384335833}
+  - component: {fileID: 384335834}
+  m_Layer: 5
+  m_Name: Checklist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &384335833
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384335832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 166559427}
+  m_Father: {fileID: 499652652}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -838, y: -153.00005}
+  m_SizeDelta: {x: 323.14, y: 309}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &384335834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384335832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa262f6b509f6e7439a637b93c2e32cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 166559427}
+  checklistTextPrefab: {fileID: 5186468022525333509, guid: 67c69d99fb28a2b4fadd320f0c825e84, type: 3}
+  badgeManager: {fileID: 11400000, guid: 4dc3a3f4df7528c44a1f42fc72b64f15, type: 2}
+  entries:
+  - badgeId: Abrir la ventana durante fuga de gas
+    listTextOverride: -Abre la ventana
+  - badgeId: "Cerrar la v\xE1lvula principal"
+    listTextOverride: -Cierra la la valvula del gas
+  - badgeId: "Evacuaci\xF3n del Hogar"
+    listTextOverride: -Evacua a las personas de la casa
+  pendingColor: {r: 1, g: 1, b: 1, a: 0.9}
+  doneColor: {r: 0.3, g: 0.85, b: 0.3, a: 1}
+  fadeDelay: 0.8
+  fadeDuration: 0.4
 --- !u!1 &390801993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3813299638893977187, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
@@ -4145,6 +4285,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 384335833}
   - {fileID: 31757549}
   - {fileID: 1112689462}
   - {fileID: 1215783195}

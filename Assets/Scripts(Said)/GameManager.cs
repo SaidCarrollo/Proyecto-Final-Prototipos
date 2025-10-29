@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string noRunBadgeId = "CalmaBajoPresion";
     [SerializeField] private bool awardWindowSafeBadgeOnWin = false;
     [SerializeField] private string windowSafeBadgeId = "DistanciaSegura";
-
+    [Header("Badge 'Sin Daño'")]
+    [SerializeField] private bool awardIdealExitBadgeOnWin = true;
+    [SerializeField] private string idealExitBadgeId = "Sin daños";
     public bool IsFireUncontrolled { get; private set; } = false;
 
     void Start()
@@ -179,6 +181,8 @@ public class GameManager : MonoBehaviour
 
             if (awardWindowSafeBadgeOnWin && !playerController.WindowInjuryOccurred)
                 badgeManager.UnlockBadge(windowSafeBadgeId);
+            if (awardIdealExitBadgeOnWin && !playerController.HasTakenDamage)
+                badgeManager.UnlockBadge(idealExitBadgeId);
         }
 
         // Desactivar input y liberar cursor para usar la UI
