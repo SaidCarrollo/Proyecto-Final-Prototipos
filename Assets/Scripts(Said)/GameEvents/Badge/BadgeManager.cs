@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [CreateAssetMenu(fileName = "BadgeManager", menuName = "Game/Badge Manager")]
 public class BadgeManager : ScriptableObject
@@ -10,6 +11,10 @@ public class BadgeManager : ScriptableObject
     private List<Badge> todosLosBadges = new List<Badge>();
 
     private Dictionary<string, Badge> badgesDict = new Dictionary<string, Badge>();
+    public event Action<string> OnBadgeUnlocked;
+
+    public bool TryGetBadge(string id, out Badge badge) 
+        => badgesDict.TryGetValue(id, out badge);
 
     private void OnEnable()
     {
@@ -54,6 +59,7 @@ public class BadgeManager : ScriptableObject
             {
                 Debug.LogWarning("Se intentó reproducir un sonido de badge, pero no se encontró una instancia de BadgeAudioPlayer en la escena.");
             }
+            OnBadgeUnlocked?.Invoke(badgeID);
         }
         else
         {
