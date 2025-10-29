@@ -7,7 +7,10 @@ public class Bootstrap : MonoBehaviour
     // Referencia a la escena del Menú Principal
     [SerializeField] private SceneDefinitionSO mainMenuScene;
     [SerializeField] private SceneLoadEventChannelSO sceneLoadChannel;
-
+    void Awake()
+    {
+        Application.targetFrameRate = 60; // o 120 si tu móvil lo soporta
+    }
     void Start()
     {
         // Instancia los sistemas
