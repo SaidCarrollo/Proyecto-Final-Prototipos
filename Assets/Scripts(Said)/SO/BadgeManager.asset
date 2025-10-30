@@ -36,7 +36,7 @@ MonoBehaviour:
     Icono: {fileID: 21300000, guid: 9222d51f143e8374bacd1f5fe68aa67f, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Salida segura
     Descripcion: Saliste por la puerta principal.
     Icono: {fileID: 21300000, guid: b8476643b9d3e0641a200a23a0ab342a, type: 3}
@@ -101,7 +101,7 @@ MonoBehaviour:
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: "Descontr\xF3l"
+  - ID: Descontrol
     Descripcion: Dejaste que el fuego se descontrolara.
     Icono: {fileID: 21300000, guid: 9c4a0bd34528d6f4a936d35bf1b1e7a9, type: 3}
     Tipo: 1
@@ -113,7 +113,7 @@ MonoBehaviour:
     Icono: {fileID: 21300000, guid: 0877fae464382604b9eddec583e33352, type: 3}
     Tipo: 0
     Prioridad: 0
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Abrir ventana despues de cerrarla
     Descripcion: "Abrir la ventana despu\xE9s de cerrarla no tiene sentido, has perdido
       tiempo crucial."

@@ -80,16 +80,22 @@ MonoBehaviour:
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: DistanciaSegura
     Descripcion: Mantuviste tu distancia de las ventanas
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 0
+    Desbloqueado: 1
   - ID: "Sin da\xF1os"
     Descripcion: "No te hiciste da\xF1o durante el temblor"
     Icono: {fileID: 0}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 0
+    Desbloqueado: 1
+  - ID: Resguardado
+    Descripcion: Te resguardaste en una zona segura
+    Icono: {fileID: 0}
+    Tipo: 0
+    Prioridad: 1
+    Desbloqueado: 1

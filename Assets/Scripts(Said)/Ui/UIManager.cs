@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -29,9 +30,23 @@ public class UIManager : MonoBehaviour
     [Tooltip("Tiempo entre letras del objetivo")]
     [SerializeField] private float typingSpeed = 0.05f;
 
+    [Header("Window Injury Overlay")]
+    [Tooltip("Imagen pantalla completa con el sprite de 'vidrio roto / corte'.")]
+    [SerializeField] private Image windowInjuryOverlay;
+
+    [Tooltip("Duración del fade in del overlay de herida.")]
+    [SerializeField] private float overlayFadeIn = 0.15f;
+
+    [Tooltip("Cuánto tiempo permanece visible el overlay al máximo.")]
+    [SerializeField] private float overlayHold = 0.4f;
+
+    [Tooltip("Duración del fade out del overlay.")]
+    [SerializeField] private float overlayFadeOut = 0.4f;
+
+
     private Coroutine fadeCoroutine;
     private Tween typingTween;
-
+    private Coroutine overlayCoroutine;
     void Start()
     {
         if (infoText != null)
@@ -127,5 +142,40 @@ public class UIManager : MonoBehaviour
         UpdateObjectiveText(message);
         yield return new WaitForSeconds(holdSeconds);
         FadeObjectiveOut(fadeOut);
+    }
+    public void ShowWindowInjuryOverlay()
+    {
+        if (windowInjuryOverlay == null)
+        {
+            Debug.LogWarning("UIManager.ShowWindowInjuryOverlay llamado pero no hay overlay asignado.");
+            return;
+        }
+
+        if (overlayCoroutine != null)
+        {
+            StopCoroutine(overlayCoroutine);
+        }
+
+        overlayCoroutine = StartCoroutine(PlayWindowInjuryOverlay());
+    }
+
+    private IEnumerator PlayWindowInjuryOverlay()
+    {
+        // aseguramos alpha inicial 0
+        windowInjuryOverlay.DOKill();
+        Color c0 = windowInjuryOverlay.color;
+        c0.a = 0f;
+        windowInjuryOverlay.color = c0;
+
+        // fade in rápido
+        yield return windowInjuryOverlay.DOFade(1f, overlayFadeIn).WaitForCompletion();
+
+        // mantener visible un ratito
+        yield return new WaitForSeconds(overlayHold);
+
+        // fade out
+        yield return windowInjuryOverlay.DOFade(0f, overlayFadeOut).WaitForCompletion();
+
+        overlayCoroutine = null;
     }
 }

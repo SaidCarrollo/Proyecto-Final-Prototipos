@@ -4,9 +4,9 @@ using UnityEngine;
 public class WindowHazardZone : MonoBehaviour
 {
     [Header("Refs (opcional auto-find)")]
-    [SerializeField] private UIManager uiManager;          // Para mostrar el mensaje
+    [SerializeField] private UIManager uiManager;          // Para mostrar mensaje y overlay
     [SerializeField] private BadgeManager badgeManager;    // Para desbloquear badge
-    [SerializeField] private string hazardBadgeId = "Cerca de la ventana"; // Crea este ID en tu BadgeManager
+    [SerializeField] private string hazardBadgeId = "Cerca de la ventana"; // Badge incorrecto del vidrio
 
     [Header("Efectos")]
     [Tooltip("Daño que recibe el jugador al herirse.")]
@@ -22,11 +22,9 @@ public class WindowHazardZone : MonoBehaviour
 
     private void Reset()
     {
-        // Asegura que sea trigger
         var c = GetComponent<Collider>();
         c.isTrigger = true;
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,29 +33,36 @@ public class WindowHazardZone : MonoBehaviour
         var fpc = other.GetComponentInParent<FirstPersonController>();
         if (fpc != null)
         {
-            fpc.MarkWindowInjury(); // <-- registra que la herida provino de la ventana
-            fpc.TakeDamage(1);      // tu daño actual (mantén tu feedback/viñeta/badge "auch")
+            // Marca específicamente que fue por la ventana
+            fpc.MarkWindowInjury();
+
+            // Aplica daño al sistema de vida + feedback de daño general
+            fpc.TakeDamage(damageOnHit);
+
+            // Aplica la lesión permanente: más lento y sin correr
+            fpc.ApplyPermanentInjury("Me he hecho daño, ya no puedo correr", injuredWalkMultiplier);
         }
-        if (fpc == null) return;
+        else
+        {
+            return;
+        }
 
-        // 1) Daño (esto ya maneja vignette/vida y podría disparar un badge genérico si lo configuras así)
-        fpc.TakeDamage(damageOnHit);  // Usa el sistema de vida que ya tienes. :contentReference[oaicite:0]{index=0}
-
-        // 2) Aplicar lesión permanente (más lento y sin correr) + mensaje claro
-        fpc.ApplyPermanentInjury("Me he hecho daño, ya no puedo correr", injuredWalkMultiplier);
-
-        // 3) Desbloquear badge específico de este hazard (incorrecto)
+        // Desbloquear badge específico del peligro ventana
         if (badgeManager != null && !string.IsNullOrEmpty(hazardBadgeId))
         {
-            badgeManager.UnlockBadge(hazardBadgeId); // Usa tu SO de badges. :contentReference[oaicite:1]{index=1}
+            badgeManager.UnlockBadge(hazardBadgeId);
         }
 
-        // 4) (Opcional) Reforzar mensaje en UI (sobre-escribe cualquier texto anterior)
+        // Mensaje en pantalla (refuerzo). Esto ya lo hace ApplyPermanentInjury internamente,
+        // pero lo dejamos por si quieres sobreescribir el texto aquí.
         if (uiManager != null)
         {
-            uiManager.OnMessageEventRaised("Me he hecho daño, ya no puedo correr"); // Muestra mensaje en pantalla. :contentReference[oaicite:2]{index=2}
+            uiManager.OnMessageEventRaised("Me he hecho daño, ya no puedo correr");
+
+            uiManager.ShowWindowInjuryOverlay();
         }
 
         _triggered = true;
     }
 }
+
