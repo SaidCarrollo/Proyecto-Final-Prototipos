@@ -4280,7 +4280,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   uiManager: {fileID: 21285084}
   autoStart: 1
-  autoDuration: 20
+  autoDuration: 66.7
   posAmplitude: 0.06
   posFrequency: 18
   rotAmplitudeDeg: 1.5
@@ -7011,9 +7011,9 @@ MonoBehaviour:
   OnTimerExpiredBadOutcome:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 496556221}
-        m_TargetAssemblyTypeName: GasLeakScenarioManager, Assembly-CSharp
-        m_MethodName: TriggerBadConsequence
+      - m_Target: {fileID: 846614570}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandlePlayerSurvival
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
