@@ -268,6 +268,10 @@ MonoBehaviour:
   displayTime: 3
   fadeOutTime: 0.5
   typingSpeed: 0.05
+  windowInjuryOverlay: {fileID: 0}
+  overlayFadeIn: 0.15
+  overlayHold: 0.4
+  overlayFadeOut: 0.4
 --- !u!4 &21285085
 Transform:
   m_ObjectHideFlags: 0
@@ -3081,6 +3085,15 @@ MonoBehaviour:
   doneColor: {r: 0.3, g: 0.85, b: 0.3, a: 1}
   fadeDelay: 0.8
   fadeDuration: 0.4
+  hasSecondPhase: 0
+  secondPhaseEntries:
+  - badgeId: Llamada de emergencia correcta
+    listTextOverride: -Llama a emergencias
+  - badgeId: Abrir la ventana durante fuga de gas esparcida
+    listTextOverride: -Abre la Ventana
+  failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  failFadeDelay: 0.35
+  failFadeDuration: 0.25
 --- !u!1 &390801993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3813299638893977187, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
@@ -7279,6 +7292,7 @@ MonoBehaviour:
   windowSafeBadgeId: DistanciaSegura
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
+  objectiveChecklistUI: {fileID: 0}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7446,6 +7460,7 @@ MonoBehaviour:
           m_StringArgument: Fuga de Gas Reducida
           m_BoolArgument: 0
         m_CallState: 2
+  objectiveChecklistUI: {fileID: 0}
   fastForwardToGoodOnDefuse: 1
 --- !u!1 &860128185
 GameObject:

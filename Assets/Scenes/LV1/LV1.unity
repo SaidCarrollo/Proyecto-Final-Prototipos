@@ -338,6 +338,10 @@ MonoBehaviour:
   displayTime: 3
   fadeOutTime: 0.5
   typingSpeed: 0.05
+  windowInjuryOverlay: {fileID: 0}
+  overlayFadeIn: 0.15
+  overlayHold: 0.4
+  overlayFadeOut: 0.4
 --- !u!4 &21285085
 Transform:
   m_ObjectHideFlags: 0
@@ -9704,6 +9708,7 @@ MonoBehaviour:
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   uiTimerController: {fileID: 21285087}
+  objectiveChecklistUI: {fileID: 2100503556}
   heatWaveController: {fileID: 381737452}
 --- !u!114 &846614570
 MonoBehaviour:
@@ -9742,6 +9747,7 @@ MonoBehaviour:
   windowSafeBadgeId: DistanciaSegura
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
+  objectiveChecklistUI: {fileID: 2100503556}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22227,6 +22233,13 @@ MonoBehaviour:
   doneColor: {r: 0.3, g: 0.85, b: 0.3, a: 1}
   fadeDelay: 0.8
   fadeDuration: 0.4
+  hasSecondPhase: 1
+  secondPhaseEntries:
+  - badgeId: Llamada de emergencia correcta
+    listTextOverride: -Llama a emergencias
+  failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  failFadeDelay: 0.35
+  failFadeDuration: 0.25
 --- !u!1 &2109736870 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7742780737561719692, guid: 658ce88602ff84646bbcf1da60841e34, type: 3}

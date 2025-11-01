@@ -1230,6 +1230,7 @@ MonoBehaviour:
   damageOnHit: 1
   injuredWalkMultiplier: 0.6
   oneShot: 1
+  objectiveChecklistUI: {fileID: 1922300098}
 --- !u!65 &103352061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2058,6 +2059,7 @@ MonoBehaviour:
   damageOnHit: 1
   injuredWalkMultiplier: 0.6
   oneShot: 1
+  objectiveChecklistUI: {fileID: 1922300098}
 --- !u!65 &218823053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7198,6 +7200,7 @@ MonoBehaviour:
   windowSafeBadgeId: DistanciaSegura
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
+  objectiveChecklistUI: {fileID: 0}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11439,7 +11442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1da6a812d61ee4440926911f4d1e00be, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1da6a812d61ee4440926911f4d1e00be, type: 3}
       propertyPath: m_IsActive
@@ -13678,6 +13681,15 @@ MonoBehaviour:
   doneColor: {r: 0.3, g: 0.85, b: 0.3, a: 1}
   fadeDelay: 0.8
   fadeDuration: 0.4
+  hasSecondPhase: 1
+  secondPhaseEntries:
+  - badgeId: Resguardado
+    listTextOverride: -Agachate en una zona segura, como una mesa o cama
+  - badgeId: CalmaBajoPresion
+    listTextOverride: -Sal de la casa
+  failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  failFadeDelay: 0.35
+  failFadeDuration: 0.25
 --- !u!1 &1925242288
 GameObject:
   m_ObjectHideFlags: 0
@@ -14433,7 +14445,7 @@ GameObject:
   - component: {fileID: 2015560678}
   - component: {fileID: 2015560677}
   - component: {fileID: 2015560676}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Hornilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15831,7 +15843,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a02d99620dcca0247a4759f7f19ca92d, type: 2}
     - target: {fileID: 3687740846039939573, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3714903067965596594, guid: bc28def2c6e876b4ab4f80c688b84e65, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -16583,6 +16595,7 @@ MonoBehaviour:
   damageOnHit: 1
   injuredWalkMultiplier: 0.6
   oneShot: 1
+  objectiveChecklistUI: {fileID: 1922300098}
 --- !u!65 &2125772190
 BoxCollider:
   m_ObjectHideFlags: 0

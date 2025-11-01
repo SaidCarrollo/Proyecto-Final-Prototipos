@@ -21,7 +21,8 @@ public class FireTimer : MonoBehaviour
     [Tooltip("Evento para activar la viñeta de peligro.")]
     [SerializeField] private VignetteEvent vignetteEvent;
     [SerializeField] private UITimerController uiTimerController;
-
+    //[Header("Checklist opcional")]
+    //[SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
     [Header("Efecto visual de calor/incendio")]
     [Tooltip("Controlador del efecto de calor (HeatWaveController) que distorsiona la cámara.")]
     [SerializeField] private HeatWaveController heatWaveController;
@@ -62,6 +63,8 @@ public class FireTimer : MonoBehaviour
         {
             Debug.LogWarning("FireTimer: No hay HeatWaveController asignado. No se activó el efecto de calor.");
         }
+        //if (objectiveChecklistUI != null)
+        //    objectiveChecklistUI.ForceFailPendingsAndGoToSecondPhase();
         if (onUncontrolledFireEvent != null)
         {
             onUncontrolledFireEvent.Raise(); 

@@ -19,7 +19,8 @@ public class HazardTimer : MonoBehaviour
     [Tooltip("Evento que se dispara INMEDIATAMENTE al desactivar el peligro (ej. para dar un badge).")]
     public UnityEvent OnHazardDefused;
 
-
+    //[Header("Checklist opcional")]
+    //[SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
     private bool isDefused = false;
     private Coroutine timerCoroutine;
     [SerializeField] private bool fastForwardToGoodOnDefuse = true; 
@@ -59,6 +60,7 @@ public class HazardTimer : MonoBehaviour
             Debug.Log("El tiempo ha terminado y el peligro no fue neutralizado. ¡Mal resultado!");
             OnTimerExpiredBadOutcome?.Invoke();
         }
+      
     }
 
     public void DefuseHazard()

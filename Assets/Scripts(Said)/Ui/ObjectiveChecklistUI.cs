@@ -1,4 +1,4 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System.Collections;
@@ -11,7 +11,7 @@ public class ChecklistEntry
     public string badgeId;
 
     [TextArea]
-    [Tooltip("C髆o quieres que se muestre en la checklist. Si lo dejas vac韔, usa la descripci髇 del badge y, si no hay, el ID.")]
+    [Tooltip("C贸mo quieres que se muestre en la checklist. Si lo dejas vac铆o, usa la descripci贸n del badge y, si no hay, el ID.")]
     public string listTextOverride;
 }
 
@@ -31,6 +31,20 @@ public class ObjectiveChecklistUI : MonoBehaviour
     [SerializeField] private Color doneColor = new Color(0.30f, 0.85f, 0.30f, 1f);
     [SerializeField] private float fadeDelay = 0.8f;
     [SerializeField] private float fadeDuration = 0.4f;
+
+    // 猬囷笍 NUEVO: configuraci贸n para cuando pasamos al segundo contador
+    [Header("Segunda fase / reemplazo")]
+    [Tooltip("Si lo marcas, cuando el GameManager te lo pida puedes pasar a otra lista.")]
+    [SerializeField] private bool hasSecondPhase = false;
+
+    [Tooltip("Las misiones que quieres que aparezcan cuando ya est谩s en el segundo contador (p. ej. Evac煤a, No abras la puerta, etc.)")]
+    [SerializeField] private List<ChecklistEntry> secondPhaseEntries = new();
+
+    [Tooltip("Color del tachado cuando la misi贸n se perdi贸 / no se hizo a tiempo.")]
+    [SerializeField] private Color failedColor = new Color(1f, 0.25f, 0.25f, 1f);
+
+    [SerializeField] private float failFadeDelay = 0.35f;
+    [SerializeField] private float failFadeDuration = 0.25f;
 
     // Mapa: badgeId -> TMP
     private readonly Dictionary<string, TextMeshProUGUI> map = new();
@@ -57,10 +71,6 @@ public class ObjectiveChecklistUI : MonoBehaviour
         BuildList();
     }
 
-    /// <summary>
-    /// Si quieres reconstruir din醡icamente (p. ej., otro tramo del nivel),
-    /// llama esto con nuevas entradas.
-    /// </summary>
     public void RebuildWithEntries(List<ChecklistEntry> newEntries)
     {
         entries = newEntries;
@@ -74,19 +84,17 @@ public class ObjectiveChecklistUI : MonoBehaviour
         foreach (Transform child in container) Destroy(child.gameObject);
         map.Clear();
 
-        // Construye cada fila seg鷑 el orden de 'entries'
         foreach (var e in entries)
         {
             if (string.IsNullOrWhiteSpace(e.badgeId)) continue;
 
-            // Intenta leer el Badge para usar su Descripcion como fallback
             string displayText = e.listTextOverride;
             if (string.IsNullOrWhiteSpace(displayText))
             {
                 if (badgeManager.TryGetBadge(e.badgeId, out var badge) && !string.IsNullOrWhiteSpace(badge.Descripcion))
                     displayText = badge.Descripcion;
                 else
-                    displayText = e.badgeId; // 鷏timo fallback: el ID
+                    displayText = e.badgeId;
             }
 
             var go = Instantiate(checklistTextPrefab, container);
@@ -98,12 +106,15 @@ public class ObjectiveChecklistUI : MonoBehaviour
 
             map[e.badgeId] = tmp;
 
-            // Si ya estaba desbloqueado antes de crear la UI
             if (badgeManager.TryGetBadge(e.badgeId, out var b) && b.Desbloqueado)
                 StartCoroutine(MarkDone(tmp));
         }
     }
-
+    public void ForceFailPendingsAndGoToSecondPhase()
+    {
+        if (!hasSecondPhase) return;
+        StartCoroutine(FailPendingsThenSwap());
+    }
     private void HandleBadgeUnlocked(string badgeID)
     {
         if (!map.TryGetValue(badgeID, out var tmp)) return;
@@ -122,5 +133,34 @@ public class ObjectiveChecklistUI : MonoBehaviour
         yield return tmp.DOFade(0f, fadeDuration).SetUpdate(true).WaitForCompletion();
 
         Destroy(tmp.gameObject);                                   // sale de la lista
+    }
+
+    private IEnumerator FailPendingsThenSwap()
+    {
+        // 1) poner en rojo y tachar lo NO desbloqueado
+        foreach (var kvp in map)
+        {
+            var badgeId = kvp.Key;
+            var tmp = kvp.Value;
+            if (tmp == null) continue;
+
+            bool isUnlocked = badgeManager.TryGetBadge(badgeId, out var b) && b.Desbloqueado;
+            if (!isUnlocked)
+            {
+                tmp.DOKill();
+                tmp.fontStyle |= FontStyles.Strikethrough;
+                tmp.DOColor(failedColor, 0.2f).SetUpdate(true);
+            }
+        }
+
+        // 2) espera cortita para que el jugador vea el rojo
+        yield return new WaitForSecondsRealtime(failFadeDelay);
+
+        foreach (Transform child in container)
+            Destroy(child.gameObject);
+        map.Clear();
+
+        entries = secondPhaseEntries;
+        BuildList();          // esto instancia en el mismo 'container' de arriba
     }
 }

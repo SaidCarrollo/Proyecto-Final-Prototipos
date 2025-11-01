@@ -17,7 +17,8 @@ public class WindowHazardZone : MonoBehaviour
 
     [Tooltip("Si es true, sólo se aplica una vez por partida.")]
     [SerializeField] private bool oneShot = true;
-
+    [Header("Checklist opcional")]
+    [SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
     private bool _triggered;
 
     private void Reset()
@@ -63,6 +64,8 @@ public class WindowHazardZone : MonoBehaviour
         }
 
         _triggered = true;
+        if (objectiveChecklistUI != null)
+            objectiveChecklistUI.ForceFailPendingsAndGoToSecondPhase();
     }
 }
 

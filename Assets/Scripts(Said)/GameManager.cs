@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool awardIdealExitBadgeOnWin = true;
     [SerializeField] private string idealExitBadgeId = "Sin daños";
     public bool IsFireUncontrolled { get; private set; } = false;
-
+    [Header("UI Secundarias")]
+    [SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
     void Start()
     {
         if (rememberLevelOnAwake && lastPlayedLevel != null && thisLevel != null)
@@ -88,7 +89,10 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Contador mortal iniciado ({tiempoParaMorir}s).");
         uiTimerController?.StartMortalTimer(tiempoParaMorir);
         messageEvent?.Raise("¡El tiempo se agota!");
-
+        if (objectiveChecklistUI != null)
+        {
+            objectiveChecklistUI.ForceFailPendingsAndGoToSecondPhase();
+        }
         if (deathCoroutine == null)
             deathCoroutine = StartCoroutine(ContadorParaMuerte());
     }
