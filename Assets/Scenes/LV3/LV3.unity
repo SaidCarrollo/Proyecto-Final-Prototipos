@@ -16379,6 +16379,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Movilcontrols (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6084755009705530454, guid: 3f64597c7500e6e44acea65c2d47b8e3, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 461168133}
     - target: {fileID: 6516658577848922395, guid: 3f64597c7500e6e44acea65c2d47b8e3, type: 3}
       propertyPath: m_fontColor.a
       value: 0

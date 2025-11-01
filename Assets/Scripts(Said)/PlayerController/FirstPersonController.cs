@@ -30,19 +30,14 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private InputActionReference crouchAction;
 
     [Header("Health System")]
-    [Tooltip("Activa para que el jugador pueda recibir daño y morir.")]
     [SerializeField] private bool healthSystemEnabled = true;
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
     [SerializeField] private GameManager gameManager;
 
-    // --- NUEVAS REFERENCIAS A MANAGERS ---
     [Header("System References")]
-    [Tooltip("Referencia al UIManager para mostrar mensajes en pantalla.")]
     [SerializeField] private UIManager uiManager;
-    [Tooltip("Referencia al BadgeManager para desbloquear logros/errores.")]
     [SerializeField] private BadgeManager badgeManager;
-    [Tooltip("Referencia al VignetteController para efectos visuales de daño.")]
     [SerializeField] private VignetteController vignetteController;
 
     private Rigidbody rb;
@@ -52,18 +47,32 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 currentMovementInput;
     private bool isRunning;
     private bool isInputEnabled = true;
+
     [Header("Injury Cojo")]
     [SerializeField] private float injuredSpeedMultiplier = 0.6f;
     private bool isInjured = false;
     private bool canRun = true;
     private float baseWalkSpeed, baseRunSpeed;
-    public bool IsRunning => isRunning;
-    public bool IsCrouching => isCrouching;
 
     private bool hasEverRun = false;
     private bool windowInjuryOccurred = false;
+
+    public bool IsRunning => isRunning;
+    public bool IsCrouching => isCrouching;
     public bool HasEverRun => hasEverRun;
     public bool WindowInjuryOccurred => windowInjuryOccurred;
+
+    // ========= NUEVO: entrada de look externa (zona táctil) =========
+    /// <summary>
+    /// Llamar esto desde una zona de look táctil, no desde Update.
+    /// Suma al look normal.
+    /// </summary>
+    public void AddLookInput(Vector2 lookDelta)
+    {
+        if (!isInputEnabled) return;
+        ApplyLook(lookDelta);
+    }
+    // ================================================================
 
     void Awake()
     {
@@ -73,24 +82,11 @@ public class FirstPersonController : MonoBehaviour
         {
             Debug.LogError("No se encontró un CapsuleCollider en el jugador.");
         }
+
         if (gameManager == null)
         {
-            if (gameManager == null)
-            {
-                Debug.LogError("No se encontró el GameManager en la escena. Es necesario para manejar la muerte del jugador.");
-            }
+            Debug.LogError("No se encontró el GameManager en la escena. Es necesario para manejar la muerte del jugador.");
         }
-
-        //// --- BÚSQUEDA AUTOMÁTICA DE REFERENCIAS (OPCIONAL PERO RECOMENDADO) ---
-        //if (uiManager == null)
-        //{
-        //    uiManager = FindObjectOfType<UIManager>();
-        //}
-        //if (vignetteController == null)
-        //{
-        //    vignetteController = FindObjectOfType<VignetteController>();
-        //}
-        //// BadgeManager es un ScriptableObject, usualmente se asigna manualmente.
 
         LockCursor();
     }
@@ -124,25 +120,25 @@ public class FirstPersonController : MonoBehaviour
 
     void OnDisable()
     {
-        moveAction.action.Disable();
-        lookAction.action.Disable();
-        jumpAction.action.Disable();
-        runAction.action.Disable();
-        crouchAction.action.Disable();
-
         moveAction.action.performed -= OnMovement;
         moveAction.action.canceled -= OnMovement;
         jumpAction.action.performed -= OnJump;
         runAction.action.performed -= OnRun;
         runAction.action.canceled -= OnRun;
         crouchAction.action.performed -= OnCrouch;
+
+        moveAction.action.Disable();
+        lookAction.action.Disable();
+        jumpAction.action.Disable();
+        runAction.action.Disable();
+        crouchAction.action.Disable();
     }
 
     void Update()
     {
         if (isInputEnabled)
         {
-            HandleMouseLook();
+            HandleMouseLook();   // ← sigue leyendo de la acción normal
         }
     }
 
@@ -178,44 +174,17 @@ public class FirstPersonController : MonoBehaviour
         currentHealth -= damage;
         Debug.Log($"El jugador recibió {damage} de daño. Vida restante: {currentHealth}");
 
-        // --- ¡AQUÍ ESTÁ LA NUEVA LÓGICA! ---
-
-        // 1. Mostrar mensaje "aunch" en la UI
         if (uiManager != null)
-        {
             uiManager.OnMessageEventRaised("aunch");
-        }
-        else
-        {
-            Debug.LogWarning("Referencia a UIManager no asignada en FirstPersonController.");
-        }
 
-        // 2. Activar viñeta roja
         if (vignetteController != null)
-        {
-            // Parámetros: Color, Intensidad (0 a 1), Duración del efecto antes de desvanecerse
             vignetteController.TriggerVignette(Color.red, 0.4f, 0.5f);
-        }
-        else
-        {
-            Debug.LogWarning("Referencia a VignetteController no asignada en FirstPersonController.");
-        }
 
-        // 3. Desbloquear un badge de tipo "Incorrecto"
         if (badgeManager != null)
-        {
-            // IMPORTANTE: Debes crear un badge con este ID en tu ScriptableObject BadgeManager
             badgeManager.UnlockBadge("auch");
-        }
-        else
-        {
-            Debug.LogWarning("Referencia a BadgeManager no asignada en FirstPersonController.");
-        }
-
 
         if (currentHealth <= 0)
         {
-            Debug.Log("El jugador se ha quedado sin vida.");
             if (gameManager != null)
             {
                 gameManager.HandlePlayerDeath();
@@ -225,7 +194,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void LockCursor()
     {
-        if (lockCursor)
+        if (lockCursor && Mouse.current != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -264,9 +233,20 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    // ====== AQUÍ ES DONDE LEEMOS LA ACCIÓN NORMAL DE LOOK ======
     private void HandleMouseLook()
     {
         Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
+        if (lookDelta.sqrMagnitude < 0.0001f)
+            return;
+
+        ApplyLook(lookDelta);
+    }
+
+    // ====== ESTA ES LA LÓGICA REAL DE MIRAR (reutilizable) ======
+    private void ApplyLook(Vector2 lookDelta)
+    {
+        // igual que antes
         float mouseX = lookDelta.x * mouseSensitivity;
         float mouseY = lookDelta.y * mouseSensitivity;
 
@@ -276,6 +256,7 @@ public class FirstPersonController : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
+    // ============================================================
 
     private void HandleMovement()
     {
@@ -318,6 +299,7 @@ public class FirstPersonController : MonoBehaviour
             crouchAction.action.Enable();
         }
     }
+
     public void ApplyPermanentInjury(string uiMessageOverride, float slowMultiplier)
     {
         if (isInjured) return;
@@ -325,25 +307,21 @@ public class FirstPersonController : MonoBehaviour
         isInjured = true;
         canRun = false;
 
-        // Reduce caminar y equipara el correr al caminar (correr ya no acelera)
         injuredSpeedMultiplier = Mathf.Clamp(slowMultiplier, 0.1f, 1f);
         walkSpeed = Mathf.Max(0.1f, baseWalkSpeed * injuredSpeedMultiplier);
         runSpeed = walkSpeed;
 
-        // Cortar carrera si estaba corriendo
         isRunning = false;
-
-        // Frenar un poco el XZ para que se note
         rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y, rb.linearVelocity.z * 0.5f);
 
-        // Mensaje claro en UI
         if (!string.IsNullOrEmpty(uiMessageOverride) && uiManager != null)
         {
-            uiManager.OnMessageEventRaised(uiMessageOverride); // Muestra en pantalla. :contentReference[oaicite:6]{index=6}
+            uiManager.OnMessageEventRaised(uiMessageOverride);
         }
         var tilt = GetComponentInChildren<CameraInjuryTilt>();
         if (tilt != null) tilt.EnableInjuryTilt(true);
     }
+
     public void MarkWindowInjury()
     {
         windowInjuryOccurred = true;
