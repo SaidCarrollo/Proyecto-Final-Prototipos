@@ -1444,7 +1444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 1122.6375, y: 630.6173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &212422746
@@ -3941,10 +3941,12 @@ MonoBehaviour:
   crouchHeight: 1
   standingHeight: 2
   mouseSensitivity: 0.1
+  stickSensitivity: 180
   cameraTransform: {fileID: 330585546}
   lockCursor: 1
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lookStickAction: {fileID: -3830771466152589761, guid: 12883daad516ea54990afffc7461211e, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   runAction: {fileID: -8571115817177387650, guid: 12883daad516ea54990afffc7461211e, type: 3}
   crouchAction: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -8314,7 +8316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
   m_SizeDelta: {x: -288.3058, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &986844036
@@ -9413,7 +9415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.6987305, y: 10.172302}
+  m_AnchoredPosition: {x: 2.6987305, y: 10.172241}
   m_SizeDelta: {x: -194.2804, y: -110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1147092151

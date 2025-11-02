@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
 public class FirstPersonController : MonoBehaviour
@@ -18,13 +19,17 @@ public class FirstPersonController : MonoBehaviour
     private bool isCrouching = false;
 
     [Header("Look Settings")]
+    [Tooltip("Sensibilidad para mouse / pointer (PC)")]
     [SerializeField] private float mouseSensitivity = 100f;
+    [Tooltip("Sensibilidad para el segundo joystick (móvil)")]
+    [SerializeField] private float stickSensitivity = 180f;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private bool lockCursor = true;
 
     [Header("Input")]
     [SerializeField] private InputActionReference moveAction;
-    [SerializeField] private InputActionReference lookAction;
+    [SerializeField] private InputActionReference lookAction;       // PC / mouse / pointer
+    [SerializeField] private InputActionReference lookStickAction;  // NUEVO: joystick derecho móvil
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference runAction;
     [SerializeField] private InputActionReference crouchAction;
@@ -62,17 +67,13 @@ public class FirstPersonController : MonoBehaviour
     public bool HasEverRun => hasEverRun;
     public bool WindowInjuryOccurred => windowInjuryOccurred;
 
-    // ========= NUEVO: entrada de look externa (zona táctil) =========
-    /// <summary>
-    /// Llamar esto desde una zona de look táctil, no desde Update.
-    /// Suma al look normal.
-    /// </summary>
+    // ====== entrada externa (si más adelante la quieres usar) ======
     public void AddLookInput(Vector2 lookDelta)
     {
         if (!isInputEnabled) return;
+        // este método espera el delta YA escalado
         ApplyLook(lookDelta);
     }
-    // ================================================================
 
     void Awake()
     {
@@ -106,6 +107,7 @@ public class FirstPersonController : MonoBehaviour
     {
         moveAction.action.Enable();
         lookAction.action.Enable();
+        if (lookStickAction != null) lookStickAction.action.Enable();
         jumpAction.action.Enable();
         runAction.action.Enable();
         crouchAction.action.Enable();
@@ -129,6 +131,7 @@ public class FirstPersonController : MonoBehaviour
 
         moveAction.action.Disable();
         lookAction.action.Disable();
+        if (lookStickAction != null) lookStickAction.action.Disable();
         jumpAction.action.Disable();
         runAction.action.Disable();
         crouchAction.action.Disable();
@@ -136,9 +139,40 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        if (isInputEnabled)
+        //if (!isInputEnabled) return;
+
+        //// 1) Look de PC / mouse / pointer
+        //Vector2 finalLook = Vector2.zero;
+        //if (lookAction != null)
+        //{
+        //    // pointer/mouse suele venir en "pixels por frame", por eso usamos Time.deltaTime
+        //    Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
+        //    finalLook += lookDelta * mouseSensitivity * Time.deltaTime;
+        //}
+
+        //// 2) Look de segundo joystick (móvil)
+        //if (lookStickAction != null)
+        //{
+        //    // el stick viene en -1..1, así que lo escalamos a grados/segundo
+        //    Vector2 stickDelta = lookStickAction.action.ReadValue<Vector2>();
+        //    finalLook += stickDelta * stickSensitivity * Time.deltaTime;
+        //}
+
+        //// 3) Aplicar si hay algo
+        //if (finalLook.sqrMagnitude > 0.0001f)
+        //{
+        //    ApplyLook(finalLook);
+        //}
+        if (!isInputEnabled) return;
+
+        // si hay una UI debajo del dedo/click, no gires
+        if (IsPointerOverUI())
+            return;
+
+        Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
+        if (lookDelta.sqrMagnitude > 0.0001f)
         {
-            HandleMouseLook();   // ← sigue leyendo de la acción normal
+            ApplyLook(lookDelta * mouseSensitivity * Time.deltaTime);
         }
     }
 
@@ -194,6 +228,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void LockCursor()
     {
+        // solo bloquee si hay mouse (en móvil no)
         if (lockCursor && Mouse.current != null)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -233,36 +268,24 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    // ====== AQUÍ ES DONDE LEEMOS LA ACCIÓN NORMAL DE LOOK ======
-    private void HandleMouseLook()
+    // ========= lógica real de mirar =========
+    private void ApplyLook(Vector2 deltaDegrees)
     {
-        Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
-        if (lookDelta.sqrMagnitude < 0.0001f)
-            return;
-
-        ApplyLook(lookDelta);
-    }
-
-    // ====== ESTA ES LA LÓGICA REAL DE MIRAR (reutilizable) ======
-    private void ApplyLook(Vector2 lookDelta)
-    {
-        // igual que antes
-        float mouseX = lookDelta.x * mouseSensitivity;
-        float mouseY = lookDelta.y * mouseSensitivity;
-
-        xRotation -= mouseY;
+        // deltaDegrees.X = rotación en yaw
+        // deltaDegrees.Y = rotación en pitch (invertimos)
+        xRotation -= deltaDegrees.y;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up * deltaDegrees.x);
     }
-    // ============================================================
 
     private void HandleMovement()
     {
         if (isCrouching) return;
 
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
+
         Vector3 direction = (transform.forward * currentMovementInput.y + transform.right * currentMovementInput.x).normalized;
         Vector3 targetVelocity = new Vector3(direction.x * currentSpeed, 0, direction.z * currentSpeed);
         Vector3 velocityChange = (targetVelocity - new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z));
@@ -285,6 +308,7 @@ public class FirstPersonController : MonoBehaviour
 
             moveAction.action.Disable();
             lookAction.action.Disable();
+            if (lookStickAction != null) lookStickAction.action.Disable();
             jumpAction.action.Disable();
             runAction.action.Disable();
             crouchAction.action.Disable();
@@ -294,6 +318,7 @@ public class FirstPersonController : MonoBehaviour
             LockCursor();
             moveAction.action.Enable();
             lookAction.action.Enable();
+            if (lookStickAction != null) lookStickAction.action.Enable();
             jumpAction.action.Enable();
             runAction.action.Enable();
             crouchAction.action.Enable();
@@ -326,4 +351,28 @@ public class FirstPersonController : MonoBehaviour
     {
         windowInjuryOccurred = true;
     }
+    private bool IsPointerOverUI()
+    {
+        // PC / mouse
+        if (Mouse.current != null && Mouse.current.press.isPressed)
+        {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+                return true;
+        }
+
+        // Mobile / touch (revisar cada dedo)
+        if (Touchscreen.current != null)
+        {
+            foreach (var touch in Touchscreen.current.touches)
+            {
+                if (!touch.press.isPressed) continue;
+                int id = touch.touchId.ReadValue();
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(id))
+                    return true;
+            }
+        }
+
+        return false;
+    }
 }
+

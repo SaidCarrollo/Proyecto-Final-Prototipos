@@ -10,7 +10,16 @@
                     "type": "Value",
                     "id": "89ebec0a-8342-464f-abbc-f911f52c2cc5",
                     "expectedControlType": "Vector2",
-                    "processors": "NormalizeVector2,ScaleVector2(x=0)",
+                    "processors": "NormalizeVector2,ScaleVector2(x=0.7,y=0.7)",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look1",
+                    "type": "Value",
+                    "id": "d70cc706-bc07-4983-af46-f53ec3b8434a",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2,ScaleVector2(x=0.5,y=0.5)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -90,17 +99,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "89b751e4-c253-4bf6-af79-9ab0b26b5921",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0d2f8d9a-9345-45bd-9dff-45076ee55bc4",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -118,6 +116,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0beb278d-5da9-4789-8e80-41d6bbba6239",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13c4459a-4f62-4be0-82b6-d4298dc16607",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7aea0c54-2241-4f3a-9106-84f931b4ee7b",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
