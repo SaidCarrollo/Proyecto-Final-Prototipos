@@ -9494,7 +9494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cosas generales xd
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -13624,7 +13624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1788007047
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14123,15 +14123,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para completar el nivel de la forma correcta deber\xE1s manipular la <color=#B1FF9E><b>tapa
-    de la sart\xE9n</b></color> o el <color=#B1FF9E><b>trapo</b></color>.\r\n- La
-    <color=#B1FF9E><b>tapa</b></color> solo requiere dos acciones. (<color=#B1FF9E><b>Sostener</b></color>
-    y <color=#B1FF9E><b>cubrir la sart\xE9n</b></color>)\r\n- El <color=#B1FF9E><b>trapo</b></color>
-    requiere tres acciones. (<color=#B1FF9E><b>Sostener</b></color>, <color=#B1FF9E><b>humedecer</b></color>
-    y <color=#B1FF9E><b>cubrir la sart\xE9n</b></color>)\r\n\r\nPara obtener <color=#EBFF00><b>insignias</b></color>
-    antes de completar el nivel puedes:\r\n- <color=#EBFF00><b>Cerrar</b></color>
-    la <color=#EBFF00><b>perilla de la cocina</b></color>.\r\n- <color=#EBFF00><b>Cerrar</b></color>
-    la <color=#EBFF00><b>ventana</b></color>.\r\n\n\r\n"
+  m_text: "Para completar el nivel de la forma correcta deber\xE1s realizar las acciones
+    de seguridad como:\n\n<color=#B1FF9E><b>Cerrar la ventana</b></color> para evitar
+    que el gas se disperse hacia otros ambientes.\n\n<color=#B1FF9E><b>Cerrar la
+    v\xE1lvula de gas</b></color> para detener la fuga.\n\n<color=#B1FF9E><b>Avisar
+    a tu familia</b></color> sobre la fuga.\n\n<color=#B1FF9E><b>Evacuar el hogar</b></color>
+    de forma segura.\n\n\n\nPara obtener <color=#EBFF00><b>insignias</b></color>
+    antes de completar el nivel puedes:\n\n<color=#EBFF00><b>Cerrar</b></color> la
+    <color=#EBFF00><b>ventana</b></color>.\n\n<color=#EBFF00><b>Cerrar</b></color>
+    la <color=#EBFF00><b>v\xE1lvula de gas</b></color>.\n\n<color=#EBFF00><b>Avisar</b></color>
+    a la <color=#EBFF00><b>familia</b></color>.\n\n<color=#EBFF00><b>Evacuar</b></color>
+    correctamente el hogar."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -14172,7 +14174,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: -65.47
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -14511,7 +14513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1958602760
 RectTransform:
   m_ObjectHideFlags: 0

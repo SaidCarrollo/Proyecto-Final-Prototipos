@@ -933,11 +933,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 65e6d56b-500e-4433-9dca-47f8049fee11
+  cloudProjectId: 4b5d1976-f96b-4cba-ba12-d7a565234e1d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Proyecto Final prototipos
-  organizationId: unity_5ceddcce118a9ff11e89
+  projectName: Interactive Emergency
+  organizationId: tesisproject
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

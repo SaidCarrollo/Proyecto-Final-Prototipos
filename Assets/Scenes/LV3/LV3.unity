@@ -2996,7 +2996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365665654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3672,8 +3672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000015258789, y: 63.55211}
+  m_SizeDelta: {x: 0, y: -127.1042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418494978
 MonoBehaviour:
@@ -3722,11 +3722,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 19.6
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 13
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -12836,7 +12836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1635689575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13308,7 +13308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cosas generales xd
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -14901,15 +14901,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Para completar el nivel de la forma correcta deber\xE1s manipular la <color=#B1FF9E><b>tapa
-    de la sart\xE9n</b></color> o el <color=#B1FF9E><b>trapo</b></color>.\r\n- La
-    <color=#B1FF9E><b>tapa</b></color> solo requiere dos acciones. (<color=#B1FF9E><b>Sostener</b></color>
-    y <color=#B1FF9E><b>cubrir la sart\xE9n</b></color>)\r\n- El <color=#B1FF9E><b>trapo</b></color>
-    requiere tres acciones. (<color=#B1FF9E><b>Sostener</b></color>, <color=#B1FF9E><b>humedecer</b></color>
-    y <color=#B1FF9E><b>cubrir la sart\xE9n</b></color>)\r\n\r\nPara obtener <color=#EBFF00><b>insignias</b></color>
-    antes de completar el nivel puedes:\r\n- <color=#EBFF00><b>Cerrar</b></color>
-    la <color=#EBFF00><b>perilla de la cocina</b></color>.\r\n- <color=#EBFF00><b>Cerrar</b></color>
-    la <color=#EBFF00><b>ventana</b></color>.\r\n\n\r\n"
+  m_text: "Para completar el nivel de la forma correcta deber\xE1s actuar con calma
+    durante el sismo:\n\n<color=#B1FF9E><b>No correr</b></color> ni desplazarte bruscamente.\n\n<color=#B1FF9E><b>No
+    pasar cerca de ventanas</b></color>.\n\n<color=#B1FF9E><b>Dirigirte a la salida</b></color>
+    de forma ordenada y sin correr.\n\n\nComo alternativa v\xE1lida, tambi\xE9n puedes:\n\n<color=#B1FF9E><b>Colocarte
+    en un punto seguro</b></color> (al lado de la cama o debajo de una mesa).\n\n<color=#B1FF9E><b>Permanecer
+    all\xED</b></color> hasta que pase el sismo.\n\n\nPara obtener <color=#EBFF00><b>insignias</b></color>
+    antes de completar el nivel puedes:\n\n<color=#EBFF00><b>No correr</b></color>
+    durante el sismo.\n\n<color=#EBFF00><b>Alejarte de ventanas</b></color>.\n\n<color=#EBFF00><b>Evacuar
+    de forma calmada</b></color>.\n\n<color=#EBFF00><b>Refugiarte en un punto seguro</b></color>."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -14936,8 +14936,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.62
-  m_fontSizeBase: 54.62
+  m_fontSize: 51.5
+  m_fontSizeBase: 51.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14950,7 +14950,7 @@ MonoBehaviour:
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: -64.93
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4

@@ -10438,7 +10438,7 @@ MonoBehaviour:
   - name: Temblor
     clip: {fileID: 8300000, guid: 1806307f14e769641bac5df1a0ad2679, type: 3}
     volume: 1
-    channel: 1
+    channel: 0
     loop: 1
   - name: MainTheme
     clip: {fileID: 8300000, guid: 8f55eb432d0da9d488b71bfc06a3c5d3, type: 3}
@@ -12697,11 +12697,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2130201604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1429.4, y: 206.6942}
-  m_Pivot: {x: 0, y: 1}
+  m_SizeDelta: {x: 1429.3999, y: 206.6942}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1120111166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12722,10 +12722,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Creditos a los autores
+  m_text: "Desarrolladores:\nCarrollo Pariona, Harvy Ariel\nCarrollo Paiona, Said
+    Rodrigo\n\nAsesoramiento:\nRojas Guimarey, Jos\xE9 Maria"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
-  m_sharedMaterial: {fileID: -7689517552353301089, guid: b520949aed3899f429b896ef2daf1d1d, type: 2}
+  m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12749,14 +12750,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 65.6
+  m_fontSizeBase: 65.6
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -12790,7 +12791,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1120111167
@@ -18646,7 +18647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cosas generales xd
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
@@ -18714,7 +18715,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1899504839
@@ -21406,11 +21407,11 @@ RectTransform:
   - {fileID: 1120111165}
   m_Father: {fileID: 728867549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -81.787994}
-  m_SizeDelta: {x: 1429.3524, y: -163.58}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 245.56, y: -81.657}
+  m_SizeDelta: {x: -491.12, y: -163.31}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130201605
 MonoBehaviour:
   m_ObjectHideFlags: 0

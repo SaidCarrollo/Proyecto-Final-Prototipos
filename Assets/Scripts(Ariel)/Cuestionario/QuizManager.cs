@@ -4,7 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-
+using System.Threading.Tasks;
 public class QuizManager : MonoBehaviour
 {
     [Header("Datos del Cuestionario")]
@@ -135,9 +135,30 @@ public class QuizManager : MonoBehaviour
 
         if (preguntaActualIndex >= cuestionario.preguntas.Length - 1)
         {
-            resultadosGuardados.GuardarResultados();
-            PlayerPrefs.SetInt("LAST_QUIZ_MOMENT", esPostGame ? 1 : 0); // 0=PRE, 1=POST
+            // 1. Guardar local
+            if (resultadosGuardados != null)
+            {
+                resultadosGuardados.GuardarResultados();
+                Debug.Log($"[QuizManager] Resultados guardados localmente para {resultadosGuardados.nombreNivel} ({(esPostGame ? "POST" : "PRE")}).");
+            }
+            else
+            {
+                Debug.LogWarning("[QuizManager] No hay ResultadosDelQuizSO asignado.");
+            }
+
+            // 2. Flag PRE/POST
+            PlayerPrefs.SetInt("LAST_QUIZ_MOMENT", esPostGame ? 1 : 0);
             PlayerPrefs.Save();
+            Debug.Log("[QuizManager] LAST_QUIZ_MOMENT guardado como: " + (esPostGame ? "POST(1)" : "PRE(0)"));
+
+            // 3. Subir a la nube
+            if (resultadosGuardados != null)
+            {
+                Debug.Log("[QuizManager] Iniciando subida a la nube...");
+                _ = QuizCloudUploader.SubirResultadosAsync(resultadosGuardados);
+            }
+
+            // 4. Continuar flujo
             alFinalizarQuiz.Invoke();
         }
         else
@@ -145,5 +166,7 @@ public class QuizManager : MonoBehaviour
             preguntaActualIndex++;
             CargarPregunta();
         }
+
+        yield break;
     }
 }
