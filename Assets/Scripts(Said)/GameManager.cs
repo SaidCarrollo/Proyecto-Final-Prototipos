@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneDefinitionSO thisLevel;          // La SceneDefinition de ESTA escena de gameplay
     [SerializeField] private LastPlayedLevelSO lastPlayedLevel;    // Asset compartido para recordar el último nivel
     [SerializeField] private bool rememberLevelOnAwake = true;     // Por si quieres desactivarlo en alguna escena rara
+    [Header("Próxima escena planificada")]
+    [Tooltip("ScriptableObject global donde puedo guardar una escena futura a la que quiero ir más tarde.")]
+    [SerializeField] private SceneDefinitionSO NextLevel;
+    [SerializeField] private NextSceneSO plannedNextScene;
 
     [Tooltip("Canal para solicitar pre-carga/carga de escenas (asíncrono).")]
     [SerializeField] private SceneLoadEventChannelSO sceneLoadChannel;
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour
         {
             lastPlayedLevel.lastLevel = thisLevel;
             Debug.Log($"[GameManager] Recordado nivel: {thisLevel.name}");
+
+            SetPlannedNextScene(NextLevel);
         }
         if (badgeManager != null)
             badgeManager.ResetBadges();
@@ -227,5 +233,17 @@ public class GameManager : MonoBehaviour
     public void SetGamePaused(bool pause)
     {
         Time.timeScale = pause ? 0f : 1f;
+    }
+    public void SetPlannedNextScene(SceneDefinitionSO sceneDef)
+    {
+        if (plannedNextScene == null)
+        {
+            Debug.LogWarning("[GameManager] No hay NextSceneSO asignado, no puedo guardar la escena futura.");
+            return;
+        }
+
+        plannedNextScene.nextScene = sceneDef;
+        Debug.Log("[GameManager] Próxima escena planificada = " +
+                  (sceneDef != null ? sceneDef.name : "null"));
     }
 }

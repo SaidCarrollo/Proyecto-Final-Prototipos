@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdcce987a9997140a09dcf3f19e950a, type: 3}
+  m_Name: SismoNocturno Cuestionario POST
+  m_EditorClassIdentifier: 
+  nombreDelCuestionario: CUESTIONARIO POST-ESCENARIO 3
+  preguntas:
+  - textoPregunta: "1. \xBFQu\xE9 tan r\xE1pido entendiste que el escenario trataba
+      de un sismo nocturno? "
+    respuestas:
+    - textoRespuesta: "Me cost\xF3 entenderlo / no estaba seguro."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED, pero tard\xE9 un poco en reaccionar."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED bien casi desde el inicio."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED de inmediato y supe que deb\xEDa protegerme
+        ah\xED mismo."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "2. \xBFQu\xE9 tan f\xE1cil fue decidir qu\xE9 hacer (permanecer
+      en lugar seguro, no correr)?"
+    respuestas:
+    - textoRespuesta: "Muy dif\xEDcil, dud\xE9 o hice primero lo inseguro."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Algo dif\xEDcil, necesit\xE9 las pistas/mensajes."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Bastante f\xE1cil, las opciones eran claras."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Muy f\xE1cil, sab\xEDa qu\xE9 hacer en todo momento."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "3.  Las indicaciones que dio el escenario (mensajes, iconos,
+      UI)\u2026 "
+    respuestas:
+    - textoRespuesta: No me ayudaron o me confundieron.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Ayudaron un poco, pero falt\xF3 claridad."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Fueron claras y suficientes para avanzar.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: " Fueron muy claras y me guiaron a la acci\xF3n correcta."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "4.  \xBFC\xF3mo sentiste el nivel de tensi\xF3n al simular un
+      sismo mientras dorm\xEDas? "
+    respuestas:
+    - textoRespuesta: "Demasiado tenso, me bloque\xF3."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Tenso, pero pude continuar.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Moderado, ayud\xF3 a tomarlo en serio."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Poco tenso, lo sent\xED controlable."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "5. Despu\xE9s de jugar este escenario, \xBFqu\xE9 tanto sientes
+      que podr\xEDas actuar correctamente si un sismo te sorprende durmiendo?"
+    respuestas:
+    - textoRespuesta: "A\xFAn no estoy seguro/a de qu\xE9 hacer."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Tengo una idea, pero todav\xEDa dudar\xEDa."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Me siento bastante seguro/a de los pasos.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Me siento muy seguro/a y podr\xEDa explicarlo a otra persona."
+      esCorrecta: 1
+      justificacion: ...

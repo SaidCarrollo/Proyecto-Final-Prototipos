@@ -92,6 +92,7 @@ public class QuizManager : MonoBehaviour
     {
         if (respuestaEnviada) return;
         StartCoroutine(CorregirYContinuar());
+        SoundManager.Instance.PlaySFX("Click");
     }
 
     private IEnumerator CorregirYContinuar()

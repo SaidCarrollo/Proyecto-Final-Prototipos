@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdcce987a9997140a09dcf3f19e950a, type: 3}
+  m_Name: FuegoEnLaCocina CuestionarioPOST
+  m_EditorClassIdentifier: 
+  nombreDelCuestionario: CUESTIONARIO POST-ESCENARIO
+  preguntas:
+  - textoPregunta: "1. \xBFC\xF3mo de f\xE1cil te result\xF3 completar las acciones
+      principales del escenario (controlar el fuego, tomar decisiones seguras)?"
+    respuestas:
+    - textoRespuesta: "Muy dif\xEDcil, me confund\xED varias veces."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Algo dif\xEDcil, pero lo logr\xE9."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Bastante f\xE1cil, casi todo fue claro."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Muy f\xE1cil, sab\xEDa qu\xE9 hacer en todo momento."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "2. \xBFQu\xE9 opinas del tiempo que tom\xF3 completar el escenario?"
+    respuestas:
+    - textoRespuesta: "Fue demasiado largo para lo que ped\xEDa."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Un poco largo.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Adecuado.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Corto / hubiera podido hacer m\xE1s."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "3. Las instrucciones, mensajes o ayudas que aparecieron durante
+      el escenario\u2026 "
+    respuestas:
+    - textoRespuesta: No me ayudaron o me confundieron.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Ayudaron un poco, pero falt\xF3 claridad."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: 'Fueron claras y me guiaron bien. '
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: " Fueron muy \xFAtiles y suficientes para tomar decisiones
+        seguras. "
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "4. En general, \xBFqu\xE9 tanto esfuerzo mental te pidi\xF3 este
+      escenario? "
+    respuestas:
+    - textoRespuesta: "Much\xEDsimo esfuerzo, sent\xED sobrecarga. "
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: 'Bastante esfuerzo. '
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: 'Esfuerzo moderado, manejable. '
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Poco esfuerzo, me result\xF3 ligero. "
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "5. Despu\xE9s de jugar, \xBFqu\xE9 tanto sientes que podr\xEDas
+      actuar correctamente si se incendiara una sart\xE9n en la vida real? "
+    respuestas:
+    - textoRespuesta: "Sigo sin estar seguro/a de qu\xE9 hacer."
+      esCorrecta: 1
+      justificacion: ..
+    - textoRespuesta: "S\xE9 algunas cosas, pero a\xFAn dudar\xEDa."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Me siento bastante seguro/a de c\xF3mo actuar."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Me siento muy seguro/a y puedo explicar los pasos a otra persona.
+      esCorrecta: 1
+      justificacion: ...

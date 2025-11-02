@@ -13,89 +13,71 @@ MonoBehaviour:
   m_Name: BadgeManager Level 3
   m_EditorClassIdentifier: 
   todosLosBadges:
-  - ID: Llamada de emergencia correcta
-    Descripcion: Llamar a emergencias siempre es util para controlar un incendio
-    Icono: {fileID: 0}
-    Tipo: 0
-    Prioridad: 1
-    Desbloqueado: 0
   - ID: Salida Ideal
     Descripcion: "Saliste por la puerta principal de forma tranquila sin recibir
-      da\xF1o"
-    Icono: {fileID: 0}
+      da\xF1o."
+    Icono: {fileID: 21300000, guid: 897e437bb35818b4e98235205f18faa7, type: 3}
     Tipo: 0
     Prioridad: 0
     Desbloqueado: 0
   - ID: Llamada de emergencia innecesaria
-    Descripcion: El gas aun era controlable
-    Icono: {fileID: 0}
+    Descripcion: No es prioritario realizar llamadas durante un sismo.
+    Icono: {fileID: 21300000, guid: 64f96328fbb9e554e80664b19bb5ab42, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: Distraccion con el telefono
-    Descripcion: Te distrajiste al sacar el telefono y no usarlo
-    Icono: {fileID: 21300000, guid: dcc03415a99d59a40bfc9ba0fcd84a1b, type: 3}
+    Descripcion: "Te distrajiste al sacar el tel\xE9fono y no usarlo."
+    Icono: {fileID: 21300000, guid: 64f96328fbb9e554e80664b19bb5ab42, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: Dudando en llamar
-    Descripcion: Te distrajiste al sacar el telefono y no usarlo en una situaacion
-      de fuego descontrolado
-    Icono: {fileID: 0}
+    Descripcion: "Te distrajiste al sacar el telefono y no usarlo en una situaci\xF3n
+      de sismo."
+    Icono: {fileID: 21300000, guid: 64f96328fbb9e554e80664b19bb5ab42, type: 3}
     Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Evacuacion de NPC's
-    Descripcion: Evacuaste a todas las personas del hogar
-    Icono: {fileID: 0}
-    Tipo: 0
     Prioridad: 1
     Desbloqueado: 0
   - ID: Telefono en el area
-    Descripcion: Llamaste a emergencias en una posicion segura
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Me salvo solo
-    Descripcion: No evacuaste a todas las personas del hogar
-    Icono: {fileID: 0}
+    Descripcion: "Llamaste a emergencias en una posici\xF3n segura."
+    Icono: {fileID: 21300000, guid: a9b24d4ecfa37d74c801a0ff256d2f05, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: auch
-    Descripcion: "Te hiciste da\xF1o durante el temblor"
-    Icono: {fileID: 0}
-    Tipo: 1
-    Prioridad: 1
-    Desbloqueado: 0
-  - ID: Cerca de la ventana
-    Descripcion: Ir cerca de una ventanan en medio de un sismo es muy peligroso
-    Icono: {fileID: 0}
+    Descripcion: "Te hiciste da\xF1o durante el temblor."
+    Icono: {fileID: 21300000, guid: 01372656f14ad0e479f81d9195b4726b, type: 3}
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
   - ID: CalmaBajoPresion
-    Descripcion: Mantuviste la calama y saliste sin correr
-    Icono: {fileID: 0}
+    Descripcion: Mantuviste la calma y saliste sin correr.
+    Icono: {fileID: 21300000, guid: 897e437bb35818b4e98235205f18faa7, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
+  - ID: Cerca de la ventana
+    Descripcion: Ir cerca de una ventana en medio de un sismo es muy peligroso.
+    Icono: {fileID: 21300000, guid: 51bce00f3e98eed41bed3a7e073e6447, type: 3}
+    Tipo: 1
+    Prioridad: 1
+    Desbloqueado: 0
   - ID: DistanciaSegura
-    Descripcion: Mantuviste tu distancia de las ventanas
-    Icono: {fileID: 0}
+    Descripcion: Mantuviste distancia segura de las ventanas.
+    Icono: {fileID: 21300000, guid: 56b4ffd82a849624bb7280f0b928b90b, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: "Sin da\xF1os"
-    Descripcion: "No te hiciste da\xF1o durante el temblor"
-    Icono: {fileID: 0}
+    Descripcion: "No te hiciste da\xF1o durante el temblor."
+    Icono: {fileID: 21300000, guid: a651bd7afeb247546863f2e2f39dbd2d, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0
   - ID: Resguardado
-    Descripcion: Te resguardaste en una zona segura
-    Icono: {fileID: 0}
+    Descripcion: Te resguardaste en una zona segura.
+    Icono: {fileID: 21300000, guid: fd39ef9662ba69342a4b7322ffbf6ddd, type: 3}
     Tipo: 0
     Prioridad: 1
-    Desbloqueado: 1
+    Desbloqueado: 0

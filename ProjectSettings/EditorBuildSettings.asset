@@ -12,19 +12,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 26b22eaa3f1a6684abbeb985a7103fd3
   - enabled: 1
-    path: Assets/Scenes/LV1/Cuestionario.unity
+    path: Assets/Scenes/LV1/CuestionarioPRE.unity
     guid: 1a4f8d4e3a92aff4ab1056b93062f7ea
   - enabled: 1
     path: Assets/Scenes/LV1/LV1.unity
     guid: e59d0fa2049d36d49a49ee18fc185b54
   - enabled: 1
-    path: Assets/Scenes/LV2/Cuestionario2.unity
+    path: Assets/Scenes/LV2/Cuestionario2PRE.unity
     guid: 855394f8285199147b29ac1620314eb2
   - enabled: 1
     path: Assets/Scenes/LV2/LV2.unity
     guid: ef281a636ec8f9e468b1276af938efce
   - enabled: 1
-    path: Assets/Scenes/LV3/Cuestionario3.unity
+    path: Assets/Scenes/LV3/Cuestionario3PRE.unity
     guid: a3f913df837cb2b42a081b78a43e16c9
   - enabled: 1
     path: Assets/Scenes/LV3/LV3.unity
@@ -35,6 +35,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: bb008f14533681d46956e0f1c5854dad
+  - enabled: 1
+    path: Assets/Scenes/LV1/CuestionarioPOST.unity
+    guid: 1df16a7131fd02348adbdcaa3eb0c1e1
+  - enabled: 1
+    path: Assets/Scenes/LV2/Cuestionario2POST.unity
+    guid: e50f60805ed274c42a5c0d992af0cd56
+  - enabled: 1
+    path: Assets/Scenes/LV3/Cuestionario3POST.unity
+    guid: cc0c3a2380a789d4bb9b03fa3afd201e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1c78dbb63aaf54c41855318892f2e054, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

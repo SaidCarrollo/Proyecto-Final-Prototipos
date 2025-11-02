@@ -1298,6 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: ac1303f0d32bceb46b3ae629f64a2211, type: 2}
   lastPlayedLevel: {fileID: 0}
+  plannedNextScene: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -6228,7 +6229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: dcf1290146e13304da9518b92aa4482f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7794,6 +7795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 5d6d72bf2f602c84bb2ea2560a051e01, type: 2}
   lastPlayedLevel: {fileID: 0}
+  plannedNextScene: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -8870,6 +8872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: be6c4b017665c414d8d4d7bde7045dfe, type: 2}
   lastPlayedLevel: {fileID: 0}
+  plannedNextScene: {fileID: 0}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -11779,7 +11782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 34ab28cae96b6774b947a4bc675b06dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12991,7 +12994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 34ab28cae96b6774b947a4bc675b06dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20120,7 +20123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: dcf1290146e13304da9518b92aa4482f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

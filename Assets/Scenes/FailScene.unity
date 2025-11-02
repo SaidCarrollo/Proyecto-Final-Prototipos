@@ -2672,6 +2672,7 @@ GameObject:
   - component: {fileID: 1070141759}
   - component: {fileID: 1070141763}
   - component: {fileID: 1070141762}
+  - component: {fileID: 1070141764}
   m_Layer: 5
   m_Name: Repeatbtn
   m_TagString: Untagged
@@ -2825,6 +2826,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaHover: 1.1
   duracion: 0.2
+--- !u!114 &1070141764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070141756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a476f286bde00d4b85527ce923cc1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Click: {fileID: 8300000, guid: 632b1c41f6a368540970d173af4f782f, type: 3}
 --- !u!1 &1090810102
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,6 +3490,7 @@ GameObject:
   - component: {fileID: 1468829811}
   - component: {fileID: 1468829810}
   - component: {fileID: 1468829809}
+  - component: {fileID: 1468829812}
   m_Layer: 5
   m_Name: Analisissbtn
   m_TagString: Untagged
@@ -3633,6 +3648,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468829807}
   m_CullTransparentMesh: 1
+--- !u!114 &1468829812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468829807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a476f286bde00d4b85527ce923cc1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Click: {fileID: 8300000, guid: 632b1c41f6a368540970d173af4f782f, type: 3}
 --- !u!1 &1516059567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,6 +4166,7 @@ GameObject:
   - component: {fileID: 1881574722}
   - component: {fileID: 1881574721}
   - component: {fileID: 1881574725}
+  - component: {fileID: 1881574726}
   m_Layer: 5
   m_Name: vOLVERbtn (1)
   m_TagString: Untagged
@@ -4179,6 +4208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: {fileID: 11400000, guid: 73846adc98c331b4198d88351918c6fc, type: 2}
   lastPlayedLevel: {fileID: 0}
+  plannedNextScene: {fileID: 11400000, guid: 1ff97d774bffd214ba9ef2400fb5d292, type: 2}
   sceneLoadChannel: {fileID: 11400000, guid: 9231c6c7df01b484f9b699f8240573da, type: 2}
   activatePreloadedSceneChannel: {fileID: 11400000, guid: 49944806bd894b046af71bac64422e4d, type: 2}
   buttonCanvasGroup: {fileID: 0}
@@ -4230,7 +4260,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1881574721}
         m_TargetAssemblyTypeName: LevelButtonController, Assembly-CSharp
-        m_MethodName: OnLevelSelected
+        m_MethodName: OnLoadPlannedNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4292,6 +4322,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaHover: 1.1
   duracion: 0.2
+--- !u!114 &1881574726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881574719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a476f286bde00d4b85527ce923cc1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Click: {fileID: 8300000, guid: 632b1c41f6a368540970d173af4f782f, type: 3}
 --- !u!1 &1890183086
 GameObject:
   m_ObjectHideFlags: 0

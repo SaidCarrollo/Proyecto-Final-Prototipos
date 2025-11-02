@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdcce987a9997140a09dcf3f19e950a, type: 3}
+  m_Name: FugaDeGas CuestionarioPOST
+  m_EditorClassIdentifier: 
+  nombreDelCuestionario: CUESTIONARIO POST-ESCENARIO 2
+  preguntas:
+  - textoPregunta: "1. \xBFQu\xE9 tan claro te qued\xF3 qu\xE9 estaba pasando en
+      el escenario (que hab\xEDa una posible fuga de gas y era una situaci\xF3n de
+      riesgo)?"
+    respuestas:
+    - textoRespuesta: "No me qued\xF3 claro casi nada."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED, pero tard\xE9 un poco en darme cuenta. "
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED bien casi desde el inicio."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Lo entend\xED de inmediato y supe que era una fuga de gas. "
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "2. \xBFQu\xE9 tan f\xE1cil fue elegir las acciones seguras (no
+      prender luces, cerrar v\xE1lvula, ventilar, evacuar)? "
+    respuestas:
+    - textoRespuesta: "Muy dif\xEDcil, dud\xE9 bastante."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Algo dif\xEDcil, necesit\xE9 varias pistas. "
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Bastante f\xE1cil, las opciones ayudaban. "
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Muy f\xE1cil, sab\xEDa qu\xE9 hacer en cada paso. "
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "3. Las instrucciones, avisos o indicadores del escenario\u2026 "
+    respuestas:
+    - textoRespuesta: No me ayudaron o me confundieron.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Ayudaron un poco, pero falt\xF3 informaci\xF3n."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Fueron claras y suficientes para avanzar.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Fueron muy claras y me guiaron a la decisi\xF3n segura."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "4. \xBFC\xF3mo sentiste el nivel de tensi\xF3n o presi\xF3n al
+      saber que era una fuga de gas? "
+    respuestas:
+    - textoRespuesta: "Demasiado tenso, me bloque\xE9 un poco."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: Tenso, pero pude seguir.
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Moderado, ayud\xF3 a concentrarme."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Poco tenso, lo sent\xED controlable."
+      esCorrecta: 1
+      justificacion: ...
+  - textoPregunta: "5. Despu\xE9s de jugar este escenario, \xBFqu\xE9 tanto sientes
+      que podr\xEDas reaccionar correctamente ante un olor a gas en tu casa?"
+    respuestas:
+    - textoRespuesta: "A\xFAn no estoy seguro/a de qu\xE9 hacer."
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Tengo una idea, pero todav\xEDa dudar\xEDa. "
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: 'Me siento bastante seguro/a de los pasos. '
+      esCorrecta: 1
+      justificacion: ...
+    - textoRespuesta: "Me siento muy seguro/a y podr\xEDa explicarlo a otra persona. "
+      esCorrecta: 1
+      justificacion: ...
