@@ -3,6 +3,7 @@ using TMPro;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class ChecklistEntry
@@ -73,20 +74,37 @@ public class ObjectiveChecklistUI : MonoBehaviour
 
     public void RebuildWithEntries(List<ChecklistEntry> newEntries)
     {
+        // Guardamos las nuevas misiones
         entries = newEntries;
+        // Y reconstruimos en el SIGUIENTE frame, cuando los Destroy ya se hicieron
+        StartCoroutine(RebuildNextFrame());
+    }
+
+    private IEnumerator RebuildNextFrame()
+    {
+        // Espera 1 frame para que Unity destruya de verdad a los hijos viejos
+        yield return null;
         BuildList();
     }
 
     private void BuildList()
     {
+        if (container == null) container = (RectTransform)transform;
         if (container == null || checklistTextPrefab == null || badgeManager == null) return;
 
-        foreach (Transform child in container) Destroy(child.gameObject);
+        // 1) limpiar hijos del container (los de la primera fase)
+        for (int i = container.childCount - 1; i >= 0; i--)
+        {
+            Destroy(container.GetChild(i).gameObject);
+        }
+
         map.Clear();
 
+        // 2) crear los nuevos usando EL MISMO container
         foreach (var e in entries)
         {
-            if (string.IsNullOrWhiteSpace(e.badgeId)) continue;
+            if (string.IsNullOrWhiteSpace(e.badgeId))
+                continue;
 
             string displayText = e.listTextOverride;
             if (string.IsNullOrWhiteSpace(displayText))
@@ -97,6 +115,7 @@ public class ObjectiveChecklistUI : MonoBehaviour
                     displayText = e.badgeId;
             }
 
+            // 👇 esto garantiza que quede bajo el layout del container
             var go = Instantiate(checklistTextPrefab, container);
             var tmp = go.GetComponent<TextMeshProUGUI>() ?? go.AddComponent<TextMeshProUGUI>();
             tmp.text = displayText;
@@ -104,12 +123,23 @@ public class ObjectiveChecklistUI : MonoBehaviour
             tmp.fontStyle &= ~FontStyles.Strikethrough;
             tmp.alpha = 1f;
 
+            // muy importante: normalizar transform
+            var rt = go.transform as RectTransform;
+            rt.anchoredPosition3D = Vector3.zero;
+            rt.localScale = Vector3.one;
+            rt.localRotation = Quaternion.identity;
+
             map[e.badgeId] = tmp;
 
+            // si ya estaba hecho el badge, se marca
             if (badgeManager.TryGetBadge(e.badgeId, out var b) && b.Desbloqueado)
                 StartCoroutine(MarkDone(tmp));
         }
+
+        // 3) forzar al layout a recalcular
+        LayoutRebuilder.ForceRebuildLayoutImmediate(container);
     }
+
     public void ForceFailPendingsAndGoToSecondPhase()
     {
         if (!hasSecondPhase) return;
@@ -140,12 +170,12 @@ public class ObjectiveChecklistUI : MonoBehaviour
         // 1) poner en rojo y tachar lo NO desbloqueado
         foreach (var kvp in map)
         {
-            var badgeId = kvp.Key;
+            var id = kvp.Key;
             var tmp = kvp.Value;
             if (tmp == null) continue;
 
-            bool isUnlocked = badgeManager.TryGetBadge(badgeId, out var b) && b.Desbloqueado;
-            if (!isUnlocked)
+            bool unlocked = badgeManager.TryGetBadge(id, out var b) && b.Desbloqueado;
+            if (!unlocked)
             {
                 tmp.DOKill();
                 tmp.fontStyle |= FontStyles.Strikethrough;
@@ -153,14 +183,23 @@ public class ObjectiveChecklistUI : MonoBehaviour
             }
         }
 
-        // 2) espera cortita para que el jugador vea el rojo
         yield return new WaitForSecondsRealtime(failFadeDelay);
 
-        foreach (Transform child in container)
-            Destroy(child.gameObject);
-        map.Clear();
+        // 2) fade-out solo de las falladas
+        foreach (var kvp in map)
+        {
+            var id = kvp.Key;
+            var tmp = kvp.Value;
+            if (tmp == null) continue;
 
-        entries = secondPhaseEntries;
-        BuildList();          // esto instancia en el mismo 'container' de arriba
+            bool unlocked = badgeManager.TryGetBadge(id, out var b) && b.Desbloqueado;
+            if (!unlocked)
+            {
+                yield return tmp.DOFade(0f, failFadeDuration).SetUpdate(true).WaitForCompletion();
+            }
+        }
+
+        // 3) reemplazar por la lista de la segunda fase
+        RebuildWithEntries(secondPhaseEntries);
     }
 }

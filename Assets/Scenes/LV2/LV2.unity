@@ -3085,12 +3085,12 @@ MonoBehaviour:
   doneColor: {r: 0.3, g: 0.85, b: 0.3, a: 1}
   fadeDelay: 0.8
   fadeDuration: 0.4
-  hasSecondPhase: 0
+  hasSecondPhase: 1
   secondPhaseEntries:
   - badgeId: Llamada de emergencia correcta
     listTextOverride: -Llama a emergencias
-  - badgeId: Abrir la ventana durante fuga de gas esparcida
-    listTextOverride: -Abre la Ventana
+  - badgeId: "Evacuaci\xF3n del Hogar"
+    listTextOverride: -Evacua a las personas de la casa
   failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   failFadeDelay: 0.35
   failFadeDuration: 0.25
@@ -3707,10 +3707,10 @@ MonoBehaviour:
   crouchAction: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   healthSystemEnabled: 0
   maxHealth: 3
-  gameManager: {fileID: 0}
-  uiManager: {fileID: 0}
-  badgeManager: {fileID: 0}
-  vignetteController: {fileID: 0}
+  gameManager: {fileID: 846614570}
+  uiManager: {fileID: 21285084}
+  badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
+  vignetteController: {fileID: 970702644}
   injuredSpeedMultiplier: 0.6
 --- !u!114 &461168134
 MonoBehaviour:
@@ -7292,7 +7292,7 @@ MonoBehaviour:
   windowSafeBadgeId: DistanciaSegura
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
-  objectiveChecklistUI: {fileID: 0}
+  objectiveChecklistUI: {fileID: 384335834}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7460,7 +7460,6 @@ MonoBehaviour:
           m_StringArgument: Fuga de Gas Reducida
           m_BoolArgument: 0
         m_CallState: 2
-  objectiveChecklistUI: {fileID: 0}
   fastForwardToGoodOnDefuse: 1
 --- !u!1 &860128185
 GameObject:

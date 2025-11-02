@@ -52,7 +52,7 @@ public class GasLeakScenarioManager : MonoBehaviour
     {
         Debug.Log("ESCENARIO: El primer timer terminó mal. ¡Iniciando contador MORTAL!");
         gameManager.IniciarContadorMortal();
-
+        uiManager?.UpdateObjectiveTextAndFadeLater("Evacua la zona.", 20.5f, 0.6f);
     }
 
     public void TriggerGoodConsequence()
@@ -70,7 +70,7 @@ public class GasLeakScenarioManager : MonoBehaviour
         }
 
         gameManager.IniciarContadorSupervivencia(secondTimerDuration);
-        uiManager?.UpdateObjectiveTextAndFadeLater("¡Detuviste la fuga! Ve qué más puedes hacer y evacua el hogar.", 2.5f, 0.6f);
+        uiManager?.UpdateObjectiveTextAndFadeLater("¡Detuviste la fuga! Ve qué más puedes hacer y evacua el hogar.", 20.5f, 0.6f);
 
     }
 }

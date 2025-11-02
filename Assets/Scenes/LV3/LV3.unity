@@ -13683,10 +13683,12 @@ MonoBehaviour:
   fadeDuration: 0.4
   hasSecondPhase: 1
   secondPhaseEntries:
+  - badgeId: CalmaBajoPresion
+    listTextOverride: '-Sal del hogar
+
+      O'
   - badgeId: Resguardado
     listTextOverride: -Agachate en una zona segura, como una mesa o cama
-  - badgeId: CalmaBajoPresion
-    listTextOverride: -Sal de la casa
   failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   failFadeDelay: 0.35
   failFadeDuration: 0.25

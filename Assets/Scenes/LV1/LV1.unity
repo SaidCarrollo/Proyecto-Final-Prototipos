@@ -9708,7 +9708,6 @@ MonoBehaviour:
   badgeManager: {fileID: 11400000, guid: 7569f98243e5adf4ca5e424df5e2392f, type: 2}
   vignetteEvent: {fileID: 11400000, guid: 4f4fc4b8564ec3e489768bc804748706, type: 2}
   uiTimerController: {fileID: 21285087}
-  objectiveChecklistUI: {fileID: 2100503556}
   heatWaveController: {fileID: 381737452}
 --- !u!114 &846614570
 MonoBehaviour:
@@ -22237,6 +22236,8 @@ MonoBehaviour:
   secondPhaseEntries:
   - badgeId: Llamada de emergencia correcta
     listTextOverride: -Llama a emergencias
+  - badgeId: Salida ideal
+    listTextOverride: -Sal por la puerta principal
   failedColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   failFadeDelay: 0.35
   failFadeDuration: 0.25
