@@ -70,7 +70,7 @@ public class GasLeakScenarioManager : MonoBehaviour
         }
 
         gameManager.IniciarContadorSupervivencia(secondTimerDuration);
-        uiManager?.UpdateObjectiveTextAndFadeLater("¡Detuviste la fuga! Ve qué más puedes hacer y evacua el hogar.", 20.5f, 0.6f);
+        uiManager?.UpdateObjectiveTextAndFadeLater("¡Solucionaste el problema! Ve qué más puedes hacer y evacua el hogar.", 20.5f, 0.6f);
 
     }
 }
