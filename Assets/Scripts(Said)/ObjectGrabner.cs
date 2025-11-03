@@ -1,8 +1,10 @@
-using System;
+ï»¿using System;
 using UnityEngine;
+using UnityEngine.InputSystem; // <-- Input System
 
 public class ObjectGrabber : MonoBehaviour
 {
+    // ---- Eventos (misma firma que tu versiÃ³n anterior) ----
     public event Action<GameObject> OnObjectGrabbed;
     public event Action<GameObject> OnObjectReleased;
 
@@ -11,144 +13,144 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] private float grabRange = 5f;
     [SerializeField] private float grabSpeed = 15f;
     [SerializeField] private float verticalOffset = 0.1f;
-    [SerializeField] private LayerMask interactableLayer;
-    [Header("Physics Grab (Fuerzas)")]
-    [SerializeField] private float grabPosGain = 100f;  // Fuerza del muelle para seguir la cámara
-    [SerializeField] private float grabVelGain = 20f;   // Amortiguación (evita que vibre)
-    [SerializeField] private float grabMaxAccel = 150f; // Límite de aceleración
-    [SerializeField] private float grabMaxSpeed = 4f;   // Límite de velocidad
+    [SerializeField] private LayerMask interactableLayer = ~0;
+    [SerializeField] private float minHoldDistance = 0.5f;
+    [SerializeField] private float maxHoldDistance = 1.8f;
+    [SerializeField] private float startHoldDistance = 1.5f;
+
+    [Header("Input Actions")]
+    [Tooltip("BotÃ³n para alternar Agarrar/Soltar (On-Screen Button o mouse left)")]
+    [SerializeField] private InputActionReference grabReleaseAction;
+
+    [Tooltip("Eje/slider/pinch que entrega +/âˆ’ para acercar/alejar el objeto")]
+    [SerializeField] private InputActionReference adjustHoldAction;
+
+    [Header("SFX (opcional)")]
+    [SerializeField] private AudioSource grabAudio;
+    [SerializeField] private AudioSource releaseAudio;
+
+    // ---- Estado interno ----
     private GameObject heldObject;
     private Rigidbody heldObjectRb;
-    private float currentHoldDistance = 1.5f;
-    public AudioSource Grabaudio;
+    private float currentHoldDistance;
 
-    // NUEVO: expone el objeto actualmente agarrado
-    public GameObject HeldObject => heldObject;
-
-    void Update()
+    private void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (cameraTransform == null)
         {
-            if (heldObject == null) TryGrabObject();
-            else ReleaseObject();
+            var cam = Camera.main;
+            if (cam != null) cameraTransform = cam.transform;
+        }
+        currentHoldDistance = Mathf.Clamp(startHoldDistance, minHoldDistance, maxHoldDistance);
+    }
+
+    private void OnEnable()
+    {
+        if (grabReleaseAction != null)
+        {
+            grabReleaseAction.action.Enable();
+            grabReleaseAction.action.performed += OnGrabReleasePerformed;
         }
 
-        if (heldObject != null && Input.GetAxis("Mouse ScrollWheel") != 0)
+        if (adjustHoldAction != null)
         {
-            float minDistance = 0.5f;
-            float maxDistance = 1.5f;
-            currentHoldDistance = Mathf.Clamp(
-                currentHoldDistance - Input.GetAxis("Mouse ScrollWheel") * 2f,
-                minDistance, maxDistance);
+            adjustHoldAction.action.Enable();
+            adjustHoldAction.action.performed += OnAdjustHoldPerformed;
         }
     }
 
-    void FixedUpdate()
+    private void OnDisable()
     {
-        if (heldObject != null)
+        if (grabReleaseAction != null)
         {
-            // ¡Sí, siempre queremos moverlo!
-            // Esto creará la "lucha de fuerzas" contra el AnchorFollower.
-            MoveObjectWithPhysics();
+            grabReleaseAction.action.performed -= OnGrabReleasePerformed;
+            grabReleaseAction.action.Disable();
         }
-    }
-    private void TryGrabObject()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, grabRange, interactableLayer))
+
+        if (adjustHoldAction != null)
         {
-            heldObject = hit.collider.gameObject;
-
-            // Si estaba anclado, forzar desanclaje antes de agarrar (tú ya lo tenías)
-            AnchorFollower follower = heldObject.GetComponentInParent<AnchorFollower>();
-            if (follower != null && follower.IsActive) follower.ForceDetach(); // :contentReference[oaicite:1]{index=1}
-
-            heldObjectRb = heldObject.GetComponent<Rigidbody>();
-            if (heldObjectRb != null)
-            {
-                heldObjectRb.useGravity = false;
-                heldObjectRb.freezeRotation = true;
-            }
-
-            if (Grabaudio != null) Grabaudio.Play();
-            OnObjectGrabbed?.Invoke(heldObject);
+            adjustHoldAction.action.performed -= OnAdjustHoldPerformed;
+            adjustHoldAction.action.Disable();
         }
     }
 
-    private void ReleaseObject()
+    private void FixedUpdate()
     {
-        if (heldObject != null)
-        {
-            // --- INICIO DE LA MODIFICACIÓN ---
-            // Antes de soltar, comprobar si está anclado y forzar el desanclaje
-            AnchorFollower follower = heldObject.GetComponentInParent<AnchorFollower>();
-            if (follower != null && follower.IsActive)
-            {
-                // Usamos ForceDetach() (que vi en tu script original) para 
-                // asegurar que se suelte inmediatamente.
-                follower.ForceDetach();
-            }
-            // --- FIN DE LA MODIFICACIÓN ---
+        MoveHeldWithPhysics();
+    }
 
-            if (heldObjectRb != null)
-            {
-                heldObjectRb.useGravity = true;
-                heldObjectRb.freezeRotation = false;
-            }
+    // ---- Callbacks de Input ----
+    private void OnGrabReleasePerformed(InputAction.CallbackContext _)
+    {
+        if (heldObject == null) TryGrab();
+        else Release();
+    }
 
-            OnObjectReleased?.Invoke(heldObject);
-            heldObject = null;
-        }
+    private void OnAdjustHoldPerformed(InputAction.CallbackContext ctx)
+    {
+        // Espera un float +/âˆ’ (Axis/Slider/Pinch mapeado a esta acciÃ³n)
+        float delta = ctx.ReadValue<float>();
+        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
+    }
+
+    // ---- API pÃºblica para UI (por si usas botones Â± en vez de acciÃ³n) ----
+    public void NudgeHoldDistance(float delta)
+    {
+        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
     }
 
     public bool IsHoldingObject() => heldObject != null;
 
-    private void MoveObjectWithPhysics()
+    // ---- LÃ³gica de agarrar/soltar ----
+    private void TryGrab()
     {
-        if (heldObjectRb == null) return;
+        if (cameraTransform == null) return;
 
-        // 1. Calcular la posición objetivo (sin cambios)
-        Vector3 targetPosition = cameraTransform.position
-                               + cameraTransform.forward * currentHoldDistance
-                               + cameraTransform.up * verticalOffset;
-
-        // 2. Calcular la fuerza de muelle (Spring) (sin cambios)
-        Vector3 toTarget = targetPosition - heldObject.transform.position;
-        Vector3 spring = toTarget * grabPosGain;
-
-        // --- INICIO DE LA MODIFICACIÓN ---
-        // 3. Calcular el amortiguador (Damper)
-
-        // Comprobar si un ancla ya está aplicando su propio amortiguador
-        AnchorFollower follower = heldObject.GetComponentInParent<AnchorFollower>();
-
-        // El ancla está amortiguando si está activa Y está en modo Dynamic
-        bool anchorIsDamping = (follower != null &&
-                              follower.IsActive &&
-                              follower.followMode == AnchorFollower.FollowMode.Dynamic);
-
-        Vector3 damper = Vector3.zero;
-        if (!anchorIsDamping)
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
+                            out var hit, grabRange, interactableLayer, QueryTriggerInteraction.Ignore))
         {
-            // Si el ancla NO está activa, aplicamos nuestro propio amortiguador
-            damper = -heldObjectRb.linearVelocity * grabVelGain;
+            var go = hit.collider.attachedRigidbody ? hit.collider.attachedRigidbody.gameObject : hit.collider.gameObject;
+
+            heldObject = go;
+            heldObjectRb = go.GetComponent<Rigidbody>();
+
+            if (heldObjectRb != null)
+            {
+                heldObjectRb.useGravity = false;
+                heldObjectRb.freezeRotation = true;
+                heldObjectRb.linearVelocity = Vector3.zero; // respeta tu uso actual
+            }
+
+            grabAudio?.Play();
+            OnObjectGrabbed?.Invoke(heldObject);
         }
-        // Si el ancla SÍ está activa, 'damper' se queda en Vector3.zero.
-        // Dejamos que el AnchorFollower se encargue de TODO el amortiguado.
-        // --- FIN DE LA MODIFICACIÓN ---
+    }
 
-        // 4. Sumar fuerzas (ahora solo suma el muelle si el ancla está activa)
-        Vector3 accel = spring + damper;
+    private void Release()
+    {
+        if (heldObjectRb != null)
+        {
+            heldObjectRb.useGravity = true;
+            heldObjectRb.freezeRotation = false;
+        }
 
-        // 5. Limitar aceleración (sin cambios)
-        if (accel.sqrMagnitude > grabMaxAccel * grabMaxAccel)
-            accel = accel.normalized * grabMaxAccel;
+        var released = heldObject;
+        heldObject = null;
+        heldObjectRb = null;
 
-        // 6. Aplicar la fuerza (sin cambios)
-        heldObjectRb.AddForce(accel, ForceMode.Acceleration);
+        releaseAudio?.Play();
+        OnObjectReleased?.Invoke(released);
+    }
 
-        // 7. Limitar velocidad máxima (sin cambios)
-        if (heldObjectRb.linearVelocity.sqrMagnitude > grabMaxSpeed * grabMaxSpeed)
-            heldObjectRb.linearVelocity = heldObjectRb.linearVelocity.normalized * grabMaxSpeed;
+    private void MoveHeldWithPhysics()
+    {
+        if (heldObjectRb == null || cameraTransform == null) return;
+
+        Vector3 target = cameraTransform.position
+                       + cameraTransform.forward * currentHoldDistance
+                       + cameraTransform.up * verticalOffset;
+
+        Vector3 dir = (target - heldObject.transform.position);
+        heldObjectRb.linearVelocity = dir * grabSpeed; // si usas velocity, cÃ¡mbialo aquÃ­
     }
 }
