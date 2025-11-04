@@ -102,7 +102,7 @@ public class SartenCollider : MonoBehaviour
                     fireIntensityEvent.Raise(0f);
                     if (badgeManager != null)
                     {
-                        badgeManager.UnlockBadge("Fuego apagado con trapo");
+                        badgeManager.UnlockBadge("Fuego apagado con trapo húmedo");
                     }
                     if (onPlayerSurvivedEvent != null)
                     {
