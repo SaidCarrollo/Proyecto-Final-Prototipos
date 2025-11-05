@@ -21,6 +21,9 @@ public class SartenCollider : MonoBehaviour
     [SerializeField] private BadgeManager badgeManager;
     private bool fuegoEstaDescontrolado = false;
     private bool haSidoSumergida = false;
+
+    [Header("Refs opcionales")]
+    [SerializeField] private GameManager gameManager;
     public void ActivarFuegoDescontrolado()
     {
         Debug.Log($"FUEGO DESCONTROLADO ACTIVADO en {gameObject.name}. Ya no se pueden colocar más objetos.");
@@ -44,23 +47,42 @@ public class SartenCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (fuegoEstaDescontrolado) return;
+        // 🔥 estado real del fuego = local OR GameManager
+        bool fuegoRealDescontrolado =
+            fuegoEstaDescontrolado ||
+            (gameManager != null && gameManager.IsFireUncontrolled);
+
+        // si es tapa y el fuego está descontrolado: no hace nada
+        if (fuegoRealDescontrolado && other.CompareTag(tapaTag))
+        {
+            Debug.Log("Fuego descontrolado: la tapa metálica ya no funciona.");
+            return;
+        }
 
         if (other.CompareTag(trapoTag))
         {
             HandleTrapoInteraction(other);
         }
-        else if (other.CompareTag(tapaTag)) 
+        else if (other.CompareTag(tapaTag))
         {
-            HandleTapaInteraction(other);
+            HandleTapaInteraction(other, fuegoRealDescontrolado);
         }
         else if (other.CompareTag(waterTag))
         {
             HandlePanInWater(other);
         }
     }
-    private void HandleTapaInteraction(Collider tapaCollider)
+
+    private void HandleTapaInteraction(Collider tapaCollider, bool fuegoRealDescontrolado)
     {
+        // si por alguna razón llegamos aquí pero el fuego estaba descontrolado,
+        // hacemos doble seguro
+        if (fuegoRealDescontrolado)
+        {
+            Debug.Log("HandleTapaInteraction llamado pero el fuego está descontrolado: NO se apaga.");
+            return;
+        }
+
         ObjectGrabber grabberHoldingTapa = tapaCollider.GetComponentInParent<ObjectGrabber>();
         if (grabberHoldingTapa != null && grabberHoldingTapa.IsHoldingObject()) return;
 

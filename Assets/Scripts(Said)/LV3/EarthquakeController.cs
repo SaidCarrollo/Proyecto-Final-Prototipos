@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,30 +6,30 @@ using System.Collections.Generic;
 public class EarthquakeController : MonoBehaviour
 {
     [Header("Bindings")]
-    [SerializeField] private Transform cameraTransform;   // arrastra la cámara del jugador
+    [SerializeField] private Transform cameraTransform;   // arrastra la cÃ¡mara del jugador
     [SerializeField] private UIManager uiManager;         // opcional (para mensajes)
 
     [Header("Auto Start")]
-    [Tooltip("Si está activo, el sismo comienza al iniciar la escena.")]
+    [Tooltip("Si estÃ¡ activo, el sismo comienza al iniciar la escena.")]
     [SerializeField] private bool autoStart = true;
-    [Tooltip("Duración del sismo al auto iniciar. -1 = infinito hasta StopEarthquake()")]
+    [Tooltip("DuraciÃ³n del sismo al auto iniciar. -1 = infinito hasta StopEarthquake()")]
     [SerializeField] private float autoDuration = 20f;
 
-    [Header("Shake (posición)")]
+    [Header("Shake (posiciÃ³n)")]
     [SerializeField] private float posAmplitude = 0.06f;     // metros
     [SerializeField] private float posFrequency = 18f;       // Hz aprox (ruido Perlin sampleado por tiempo)
 
-    [Header("Shake (rotación extra)")]
-    [SerializeField] private float rotAmplitudeDeg = 1.5f;   // grados (roll/pitch pequeños)
+    [Header("Shake (rotaciÃ³n extra)")]
+    [SerializeField] private float rotAmplitudeDeg = 1.5f;   // grados (roll/pitch pequeÃ±os)
     [SerializeField] private float rotFrequency = 9f;
 
     [Header("Intensidad en el tiempo")]
     [Tooltip("Escala global de intensidad (0..1).")]
     [Range(0f, 1f)] public float intensity = 1f;
-    [Tooltip("Curva 0..1 a lo largo de la duración; X = progreso (0..1), Y = factor (0..1).")]
+    [Tooltip("Curva 0..1 a lo largo de la duraciÃ³n; X = progreso (0..1), Y = factor (0..1).")]
     [SerializeField]
     private AnimationCurve envelope =
-        AnimationCurve.EaseInOut(0, 0, 0.15f, 1f); // sube rápido
+        AnimationCurve.EaseInOut(0, 0, 0.15f, 1f); // sube rÃ¡pido
     [SerializeField]
     private AnimationCurve envelopeTail =
         AnimationCurve.EaseInOut(0.85f, 1f, 1f, 0f); // cae al final
@@ -42,7 +42,7 @@ public class EarthquakeController : MonoBehaviour
     private Camera cam;
 
     [Header("Aftershocks")]
-    [Tooltip("Permite pequeños remezones aleatorios durante el sismo.")]
+    [Tooltip("Permite pequeÃ±os remezones aleatorios durante el sismo.")]
     [SerializeField] private bool aftershocks = true;
     [SerializeField] private Vector2 aftershockEverySeconds = new Vector2(6f, 12f);
     [SerializeField] private float aftershockAmpMultiplier = 1.6f;
@@ -53,8 +53,8 @@ public class EarthquakeController : MonoBehaviour
     [SerializeField] private float bodyImpulse = 0.8f;
 
     [Header("Mensajes (opcionales)")]
-    [SerializeField, TextArea(1, 3)] private string startMsg = "¡Sismo! Resguárdate.";
-    [SerializeField, TextArea(1, 3)] private string tipMsg = "Agáchate bajo una mesa o en el marco de una puerta.";
+    [SerializeField, TextArea(1, 3)] private string startMsg = "Â¡Sismo! ResguÃ¡rdate.";
+    [SerializeField, TextArea(1, 3)] private string tipMsg = "AgÃ¡chate bajo una mesa o en el marco de una puerta.";
 
     // --- estado ---
     private bool running;
@@ -63,7 +63,7 @@ public class EarthquakeController : MonoBehaviour
     private Vector3 camLocalPos0;
     private Quaternion camLocalRot0;
     private float aftershockUntil;
-    private float aftershockFactor; // 1 = normal; >1 = más fuerte
+    private float aftershockFactor; // 1 = normal; >1 = mÃ¡s fuerte
 
     void Awake()
     {
@@ -93,7 +93,7 @@ public class EarthquakeController : MonoBehaviour
     {
         if (cameraTransform == null)
         {
-            Debug.LogError("[EarthquakeController] No hay cámara asignada.");
+            Debug.LogError("[EarthquakeController] No hay cÃ¡mara asignada.");
             return;
         }
         running = true;
@@ -107,7 +107,7 @@ public class EarthquakeController : MonoBehaviour
         if (uiManager != null)
         {
             if (!string.IsNullOrEmpty(startMsg)) uiManager.OnMessageEventRaised(startMsg);        // mensaje info
-            if (!string.IsNullOrEmpty(tipMsg)) uiManager.UpdateObjectiveText(tipMsg);          // objetivo/guía
+            if (!string.IsNullOrEmpty(tipMsg)) uiManager.UpdateObjectiveText(tipMsg);          // objetivo/guÃ­a
         }
         if (aftershocks) StartCoroutine(AftershockLoop());
     }
@@ -158,39 +158,38 @@ public class EarthquakeController : MonoBehaviour
         float env = intensity;
         if (dur > 0f)
         {
-            // sobre (0..1) combinamos dos curvas para subir y bajar
             env *= (norm < 0.5f)
                 ? envelope.Evaluate(Mathf.InverseLerp(0f, 0.5f, norm))
                 : envelopeTail.Evaluate(Mathf.InverseLerp(0.5f, 1f, norm));
         }
 
-        // aftershock
         float shock = (Time.time < aftershockUntil) ? aftershockFactor : 1f;
         float i = env * shock;
 
-        // --- POSICIÓN (ruido perlin) ---
+        // POS
         Vector3 offset = Vector3.zero;
         offset.x = (Mathf.PerlinNoise(seedX + Time.time * posFrequency, 0f) - 0.5f) * 2f * posAmplitude * i;
         offset.y = (Mathf.PerlinNoise(seedY + Time.time * posFrequency, 1f) - 0.5f) * 2f * posAmplitude * i;
         offset.z = (Mathf.PerlinNoise(seedZ + Time.time * posFrequency, 2f) - 0.5f) * 2f * posAmplitude * i;
 
-        // --- ROTACIÓN extra (pequeña) ---
+        // ROT extra
         float roll = (Mathf.PerlinNoise(seedR + Time.time * rotFrequency, 3f) - 0.5f) * 2f * rotAmplitudeDeg * i;
         float pitch = (Mathf.PerlinNoise(seedR + 13f + Time.time * rotFrequency, 4f) - 0.5f) * 2f * (rotAmplitudeDeg * 0.5f) * i;
 
-        // Componer con lo que ya puso el FPC/otros (nos basamos en lo actual cada frame)
-        var baseRot = cameraTransform.localRotation;
-        var deltaRot = Quaternion.Euler(pitch, 0f, roll);
+        // ðŸ‘‰ aquÃ­ el cambio importante
+        Quaternion baseRot = camLocalRot0;                               // usar la rot inicial
+        Quaternion deltaRot = Quaternion.Euler(pitch, 0f, roll);
+
         cameraTransform.localPosition = camLocalPos0 + offset;
         cameraTransform.localRotation = baseRot * deltaRot;
 
-        // FOV pulse
+        // FOV
         if (pulseFOV && cam != null && baseFOV > 0f)
         {
             cam.fieldOfView = baseFOV + Mathf.Sin(Time.time * fovPulseFrequency * Mathf.PI * 2f) * fovPulseAmount * i;
         }
 
-        // detener al terminar (si tiene duración)
+        // terminar
         if (dur > 0f && t >= dur)
         {
             StopEarthquake();

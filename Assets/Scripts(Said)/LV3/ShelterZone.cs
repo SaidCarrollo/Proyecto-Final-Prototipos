@@ -36,8 +36,8 @@ public class ShelterZone : MonoBehaviour
 
     private void Awake()
     {
-        if (gameManager == null) gameManager = FindObjectOfType<GameManager>();
-        if (uiManager == null) uiManager = FindObjectOfType<UIManager>();
+        //if (gameManager == null) gameManager = FindObjectOfType<GameManager>();
+        //if (uiManager == null) uiManager = FindObjectOfType<UIManager>();
         // BadgeManager es ScriptableObject: suele asignarse manualmente en el Inspector.
     }
 
