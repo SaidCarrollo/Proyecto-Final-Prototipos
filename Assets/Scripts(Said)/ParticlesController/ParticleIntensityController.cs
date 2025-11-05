@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
@@ -7,26 +6,27 @@ public class ParticleIntensityController : MonoBehaviour
     private ParticleSystem ps;
     private ParticleSystem.EmissionModule emissionModule;
 
+    [Header("Emisión Partículas")]
     public float minEmissionRate = 5f;
     public float maxEmissionRate = 100f;
 
     void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        emissionModule = ps.emission; 
+        emissionModule = ps.emission;
     }
 
-    public void SetIntensity(float intensity) 
+    public void SetIntensity(float intensity)
     {
-        if (intensity <= 0.01f && ps.isPlaying) 
+        if (intensity <= 0.01f && ps.isPlaying)
         {
-            emissionModule.enabled = false; 
+            emissionModule.enabled = false;
         }
         else
         {
             if (!emissionModule.enabled)
             {
-                emissionModule.enabled = true; 
+                emissionModule.enabled = true;
             }
             if (!ps.isPlaying && intensity > 0.01f)
             {
@@ -43,12 +43,11 @@ public class ParticleIntensityController : MonoBehaviour
         {
             if (!emissionModule.enabled) emissionModule.enabled = true;
             if (!ps.isPlaying) ps.Play();
-            emissionModule.rateOverTime = maxEmissionRate; 
+            emissionModule.rateOverTime = maxEmissionRate;
         }
         else
         {
             emissionModule.enabled = false;
         }
     }
-
 }

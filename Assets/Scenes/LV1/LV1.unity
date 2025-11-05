@@ -2473,6 +2473,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284592322}
   m_CullTransparentMesh: 1
+--- !u!2083052967 &286730028 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 4726869099561852213, guid: cca45df276f7b1349b7d1952c11d1214, type: 3}
+  m_PrefabInstance: {fileID: 1845668579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &293458297
 GameObject:
   m_ObjectHideFlags: 0
@@ -3735,6 +3740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 381737453}
   - component: {fileID: 381737452}
+  - component: {fileID: 381737457}
+  - component: {fileID: 381737458}
   m_Layer: 0
   m_Name: Scenemanager
   m_TagString: Untagged
@@ -3781,6 +3788,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381737457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381737451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5681412de3fa34aaef09d5c6bf2084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 381737458}
+        m_TargetAssemblyTypeName: FireVFXGrowthController, Assembly-CSharp
+        m_MethodName: SetFireLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &381737458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381737451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5952bb7ee4d90f448a682c5d46e0c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 286730028}
+  maxMainSpawnRate: 25
+  maxSecondarySpawnRate: 10
+  minScale: 1
+  maxScale: 10.11
+  pivotCompensationFactor: 0.8
 --- !u!224 &381975214 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1254376012214830077, guid: ec0808cd4dfbf3e499c3b1708dfcb17e, type: 3}
@@ -10227,7 +10280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoParaDescontrol: 30
-  intensidadFuegoDescontrolado: 0.8
+  intensidadFuegoDescontrolado: 3
   fireIntensityEvent: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
   messageEvent: {fileID: 11400000, guid: edbd591af2df3df48a8a0f1ab381fb2d, type: 2}
   onUncontrolledFireEvent: {fileID: 11400000, guid: d410c388d79f73945be5625b6604771b, type: 2}
@@ -15594,8 +15647,6 @@ GameObject:
   - component: {fileID: 1539435028}
   - component: {fileID: 1539435032}
   - component: {fileID: 1539435031}
-  - component: {fileID: 1539435030}
-  - component: {fileID: 1539435029}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -15618,48 +15669,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 317734131}
   m_LocalEulerAnglesHint: {x: -83.17, y: 0, z: 0}
---- !u!114 &1539435029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539435027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5681412de3fa34aaef09d5c6bf2084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 738cd72fa0ced774d97b3c18a3fe5dbd, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1539435030}
-        m_TargetAssemblyTypeName: ParticleIntensityController, Assembly-CSharp
-        m_MethodName: SetIntensity
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.8
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1539435030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539435027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a922ea9672498b147934b3f29fa32a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minEmissionRate: 5
-  maxEmissionRate: 100
 --- !u!199 &1539435031
 ParticleSystemRenderer:
   serializedVersion: 6
