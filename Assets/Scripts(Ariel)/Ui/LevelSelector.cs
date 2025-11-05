@@ -3,12 +3,12 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(RectTransform))] // Asegura que el objeto tenga un RectTransform
+[RequireComponent(typeof(RectTransform))] // El objeto que tiene este script debe tener RectTransform (por si acaso)
 public class LevelSelector : MonoBehaviour
 {
     [Header("Configuración de Objetos")]
     [Tooltip("Arrastra aquí el objeto 'LevelsContainer' que contiene todos los paneles.")]
-    public Transform levelsContainer; // Cambiado a Transform para que sea más general
+    public Transform levelsContainer; // Debe tener RectTransform
 
     [Header("Configuración de Botones")]
     public Button botonSiguiente;
@@ -19,29 +19,40 @@ public class LevelSelector : MonoBehaviour
     public Ease tipoDeEase = Ease.OutQuad;
 
     // --- Variables Privadas ---
-    private List<RectTransform> niveles = new List<RectTransform>(); // La lista ahora es privada y de RectTransform
+    // Lista de niveles (sus RectTransform), detectados automáticamente
+    private List<RectTransform> niveles = new List<RectTransform>();
+
+    // Posiciones objetivo en X del container para que cada nivel quede centrado
+    private List<float> posicionesNivelX = new List<float>();
+
     private RectTransform containerRectTransform;
     private int nivelActualIndex = 0;
-    private float anchoDePanel;
-    private HorizontalLayoutGroup layoutGroup;
+
+    // Exponer cantidad de niveles si lo necesitas en otros scripts
+    public int TotalNiveles => niveles.Count;
 
     void Awake()
     {
-        // --- Inicialización y Configuración Automática ---
-        containerRectTransform = levelsContainer.GetComponent<RectTransform>();
-        layoutGroup = levelsContainer.GetComponent<HorizontalLayoutGroup>();
-
-        if (layoutGroup == null)
+        if (levelsContainer == null)
         {
-            Debug.LogError("¡Error! El 'levelsContainer' necesita un componente HorizontalLayoutGroup.");
+            Debug.LogError("[LevelSelector] No se asignó 'levelsContainer' en el inspector.");
             return;
         }
 
-        // 1. Detección automática de niveles
+        containerRectTransform = levelsContainer.GetComponent<RectTransform>();
+        if (containerRectTransform == null)
+        {
+            Debug.LogError("[LevelSelector] 'levelsContainer' necesita un RectTransform.");
+            return;
+        }
+
+        // 1. Detección automática de niveles (hijos activos)
         niveles.Clear();
+        posicionesNivelX.Clear();
+
         foreach (RectTransform child in levelsContainer)
         {
-            if (child.gameObject.activeSelf) // Solo considera los hijos activos
+            if (child.gameObject.activeSelf)
             {
                 niveles.Add(child);
             }
@@ -49,23 +60,39 @@ public class LevelSelector : MonoBehaviour
 
         if (niveles.Count == 0)
         {
-            Debug.LogWarning("No se encontraron niveles activos dentro del 'levelsContainer'.");
+            Debug.LogWarning("[LevelSelector] No se encontraron niveles activos dentro del 'levelsContainer'.");
             return;
         }
 
-        // 2. Cálculo automático del ancho del panel + espaciado
-        anchoDePanel = niveles[0].rect.width + layoutGroup.spacing;
+        // 2. Calcular la posición objetivo del container para cada nivel
+        //
+        // Idea:
+        //  - Si el nivel i tiene anchoredPosition.x = P_i
+        //  - Para que ese nivel quede centrado respecto al container,
+        //    movemos el container a X = -P_i
+        //
+        //  => guardamos esos valores en una lista
+        foreach (var nivel in niveles)
+        {
+            float targetX = -nivel.anchoredPosition.x;
+            posicionesNivelX.Add(targetX);
+        }
 
-        // Asignación de listeners a los botones
-        botonSiguiente.onClick.AddListener(SiguienteNivel);
-        botonAnterior.onClick.AddListener(NivelAnterior);
+        // 3. Asignación de listeners a los botones
+        if (botonSiguiente != null)
+            botonSiguiente.onClick.AddListener(SiguienteNivel);
 
-        // Se posiciona en el primer nivel al iniciar
+        if (botonAnterior != null)
+            botonAnterior.onClick.AddListener(NivelAnterior);
+
+        // 4. Posicionamos en el primer nivel al iniciar (sin animación)
         PosicionarEnNivel(0);
     }
 
     public void SiguienteNivel()
     {
+        if (niveles.Count == 0) return;
+
         nivelActualIndex++;
         if (nivelActualIndex >= niveles.Count)
         {
@@ -76,6 +103,8 @@ public class LevelSelector : MonoBehaviour
 
     public void NivelAnterior()
     {
+        if (niveles.Count == 0) return;
+
         nivelActualIndex--;
         if (nivelActualIndex < 0)
         {
@@ -86,17 +115,33 @@ public class LevelSelector : MonoBehaviour
 
     private void MoverA_Nivel(int index)
     {
-        // El cálculo de la posición ahora incluye el espaciado
-        float nuevaPosicionX = -index * anchoDePanel;
+        if (index < 0 || index >= posicionesNivelX.Count)
+        {
+            Debug.LogWarning("[LevelSelector] Índice de nivel fuera de rango: " + index);
+            return;
+        }
+
+        float nuevaPosicionX = posicionesNivelX[index];
 
         // Animación con DOTween
-        containerRectTransform.DOAnchorPosX(nuevaPosicionX, duracionTransicion).SetEase(tipoDeEase);
+        containerRectTransform
+            .DOAnchorPosX(nuevaPosicionX, duracionTransicion)
+            .SetEase(tipoDeEase);
     }
 
     private void PosicionarEnNivel(int index)
     {
-        // Posicionamiento inicial sin animación
-        float posicionInicialX = -index * anchoDePanel;
-        containerRectTransform.anchoredPosition = new Vector2(posicionInicialX, containerRectTransform.anchoredPosition.y);
+        if (index < 0 || index >= posicionesNivelX.Count)
+        {
+            Debug.LogWarning("[LevelSelector] Índice de nivel fuera de rango al posicionar: " + index);
+            return;
+        }
+
+        float posicionInicialX = posicionesNivelX[index];
+        Vector2 pos = containerRectTransform.anchoredPosition;
+        pos.x = posicionInicialX;
+        containerRectTransform.anchoredPosition = pos;
+
+        nivelActualIndex = index;
     }
 }
