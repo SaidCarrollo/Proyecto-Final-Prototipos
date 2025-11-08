@@ -10329,6 +10329,10 @@ MonoBehaviour:
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
   objectiveChecklistUI: {fileID: 2100503556}
+  usarDelayInicial: 1
+  tiempoDelayInicial: 10
+  fireTimer: {fileID: 846614569}
+  hazardTimer: {fileID: 0}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0

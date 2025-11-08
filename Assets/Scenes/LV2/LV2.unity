@@ -334,6 +334,7 @@ MonoBehaviour:
   warningThreshold: 5
   pulseScale: 1.1
   pulseDuration: 0.5
+  prewarmColor: {r: 0.4, g: 0.9, b: 1, a: 1}
 --- !u!1 &31757548
 GameObject:
   m_ObjectHideFlags: 0
@@ -7901,6 +7902,10 @@ MonoBehaviour:
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
   objectiveChecklistUI: {fileID: 384335834}
+  usarDelayInicial: 1
+  tiempoDelayInicial: 10
+  fireTimer: {fileID: 0}
+  hazardTimer: {fileID: 846614574}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0

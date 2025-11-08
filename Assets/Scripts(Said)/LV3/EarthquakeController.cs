@@ -8,7 +8,7 @@ public class EarthquakeController : MonoBehaviour
     [Header("Bindings")]
     [SerializeField] private Transform cameraTransform;   // arrastra la cámara del jugador
     [SerializeField] private UIManager uiManager;         // opcional (para mensajes)
-
+    private Quaternion lastShakeRot = Quaternion.identity;
     [Header("Auto Start")]
     [Tooltip("Si está activo, el sismo comienza al iniciar la escena.")]
     [SerializeField] private bool autoStart = true;
@@ -103,7 +103,7 @@ public class EarthquakeController : MonoBehaviour
         camLocalRot0 = cameraTransform.localRotation;
         aftershockUntil = 0f;
         aftershockFactor = 1f;
-
+        lastShakeRot = Quaternion.identity;
         if (uiManager != null)
         {
             if (!string.IsNullOrEmpty(startMsg)) uiManager.OnMessageEventRaised(startMsg);        // mensaje info
@@ -166,24 +166,28 @@ public class EarthquakeController : MonoBehaviour
         float shock = (Time.time < aftershockUntil) ? aftershockFactor : 1f;
         float i = env * shock;
 
-        // POS
+        // POS (esto sí puede ir desde la pos original)
         Vector3 offset = Vector3.zero;
         offset.x = (Mathf.PerlinNoise(seedX + Time.time * posFrequency, 0f) - 0.5f) * 2f * posAmplitude * i;
         offset.y = (Mathf.PerlinNoise(seedY + Time.time * posFrequency, 1f) - 0.5f) * 2f * posAmplitude * i;
         offset.z = (Mathf.PerlinNoise(seedZ + Time.time * posFrequency, 2f) - 0.5f) * 2f * posAmplitude * i;
 
-        // ROT extra
+        // ROT del sismo (pequeña)
         float roll = (Mathf.PerlinNoise(seedR + Time.time * rotFrequency, 3f) - 0.5f) * 2f * rotAmplitudeDeg * i;
         float pitch = (Mathf.PerlinNoise(seedR + 13f + Time.time * rotFrequency, 4f) - 0.5f) * 2f * (rotAmplitudeDeg * 0.5f) * i;
-
-        // 👉 aquí el cambio importante
-        Quaternion baseRot = camLocalRot0;                               // usar la rot inicial
         Quaternion deltaRot = Quaternion.Euler(pitch, 0f, roll);
 
-        cameraTransform.localPosition = camLocalPos0 + offset;
-        cameraTransform.localRotation = baseRot * deltaRot;
+        // 🔥 TRUCO: quitar la sacudida anterior del rot actual (el que dejó el FPC)
+        Quaternion camRotSinSismo = cameraTransform.localRotation * Quaternion.Inverse(lastShakeRot);
 
-        // FOV
+        // aplicar nueva sacudida encima
+        cameraTransform.localPosition = camLocalPos0 + offset;
+        cameraTransform.localRotation = camRotSinSismo * deltaRot;
+
+        // guardar la que acabamos de poner para poder quitarla el próximo frame
+        lastShakeRot = deltaRot;
+
+        // FOV igual que antes
         if (pulseFOV && cam != null && baseFOV > 0f)
         {
             cam.fieldOfView = baseFOV + Mathf.Sin(Time.time * fovPulseFrequency * Mathf.PI * 2f) * fovPulseAmount * i;
@@ -195,4 +199,5 @@ public class EarthquakeController : MonoBehaviour
             StopEarthquake();
         }
     }
+
 }

@@ -59,6 +59,15 @@ public class GameManager : MonoBehaviour
     public bool IsFireUncontrolled { get; private set; } = false;
     [Header("UI Secundarias")]
     [SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
+
+    [Header("Inicio con Delay (Periodo de familiarización)")]
+    [SerializeField] private bool usarDelayInicial = false;
+    [SerializeField] private float tiempoDelayInicial = 10f;
+    private bool delayIniciado = false;
+
+    [Header("Temporizadores opcionales")]
+    [SerializeField] private FireTimer fireTimer;      // para niveles de incendio
+    [SerializeField] private HazardTimer hazardTimer;  // para niveles de otro peligro
     void Start()
     {
         if (rememberLevelOnAwake && lastPlayedLevel != null && thisLevel != null)
@@ -68,13 +77,68 @@ public class GameManager : MonoBehaviour
 
             SetPlannedNextScene(NextLevel);
         }
+
         if (badgeManager != null)
             badgeManager.ResetBadges();
 
         IsFireUncontrolled = false;
         currentState = GameState.Playing;
-    }
 
+        if (usarDelayInicial)
+        {
+            StartCoroutine(DelayInicialCoroutine());
+        }
+        else
+        {
+            IniciarEscenarioNormal();
+        }
+    }
+    private IEnumerator DelayInicialCoroutine()
+    {
+        delayIniciado = true;
+        Debug.Log($"[GameManager] Delay inicial de {tiempoDelayInicial}s iniciado.");
+
+        // bloquear input si quieres
+        if (playerController != null)
+            playerController.SetInputEnabled(false);
+
+        // mostrar mensaje informativo
+        messageEvent?.Raise("Explora rápido el entorno...");
+
+        // mostrar timer celeste
+        if (uiTimerController != null)
+            uiTimerController.StartPrewarmTimer(tiempoDelayInicial);
+
+        yield return new WaitForSeconds(tiempoDelayInicial);
+
+        // al terminar, arrancas el timer real
+        IniciarEscenarioNormal();
+    }
+    private void IniciarEscenarioNormal()
+    {
+        Debug.Log("[GameManager] Iniciando el escenario normal tras el delay (si existía).");
+
+        // 1) devolver control al jugador
+        if (playerController != null)
+            playerController.SetInputEnabled(true);
+
+        // 2) arrancar SOLO el temporizador que exista en esta escena
+        if (fireTimer != null)
+        {
+            fireTimer.ReiniciarTemporizador();   // usa el tiempo que ya tiene configurado 
+            Debug.Log("[GameManager] Se arrancó el FireTimer.");
+        }
+        else if (hazardTimer != null)
+        {
+            // tu HazardTimer también tiene método público para iniciar el timer 
+            hazardTimer.StartTimer();
+            Debug.Log("[GameManager] Se arrancó el HazardTimer.");
+        }
+        else
+        {
+            Debug.Log("[GameManager] No hay temporizador asignado en esta escena.");
+        }
+    }
     public void HandleUncontrolledFire()
     {
         if (IsFireUncontrolled) return;

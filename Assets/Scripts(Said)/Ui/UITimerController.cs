@@ -23,7 +23,8 @@ public class UITimerController : MonoBehaviour
 
     private Coroutine timerCoroutine;
     private Tween pulseTween;
-
+    [Header("Color para pre-conteo (fase de observación)")]
+    [SerializeField] private Color prewarmColor = new Color(0.4f, 0.9f, 1f); // celeste
     void Start()
     {
         if (timerText != null)
@@ -46,6 +47,17 @@ public class UITimerController : MonoBehaviour
         timerText.gameObject.SetActive(true);
         timerText.color = dangerColor;
         StartPulsing();
+        timerCoroutine = StartCoroutine(RunTimer(duration, false));
+    }
+    public void StartPrewarmTimer(float duration)
+    {
+        StopCurrentTimer();
+        if (timerText == null) return;
+
+        timerText.gameObject.SetActive(true);
+        timerText.color = prewarmColor;      // celeste
+        timerText.transform.localScale = Vector3.one; // sin pulso
+                                                      // en este modo NO queremos cambio a naranja, así que le pasamos false
         timerCoroutine = StartCoroutine(RunTimer(duration, false));
     }
     public void HideTimer()
