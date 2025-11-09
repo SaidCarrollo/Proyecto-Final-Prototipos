@@ -7615,6 +7615,7 @@ MonoBehaviour:
           m_StringArgument: Ventilacion exitosa
           m_BoolArgument: 0
         m_CallState: 2
+  autoStart: 0
   fastForwardToGoodOnDefuse: 1
 --- !u!1001 &854811729
 PrefabInstance:

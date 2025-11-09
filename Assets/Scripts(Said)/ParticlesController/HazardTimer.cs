@@ -19,15 +19,16 @@ public class HazardTimer : MonoBehaviour
     [Tooltip("Evento que se dispara INMEDIATAMENTE al desactivar el peligro (ej. para dar un badge).")]
     public UnityEvent OnHazardDefused;
 
-    //[Header("Checklist opcional")]
-    //[SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
+    [Header("Arranque")]
+    [SerializeField] private bool autoStart = true;
     private bool isDefused = false;
     private Coroutine timerCoroutine;
     [SerializeField] private bool fastForwardToGoodOnDefuse = true; 
     private bool goodOutcomeTriggered = false;
     private void Start()
     {
-        StartTimer();
+        if (autoStart)
+            StartTimer();
     }
 
     public void StartTimer()

@@ -8079,6 +8079,7 @@ MonoBehaviour:
           m_StringArgument: Fuga de Gas Reducida
           m_BoolArgument: 0
         m_CallState: 2
+  autoStart: 0
   fastForwardToGoodOnDefuse: 1
 --- !u!1 &858064194
 GameObject:
