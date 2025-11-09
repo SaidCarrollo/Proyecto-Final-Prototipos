@@ -324,6 +324,7 @@ MonoBehaviour:
   warningThreshold: 5
   pulseScale: 1.1
   pulseDuration: 0.5
+  prewarmColor: {r: 0.4, g: 0.9, b: 1, a: 1}
 --- !u!1 &31757548
 GameObject:
   m_ObjectHideFlags: 0
@@ -7453,7 +7454,12 @@ MonoBehaviour:
   windowSafeBadgeId: DistanciaSegura
   awardIdealExitBadgeOnWin: 1
   idealExitBadgeId: "Sin da\xF1os"
-  objectiveChecklistUI: {fileID: 0}
+  objectiveChecklistUI: {fileID: 1922300098}
+  usarDelayInicial: 1
+  tiempoDelayInicial: 10
+  fireTimer: {fileID: 0}
+  hazardTimer: {fileID: 846614574}
+  mobileInteractionPanel: {fileID: 854811732}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8085,6 +8091,11 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3.95, y: -2.73}
   m_UseGraphicAlpha: 1
+--- !u!1 &854811732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7637413402799573285, guid: ec0808cd4dfbf3e499c3b1708dfcb17e, type: 3}
+  m_PrefabInstance: {fileID: 854811729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &860128185
 GameObject:
   m_ObjectHideFlags: 0

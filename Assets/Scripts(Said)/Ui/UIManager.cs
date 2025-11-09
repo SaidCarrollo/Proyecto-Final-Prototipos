@@ -178,4 +178,8 @@ public class UIManager : MonoBehaviour
 
         overlayCoroutine = null;
     }
+    public void RestoreInitialObjective()
+    {
+        UpdateObjectiveText(initialObjectiveText);
+    }
 }

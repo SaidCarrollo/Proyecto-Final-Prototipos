@@ -7212,6 +7212,11 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3.95, y: -2.73}
   m_UseGraphicAlpha: 1
+--- !u!1 &762264319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7637413402799573285, guid: ec0808cd4dfbf3e499c3b1708dfcb17e, type: 3}
+  m_PrefabInstance: {fileID: 762264316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &768909234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6712896212864301597, guid: ec0808cd4dfbf3e499c3b1708dfcb17e, type: 3}
@@ -7906,6 +7911,7 @@ MonoBehaviour:
   tiempoDelayInicial: 10
   fireTimer: {fileID: 0}
   hazardTimer: {fileID: 846614574}
+  mobileInteractionPanel: {fileID: 762264319}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -7,21 +7,21 @@ public class GameManager : MonoBehaviour
     public enum GameState { Playing, Won, Lost }
     private GameState currentState = GameState.Playing;
 
-    [Header("Scene Management (Sistema Asíncrono)")]
+    [Header("Scene Management (Sistema AsÃ­ncrono)")]
     [Tooltip("Escena a cargar cuando el jugador GANA.")]
     [SerializeField] private SceneDefinitionSO winScene;
     [Tooltip("Escena a cargar cuando el jugador PIERDE.")]
     [SerializeField] private SceneDefinitionSO loseScene;
     [Header("Nivel actual (para Retry)")]
     [SerializeField] private SceneDefinitionSO thisLevel;          // La SceneDefinition de ESTA escena de gameplay
-    [SerializeField] private LastPlayedLevelSO lastPlayedLevel;    // Asset compartido para recordar el último nivel
+    [SerializeField] private LastPlayedLevelSO lastPlayedLevel;    // Asset compartido para recordar el Ãºltimo nivel
     [SerializeField] private bool rememberLevelOnAwake = true;     // Por si quieres desactivarlo en alguna escena rara
-    [Header("Próxima escena planificada")]
-    [Tooltip("ScriptableObject global donde puedo guardar una escena futura a la que quiero ir más tarde.")]
+    [Header("PrÃ³xima escena planificada")]
+    [Tooltip("ScriptableObject global donde puedo guardar una escena futura a la que quiero ir mÃ¡s tarde.")]
     [SerializeField] private SceneDefinitionSO NextLevel;
     [SerializeField] private NextSceneSO plannedNextScene;
 
-    [Tooltip("Canal para solicitar pre-carga/carga de escenas (asíncrono).")]
+    [Tooltip("Canal para solicitar pre-carga/carga de escenas (asÃ­ncrono).")]
     [SerializeField] private SceneLoadEventChannelSO sceneLoadChannel;
     [Tooltip("Canal para ACTIVAR la escena pre-cargada (dispara el fade y el allowSceneActivation).")]
     [SerializeField] private SceneChannelSO activatePreloadedSceneChannel;
@@ -53,14 +53,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string noRunBadgeId = "CalmaBajoPresion";
     [SerializeField] private bool awardWindowSafeBadgeOnWin = false;
     [SerializeField] private string windowSafeBadgeId = "DistanciaSegura";
-    [Header("Badge 'Sin Daño'")]
+    [Header("Badge 'Sin DaÃ±o'")]
     [SerializeField] private bool awardIdealExitBadgeOnWin = true;
-    [SerializeField] private string idealExitBadgeId = "Sin daños";
+    [SerializeField] private string idealExitBadgeId = "Sin daÃ±os";
     public bool IsFireUncontrolled { get; private set; } = false;
     [Header("UI Secundarias")]
     [SerializeField] private ObjectiveChecklistUI objectiveChecklistUI;
 
-    [Header("Inicio con Delay (Periodo de familiarización)")]
+    [Header("Inicio con Delay (Periodo de familiarizaciÃ³n)")]
     [SerializeField] private bool usarDelayInicial = false;
     [SerializeField] private float tiempoDelayInicial = 10f;
     private bool delayIniciado = false;
@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     [Header("Temporizadores opcionales")]
     [SerializeField] private FireTimer fireTimer;      // para niveles de incendio
     [SerializeField] private HazardTimer hazardTimer;  // para niveles de otro peligro
+    [Header("UI MÃ³vil opcional")]
+    [SerializeField] private GameObject mobileInteractionPanel;
     void Start()
     {
         if (rememberLevelOnAwake && lastPlayedLevel != null && thisLevel != null)
@@ -98,56 +100,76 @@ public class GameManager : MonoBehaviour
         delayIniciado = true;
         Debug.Log($"[GameManager] Delay inicial de {tiempoDelayInicial}s iniciado.");
 
-        // bloquear input si quieres
+        // movimiento sÃ­
         if (playerController != null)
-            playerController.SetInputEnabled(false);
+            playerController.SetInputEnabled(true);
 
-        // mostrar mensaje informativo
-        messageEvent?.Raise("Explora rápido el entorno...");
+        // interacciÃ³n no
+        if (playerInteraction != null)
+            playerInteraction.enabled = false;
 
-        // mostrar timer celeste
+        if (mobileInteractionPanel != null)
+            mobileInteractionPanel.SetActive(false);
+
+        // âœ… objetivo temporal
+        if (uiManager != null)
+            uiManager.UpdateObjectiveText("Explora y observa tu entorno");
+
+        // âœ… ocultar checklist mientras observa
+        if (objectiveChecklistUI != null)
+            objectiveChecklistUI.gameObject.SetActive(false);
+
+        // timer celeste
         if (uiTimerController != null)
             uiTimerController.StartPrewarmTimer(tiempoDelayInicial);
 
         yield return new WaitForSeconds(tiempoDelayInicial);
 
-        // al terminar, arrancas el timer real
         IniciarEscenarioNormal();
     }
+
     private void IniciarEscenarioNormal()
     {
-        Debug.Log("[GameManager] Iniciando el escenario normal tras el delay (si existía).");
+        Debug.Log("[GameManager] Iniciando el escenario normal tras el delay.");
 
-        // 1) devolver control al jugador
         if (playerController != null)
             playerController.SetInputEnabled(true);
 
-        // 2) arrancar SOLO el temporizador que exista en esta escena
+        if (playerInteraction != null)
+            playerInteraction.enabled = true;
+
+        if (mobileInteractionPanel != null)
+            mobileInteractionPanel.SetActive(true);
+
+        // âœ… volver al objetivo original del UIManager
+        if (uiManager != null)
+            uiManager.RestoreInitialObjective();
+
+        // âœ… volver a mostrar los objetivos secundarios
+        if (objectiveChecklistUI != null)
+            objectiveChecklistUI.gameObject.SetActive(true);
+
+        // arrancar el timer que toque
         if (fireTimer != null)
         {
-            fireTimer.ReiniciarTemporizador();   // usa el tiempo que ya tiene configurado 
-            Debug.Log("[GameManager] Se arrancó el FireTimer.");
+            fireTimer.ReiniciarTemporizador();
         }
         else if (hazardTimer != null)
         {
-            // tu HazardTimer también tiene método público para iniciar el timer 
             hazardTimer.StartTimer();
-            Debug.Log("[GameManager] Se arrancó el HazardTimer.");
-        }
-        else
-        {
-            Debug.Log("[GameManager] No hay temporizador asignado en esta escena.");
         }
     }
+
+
     public void HandleUncontrolledFire()
     {
         if (IsFireUncontrolled) return;
 
-        Debug.Log("GameManager: ¡El fuego está fuera de control!");
+        Debug.Log("GameManager: Â¡El fuego estÃ¡ fuera de control!");
         IsFireUncontrolled = true;
 
         if (uiManager != null)
-            uiManager.UpdateObjectiveText("Evacúa.");
+            uiManager.UpdateObjectiveText("EvacÃºa.");
         else
             Debug.LogWarning("GameManager: UIManager no asignado; no se puede actualizar el objetivo.");
     }
@@ -158,7 +180,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Contador mortal iniciado ({tiempoParaMorir}s).");
         uiTimerController?.StartMortalTimer(tiempoParaMorir);
-        messageEvent?.Raise("¡El tiempo se agota!");
+        messageEvent?.Raise("Â¡El tiempo se agota!");
         if (objectiveChecklistUI != null)
         {
             objectiveChecklistUI.ForceFailPendingsAndGoToSecondPhase();
@@ -170,7 +192,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ContadorParaMuerte()
     {
         yield return new WaitForSeconds(tiempoParaMorir);
-        Debug.Log("Se acabó el tiempo. El jugador ha muerto.");
+        Debug.Log("Se acabÃ³ el tiempo. El jugador ha muerto.");
         badgeManager?.UnlockBadge("GameOverSinTiempo");
         HandlePlayerDeath();
     }
@@ -179,7 +201,7 @@ public class GameManager : MonoBehaviour
     {
         if (survivalCoroutine != null) return;
 
-        Debug.Log($"Iniciando cuenta atrás de VICTORIA: {duration} s.");
+        Debug.Log($"Iniciando cuenta atrÃ¡s de VICTORIA: {duration} s.");
         survivalCoroutine = StartCoroutine(SupervivenciaCoroutine(duration));
         uiTimerController?.StartFireTimer(duration);
     }
@@ -207,7 +229,7 @@ public class GameManager : MonoBehaviour
             deathCoroutine = null;
         }
 
-        Debug.Log("GAME OVER: Iniciando transición a escena de derrota.");
+        Debug.Log("GAME OVER: Iniciando transiciÃ³n a escena de derrota.");
         LevelCompletionData.currentManager = this.badgeManager;
 
         // Desactivar input de jugador y liberar cursor para UI
@@ -216,12 +238,12 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Opcional: mantener una leve cámara lenta antes del fade
+        // Opcional: mantener una leve cÃ¡mara lenta antes del fade
         Time.timeScale = 0.2f;
 
         StartCoroutine(TransitionToSceneAsync(loseScene));
         onPlayerDeathEvent?.Raise();
-        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transición:
+        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transiciÃ³n:
         Time.timeScale = 1f;                  // normaliza
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -244,7 +266,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Contador mortal detenido. El jugador ha sobrevivido.");
         }
 
-        Debug.Log("¡VICTORIA!: Iniciando transición a escena de victoria.");
+        Debug.Log("Â¡VICTORIA!: Iniciando transiciÃ³n a escena de victoria.");
         LevelCompletionData.currentManager = this.badgeManager;
 
         // Badges de fin de nivel (si aplica)
@@ -265,12 +287,12 @@ public class GameManager : MonoBehaviour
         if (playerController != null) playerController.SetInputEnabled(false);
         if (playerInteraction != null) playerInteraction.enabled = false;
 
-        // Pausa total antes del fade (el sistema de transición usa tiempo no escalado)
+        // Pausa total antes del fade (el sistema de transiciÃ³n usa tiempo no escalado)
         Time.timeScale = 0f;
 
         StartCoroutine(TransitionToSceneAsync(winScene));
         onPlayerSurvivedEvent?.Raise();
-        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transición:
+        // Al final de HandlePlayerSurvival / HandlePlayerDeath, antes de lanzar la transiciÃ³n:
         Time.timeScale = 1f;                  // normaliza
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -280,18 +302,18 @@ public class GameManager : MonoBehaviour
     {
         if (targetScene == null)
         {
-            Debug.LogError("[GameManager] No se asignó la SceneDefinitionSO de destino.");
+            Debug.LogError("[GameManager] No se asignÃ³ la SceneDefinitionSO de destino.");
             yield break;
         }
 
-        // Paso 1: solicitar PRE-CARGA asíncrona (manteniendo paused si así se desea).
+        // Paso 1: solicitar PRE-CARGA asÃ­ncrona (manteniendo paused si asÃ­ se desea).
         sceneLoadChannel?.RaiseEvent(targetScene, LoadSceneMode.Single, true);
 
-        // Paso 2: dar un pequeño margen en tiempo real y ACTIVAR (esto dispara el fade y allowSceneActivation).
+        // Paso 2: dar un pequeÃ±o margen en tiempo real y ACTIVAR (esto dispara el fade y allowSceneActivation).
         yield return new WaitForSecondsRealtime(0.1f);
         activatePreloadedSceneChannel?.RaiseEvent();
 
-        // No necesitamos esperar aquí; SceneLoader hará el fade-in y normalizará el Time.timeScale al terminar la carga.
+        // No necesitamos esperar aquÃ­; SceneLoader harÃ¡ el fade-in y normalizarÃ¡ el Time.timeScale al terminar la carga.
     }
 
     public void SetGamePaused(bool pause)
@@ -307,7 +329,7 @@ public class GameManager : MonoBehaviour
         }
 
         plannedNextScene.nextScene = sceneDef;
-        Debug.Log("[GameManager] Próxima escena planificada = " +
+        Debug.Log("[GameManager] PrÃ³xima escena planificada = " +
                   (sceneDef != null ? sceneDef.name : "null"));
     }
 }

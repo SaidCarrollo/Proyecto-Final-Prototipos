@@ -404,6 +404,7 @@ MonoBehaviour:
   warningThreshold: 5
   pulseScale: 1.1
   pulseDuration: 0.5
+  prewarmColor: {r: 0.4, g: 0.9, b: 1, a: 1}
 --- !u!1 &26513233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2299,6 +2300,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.46, y: 0.49, z: 0.04}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &275904326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7637413402799573285, guid: ec0808cd4dfbf3e499c3b1708dfcb17e, type: 3}
+  m_PrefabInstance: {fileID: 2065250102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284592322
 GameObject:
   m_ObjectHideFlags: 0
@@ -10333,6 +10339,7 @@ MonoBehaviour:
   tiempoDelayInicial: 10
   fireTimer: {fileID: 846614569}
   hazardTimer: {fileID: 0}
+  mobileInteractionPanel: {fileID: 275904326}
 --- !u!114 &846614571
 MonoBehaviour:
   m_ObjectHideFlags: 0
