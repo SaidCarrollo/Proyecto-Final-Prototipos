@@ -21,6 +21,7 @@ public class HazardTimer : MonoBehaviour
 
     [Header("Arranque")]
     [SerializeField] private bool autoStart = true;
+
     private bool isDefused = false;
     private Coroutine timerCoroutine;
     [SerializeField] private bool fastForwardToGoodOnDefuse = true; 
