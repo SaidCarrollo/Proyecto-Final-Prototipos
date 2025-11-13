@@ -3865,7 +3865,7 @@ MonoBehaviour:
     m_Bits: 64
   crouchHeight: 1
   standingHeight: 2
-  mouseSensitivity: 0.05
+  mouseSensitivity: 0.01
   stickSensitivity: 180
   cameraTransform: {fileID: 330585546}
   lockCursor: 1
@@ -5183,6 +5183,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!114 &607843150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5943,6 +5944,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!54 &689522308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7528,6 +7530,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!114 &803645360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8020,7 +8023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8ba47d5f82579409a8ac711a6c53a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoParaResultado: 30
+  tiempoParaResultado: 60
   uiTimerController: {fileID: 21285087}
   OnTimerExpiredBadOutcome:
     m_PersistentCalls:
@@ -9457,6 +9460,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!114 &1027175383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11217,6 +11221,7 @@ MonoBehaviour:
           m_StringArgument: CerrarVentana
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!65 &1283966787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13195,6 +13200,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!54 &1571288839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16163,6 +16169,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  localInteractionEnabled: 1
 --- !u!114 &2015560677
 MonoBehaviour:
   m_ObjectHideFlags: 0

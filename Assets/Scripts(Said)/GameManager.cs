@@ -104,18 +104,21 @@ public class GameManager : MonoBehaviour
         if (playerController != null)
             playerController.SetInputEnabled(true);
 
-        // interacción no
+        // interacción NO (script del jugador)
         if (playerInteraction != null)
             playerInteraction.enabled = false;
 
         if (mobileInteractionPanel != null)
             mobileInteractionPanel.SetActive(false);
 
-        // ✅ objetivo temporal
+        // 🔒 BLOQUEO GLOBAL de TODOS los Interactable
+        Interactable.SetGlobalInteractionEnabled(false);
+
+        // objetivo temporal
         if (uiManager != null)
             uiManager.UpdateObjectiveText("Explora y observa tu entorno");
 
-        // ✅ ocultar checklist mientras observa
+        // ocultar checklist mientras observa
         if (objectiveChecklistUI != null)
             objectiveChecklistUI.gameObject.SetActive(false);
 
@@ -141,11 +144,14 @@ public class GameManager : MonoBehaviour
         if (mobileInteractionPanel != null)
             mobileInteractionPanel.SetActive(true);
 
-        // ✅ volver al objetivo original del UIManager
+        // 🔓 DESBLOQUEO GLOBAL de TODOS los Interactable
+        Interactable.SetGlobalInteractionEnabled(true);
+
+        // volver al objetivo original del UIManager
         if (uiManager != null)
             uiManager.RestoreInitialObjective();
 
-        // ✅ volver a mostrar los objetivos secundarios
+        // volver a mostrar los objetivos secundarios
         if (objectiveChecklistUI != null)
             objectiveChecklistUI.gameObject.SetActive(true);
 

@@ -147,26 +147,21 @@ public class FirstPersonController : MonoBehaviour
     void Update()
     {
         if (!isInputEnabled) return;
-
-        // 1) si estamos tocando UI (joystick, botón, panel) NO mover cámara
-        if (IsPointerOverUI())
-            return;
+        if (IsPointerOverUI()) return;
 
         Vector2 finalLook = Vector2.zero;
 
-        // 2) look normal (mouse / pointer / arrastre)
+        // ---- Mouse / pointer (NO usar deltaTime) ----
         if (lookAction != null)
         {
             Vector2 lookDelta = lookAction.action.ReadValue<Vector2>();
-            // pointer/delta suele venir en "por frame"
-            finalLook += lookDelta * mouseSensitivity * Time.deltaTime;
+            finalLook += lookDelta * mouseSensitivity;   // <--- sin Time.deltaTime
         }
 
-        // 3) look de stick derecho (móvil) - opcional
+        // ---- Stick derecho (SÍ usar deltaTime) ----
         if (lookStickAction != null)
         {
             Vector2 stickDelta = lookStickAction.action.ReadValue<Vector2>();
-            // stick viene -1..1 → lo pasamos a grados/seg
             finalLook += stickDelta * stickSensitivity * Time.deltaTime;
         }
 
