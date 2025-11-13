@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4fa8ad2bd2892f418aaaf61a57c8ec7, type: 3}
-  m_Name: Fuga de Gas Reducida
+  m_Name: BadgeManager Level 2
   m_EditorClassIdentifier: 
   todosLosBadges:
   - ID: Llamada de emergencia correcta
@@ -113,7 +113,7 @@ MonoBehaviour:
     Tipo: 1
     Prioridad: 1
     Desbloqueado: 0
-  - ID: "Tel\xE9fono en el \xE1rea"
+  - ID: Telefono en el area
     Descripcion: Avisaste a emergencias sobre la fuga de gas.
     Icono: {fileID: 0}
     Tipo: 1
