@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private HazardTimer hazardTimer;  // para niveles de otro peligro
     [Header("UI Móvil opcional")]
     [SerializeField] private GameObject mobileInteractionPanel;
+    [Header("UI Peligro / Waypoint")]
+    [SerializeField] private DangerIndicatorUI dangerIndicator;
     void Start()
     {
         if (rememberLevelOnAwake && lastPlayedLevel != null && thisLevel != null)
@@ -85,6 +87,8 @@ public class GameManager : MonoBehaviour
 
         IsFireUncontrolled = false;
         currentState = GameState.Playing;
+        if (dangerIndicator != null)
+            dangerIndicator.SetIndicatorEnabled(false);
 
         if (usarDelayInicial)
         {
@@ -128,6 +132,7 @@ public class GameManager : MonoBehaviour
         IniciarEscenarioNormal();
     }
 
+
     private void IniciarEscenarioNormal()
     {
         Debug.Log("[GameManager] Iniciando el escenario normal tras el delay.");
@@ -148,6 +153,10 @@ public class GameManager : MonoBehaviour
         // ✅ volver a mostrar los objetivos secundarios
         if (objectiveChecklistUI != null)
             objectiveChecklistUI.gameObject.SetActive(true);
+
+        // 🆕 A partir de aquí, ya puede aparecer el icono de peligro
+        if (dangerIndicator != null)
+            dangerIndicator.SetIndicatorEnabled(true);
 
         // arrancar el timer que toque
         if (fireTimer != null)

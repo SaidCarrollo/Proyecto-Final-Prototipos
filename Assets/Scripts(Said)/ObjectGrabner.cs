@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.InputSystem; // <-- Input System
+using UnityEngine.InputSystem; // sólo para adjustHoldAction (si quieres)
 
 public class ObjectGrabber : MonoBehaviour
 {
-    // ---- Eventos (misma firma que tu versión anterior) ----
+    // ---- Eventos iguales que antes ----
     public event Action<GameObject> OnObjectGrabbed;
     public event Action<GameObject> OnObjectReleased;
 
@@ -18,10 +18,7 @@ public class ObjectGrabber : MonoBehaviour
     [SerializeField] private float maxHoldDistance = 1.8f;
     [SerializeField] private float startHoldDistance = 1.5f;
 
-    [Header("Input Actions")]
-    [Tooltip("Botón para alternar Agarrar/Soltar (On-Screen Button o mouse left)")]
-    [SerializeField] private InputActionReference grabReleaseAction;
-
+    [Header("Input Actions (opcional)")]
     [Tooltip("Eje/slider/pinch que entrega +/− para acercar/alejar el objeto")]
     [SerializeField] private InputActionReference adjustHoldAction;
 
@@ -46,12 +43,6 @@ public class ObjectGrabber : MonoBehaviour
 
     private void OnEnable()
     {
-        if (grabReleaseAction != null)
-        {
-            grabReleaseAction.action.Enable();
-            grabReleaseAction.action.performed += OnGrabReleasePerformed;
-        }
-
         if (adjustHoldAction != null)
         {
             adjustHoldAction.action.Enable();
@@ -61,12 +52,6 @@ public class ObjectGrabber : MonoBehaviour
 
     private void OnDisable()
     {
-        if (grabReleaseAction != null)
-        {
-            grabReleaseAction.action.performed -= OnGrabReleasePerformed;
-            grabReleaseAction.action.Disable();
-        }
-
         if (adjustHoldAction != null)
         {
             adjustHoldAction.action.performed -= OnAdjustHoldPerformed;
@@ -79,37 +64,25 @@ public class ObjectGrabber : MonoBehaviour
         MoveHeldWithPhysics();
     }
 
-    // ---- Callbacks de Input ----
-    private void OnGrabReleasePerformed(InputAction.CallbackContext _)
-    {
-        if (heldObject == null) TryGrab();
-        else Release();
-    }
-
-    private void OnAdjustHoldPerformed(InputAction.CallbackContext ctx)
-    {
-        // Espera un float +/− (Axis/Slider/Pinch mapeado a esta acción)
-        float delta = ctx.ReadValue<float>();
-        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
-    }
-
-    // ---- API pública para UI (por si usas botones ± en vez de acción) ----
-    public void NudgeHoldDistance(float delta)
-    {
-        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
-    }
+    // ========= Métodos llamados desde fuera =========
 
     public bool IsHoldingObject() => heldObject != null;
 
-    // ---- Lógica de agarrar/soltar ----
-    private void TryGrab()
+    /// <summary>Intentar agarrar el objeto que esté delante de la cámara.</summary>
+    public void TryGrab()
     {
         if (cameraTransform == null) return;
 
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
-                            out var hit, grabRange, interactableLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(cameraTransform.position,
+                            cameraTransform.forward,
+                            out var hit,
+                            grabRange,
+                            interactableLayer,
+                            QueryTriggerInteraction.Ignore))
         {
-            var go = hit.collider.attachedRigidbody ? hit.collider.attachedRigidbody.gameObject : hit.collider.gameObject;
+            var go = hit.collider.attachedRigidbody
+                     ? hit.collider.attachedRigidbody.gameObject
+                     : hit.collider.gameObject;
 
             heldObject = go;
             heldObjectRb = go.GetComponent<Rigidbody>();
@@ -118,7 +91,7 @@ public class ObjectGrabber : MonoBehaviour
             {
                 heldObjectRb.useGravity = false;
                 heldObjectRb.freezeRotation = true;
-                heldObjectRb.linearVelocity = Vector3.zero; // respeta tu uso actual
+                heldObjectRb.linearVelocity = Vector3.zero;
             }
 
             grabAudio?.Play();
@@ -126,7 +99,8 @@ public class ObjectGrabber : MonoBehaviour
         }
     }
 
-    private void Release()
+    /// <summary>Soltar el objeto actualmente agarrado.</summary>
+    public void Release()
     {
         if (heldObjectRb != null)
         {
@@ -142,6 +116,27 @@ public class ObjectGrabber : MonoBehaviour
         OnObjectReleased?.Invoke(released);
     }
 
+    // Por si quieres usarlo en otros contextos
+    public void ToggleGrabRelease()
+    {
+        if (IsHoldingObject()) Release();
+        else TryGrab();
+    }
+
+    // ========= Input opcional para acercar/alejar =========
+    private void OnAdjustHoldPerformed(InputAction.CallbackContext ctx)
+    {
+        float delta = ctx.ReadValue<float>();
+        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
+    }
+
+    // API pública para botones + / –
+    public void NudgeHoldDistance(float delta)
+    {
+        currentHoldDistance = Mathf.Clamp(currentHoldDistance + delta, minHoldDistance, maxHoldDistance);
+    }
+
+    // ========= Seguimiento del objeto =========
     private void MoveHeldWithPhysics()
     {
         if (heldObjectRb == null || cameraTransform == null) return;
@@ -151,6 +146,6 @@ public class ObjectGrabber : MonoBehaviour
                        + cameraTransform.up * verticalOffset;
 
         Vector3 dir = (target - heldObject.transform.position);
-        heldObjectRb.linearVelocity = dir * grabSpeed; // si usas velocity, cámbialo aquí
+        heldObjectRb.linearVelocity = dir * grabSpeed;
     }
 }

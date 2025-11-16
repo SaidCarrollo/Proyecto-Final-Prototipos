@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
@@ -13,6 +13,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] private InputActionReference interactActionReference;
+
+    [Header("Grab System")]
+    [Tooltip("Referencia al ObjectGrabber del jugador (para agarrar / soltar con el mismo botón).")]
+    [SerializeField] private ObjectGrabber objectGrabber;
 
     private Interactable currentInteractable;
     private GameObject lastLookedAtObject = null;
@@ -58,7 +62,11 @@ public class PlayerInteraction : MonoBehaviour
         RaycastHit hit;
         bool foundInteractable = false;
 
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionRange, interactionLayer))
+        if (Physics.Raycast(cameraTransform.position,
+                            cameraTransform.forward,
+                            out hit,
+                            interactionRange,
+                            interactionLayer))
         {
             GameObject hitObject = hit.collider.gameObject;
             Interactable interactableComponent = hitObject.GetComponent<Interactable>();
@@ -87,9 +95,24 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnInteractInput(InputAction.CallbackContext context)
     {
+        // 1) Si estamos agarrando algo → con el botón lo soltamos.
+        if (objectGrabber != null && objectGrabber.IsHoldingObject())
+        {
+            objectGrabber.Release();
+            return;
+        }
+
+        // 2) Si hay un Interactable delante, usamos interacción.
         if (currentInteractable != null)
         {
             currentInteractable.Interact();
+            return;
+        }
+
+        // 3) Si no hay nada interactuable, intentamos agarrar un objeto.
+        if (objectGrabber != null)
+        {
+            objectGrabber.TryGrab();
         }
     }
 
@@ -115,3 +138,4 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 }
+
