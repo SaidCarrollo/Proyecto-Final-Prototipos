@@ -14,79 +14,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreDelCuestionario: CUESTIONARIO POST-ESCENARIO 3
   preguntas:
-  - textoPregunta: "1. \xBFQu\xE9 tan r\xE1pido entendiste que el escenario trataba
-      de un sismo nocturno? "
+  - textoPregunta: "1. El sismo ocurre a las 3:00 AM. Est\xE1s en cama y escuchas
+      cosas caerse en la sala. Tu primer instinto es saltar de la cama para ver c\xF3mo
+      est\xE1 el resto de la familia. \xBFPor qu\xE9 esta acci\xF3n (levantarse inmediatamente)
+      aumenta dr\xE1sticamente tu probabilidad de sufrir lesiones graves?"
     respuestas:
-    - textoRespuesta: "Me cost\xF3 entenderlo / no estaba seguro."
+    - textoRespuesta: "Porque podr\xEDas marearte por el movimiento y desmayarte."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Porque en la oscuridad y con el suelo movi\xE9ndose, es muy
+        probable que pises vidrios rotos o caigas sobre objetos volcados antes de
+        llegar a la puerta."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Lo entend\xED, pero tard\xE9 un poco en reaccionar."
-      esCorrecta: 1
+    - textoRespuesta: "Porque si te levantas, el sismo se sentir\xE1 con mayor intensidad
+        que si est\xE1s echado."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Lo entend\xED bien casi desde el inicio."
-      esCorrecta: 1
+    - textoRespuesta: Porque al poner los pies en el suelo, transmites vibraciones
+        que pueden desestabilizar los muebles cercanos.
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Lo entend\xED de inmediato y supe que deb\xEDa protegerme
-        ah\xED mismo."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "2. \xBFQu\xE9 tan f\xE1cil fue decidir qu\xE9 hacer (permanecer
-      en lugar seguro, no correr)?"
+  - textoPregunta: "2. Vives en un segundo piso. Durante el sismo, sientes la necesidad
+      de bajar corriendo por las escaleras para llegar a la calle antes de que termine
+      el temblor. \xBFCu\xE1l es el criterio de seguridad correcto respecto a las
+      escaleras durante el movimiento s\xEDsmico?"
     respuestas:
-    - textoRespuesta: "Muy dif\xEDcil, dud\xE9 o hice primero lo inseguro."
+    - textoRespuesta: "Bajarlas r\xE1pido, pero pegado a la pared y sin soltar el
+        pasamanos."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Las escaleras son una de las partes m\xE1s vulnerables y peligrosas
+        de una estructura; bajar por ellas mientras todo se mueve multiplica el riesgo
+        de ca\xEDda mortal o colapso. Es mejor esperar en una zona segura del piso."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Algo dif\xEDcil, necesit\xE9 las pistas/mensajes."
-      esCorrecta: 1
+    - textoRespuesta: "Bajarlas sentado escal\xF3n por escal\xF3n para no caerse."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Bastante f\xE1cil, las opciones eran claras."
-      esCorrecta: 1
+    - textoRespuesta: "Es seguro bajarlas siempre y cuando no haya nadie m\xE1s us\xE1ndolas
+        al mismo tiempo."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Muy f\xE1cil, sab\xEDa qu\xE9 hacer en todo momento."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "3.  Las indicaciones que dio el escenario (mensajes, iconos,
-      UI)\u2026 "
+  - textoPregunta: "3. El movimiento ha cesado y decides evacuar hacia la calle.
+      Al salir, \xBFcu\xE1l es el peligro principal que debes mirar hacia arriba
+      y evitar, especialmente si hay edificios altos o postes cerca?"
     respuestas:
-    - textoRespuesta: No me ayudaron o me confundieron.
+    - textoRespuesta: Evitar mirar al cielo para no marearse con las nubes pasando.
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "El riesgo de \"r\xE9plicas s\xF3nicas\" que da\xF1en los o\xEDdos."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "El desprendimiento de vidrios, macetas, cables el\xE9ctricos
+        o mamposter\xEDa de las fachadas, que suelen caer justo en la zona de la
+        vereda/acera."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Ayudaron un poco, pero falt\xF3 claridad."
-      esCorrecta: 1
+    - textoRespuesta: "La lluvia \xE1cida que a veces acompa\xF1a a los sismos fuertes."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: Fueron claras y suficientes para avanzar.
-      esCorrecta: 1
-      justificacion: ...
-    - textoRespuesta: " Fueron muy claras y me guiaron a la acci\xF3n correcta."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "4.  \xBFC\xF3mo sentiste el nivel de tensi\xF3n al simular un
-      sismo mientras dorm\xEDas? "
+  - textoPregunta: "4. El sismo es muy fuerte y no puedes evacuar. Ves el marco de
+      una puerta y recuerdas que antes dec\xEDan que era seguro. Seg\xFAn los est\xE1ndares
+      modernos de construcci\xF3n y seguridad, \xBFqu\xE9 debes hacer?"
     respuestas:
-    - textoRespuesta: "Demasiado tenso, me bloque\xF3."
+    - textoRespuesta: "Pararte bajo el marco de la puerta, ya que siempre es la parte
+        m\xE1s fuerte de la casa."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Evitar el marco de la puerta (salvo que sea una construcci\xF3n
+        de adobe muy antigua y sin vigas), ya que hoy en d\xEDa no ofrece protecci\xF3n
+        contra ca\xEDdas de objetos y podr\xEDas lesionarte con la puerta oscilando;
+        es mejor buscar un mueble resistente (mesa/cama) y protegerse junto o debajo
+        de \xE9l."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: Tenso, pero pude continuar.
-      esCorrecta: 1
+    - textoRespuesta: Pararte en el marco de la puerta y empujar las jambas con las
+        manos para estabilizar la casa.
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Moderado, ayud\xF3 a tomarlo en serio."
-      esCorrecta: 1
+    - textoRespuesta: "Ir al centro de la habitaci\xF3n y saltar r\xEDtmicamente
+        para contrarrestar la onda s\xEDsmica."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Poco tenso, lo sent\xED controlable."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "5. Despu\xE9s de jugar este escenario, \xBFqu\xE9 tanto sientes
-      que podr\xEDas actuar correctamente si un sismo te sorprende durmiendo?"
+  - textoPregunta: "5. Miras tu pasillo de salida y notas que tienes bicicletas guardadas,
+      cajas de reciclaje o macetas grandes decorando el camino hacia la puerta principal.
+      En un contexto de sismo nocturno y corte de luz, \xBFen qu\xE9 se convierten
+      estos objetos?"
     respuestas:
-    - textoRespuesta: "A\xFAn no estoy seguro/a de qu\xE9 hacer."
+    - textoRespuesta: "En una barrera de protecci\xF3n que amortigua golpes."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "En trampas mortales que bloquear\xE1n la evacuaci\xF3n, causar\xE1n
+        tropezones y p\xE1nico en la oscuridad."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Tengo una idea, pero todav\xEDa dudar\xEDa."
-      esCorrecta: 1
+    - textoRespuesta: "En objetos irrelevantes, ya que la adrenalina te permitir\xE1
+        saltarlos sin problemas."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: Me siento bastante seguro/a de los pasos.
-      esCorrecta: 1
-      justificacion: ...
-    - textoRespuesta: "Me siento muy seguro/a y podr\xEDa explicarlo a otra persona."
-      esCorrecta: 1
+    - textoRespuesta: Sirven para hacer ruido si se caen y alertarte del sismo.
+      esCorrecta: 0
       justificacion: ...

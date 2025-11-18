@@ -14,78 +14,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreDelCuestionario: CUESTIONARIO POST-ESCENARIO
   preguntas:
-  - textoPregunta: "1. \xBFC\xF3mo de f\xE1cil te result\xF3 completar las acciones
-      principales del escenario (controlar el fuego, tomar decisiones seguras)?"
+  - textoPregunta: "1. Recordando el m\xE9todo para apagar una sart\xE9n en llamas:
+      Si ya has localizado la tapa adecuada, \xBFcu\xE1l es la t\xE9cnica correcta
+      para colocarla y cu\xE1l es el paso inmediatamente posterior?"
     respuestas:
-    - textoRespuesta: "Muy dif\xEDcil, me confund\xED varias veces."
+    - textoRespuesta: Dejar caer la tapa desde arriba para aplastar el fuego y luego
+        echar agua para enfriar.
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Apagar la hornilla y deslizar la tapa lateralmente sobre la
+        sart\xE9n para cortar el ox\xEDgeno inmediatamente."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Algo dif\xEDcil, pero lo logr\xE9."
-      esCorrecta: 1
+    - textoRespuesta: "Colocar la tapa y mover la sart\xE9n a una superficie fr\xEDa
+        o al fregadero de inmediato."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Bastante f\xE1cil, casi todo fue claro."
-      esCorrecta: 1
+    - textoRespuesta: Usar la tapa como escudo mientras abres las ventanas para ventilar
+        el humo.
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Muy f\xE1cil, sab\xEDa qu\xE9 hacer en todo momento."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "2. \xBFQu\xE9 opinas del tiempo que tom\xF3 completar el escenario?"
+  - textoPregunta: "2. En el cuestionario anterior aprendimos que el agua es peligrosa.
+      Espec\xEDficamente, \xBFqu\xE9 reacci\xF3n f\xEDsica ocurre si, por p\xE1nico,
+      lanzas un vaso de agua a una sart\xE9n con aceite ardiendo a 300\xB0C?"
     respuestas:
-    - textoRespuesta: "Fue demasiado largo para lo que ped\xEDa."
+    - textoRespuesta: El agua apaga el fuego, pero arruina la comida.
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: El agua se evapora lentamente, enfriando el aceite de manera
+        segura.
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "El agua se hunde en el aceite, se vaporiza explosivamente
+        (aumentando su volumen 1700 veces) y expulsa el aceite ardiendo fuera de
+        la sart\xE9n"
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: Un poco largo.
-      esCorrecta: 1
+    - textoRespuesta: "El agua neutraliza qu\xEDmicamente la grasa, convirti\xE9ndola
+        en jab\xF3n."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: Adecuado.
-      esCorrecta: 1
-      justificacion: ...
-    - textoRespuesta: "Corto / hubiera podido hacer m\xE1s."
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "3. Las instrucciones, mensajes o ayudas que aparecieron durante
-      el escenario\u2026 "
+  - textoPregunta: "3. Si te ves obligado a usar un pa\xF1o de cocina porque no tienes
+      tapa, aprendiste que el material sint\xE9tico (poli\xE9ster/nylon) es una p\xE9sima
+      idea. \xBFCu\xE1l es la raz\xF3n principal de esto?"
     respuestas:
-    - textoRespuesta: No me ayudaron o me confundieron.
+    - textoRespuesta: "Porque los materiales sint\xE9ticos se derriten y se adhieren
+        a la piel o a la sart\xE9n, empeorando las quemaduras y el fuego."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Ayudaron un poco, pero falt\xF3 claridad."
-      esCorrecta: 1
+    - textoRespuesta: "Porque los materiales sint\xE9ticos son demasiado caros para
+        desperdiciarlos en un incendio."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: 'Fueron claras y me guiaron bien. '
-      esCorrecta: 1
+    - textoRespuesta: "Porque los pa\xF1os sint\xE9ticos no absorben suficiente agua
+        para apagar el fuego."
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: " Fueron muy \xFAtiles y suficientes para tomar decisiones
-        seguras. "
-      esCorrecta: 1
+    - textoRespuesta: "Porque generan electricidad est\xE1tica que aviva las llamas."
+      esCorrecta: 0
       justificacion: ...
-  - textoPregunta: "4. En general, \xBFqu\xE9 tanto esfuerzo mental te pidi\xF3 este
-      escenario? "
+  - textoPregunta: "4. Est\xE1s intentando controlar el fuego, pero notas que las
+      llamas han alcanzado los muebles altos de la cocina y el humo te impide respirar
+      bien. Seg\xFAn el protocolo de seguridad prioritaria, \xBFqu\xE9 debes hacer?"
     respuestas:
-    - textoRespuesta: "Much\xEDsimo esfuerzo, sent\xED sobrecarga. "
+    - textoRespuesta: "Correr al ba\xF1o, mojar una toalla grande y volver para intentar
+        un \xFAltimo esfuerzo."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Abandonar el intento de extinci\xF3n inmediatamente, evacuar
+        cerrando puertas tras de ti y llamar a los bomberos desde un lugar seguro."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: 'Bastante esfuerzo. '
-      esCorrecta: 1
+    - textoRespuesta: Abrir todas las ventanas para que salga el humo y poder seguir
+        luchando contra el fuego.
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: 'Esfuerzo moderado, manejable. '
-      esCorrecta: 1
+    - textoRespuesta: Buscar documentos importantes y objetos de valor antes de salir
+        de la cocina.
+      esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Poco esfuerzo, me result\xF3 ligero. "
-      esCorrecta: 1
-      justificacion: ...
-  - textoPregunta: "5. Despu\xE9s de jugar, \xBFqu\xE9 tanto sientes que podr\xEDas
-      actuar correctamente si se incendiara una sart\xE9n en la vida real? "
+  - textoPregunta: "5. Analiza la siguiente situaci\xF3n: \"Juan pone a calentar
+      aceite para fre\xEDr papas y va a la sala a contestar una llamada r\xE1pida
+      del trabajo\". Seg\xFAn lo aprendido sobre prevenci\xF3n, \xBFc\xF3mo calificas
+      esta acci\xF3n?"
     respuestas:
-    - textoRespuesta: "Sigo sin estar seguro/a de qu\xE9 hacer."
-      esCorrecta: 1
+    - textoRespuesta: Aceptable, siempre y cuando la llamada dure menos de 2 minutos.
+      esCorrecta: 0
       justificacion: ..
-    - textoRespuesta: "S\xE9 algunas cosas, pero a\xFAn dudar\xEDa."
+    - textoRespuesta: "Segura, si baja la llama al m\xEDnimo antes de irse."
+      esCorrecta: 0
+      justificacion: ...
+    - textoRespuesta: "Es un comportamiento de alto riesgo; la principal causa de
+        incendios es la cocci\xF3n desatendida, el aceite puede auto-igniciar en
+        pocos minutos."
       esCorrecta: 1
       justificacion: ...
-    - textoRespuesta: "Me siento bastante seguro/a de c\xF3mo actuar."
-      esCorrecta: 1
-      justificacion: ...
-    - textoRespuesta: Me siento muy seguro/a y puedo explicar los pasos a otra persona.
-      esCorrecta: 1
+    - textoRespuesta: Correcta, ya que el aceite tarda mucho tiempo en calentarse.
+      esCorrecta: 0
       justificacion: ...

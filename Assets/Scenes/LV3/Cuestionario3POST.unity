@@ -1336,6 +1336,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  questionFadeDuration: 0.35
+  optionInitialScale: 0.8
+  optionFadeDuration: 0.25
+  optionCascadeDelay: 0.08
+  optionEase: 27
+  questionTypewriterCharDelay: 0.015
+  optionTypewriterCharDelay: 0.01
+  shakeDuration: 0.3
+  shakeStrength: 10
+  shakeVibrato: 20
+  normalToggleColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedToggleColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &976067289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,7 +1520,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290175999
+    rgba: 4294956982
   m_fontColor: {r: 0.7137255, g: 0.84229726, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1529,7 +1541,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -1567,7 +1579,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1372290561
@@ -1779,7 +1791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Responde seg\xFAn c\xF3mo sentiste este escenario. No hay respuestas incorrectas.\r\n"
+  m_text: Responde las siguientes preguntas aplicando lo aprendido.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a960a9f0b381e164688e6501ec24984c, type: 2}
   m_sharedMaterial: {fileID: 6997231625079275983, guid: a960a9f0b381e164688e6501ec24984c, type: 2}

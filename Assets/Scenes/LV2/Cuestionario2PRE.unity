@@ -1351,6 +1351,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  questionFadeDuration: 0.35
+  optionInitialScale: 0.8
+  optionFadeDuration: 0.25
+  optionCascadeDelay: 0.08
+  optionEase: 27
+  questionTypewriterCharDelay: 0.015
+  optionTypewriterCharDelay: 0.01
+  shakeDuration: 0.3
+  shakeStrength: 10
+  shakeVibrato: 20
+  normalToggleColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedToggleColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &976067289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1544,7 +1556,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
