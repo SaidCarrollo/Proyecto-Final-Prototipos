@@ -8707,7 +8707,7 @@ RectTransform:
   m_AnchorMin: {x: 0.02, y: 0.38}
   m_AnchorMax: {x: 0.36, y: 0.74}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -163.95769, y: 0.000002861023}
+  m_SizeDelta: {x: -403.52728, y: 0.000002861023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687048811
 MonoBehaviour:
@@ -8870,7 +8870,7 @@ RectTransform:
   m_AnchorMin: {x: 0.4, y: 0.32}
   m_AnchorMax: {x: 0.88, y: 0.77}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -183.32588, y: 0.000012874603}
+  m_SizeDelta: {x: -521.54175, y: 0.000012874603}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711131093
 MonoBehaviour:
@@ -9639,7 +9639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 138721043987289185, guid: 81187195d1cb7d044a8dae5dc8447984, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 695659491412297115, guid: 81187195d1cb7d044a8dae5dc8447984, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -16603,7 +16603,7 @@ RectTransform:
   m_AnchorMin: {x: 0.02, y: 0.38}
   m_AnchorMax: {x: 0.36, y: 0.74}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -163.95769, y: 0.000002861023}
+  m_SizeDelta: {x: -403.52728, y: 0.000002861023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474955719
 MonoBehaviour:
@@ -21807,7 +21807,7 @@ RectTransform:
   m_AnchorMin: {x: 0.4, y: 0.32}
   m_AnchorMax: {x: 0.88, y: 0.77}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -183.32588, y: 0.000012874603}
+  m_SizeDelta: {x: -521.54175, y: 0.000012874603}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564102340
 MonoBehaviour:
