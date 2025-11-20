@@ -23,6 +23,7 @@ public class GasLeakScenarioManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private bool gasValveHasBeenClosed = false;   
     [SerializeField] private bool windowHasBeenOpened = false;
+//    [SerializeField] private DangerIndicatorUI dangerIndicator;
     private void TryDefuseHazardIfReady()
     {
         if (gasValveHasBeenClosed && windowHasBeenOpened)

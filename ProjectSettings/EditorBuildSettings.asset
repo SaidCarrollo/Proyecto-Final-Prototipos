@@ -45,6 +45,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LV3/Cuestionario3POST.unity
     guid: cc0c3a2380a789d4bb9b03fa3afd201e
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ff71b95c4f580e64f9e4ae05dbed411a, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 1c78dbb63aaf54c41855318892f2e054, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

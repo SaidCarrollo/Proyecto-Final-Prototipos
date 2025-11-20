@@ -36,6 +36,7 @@ public class DangerIndicatorUI : MonoBehaviour
 
     private bool indicatorEnabledByGame = false;
     private Quaternion initialIconRotation;
+    private bool forceHidden = false;
     private void Awake()
     {
         if (targetCamera == null)
@@ -46,6 +47,16 @@ public class DangerIndicatorUI : MonoBehaviour
         if (iconRect != null)
         {
             initialIconRotation = iconRect.rotation; // 🔹 Guardamos la rotación original
+            iconRect.gameObject.SetActive(false);
+        }
+    }
+    public void ForceHideIcon(bool hide)
+    {
+        forceHidden = hide;
+
+        if (hide && iconRect != null)
+        {
+            // Apaga inmediatamente el icono
             iconRect.gameObject.SetActive(false);
         }
     }
@@ -74,7 +85,12 @@ public class DangerIndicatorUI : MonoBehaviour
         {
             return;
         }
-
+        if (forceHidden)
+        {
+            if (iconRect.gameObject.activeSelf)
+                iconRect.gameObject.SetActive(false);
+            return;
+        }
         // 1) Comprobar si estamos dentro de la zona segura (collider)
         if (useSafeZoneCollider && safeZoneCollider != null)
         {
