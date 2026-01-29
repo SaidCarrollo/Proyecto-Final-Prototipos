@@ -24,6 +24,7 @@ MonoBehaviour:
       justificacion: "Correr durante un sismo es extremadamente riesgoso porque el
         movimiento del suelo puede causar p\xE9rdida de equilibrio, ca\xEDdas o lesiones
         por objetos que caen."
+      imagenOpcion: {fileID: 21300000, guid: 1c0f887af0915da4e8d5953c7fb51174, type: 3}
     - textoRespuesta: "Qu\xE9date en la cama, acu\xE9state boca abajo o de lado,
         y c\xFAbrete la cabeza y el cuello con una almohada o los brazos, sosteni\xE9ndote
         hasta que el movimiento cese."
@@ -32,6 +33,7 @@ MonoBehaviour:
         innecesarios durante el temblor, que podr\xEDan causar ca\xEDdas debido a
         la inestabilidad del suelo. La mayor\xEDa de las lesiones en sismos provienen
         de objetos que caen (como l\xE1mparas, estantes o techos parciales)."
+      imagenOpcion: {fileID: 21300000, guid: 43ad9c90d682c3a488a9e7138ef138f5, type: 3}
     - textoRespuesta: "Posicionarte de forma segura seg\xFAn el tri\xE1ngulo de la
         vida, junto a un mueble resistente como una cama o mesa, para crear un espacio
         de supervivencia."
@@ -41,6 +43,7 @@ MonoBehaviour:
         fr\xE1giles), ignora que la mayor\xEDa de lesiones son por objetos que caen,
         y promueve movimientos que pueden causar ca\xEDdas. Organizaciones como USGS,
         Cruz Roja e INDECI lo rechazan, priorizando \"Ag\xE1chate, C\xFAbrete y Ag\xE1rrate\"."
+      imagenOpcion: {fileID: 21300000, guid: bf4b248e4cb426444bbc6737b616a255, type: 3}
     - textoRespuesta: Quedarte quieto en la cama esperando a que el sismo pase sin
         hacer nada.
       esCorrecta: 0
@@ -50,6 +53,7 @@ MonoBehaviour:
         que caen o techos. Lo ideal es cubrir la cabeza y cuello con una almohada
         mientras se permanece en la cama. La inacci\xF3n total no es \xF3ptima, ya
         que una protecci\xF3n m\xEDnima activa (como cubrirse) reduce riesgos significativamente."
+      imagenOpcion: {fileID: 21300000, guid: dc0c71477fca8194bb9c4f964b552ac9, type: 3}
   - textoPregunta: "2. \xBFPor qu\xE9 se considera especialmente peligroso correr
       durante un sismo? "
     respuestas:
@@ -60,12 +64,14 @@ MonoBehaviour:
         que provoca ca\xEDdas f\xE1ciles al correr. Esto no solo causa lesiones directas
         (como fracturas o contusiones), sino que retrasa cualquier intento de protecci\xF3n
         o evacuaci\xF3n segura."
+      imagenOpcion: {fileID: 21300000, guid: f849aa92f26a6664a8964735cda2ac85, type: 3}
     - textoRespuesta: Porque el ruido de tus pasos puede alertar a los vecinos innecesariamente.
       esCorrecta: 0
       justificacion: "El peligro de correr es puramente f\xEDsico y relacionado con
         el equilibrio y los objetos en movimiento; el ruido no es un factor relevante
         en la seguridad personal durante un sismo. Esta opci\xF3n distrae del riesgo
         real. "
+      imagenOpcion: {fileID: 21300000, guid: 3894e60556a24494a8d5743430ec9063, type: 3}
     - textoRespuesta: "Porque correr consume energ\xEDa que podr\xEDas necesitar
         despu\xE9s."
       esCorrecta: 0
@@ -73,11 +79,13 @@ MonoBehaviour:
         el riesgo principal de correr no es el consumo energ\xE9tico, sino la inestabilidad
         inmediata que lleva a ca\xEDdas y lesiones. Esta justificaci\xF3n es secundaria
         y no aborda el peligro principal."
+      imagenOpcion: {fileID: 21300000, guid: dda536dd029729f4090cd9f5a867227f, type: 3}
     - textoRespuesta: "Porque puede da\xF1ar el piso de la casa. "
       esCorrecta: 0
       justificacion: "orrer no afecta estructuralmente el piso o la casa durante
         un sismo; los da\xF1os provienen de las fuerzas tel\xFAricas, no de acciones
         humanas como esta. "
+      imagenOpcion: {fileID: 21300000, guid: ad6f06553582be648b504e2acee88b45, type: 3}
   - textoPregunta: "3. Si decides evacuar el hogar durante o despu\xE9s del sismo,
       \xBFcu\xE1l de estas opciones ser\xEDa la m\xE1s apropiada para evitar riesgos?"
     respuestas:
@@ -86,6 +94,7 @@ MonoBehaviour:
       justificacion: 'Las ventanas pueden romperse en cualquier momento, liberando
         vidrios que causan cortes graves. Priorizar una "vista clara" expone innecesariamente
         a estos riesgos en lugar de evitarlos. '
+      imagenOpcion: {fileID: 21300000, guid: 34bac6cf7346cba41b857ab58fb80ec4, type: 3}
     - textoRespuesta: Moverte con calma, evitando ventanas, muebles inestables y
         corriendo solo si es absolutamente necesario.
       esCorrecta: 1
@@ -93,6 +102,7 @@ MonoBehaviour:
         evitando \xE1reas de riesgo como ventanas (por vidrios) y muebles inestables
         (por ca\xEDdas). Evacuar preferentemente despu\xE9s del temblor principal
         reduce el peligro, y correr solo es prioritario en emergencias extremas."
+      imagenOpcion: {fileID: 21300000, guid: 8da0fac7ae729e24d9dd27bfaae8c94a, type: 3}
     - textoRespuesta: "Esperar en la habitaci\xF3n hasta que el sismo termine completamente
         antes de moverte."
       esCorrecta: 0
@@ -100,11 +110,13 @@ MonoBehaviour:
         Esperar es seguro durante el temblor, pero si la estructura parece inestable,
         una evacuaci\xF3n post-sismo es esencial para evitar atrapamiento en r\xE9plicas
         o derrumbes. "
+      imagenOpcion: {fileID: 21300000, guid: 2fcdbac0f8038e648b3384f15a28440b, type: 3}
     - textoRespuesta: 'Gritar pidiendo ayuda mientras corres hacia la salida. '
       esCorrecta: 0
       justificacion: "Correr aumenta el riesgo de ca\xEDdas, y gritar distrae y consume
         energ\xEDa sin ayudar directamente. La comunicaci\xF3n debe ser calmada,
         y pedir ayuda es mejor despu\xE9s de estar seguro. "
+      imagenOpcion: {fileID: 21300000, guid: 1bcdc5b065fa1fc4cb0a216a6c81296c, type: 3}
   - textoPregunta: "4. Si el sismo es intenso y sientes que la estructura podr\xEDa
       colapsar, o no puedes evacuar de inmediato de forma segura, \xBFcu\xE1l es
       la acci\xF3n prioritaria?"
@@ -115,6 +127,7 @@ MonoBehaviour:
       justificacion: "Las ventanas son peligrosas por roturas de vidrio, y saltar
         o salir por ellas durante el movimiento puede causar ca\xEDdas graves o lesiones
         adicionales. "
+      imagenOpcion: {fileID: 21300000, guid: 3a3080b4185858840b38cf6daf454a99, type: 3}
     - textoRespuesta: "Posicionarte en el tri\xE1ngulo de la vida junto a un objeto
         resistente y esperar a que el movimiento cese antes de evacuar."
       esCorrecta: 0
@@ -123,11 +136,13 @@ MonoBehaviour:
         bajo un mueble resistente (no junto a \xE9l) para protegerte de ca\xEDdas.
         Algunos lo defienden en edificios propensos a colapso total, pero no es la
         recomendaci\xF3n est\xE1ndar."
+      imagenOpcion: {fileID: 21300000, guid: bf4b248e4cb426444bbc6737b616a255, type: 3}
     - textoRespuesta: Correr hacia la cocina para buscar suministros de emergencia.
       esCorrecta: 0
-      justificacion: "orrer es peligroso por p\xE9rdida de equilibrio, y priorizar
+      justificacion: "Correr es peligroso por p\xE9rdida de equilibrio, y priorizar
         suministros durante el sismo expone a riesgos innecesarios en lugar de protecci\xF3n
         inmediata. "
+      imagenOpcion: {fileID: 21300000, guid: 7ce68cf8a42709243ad7ebe14579bf9c, type: 3}
     - textoRespuesta: "Ag\xE1chate donde est\xE9s, c\xFAbrete bajo un mueble resistente
         (como una mesa o escritorio) si est\xE1 disponible o protege tu cabeza y
         cuello con los brazos junto a una pared interior, y ag\xE1rrate firmemente
@@ -137,6 +152,7 @@ MonoBehaviour:
         \"Ag\xE1chate, C\xFAbrete y Ag\xE1rrate\", que protege contra la principal
         causa de lesiones: ca\xEDdas de objetos, debris o techos parciales, incluso
         si la estructura parece inestable."
+      imagenOpcion: {fileID: 21300000, guid: 9342aaad18012f848aa71a99f6410bd4, type: 3}
   - textoPregunta: "5. Una causa frecuente de lesiones durante sismos es la ca\xEDda
       de objetos o vidrios rotos. \xBFCu\xE1l de las siguientes es una medida preventiva
       fundamental en el hogar?"
@@ -145,20 +161,24 @@ MonoBehaviour:
       esCorrecta: 0
       justificacion: 'Esto aumenta riesgos, ya que muebles cerca de ventanas pueden
         caer hacia ellas o bloquear salidas, y no previene roturas de vidrio. '
+      imagenOpcion: {fileID: 21300000, guid: b42c5e11bc87e7046bbe357ddb704acf, type: 3}
     - textoRespuesta: Fijar muebles y objetos pesados a las paredes para evitar que
         caigan durante el temblor.
       esCorrecta: 1
       justificacion: "Esta es una medida clave de preparaci\xF3n, ya que la mayor\xEDa
         de lesiones provienen de objetos que caen. Fijarlos con anclajes reduce dr\xE1sticamente
         este riesgo, como recomiendan gu\xEDas de prevenci\xF3n."
+      imagenOpcion: {fileID: 21300000, guid: 55f2b34bc297a81439406eb600baacc7, type: 3}
     - textoRespuesta: "Dejar las ventanas abiertas por la noche para ventilaci\xF3n."
       esCorrecta: 0
       justificacion: "Dejar las ventanas abiertas por la noche para ventilaci\xF3n:
         Incorrecto. Esto no previene roturas ni ca\xEDdas de objetos; de hecho, ventanas
         abiertas pueden aumentar la entrada de debris externo. "
+      imagenOpcion: {fileID: 21300000, guid: feeda80de58ade64cbe03484d0e69716, type: 3}
     - textoRespuesta: "Tener siempre zapatos cerca de la cama para pon\xE9rtelos
         r\xE1pidamente."
       esCorrecta: 0
       justificacion: "Parcialmente \xFAtil, pero no fundamental. Ayuda contra vidrios
         rotos en el suelo post-sismo, pero no previene la causa ra\xEDz (ca\xEDdas
         de objetos) como fijar muebles lo hace. "
+      imagenOpcion: {fileID: 21300000, guid: 13b51572769c8754781af277ef71c1c4, type: 3}

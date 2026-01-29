@@ -23,19 +23,22 @@ MonoBehaviour:
         una linterna potente."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Porque al accionar el interruptor se genera una micro-chispa
-        interna capaz de detonar el gas acumulado; no debes tocar nada el\xE9ctrico
-        y dejar la puerta abierta."
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
+    - textoRespuesta: Porque al accionar el interruptor se genera una micro-chispa
+        interna capaz de detonar el gas acumulado.
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: "Porque la electricidad consume el ox\xEDgeno que necesitas
         para respirar; debes entrar gateando a cerrar la llave."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: "Porque podr\xEDas electrocutarte si el gas ha humedecido las
         paredes."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
   - textoPregunta: "2. En el cuestionario anterior aprendimos que no se debe usar
       el microondas. Pero, en un escenario real, \xBFcu\xE1l de los siguientes objetos
       cotidianos tambi\xE9n act\xFAa como una fuente de ignici\xF3n peligrosa si
@@ -44,16 +47,19 @@ MonoBehaviour:
     - textoRespuesta: "Un vaso de vidrio (por la fricci\xF3n)."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "El tel\xE9fono celular o el timbre de la puerta (por la bater\xEDa
-        y componentes electr\xF3nicos que pueden generar arco el\xE9ctrico)."
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
+    - textoRespuesta: "El tel\xE9fono celular o el timbre de la puerta."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: "Una toalla de algod\xF3n seca."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: El agua del grifo.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
   - textoPregunta: "3. Entras a la cocina y sientes olor a gas cerca del bal\xF3n.
       Para intentar sacar el gas y el olor r\xE1pidamente, se te ocurre conectar
       y encender un ventilador port\xE1til (o de pie). \xBFPor qu\xE9 es un error
@@ -63,18 +69,22 @@ MonoBehaviour:
         que se concentre m\xE1s en el suelo."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 0}
     - textoRespuesta: Porque al enchufarlo o al arrancar el motor del ventilador,
-        se generan chispas internas que pueden encender el gas acumulado en el aire.
+        se generan chispas internas.
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 0}
     - textoRespuesta: "Porque el ventilador consume mucha energ\xEDa y podr\xEDa
         sobrecargar el sistema el\xE9ctrico de la casa."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 0}
     - textoRespuesta: "Porque el viento del ventilador podr\xEDa apagar la llama
         del piloto de la terma, si hubiera una cerca."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 0}
   - textoPregunta: "4. Has evacuado la casa con tu familia, pero te das cuenta de
       que tu celular se qued\xF3 en la cocina y necesitas llamar a los bomberos (116).
       Tu vecino te ofrece entrar r\xE1pido a sacarlo. \xBFCu\xE1l es la decisi\xF3n
@@ -84,16 +94,20 @@ MonoBehaviour:
         sin hacer ruido."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: "Pedirle al vecino que entre \xE9l, ya que no est\xE1 nervioso."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Prohibir terminantemente el reingreso a cualquier persona
-        y pedir prestado un tel\xE9fono a un vecino alejado de la zona de peligro."
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
+    - textoRespuesta: "Prohibir el reingreso y pedir prestado un tel\xE9fono a alguien
+        alejado del lugar."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: Entrar solo si tienes una toalla mojada en la cara.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
   - textoPregunta: "5. Est\xE1s revisando la instalaci\xF3n de gas de un familiar.
       Observas que la manguera es de color azul, tipo \"manguera de jard\xEDn\",
       y est\xE1 sujetada con alambres. Aunque no huele a gas hoy, \xBFcu\xE1l es
@@ -103,14 +117,18 @@ MonoBehaviour:
         las abrazaderas.
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Es una instalaci\xF3n de alto riesgo inmediato; el gas corroe
-        ese tipo de goma y los alambres perforan la manguera, causando fugas silenciosas."
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
+    - textoRespuesta: "Es una instalaci\xF3n de riesgo, la corrosi\xF3n de la manguera
+        causar\xE1 fugas silenciosas."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: Es aceptable si se cambia el alambre cada 6 meses.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}
     - textoRespuesta: "Solo es peligroso si el bal\xF3n de gas est\xE1 lleno; si
         est\xE1 a la mitad no pasa nada."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c7de502a9eaaf4244add8f7b6bb7a383, type: 3}

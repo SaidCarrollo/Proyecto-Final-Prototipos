@@ -24,6 +24,7 @@ MonoBehaviour:
         generar chispas que podr\xEDan encender el gas, lo que representa un riesgo
         significativo de explosi\xF3n. Es crucial evitar el uso de cualquier dispositivo
         el\xE9ctrico en presencia de una fuga de gas."
+      imagenOpcion: {fileID: 21300000, guid: 7272123b8613f17469ab7a49cdb31abb, type: 3}
     - textoRespuesta: "Llamar por celular desde el mismo lugar para avisar a los
         dem\xE1s. "
       esCorrecta: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
         del \xE1rea afectada puede ser riesgoso, ya que, aunque los tel\xE9fonos
         modernos son generalmente seguros, se recomienda evacuar primero y hacer
         llamadas desde un lugar seguro para minimizar cualquier riesgo potencial."
+      imagenOpcion: {fileID: 21300000, guid: 9ddd8610fdc83fe49a29e94b10c2f9aa, type: 3}
     - textoRespuesta: "Cerrar la v\xE1lvula del bal\xF3n de gas o cortar el suministro
         desde la llave de paso. "
       esCorrecta: 1
@@ -38,11 +40,13 @@ MonoBehaviour:
         la v\xE1lvula es la primera acci\xF3n recomendada, siempre que sea seguro
         hacerlo, para detener el flujo de gas y reducir el riesgo de acumulaci\xF3n
         peligrosa. Posteriormente, se debe ventilar el \xE1rea y evacuar si es necesario."
+      imagenOpcion: {fileID: 21300000, guid: cfd26678c11ec0846805a507d1034489, type: 3}
     - textoRespuesta: "Encender la campana extractora para ventilar m\xE1s r\xE1pido. "
       esCorrecta: 0
       justificacion: "Encender la campana extractora, un dispositivo el\xE9ctrico,
         puede generar chispas que podr\xEDan encender el gas. La ventilaci\xF3n debe
         realizarse abriendo puertas y ventanas manualmente, sin usar aparatos el\xE9ctricos."
+      imagenOpcion: {fileID: 21300000, guid: 073592a22f02a9f439cf017518cc5744, type: 3}
   - textoPregunta: "2. \xBFQu\xE9 acci\xF3n es m\xE1s peligrosa al sospechar que
       hay una fuga de gas dentro de tu hogar?"
     respuestas:
@@ -52,21 +56,25 @@ MonoBehaviour:
         generar chispas que podr\xEDan encender el gas, causando una explosi\xF3n.
         Esto lo convierte en la acci\xF3n m\xE1s peligrosa en presencia de una fuga
         de gas."
+      imagenOpcion: {fileID: 21300000, guid: 37ea10a984ec2a74d863f18ad43d7f55, type: 3}
     - textoRespuesta: 'Apagar la cocina sin generar chispas. '
       esCorrecta: 0
       justificacion: "Apagar la cocina con cuidado, asegur\xE1ndose de no generar
         chispas, es menos riesgoso que usar aparatos el\xE9ctricos. Sin embargo,
         en general, se recomienda evitar manipular cualquier aparato durante una
         fuga."
+      imagenOpcion: {fileID: 21300000, guid: 35736d60ddb1daa43a3061f5dc200d91, type: 3}
     - textoRespuesta: "Salir al exterior por la puerta m\xE1s cercana. "
       esCorrecta: 0
       justificacion: "Evacuar el \xE1rea es una de las acciones m\xE1s seguras y
         recomendadas, ya que aleja a las personas del peligro inmediato."
+      imagenOpcion: {fileID: 21300000, guid: 4ab86df9a3e80084ea97170abd18a2e5, type: 3}
     - textoRespuesta: 'Abrir una ventana para ventilar el ambiente. '
       esCorrecta: 0
       justificacion: "Abrir ventanas puede ayudar a dispersar el gas y es una acci\xF3n
         recomendada en algunos casos, siempre que no implique manipular interruptores
         el\xE9ctricos o dispositivos que puedan generar chispas."
+      imagenOpcion: {fileID: 21300000, guid: 58422b1783d5d7f489a733cf8f39945d, type: 3}
   - textoPregunta: "3. Si confirmas que hay una fuga de gas, \xBFcu\xE1l de las siguientes
       acciones no deber\xEDas hacer bajo ninguna circunstancia?"
     respuestas:
@@ -75,20 +83,24 @@ MonoBehaviour:
       justificacion: "Abrir puertas y ventanas puede ayudar a dispersar el gas y
         es una acci\xF3n recomendada en muchos casos, siempre que se haga con precauci\xF3n
         y sin usar dispositivos el\xE9ctricos."
+      imagenOpcion: {fileID: 21300000, guid: 16e1654caeb81af468f36f34180d4a5c, type: 3}
     - textoRespuesta: "Manipular interruptores el\xE9ctricos (encender o apagar luces). "
       esCorrecta: 1
       justificacion: "Manipular interruptores el\xE9ctricos puede generar chispas
         que podr\xEDan encender el gas, lo que es extremadamente peligroso. Esta
         acci\xF3n debe evitarse bajo cualquier circunstancia en presencia de una
         fuga."
+      imagenOpcion: {fileID: 21300000, guid: 4efc3103e8a9dac43ba6469de537570b, type: 3}
     - textoRespuesta: "Cerrar la v\xE1lvula del cilindro de gas. "
       esCorrecta: 0
       justificacion: "Cerrar la v\xE1lvula del cilindro es una medida recomendada
         para detener el flujo de gas, siempre que sea seguro hacerlo."
+      imagenOpcion: {fileID: 21300000, guid: cfd26678c11ec0846805a507d1034489, type: 3}
     - textoRespuesta: "Alejar a los dem\xE1s ocupantes de la casa."
       esCorrecta: 0
       justificacion: "Evacuar a las personas del \xE1rea afectada es una acci\xF3n
         esencial para garantizar su seguridad."
+      imagenOpcion: {fileID: 21300000, guid: 0b34cadeb6dd5b846a33a5488c2f5d89, type: 3}
   - textoPregunta: "4. Al sospechar una fuga de gas que no puedes controlar, \xBFcu\xE1l
       ser\xEDa el protocolo correcto? "
     respuestas:
@@ -98,6 +110,7 @@ MonoBehaviour:
       justificacion: "Encender una vela o cualquier llama abierta es extremadamente
         peligroso, ya que puede ignitionar el gas y causar una explosi\xF3n. Adem\xE1s,
         intentar localizar la fuente de la fuga expone a la persona a mayores riesgos."
+      imagenOpcion: {fileID: 21300000, guid: 3a0ccc407b1c48146a35cfa4d564d3cc, type: 3}
     - textoRespuesta: 'Salir inmediatamente del lugar, mantener una distancia segura
         y llamar al 116 (bomberos). '
       esCorrecta: 1
@@ -105,16 +118,19 @@ MonoBehaviour:
         desde un lugar seguro es el protocolo correcto para manejar una fuga de gas
         incontrolable. Esto asegura la seguridad de las personas y permite que los
         profesionales manejen la situaci\xF3n."
+      imagenOpcion: {fileID: 21300000, guid: bcc9bcba65bc05f46a99c823ec3b1a8b, type: 3}
     - textoRespuesta: "Tratar de cubrir la fuga con una toalla h\xFAmeda."
       esCorrecta: 0
       justificacion: "Cubrir la fuga con una toalla h\xFAmeda no es un procedimiento
         est\xE1ndar y puede ser peligroso, ya que no detiene la fuga y podr\xEDa
         exponer a la persona a mayores concentraciones de gas."
+      imagenOpcion: {fileID: 21300000, guid: bc904f6df5b72a449a77d261bd12d013, type: 3}
     - textoRespuesta: 'Usar tu celular para grabar el suceso desde dentro de la casa. '
       esCorrecta: 0
       justificacion: "Usar un celular dentro del \xE1rea afectada puede ser riesgoso,
         ya que podr\xEDa generar chispas. Adem\xE1s, la prioridad debe ser evacuar,
         no documentar el incidente."
+      imagenOpcion: {fileID: 21300000, guid: 001fa73d0ed7e134eb7ae0d16e0aae8d, type: 3}
   - textoPregunta: "5. \xBFCu\xE1l de las siguientes medidas es una buena pr\xE1ctica
       preventiva para evitar fugas de gas en el hogar?"
     respuestas:
@@ -124,11 +140,13 @@ MonoBehaviour:
       justificacion: "Las mangueras de agua no est\xE1n dise\xF1adas para soportar
         la presi\xF3n del gas y pueden causar fugas. Se deben usar mangueras espec\xEDficas
         para gas."
+      imagenOpcion: {fileID: 21300000, guid: 8e05925719daaba4caeec070df7e86bd, type: 3}
     - textoRespuesta: "Dejar el bal\xF3n de gas dentro de un gabinete cerrado. "
       esCorrecta: 0
       justificacion: "Almacenar un cilindro de gas en un espacio cerrado puede atrapar
         el gas en caso de fuga, aumentando el riesgo de acumulaci\xF3n y explosi\xF3n.
         Los cilindros deben estar en \xE1reas ventiladas."
+      imagenOpcion: {fileID: 21300000, guid: 302d2134719d4b9428c431a4c26b2202, type: 3}
     - textoRespuesta: "Revisar peri\xF3dicamente el estado del regulador, mangueras
         y conexiones."
       esCorrecta: 1
@@ -136,9 +154,11 @@ MonoBehaviour:
         es una pr\xE1ctica preventiva esencial para detectar y reparar problemas
         antes de que causen fugas. Esto incluye verificar desgaste, da\xF1os o conexiones
         sueltas."
+      imagenOpcion: {fileID: 21300000, guid: bf455b51a8620d64dbfb1e31f4e87937, type: 3}
     - textoRespuesta: 'Cerrar las ventanas mientras se cocina para evitar corrientes
         de aire. '
       esCorrecta: 0
       justificacion: "Cerrar las ventanas puede impedir la ventilaci\xF3n adecuada,
         lo que es crucial para dispersar cualquier gas que pueda escaparse. Mantener
         una buena ventilaci\xF3n es una pr\xE1ctica de seguridad."
+      imagenOpcion: {fileID: 21300000, guid: 2219f37d191259e4a8b79143618db8a5, type: 3}

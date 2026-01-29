@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreDelCuestionario: CUESTIONARIO PRE-ESCENARIO
   preguntas:
-  - textoPregunta: "1. Est\xE1s cocinando con aceite o grasa caliente y la sart\xE9n
-      se incendia. \xBFCu\xE1l de las siguientes acciones consideras la primera y
-      m\xE1s segura para intentar controlar un fuego peque\xF1o y confinado en la
-      sart\xE9n?"
+  - textoPregunta: "1. Est\xE1s cocinando con aceite y la sart\xE9n se incendia.
+      \xBFCu\xE1l de las siguientes acciones consideras la primera y m\xE1s segura
+      para intentar controlar un fuego peque\xF1o en la sart\xE9n?"
     respuestas:
     - textoRespuesta: "Mover la sart\xE9n r\xE1pidamente hacia el fregadero e intentar
         echarle agua."
@@ -27,6 +26,7 @@ MonoBehaviour:
         el aceite a alta temperatura provoca una evaporaci\xF3n violenta que puede
         causar una peque\xF1a explosi\xF3n, salpicando aceite ardiendo y propagando
         el fuego."
+      imagenOpcion: {fileID: 21300000, guid: 2824faaeec59fac4db3f920ec72d03e3, type: 3}
     - textoRespuesta: "Sofocar las llamas deslizando cuidadosamente una tapa met\xE1lica
         sobre la sart\xE9n y apagar la fuente de calor."
       esCorrecta: 1
@@ -38,20 +38,22 @@ MonoBehaviour:
         puede causar derrames y quemaduras. Salir inmediatamente es una opci\xF3n
         si el fuego es incontrolable, pero la primera acci\xF3n si es controlable
         es intentar sofocarlo de forma segura."
-    - textoRespuesta: "Echarle un pu\xF1ado de harina o bicarbonato de sodio directamente
-        a las llamas."
+      imagenOpcion: {fileID: 21300000, guid: 921fe848414b18f46b68b926eba4b872, type: 3}
+    - textoRespuesta: "Echarle un pu\xF1ado de harina directamente a las llamas."
       esCorrecta: 0
       justificacion: "Esta acci\xF3n es incorrecta porque el uso de harina puede
         empeorar el fuego, ya que es inflamable y puede propagar las llamas. Aunque
         el bicarbonato de sodio puede usarse para sofocar un fuego peque\xF1o, no
         es el m\xE9todo m\xE1s seguro y recomendado para la primera acci\xF3n, que
         es usar una tapa para sofocar las llamas."
+      imagenOpcion: {fileID: 21300000, guid: 9cc69a1e9d9f662499f6afd8f236c4de, type: 3}
     - textoRespuesta: Comenzar a ventilar la cocina abriendo puertas y ventanas inmediatamente.
       esCorrecta: 0
       justificacion: "Esta acci\xF3n es incorrecta. El m\xE9todo recomendado para
         extinguir un fuego en una sart\xE9n es sofocarlo, lo cual implica eliminar
         el suministro de ox\xEDgeno. Abrir puertas y ventanas aumentar\xEDa la circulaci\xF3n
         de aire, proveyendo m\xE1s ox\xEDgeno al fuego y potencialmente aviv\xE1ndolo."
+      imagenOpcion: {fileID: 21300000, guid: 58422b1783d5d7f489a733cf8f39945d, type: 3}
   - textoPregunta: "2. \xBFPor qu\xE9 se considera especialmente peligroso echar
       agua directamente a una sart\xE9n con aceite en llamas?"
     respuestas:
@@ -61,6 +63,7 @@ MonoBehaviour:
         la sart\xE9n, la raz\xF3n principal por la que es peligroso echar agua a
         una sart\xE9n con aceite en llamas es que el agua causa que el aceite se
         vaporice violentamente, lo que puede propagar el fuego y causar quemaduras."
+      imagenOpcion: {fileID: 21300000, guid: e8108eed83efbcb4597e9709cc5c2f1a, type: 3}
     - textoRespuesta: Porque el agua no es un agente extintor eficaz para fuegos
         de clase K (grasas y aceites de cocina).
       esCorrecta: 0
@@ -68,9 +71,9 @@ MonoBehaviour:
         para apagar fuegos de clase K, la principal raz\xF3n del peligro es la reacci\xF3n
         violenta que ocurre cuando el agua entra en contacto con el aceite caliente,
         causando salpicaduras y propagaci\xF3n del fuego."
+      imagenOpcion: {fileID: 21300000, guid: 23f2355d7171cc441ae1baf0083ee49c, type: 3}
     - textoRespuesta: "Porque el agua, al entrar en contacto con el aceite caliente,
-        se vaporiza violentamente y puede propagar el aceite ardiendo, causando una
-        llamarada o explosi\xF3n."
+        se vaporiza violentamente causando una llamarada o explosi\xF3n."
       esCorrecta: 1
       justificacion: "No se debe utilizar agua para apagar un incendio originado
         por aceite caliente. El agua, al entrar en contacto con el aceite a alta
@@ -79,11 +82,13 @@ MonoBehaviour:
         una peque\xF1a explosi\xF3n en la sart\xE9n, avivando el fuego y causando
         salpicaduras de aceite ardiendo que pueden propagar el incendio y causar
         quemaduras graves."
+      imagenOpcion: {fileID: 21300000, guid: d1eb14d5a453407478460602b2fdc673, type: 3}
     - textoRespuesta: "Porque el vapor de agua generado es t\xF3xico."
       esCorrecta: 0
       justificacion: "Esta opci\xF3n es incorrecta. El vapor de agua generado no
         es t\xF3xico; el problema principal es que el agua hace que el aceite salpique
         y se propague el fuego."
+      imagenOpcion: {fileID: 21300000, guid: 10393ea58e9ef1b438756d6aa31d9918, type: 3}
   - textoPregunta: "3. Si decides usar un pa\xF1o para intentar sofocar las llamas
       en la sart\xE9n (en ausencia de una tapa adecuada), \xBFcu\xE1l de estas opciones
       ser\xEDa la m\xE1s apropiada, aunque menos ideal que una tapa?"
@@ -93,6 +98,7 @@ MonoBehaviour:
       justificacion: "Esta opci\xF3n es incorrecta. Se debe usar una toalla h\xFAmeda
         para evitar que se prenda fuego. Adem\xE1s, se debe evitar el uso de materiales
         inflamables."
+      imagenOpcion: {fileID: 21300000, guid: e4f01aac631512b4f9216cefac018c86, type: 3}
     - textoRespuesta: "Un pa\xF1o grande, de algod\xF3n, ligeramente humedecido y
         bien escurrido, coloc\xE1ndolo con cuidado sobre la sart\xE9n."
       esCorrecta: 1
@@ -102,16 +108,19 @@ MonoBehaviour:
         gotee en el aceite caliente, lo que podr\xEDa causar una reacci\xF3n violenta
         similar a echar agua directamente. Una toalla seca se prender\xEDa fuego,
         avivando las llamas."
+      imagenOpcion: {fileID: 21300000, guid: bc904f6df5b72a449a77d261bd12d013, type: 3}
     - textoRespuesta: "Cualquier pa\xF1o disponible, lo importante es actuar r\xE1pido."
       esCorrecta: 0
       justificacion: "Esta opci\xF3n es incorrecta. No se debe usar cualquier pa\xF1o,
         sino uno que no sea de material inflamable y que est\xE9 h\xFAmedo."
+      imagenOpcion: {fileID: 21300000, guid: da87a152ad4782b4c97666e60c51ce3f, type: 3}
     - textoRespuesta: "Un pa\xF1o empapado en agua para asegurar que el fuego se
         enfr\xEDe."
       esCorrecta: 0
       justificacion: "Esta opci\xF3n es incorrecta. Es importante que la toalla est\xE9
         h\xFAmeda, pero no empapada, para evitar la reacci\xF3n violenta que ocurre
         cuando el agua entra en contacto con el aceite caliente."
+      imagenOpcion: {fileID: 21300000, guid: 7fd18d31c5a7ccf48989e5d5b546dc57, type: 3}
   - textoPregunta: "4. Si el fuego en la sart\xE9n comienza a extenderse m\xE1s all\xE1
       del recipiente, o sientes que la situaci\xF3n supera tu capacidad de controlarla
       de forma segura e inmediata, \xBFcu\xE1l es la acci\xF3n prioritaria?"
@@ -123,15 +132,16 @@ MonoBehaviour:
         la prioridad es evacuar y llamar a los servicios de emergencia, no buscar
         un extintor si no se sabe d\xF3nde est\xE1 o c\xF3mo usarlo, ya que esto
         puede demorar la evacuaci\xF3n y poner en riesgo la seguridad."
+      imagenOpcion: {fileID: 21300000, guid: ded74f663cab13944a9633319cc8136a, type: 3}
     - textoRespuesta: "Intentar apagarlo con m\xE1s agua o cualquier otro medio improvisado."
       esCorrecta: 0
       justificacion: "Esta acci\xF3n es incorrecta. La prioridad fundamental en un
         incendio es la seguridad personal. Si el fuego est\xE1 fuera de control,
         intentar apagarlo por medios improvisados es peligroso, especialmente con
         agua, que puede empeorar un incendio de aceite."
-    - textoRespuesta: "Salir inmediatamente de la cocina y del hogar siguiendo una
-        ruta de evacuaci\xF3n segura, cerrar las puertas a tu paso si es posible,
-        y una vez a salvo, llamar a los servicios de emergencia."
+      imagenOpcion: {fileID: 21300000, guid: 0fd95774d516b50429e075d019483be0, type: 3}
+    - textoRespuesta: Salir inmediatamente de la cocina y del hogar, cerrar las puertas
+        a tu paso si es posible, y llamar a los servicios de emergencia.
       esCorrecta: 1
       justificacion: "En una situaci\xF3n de incendio que se percibe como incontrolable,
         la prioridad fundamental es la seguridad personal y la de los dem\xE1s ocupantes.
@@ -139,6 +149,7 @@ MonoBehaviour:
         combatir un fuego grande sin el equipo o entrenamiento adecuado es extremadamente
         peligroso. Una vez a salvo, se debe llamar inmediatamente a los bomberos
         (116 en Per\xFA)."
+      imagenOpcion: {fileID: 21300000, guid: bcc9bcba65bc05f46a99c823ec3b1a8b, type: 3}
     - textoRespuesta: Gritar pidiendo ayuda, pero permanecer en la cocina intentando
         controlar el fuego.
       esCorrecta: 0
@@ -146,6 +157,7 @@ MonoBehaviour:
         en un lugar con un fuego que se propaga r\xE1pidamente puede llevar a una
         situaci\xF3n incontrolable que pone en riesgo la vida y la propiedad. La
         prioridad siempre es la seguridad personal."
+      imagenOpcion: {fileID: 21300000, guid: 766e534a0efd6f94a9821dea4bfade04, type: 3}
   - textoPregunta: "5. Una causa frecuente de incendios en la cocina es el sobrecalentamiento
       de aceite. \xBFCu\xE1l de las siguientes es una medida preventiva fundamental
       al cocinar con aceite?"
@@ -156,6 +168,7 @@ MonoBehaviour:
       justificacion: "Esta acci\xF3n es incorrecta. Calentar el aceite a la m\xE1xima
         temperatura posible es peligroso porque puede causar que el aceite se inflame.
         Es importante mantener el aceite a una temperatura segura para evitar incendios."
+      imagenOpcion: {fileID: 21300000, guid: a86544c24fbc75140a9d0e1b7981c04e, type: 3}
     - textoRespuesta: "No dejar nunca desatendida la sart\xE9n o recipiente mientras
         se est\xE1 calentando aceite o cocinando con \xE9l."
       esCorrecta: 1
@@ -164,12 +177,14 @@ MonoBehaviour:
         se cocina, especialmente cuando se calienta aceite. Mantener la vigilancia
         constante permite detectar y responder r\xE1pidamente a cualquier situaci\xF3n
         de riesgo."
+      imagenOpcion: {fileID: 21300000, guid: b3e6c344b4bd9f64ba5d3b8361239e11, type: 3}
     - textoRespuesta: "Tener siempre un recipiente con agua cerca para actuar r\xE1pido
         en caso de ignici\xF3n."
       esCorrecta: 0
       justificacion: 'Esta es una medida incorrecta. No se debe utilizar agua para
         apagar un incendio originado por aceite caliente, ya que puede avivar el
         fuego y causar salpicaduras peligrosas. '
+      imagenOpcion: {fileID: 21300000, guid: 854a5ff771ee07d4b8fa92a37404bc5a, type: 3}
     - textoRespuesta: Usar siempre utensilios de madera para remover, ya que no conducen
         el calor.
       esCorrecta: 0
@@ -177,3 +192,4 @@ MonoBehaviour:
         no es una medida preventiva directa contra los incendios de aceite. Lo importante
         es monitorear la temperatura del aceite y no dejarlo desatendido, no el material
         de los utensilios. "
+      imagenOpcion: {fileID: 21300000, guid: 3ba71087d021ec1469de1b6cef23afc5, type: 3}

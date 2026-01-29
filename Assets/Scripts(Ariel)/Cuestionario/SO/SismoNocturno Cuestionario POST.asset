@@ -22,19 +22,22 @@ MonoBehaviour:
     - textoRespuesta: "Porque podr\xEDas marearte por el movimiento y desmayarte."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "Porque en la oscuridad y con el suelo movi\xE9ndose, es muy
-        probable que pises vidrios rotos o caigas sobre objetos volcados antes de
-        llegar a la puerta."
+        probable que te accidentes."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "Porque si te levantas, el sismo se sentir\xE1 con mayor intensidad
         que si est\xE1s echado."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: Porque al poner los pies en el suelo, transmites vibraciones
         que pueden desestabilizar los muebles cercanos.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
   - textoPregunta: "2. Vives en un segundo piso. Durante el sismo, sientes la necesidad
       de bajar corriendo por las escaleras para llegar a la calle antes de que termine
       el temblor. \xBFCu\xE1l es el criterio de seguridad correcto respecto a las
@@ -44,18 +47,20 @@ MonoBehaviour:
         pasamanos."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Las escaleras son una de las partes m\xE1s vulnerables y peligrosas
-        de una estructura; bajar por ellas mientras todo se mueve multiplica el riesgo
-        de ca\xEDda mortal o colapso. Es mejor esperar en una zona segura del piso."
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
+    - textoRespuesta: Es mejor esperar en una zona segura del piso.
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "Bajarlas sentado escal\xF3n por escal\xF3n para no caerse."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "Es seguro bajarlas siempre y cuando no haya nadie m\xE1s us\xE1ndolas
         al mismo tiempo."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
   - textoPregunta: "3. El movimiento ha cesado y decides evacuar hacia la calle.
       Al salir, \xBFcu\xE1l es el peligro principal que debes mirar hacia arriba
       y evitar, especialmente si hay edificios altos o postes cerca?"
@@ -63,17 +68,19 @@ MonoBehaviour:
     - textoRespuesta: Evitar mirar al cielo para no marearse con las nubes pasando.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "El riesgo de \"r\xE9plicas s\xF3nicas\" que da\xF1en los o\xEDdos."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "El desprendimiento de vidrios, macetas, cables el\xE9ctricos
-        o mamposter\xEDa de las fachadas, que suelen caer justo en la zona de la
-        vereda/acera."
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
+    - textoRespuesta: "El desprendimiento de vidrios, macetas, cables el\xE9ctricos."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "La lluvia \xE1cida que a veces acompa\xF1a a los sismos fuertes."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
   - textoPregunta: "4. El sismo es muy fuerte y no puedes evacuar. Ves el marco de
       una puerta y recuerdas que antes dec\xEDan que era seguro. Seg\xFAn los est\xE1ndares
       modernos de construcci\xF3n y seguridad, \xBFqu\xE9 debes hacer?"
@@ -82,21 +89,22 @@ MonoBehaviour:
         m\xE1s fuerte de la casa."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "Evitar el marco de la puerta (salvo que sea una construcci\xF3n
-        de adobe muy antigua y sin vigas), ya que hoy en d\xEDa no ofrece protecci\xF3n
-        contra ca\xEDdas de objetos y podr\xEDas lesionarte con la puerta oscilando;
-        es mejor buscar un mueble resistente (mesa/cama) y protegerse junto o debajo
-        de \xE9l."
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
+    - textoRespuesta: "Es mejor buscar un mueble resistente (mesa/cama) y protegerse
+        junto o debajo de \xE9l."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: Pararte en el marco de la puerta y empujar las jambas con las
         manos para estabilizar la casa.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "Ir al centro de la habitaci\xF3n y saltar r\xEDtmicamente
         para contrarrestar la onda s\xEDsmica."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
   - textoPregunta: "5. Miras tu pasillo de salida y notas que tienes bicicletas guardadas,
       cajas de reciclaje o macetas grandes decorando el camino hacia la puerta principal.
       En un contexto de sismo nocturno y corte de luz, \xBFen qu\xE9 se convierten
@@ -105,14 +113,18 @@ MonoBehaviour:
     - textoRespuesta: "En una barrera de protecci\xF3n que amortigua golpes."
       esCorrecta: 0
       justificacion: ...
-    - textoRespuesta: "En trampas mortales que bloquear\xE1n la evacuaci\xF3n, causar\xE1n
-        tropezones y p\xE1nico en la oscuridad."
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
+    - textoRespuesta: "En trampas que bloquear\xE1n la evacuaci\xF3n y causar\xE1n
+        tropezones."
       esCorrecta: 1
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: "En objetos irrelevantes, ya que la adrenalina te permitir\xE1
         saltarlos sin problemas."
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
     - textoRespuesta: Sirven para hacer ruido si se caen y alertarte del sismo.
       esCorrecta: 0
       justificacion: ...
+      imagenOpcion: {fileID: 21300000, guid: c445dc888a56e8e449ba797d6de5b409, type: 3}
