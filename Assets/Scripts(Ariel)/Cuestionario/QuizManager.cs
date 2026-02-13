@@ -4,9 +4,8 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using DG.Tweening;
+using DG.Tweening; // Importante para la nueva animación
 
-// 1. Definimos el Enum para los tipos de escenario
 public enum EscenarioTipo
 {
     FuegoCocina,
@@ -17,8 +16,8 @@ public enum EscenarioTipo
 public class QuizManager : MonoBehaviour
 {
     [Header("Configuración de Escenario (PlayerPrefs)")]
-    public EscenarioTipo escenarioActual; // Seleccionar esto en el Inspector
-    public bool esPostGame; // Si es false es Pre, si es true es Post
+    public EscenarioTipo escenarioActual;
+    public bool esPostGame;
 
     [Header("Datos del Cuestionario")]
     public CuestionarioSO cuestionario;
@@ -36,7 +35,7 @@ public class QuizManager : MonoBehaviour
     public Button botonEmpezarNivel;
 
     [Header("UI - Funcionalidad Extra")]
-    public Button botonSaltar; // ARRASTRAR EL BOTÓN AQUÍ EN EL INSPECTOR
+    public Button botonSaltar;
 
     [Header("Eventos")]
     public UnityEvent alFinalizarQuiz;
@@ -56,7 +55,7 @@ public class QuizManager : MonoBehaviour
     private int indiceSeleccionado = -1;
     private bool respuestaEnviada = false;
 
-    private Coroutine questionTypewriterCoroutine;
+    // ELIMINADO: private Coroutine questionTypewriterCoroutine; 
     private List<Coroutine> optionTypewriterCoroutines = new List<Coroutine>();
     private Dictionary<TextMeshProUGUI, string> opcionTextosCompletos = new Dictionary<TextMeshProUGUI, string>();
 
@@ -66,33 +65,26 @@ public class QuizManager : MonoBehaviour
         botonEmpezarNivel.gameObject.SetActive(false);
         botonSiguientePregunta.onClick.AddListener(OnBotonSiguienteClick);
 
-        // --- LÓGICA DEL BOTÓN SALTAR ---
         ConfigurarBotonSaltar();
-
         CargarPregunta();
     }
 
-    // Método para generar la clave única basada en Escenario + Pre/Post
     private string ObtenerKeyPlayerPref()
     {
         string tipoEvaluacion = esPostGame ? "Post" : "Pre";
-        // Ejemplo de resultado: "QuizCompleted_FuegoCocina_Pre"
         return $"QuizCompleted_{escenarioActual}_{tipoEvaluacion}";
     }
 
     private void ConfigurarBotonSaltar()
     {
         if (botonSaltar == null) return;
-
         string key = ObtenerKeyPlayerPref();
-
-        // Verificamos si ya se completó anteriormente (1 = completado, 0 = no)
         bool yaCompletado = PlayerPrefs.GetInt(key, 0) == 1;
 
         if (yaCompletado)
         {
             botonSaltar.gameObject.SetActive(true);
-            botonSaltar.onClick.RemoveAllListeners(); // Evitar duplicados
+            botonSaltar.onClick.RemoveAllListeners();
             botonSaltar.onClick.AddListener(SaltarCuestionario);
         }
         else
@@ -101,14 +93,10 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    // Acción al pulsar Saltar
     public void SaltarCuestionario()
     {
-        SoundManager.Instance?.PlaySFX("Click"); // Sonido opcional
+        SoundManager.Instance?.PlaySFX("Click");
         LimpiarCorutinasYBotones();
-
-        // Opcional: Si saltas, quizás quieras guardar un resultado vacío o simplemente avanzar
-        // Aquí asumimos que saltar simplemente dispara el evento final para cambiar de escena/panel
         botonEmpezarNivel.gameObject.SetActive(true);
         alFinalizarQuiz.Invoke();
     }
@@ -131,11 +119,12 @@ public class QuizManager : MonoBehaviour
 
         Pregunta pregunta = cuestionario.preguntas[preguntaActualIndex];
 
+        // --- NUEVA LÓGICA DE ANIMACIÓN PARA LA PREGUNTA ---
         if (textoPregunta != null)
         {
-            textoPregunta.text = "";
-            questionTypewriterCoroutine = StartCoroutine(TypeText(textoPregunta, pregunta.textoPregunta, 0.02f));
+            AnimarTextoPregunta(pregunta.textoPregunta);
         }
+        // --------------------------------------------------
 
         for (int i = 0; i < pregunta.respuestas.Length; i++)
         {
@@ -168,7 +157,7 @@ public class QuizManager : MonoBehaviour
             if (tmpTexto != null)
             {
                 opcionTextosCompletos[tmpTexto] = pregunta.respuestas[i].textoRespuesta;
-                tmpTexto.text = "";
+                tmpTexto.text = ""; // Las opciones siguen usando TypeText si quieres, o puedes cambiarlo también
             }
 
             nuevaOpcion.transform.DOKill();
@@ -181,6 +170,29 @@ public class QuizManager : MonoBehaviour
 
         AnimarEntradaTarjetas();
     }
+
+    // --- NUEVO MÉTODO PARA ANIMAR EL TEXTO DE LA PREGUNTA ---
+    private void AnimarTextoPregunta(string texto)
+    {
+        // 1. Matar animaciones previas para evitar conflictos
+        textoPregunta.transform.DOKill();
+        textoPregunta.DOKill();
+
+        // 2. Setear el texto
+        textoPregunta.text = texto;
+
+        // 3. Resetear estado inicial (Transparente)
+        textoPregunta.alpha = 0;
+
+        // 4. ANIMACIÓN ASCENDENTE
+        // Movemos el texto 50 unidades hacia abajo RELATIVAMENTE y hacemos que suba a su posición original
+        // El true en From(true) indica que es una posición relativa
+        textoPregunta.rectTransform.DOAnchorPosY(-50f, 0.8f).From(true).SetEase(Ease.OutBack);
+
+        // 5. FADE IN
+        textoPregunta.DOFade(1f, 0.8f);
+    }
+    // --------------------------------------------------------
 
     void SeleccionarOpcion(int index)
     {
@@ -222,6 +234,8 @@ public class QuizManager : MonoBehaviour
             cg.DOFade(1f, optionDuration).SetDelay(delay);
 
             int index = i;
+            // Mantenemos la animación de escritura en las OPCIONES para que se vea dinámico,
+            // pero si quieres cambiar esto también avísame.
             DOVirtual.DelayedCall(delay + (optionDuration * 0.4f), () => {
                 if (index < botonesInstanciados.Count && botonesInstanciados[index] != null)
                 {
@@ -240,7 +254,6 @@ public class QuizManager : MonoBehaviour
             if (indiceSeleccionado == -1) ShakeOptions();
             return;
         }
-
         StartCoroutine(CorregirYContinuar());
     }
 
@@ -248,8 +261,6 @@ public class QuizManager : MonoBehaviour
     {
         respuestaEnviada = true;
         DesactivarBotones(false);
-
-        // Desactivamos el botón de saltar mientras se corrige para evitar bugs visuales
         if (botonSaltar != null) botonSaltar.interactable = false;
 
         Pregunta preguntaActual = cuestionario.preguntas[preguntaActualIndex];
@@ -280,14 +291,15 @@ public class QuizManager : MonoBehaviour
         else
         {
             preguntaActualIndex++;
-            if (botonSaltar != null) botonSaltar.interactable = true; // Reactivamos saltar
+            if (botonSaltar != null) botonSaltar.interactable = true;
             CargarPregunta();
         }
     }
 
     private void LimpiarCorutinasYBotones()
     {
-        if (questionTypewriterCoroutine != null) StopCoroutine(questionTypewriterCoroutine);
+        // ELIMINADO: if (questionTypewriterCoroutine != null) StopCoroutine(questionTypewriterCoroutine);
+
         foreach (var c in optionTypewriterCoroutines) if (c != null) StopCoroutine(c);
         optionTypewriterCoroutines.Clear();
         opcionTextosCompletos.Clear();
@@ -312,9 +324,7 @@ public class QuizManager : MonoBehaviour
     private void DesactivarBotones(bool interactable)
     {
         foreach (var b in botonesInstanciados) b.interactable = interactable;
-
         bool esUltima = (preguntaActualIndex == cuestionario.preguntas.Length - 1);
-
         if (botonSiguientePregunta != null) botonSiguientePregunta.interactable = interactable && !esUltima;
         if (botonEmpezarNivel != null) botonEmpezarNivel.interactable = interactable && esUltima;
     }
@@ -328,9 +338,12 @@ public class QuizManager : MonoBehaviour
 
             b.transform.DOLocalRotate(new Vector3(0, -90, 0), 0.3f).SetEase(Ease.InQuad);
             b.transform.DOScale(0.5f, 0.3f);
-
             if (cg != null) cg.DOFade(0, 0.3f);
         }
+
+        // También desvanecemos la pregunta actual al salir
+        textoPregunta.DOFade(0, 0.3f);
+
         yield return new WaitForSeconds(0.3f);
     }
 
@@ -343,30 +356,23 @@ public class QuizManager : MonoBehaviour
 
     private void FinalizarQuiz()
     {
-        // --- GUARDAR QUE SE HA COMPLETADO ESTE ESCENARIO ESPECÍFICO ---
         string key = ObtenerKeyPlayerPref();
         PlayerPrefs.SetInt(key, 1);
-        PlayerPrefs.Save(); // Forzamos el guardado para asegurar persistencia
-        // -------------------------------------------------------------
-
+        PlayerPrefs.Save();
         resultadosGuardados?.GuardarResultados();
-        // Nota: Asumo que QuizCloudUploader es una clase estática o externa que tienes definida
-        // _ = QuizCloudUploader.SubirResultadosAsync(resultadosGuardados); 
-
         alFinalizarQuiz.Invoke();
     }
 
     private void MostrarFinDelQuiz()
     {
-        textoPregunta.text = "¡Excelente trabajo!";
+        AnimarTextoPregunta("¡Excelente trabajo!"); // Usamos la nueva animación aquí también
         grupoDeOpciones.SetActive(false);
         botonEmpezarNivel.gameObject.SetActive(true);
         botonEmpezarNivel.interactable = true;
-
-        // Al terminar, ocultamos el botón de saltar (ya no tiene sentido saltar si acabaste)
         if (botonSaltar != null) botonSaltar.gameObject.SetActive(false);
     }
 
+    // Esta corrutina se mantiene SOLO para las respuestas pequeñas, si deseas
     private IEnumerator TypeText(TMP_Text textComponent, string fullText, float delay)
     {
         textComponent.text = "";

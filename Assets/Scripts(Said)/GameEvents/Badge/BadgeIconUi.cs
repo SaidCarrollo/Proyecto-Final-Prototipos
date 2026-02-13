@@ -1,59 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
 
-public class BadgeIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BadgeIconUI : MonoBehaviour
 {
-    private Badge badgeData;
+    [Header("Componentes Internos del Prefab")]
+    [SerializeField] private Image iconImage;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    private GameObject tooltipPanel;
-    private TextMeshProUGUI tooltipTitleText;
-    private TextMeshProUGUI tooltipDescriptionText;
-    private Image badgeImage;
-
-    public void Inicializar(Badge data, GameObject panel, TextMeshProUGUI title, TextMeshProUGUI description)
+    public void Inicializar(Badge badge)
     {
-        badgeData = data;
-        tooltipPanel = panel;
-        tooltipTitleText = title;
-        tooltipDescriptionText = description;
+        // Asignamos los datos del badge a los elementos visuales de la tarjeta
+        if (titleText != null) titleText.text = badge.ID; // O badge.Nombre si tienes ese campo
+        if (descriptionText != null) descriptionText.text = badge.Descripcion;
 
-        badgeImage = GetComponent<Image>();
-        if (badgeImage != null && badgeData.Icono != null)
+        if (iconImage != null && badge.Icono != null)
         {
-            badgeImage.sprite = badgeData.Icono;
-        }
-        else
-        {
-            Debug.LogWarning($"La insignia con ID '{badgeData.ID}' no tiene un ícono asignado.");
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (tooltipPanel != null && badgeData != null)
-        {
-            tooltipTitleText.text = badgeData.ID;
-            tooltipDescriptionText.text = badgeData.Descripcion;
-            tooltipPanel.SetActive(true);
-
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (tooltipPanel != null)
-        {
-            tooltipPanel.SetActive(false);
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (tooltipPanel != null)
-        {
-            tooltipPanel.SetActive(false);
+            iconImage.sprite = badge.Icono;
         }
     }
 }

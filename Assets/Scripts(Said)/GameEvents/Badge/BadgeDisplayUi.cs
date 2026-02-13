@@ -73,12 +73,16 @@ public class BadgeDisplayUI : MonoBehaviour
 
         foreach (var badge in badges)
         {
-            GameObject badgeIconInstance = Instantiate(badgeIconPrefab, container);
-            BadgeIconUI badgeIconScript = badgeIconInstance.GetComponent<BadgeIconUI>();
+            // Instanciamos la tarjeta (BadgeEPrefab)
+            GameObject badgeInstance = Instantiate(badgeIconPrefab, container);
 
-            if (badgeIconScript != null)
+            // Obtenemos el script de la tarjeta
+            BadgeIconUI badgeScript = badgeInstance.GetComponent<BadgeIconUI>();
+
+            if (badgeScript != null)
             {
-                badgeIconScript.Inicializar(badge, tooltipPanel, tooltipTitle, tooltipDescription);
+                // Solo pasamos el badge, la tarjeta se encarga del resto
+                badgeScript.Inicializar(badge);
             }
         }
     }
