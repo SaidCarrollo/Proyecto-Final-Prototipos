@@ -240,7 +240,7 @@ public class QuizManager : MonoBehaviour
                 if (index < botonesInstanciados.Count && botonesInstanciados[index] != null)
                 {
                     TextMeshProUGUI tmp = botonesInstanciados[index].transform.Find("Texto").GetComponent<TextMeshProUGUI>();
-                    var c = StartCoroutine(TypeText(tmp, opcionTextosCompletos[tmp], 0.01f));
+                    var c = StartCoroutine(TypeText(tmp, opcionTextosCompletos[tmp], 0.001f));
                     optionTypewriterCoroutines.Add(c);
                 }
             });

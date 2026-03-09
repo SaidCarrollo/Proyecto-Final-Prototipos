@@ -1,18 +1,20 @@
-
 using UnityEngine;
-using UnityEngine.UI; 
+using TMPro; // O usa UnityEngine.UI si usas texto legacy
 
 public class InteractionPromptUI : MonoBehaviour
 {
-    [Tooltip("The UI GameObject that serves as the interaction prompt (e.g., an Image or Text).")]
+    [Tooltip("El objeto visual completo (panel/botón)")]
     [SerializeField] private GameObject interactionPromptVisual;
+
+    [Tooltip("El componente de texto dentro del botón")]
+    [SerializeField] private TextMeshProUGUI promptText;
 
     void Start()
     {
         if (interactionPromptVisual == null)
         {
-            Debug.LogError("InteractionPromptUI: interactionPromptVisual is not assigned!", this);
-            enabled = false; 
+            Debug.LogError("InteractionPromptUI: Falta asignar interactionPromptVisual.");
+            enabled = false;
             return;
         }
         interactionPromptVisual.SetActive(false);
@@ -20,17 +22,20 @@ public class InteractionPromptUI : MonoBehaviour
 
     public void ShowPrompt()
     {
-        if (interactionPromptVisual != null)
-        {
-            interactionPromptVisual.SetActive(true);
-        }
+        interactionPromptVisual.SetActive(true);
     }
 
     public void HidePrompt()
     {
-        if (interactionPromptVisual != null)
+        interactionPromptVisual.SetActive(false);
+    }
+
+    // --- NUEVO MÉTODO ---
+    public void SetPromptText(string text)
+    {
+        if (promptText != null)
         {
-            interactionPromptVisual.SetActive(false);
+            promptText.text = text;
         }
     }
 }

@@ -12,6 +12,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float groundCheckDistance = 0.1f;
     [SerializeField] private LayerMask groundLayer;
+    private bool enableMovementLogic = true;
 
     [Header("Crouch Settings")]
     [SerializeField] private float crouchHeight = 1f;
@@ -178,13 +179,43 @@ public class FirstPersonController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isInputEnabled)
+        if (isInputEnabled && enableMovementLogic)
         {
             HandleMovement();
         }
         CheckGrounded();
     }
+    public void SetAssistedMode(bool isAssisted)
+    {
+        // Si es asistido:
+        // 1. isInputEnabled = true (necesitamos que Update corra para mirar con el mouse)
+        // 2. enableMovementLogic = false (para que FixedUpdate no calcule WASD)
 
+        isInputEnabled = true;
+        enableMovementLogic = !isAssisted;
+
+        if (isAssisted)
+        {
+            // Frenamos al personaje inmediatamente
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            currentMovementInput = Vector2.zero;
+
+            // Opcional: Desactivamos acciones de movimiento del Input System para ahorrar proceso
+            moveAction.action.Disable();
+            jumpAction.action.Disable();
+            runAction.action.Disable();
+            crouchAction.action.Disable();
+
+            // PERO mantenemos lookAction activo
+            lookAction.action.Enable();
+            if (lookStickAction != null) lookStickAction.action.Enable();
+        }
+        else
+        {
+            // Reactivamos todo para modo normal
+            SetInputEnabled(true);
+        }
+    }
     private IEnumerator CheckRunningAndApplyDamage()
     {
         while (healthSystemEnabled && currentHealth > 0)

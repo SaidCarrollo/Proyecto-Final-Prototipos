@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction;
     [SerializeField] private FirstPersonController playerController;
 
+    [Header("Controladores de Jugador")]
+    [SerializeField] private FirstPersonController fpsController; // Arrastra tu script actual
+    [SerializeField] private AssistedModeBase assistedController;
+    [SerializeField] private GameObject interfazAsistida; // El Canvas/Panel con las flechas en pantalla
+    [SerializeField] private GameObject interfazNOAsistida;
+    private const string SUFIJO_PREF = "_AssistMode";
+
     [Header("Managers y Events")]
     [SerializeField] private BadgeManager badgeManager;
     [SerializeField] private GameEvent onPlayerDeathEvent;
@@ -85,6 +92,8 @@ public class GameManager : MonoBehaviour
         if (badgeManager != null)
             badgeManager.ResetBadges();
 
+        VerificarModoDeJuego();
+
         IsFireUncontrolled = false;
         currentState = GameState.Playing;
         if (dangerIndicator != null)
@@ -97,6 +106,35 @@ public class GameManager : MonoBehaviour
         else
         {
             IniciarEscenarioNormal();
+        }
+    }
+    private void VerificarModoDeJuego()
+    {
+        string nombreEscena = SceneManager.GetActiveScene().name;
+        string key = nombreEscena + "_AssistMode";
+        bool esModoAsistido = PlayerPrefs.GetInt(key, 0) == 1;
+
+        if (esModoAsistido)
+        {
+            if (fpsController != null) fpsController.SetAssistedMode(true);
+
+            if (assistedController != null)
+            {
+                assistedController.enabled = true;
+                // El GameManager llama a esta función sin importarle si por dentro
+                // usa NavMesh, DOTween, botones 3D o 2D.
+                assistedController.ActivarModoAsistido();
+            }
+
+            // Si hay UI asiganda (Nivel 1), la prende. Si está vacío (Nivel 2), no hace nada.
+            if (interfazAsistida != null) interfazAsistida.SetActive(true);
+            if (interfazAsistida != null) interfazNOAsistida.SetActive(false);
+        }
+        else
+        {
+            if (fpsController != null) fpsController.SetAssistedMode(false);
+            if (assistedController != null) assistedController.DesactivarModoAsistido();
+            if (interfazAsistida != null) interfazAsistida.SetActive(false);
         }
     }
     private IEnumerator DelayInicialCoroutine()

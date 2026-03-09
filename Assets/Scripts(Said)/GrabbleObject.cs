@@ -19,7 +19,7 @@ public class GrabbableObject : MonoBehaviour
         objectRenderer = GetComponent<Renderer>();
         if (objectRenderer != null)
         {
-            originalColor = objectRenderer.material.color;
+            //originalColor = objectRenderer.material.color;
         }
     }
 
